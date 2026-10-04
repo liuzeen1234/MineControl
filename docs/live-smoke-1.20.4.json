@@ -1,0 +1,19 @@
+[
+  "ping",
+  "split packets, multiple requests and malformed JSON",
+  "invalid key",
+  "invalid hold",
+  "screen timeout",
+  "click options",
+  "wait options screen",
+  "keyboard Escape closes options",
+  "scaled mouse coordinates and left click",
+  "persistent combination, up and reset",
+  "keyboard and mouse timed release",
+  "right button down/up",
+  "click singleplayer",
+  "text replacement and Unicode append",
+  "disabled and stale widgets rejected",
+  "idempotent boolean cycling ui set",
+  "nested tab controls"
+]

@@ -1,0 +1,33 @@
+[
+  {
+    "check": "W down persists across CLI connections, moves player, up stops",
+    "distance": 2.115182005643896,
+    "drift": 0.0,
+    "focused": false
+  },
+  {
+    "check": "timed movement releases",
+    "distance": 1.7231468103731467
+  },
+  {
+    "check": "gameplay combination and reset"
+  },
+  {
+    "check": "SPACE tap causes jump",
+    "rise": 1.1661092609382138
+  },
+  {
+    "check": "mouse motion uses configured default sensitivity",
+    "yaw_delta": 4.5,
+    "pitch_delta": -1.5
+  },
+  {
+    "check": "left and right gameplay clicks release"
+  },
+  {
+    "check": "E opens inventory, Escape returns to gameplay"
+  },
+  {
+    "check": "leaving world releases held inputs"
+  }
+]

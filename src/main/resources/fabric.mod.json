@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "minecontrol",
+  "version": "${version}",
+  "name": "MineControl",
+  "description": "Local command-line control for Minecraft clients.",
+  "environment": "client",
+  "license": "MIT",
+  "entrypoints": {"client": ["dev.minecontrol.MineControlClient"]},
+  "mixins": ["minecontrol.mixins.json"],
+  "depends": {"fabricloader": ">=0.15.11", "minecraft": "${minecraft_dependency}", "java": ">=17", "fabric-api": "*"}
+}

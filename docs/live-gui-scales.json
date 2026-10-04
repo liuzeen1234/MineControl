@@ -1,0 +1,27 @@
+[
+  {
+    "scale": "GUI Scale: 1",
+    "width": 1708,
+    "height": 960
+  },
+  {
+    "scale": "GUI Scale: 2",
+    "width": 854,
+    "height": 480
+  },
+  {
+    "scale": "GUI Scale: 3",
+    "width": 570,
+    "height": 320
+  },
+  {
+    "scale": "GUI Scale: 4",
+    "width": 427,
+    "height": 240
+  },
+  {
+    "scale": "GUI Scale: Auto",
+    "width": 427,
+    "height": 240
+  }
+]

@@ -1,0 +1,6 @@
+[
+  "maximum hold cap releases keyboard and mouse down",
+  "oversized request returns error and closes connection",
+  "boolean request id rejected",
+  "idle partial request expires and next client succeeds"
+]
