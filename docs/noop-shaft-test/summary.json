@@ -1,0 +1,154 @@
+{
+  "date_local": "2026-10-26",
+  "timezone": "Asia/Shanghai",
+  "server": "Paper 26.2-134, 127.0.0.1:25565",
+  "player": "Player827",
+  "permissions": {
+    "ops_at_finish": [],
+    "player_initial_mode": "survival",
+    "player_final_mode": "survival",
+    "agent_server_console_commands": [],
+    "agent_chat_commands": [],
+    "terrain_queries": 0,
+    "equipment": "existing test inventory; no new grants during this run"
+  },
+  "surface_transition": {
+    "requested": "ordinary death and Respawn",
+    "actual": "walked off old Y160 test platform and landed alive on leaves at Y73; walked to natural bank at Y66; no Respawn click occurred because player survived",
+    "limitations": "fall damage/rules were not queried or modified; cannot infer ordinary production-server damage behavior"
+  },
+  "attempts": [
+    {
+      "report": "docs/noop-shaft-test/run-1/descent/report.json",
+      "origin": [
+        57,
+        66,
+        113
+      ],
+      "target_y": -54,
+      "reason": "stopped",
+      "error": "No visible solid one-level landing at (57, 63, 113); refuse blind drop",
+      "levels": 1,
+      "elapsed_seconds": 12.202156083192676
+    },
+    {
+      "report": "docs/noop-shaft-test/run-2/descent/report.json",
+      "origin": [
+        56,
+        65,
+        113
+      ],
+      "target_y": -54,
+      "reason": "stopped",
+      "error": "Unsupported/falling visible block: ((55, 66, 113), 'minecraft:vine')",
+      "levels": 0,
+      "elapsed_seconds": 1.201058791950345
+    },
+    {
+      "report": "docs/noop-shaft-test/run-3/descent/report.json",
+      "origin": [
+        56,
+        65,
+        113
+      ],
+      "target_y": -54,
+      "reason": "stopped",
+      "error": "Descent movement stalled",
+      "levels": 3,
+      "elapsed_seconds": 33.1013182499446
+    },
+    {
+      "report": "docs/noop-shaft-test/run-4/descent/report.json",
+      "origin": [
+        55,
+        62,
+        113
+      ],
+      "target_y": 32,
+      "reason": "target_reached",
+      "error": null,
+      "levels": 30,
+      "elapsed_seconds": 189.05187724996358
+    }
+  ],
+  "successful_sequence": {
+    "descent_start_y": 62,
+    "target_y": 32,
+    "levels": 30,
+    "descent_seconds": 189.05187724996358,
+    "mining_seconds": 121.55028962506913,
+    "horizontal_steps": 14,
+    "bridge_blocks": 3,
+    "main_sequence_net_items": {
+      "minecraft:cobblestone": 73,
+      "minecraft:dirt": 1,
+      "minecraft:granite": 5
+    },
+    "final_health": 20.0,
+    "final_food": 20,
+    "final_position": {
+      "x": 41.58428507439831,
+      "y": 32.0,
+      "z": 113.49998687792153,
+      "health": 20.0,
+      "food": 20,
+      "alive": true,
+      "game_mode": "survival"
+    },
+    "inputs_released": true,
+    "commands": {
+      "macro.status": 1,
+      "observe": 882,
+      "inventory": 2,
+      "position": 510,
+      "status": 61,
+      "mouse.move": 330,
+      "mouse.hold": 61,
+      "mouse.up": 61,
+      "key.hold": 90,
+      "key.up": 120,
+      "input.reset": 1
+    }
+  },
+  "assistance": [
+    "First bank shaft exposed a lily pad/water rather than solid one-level landing; refused blind drop.",
+    "Vine handling fixed after second attempt stopped.",
+    "Third attempt stopped at Y62 because water pushed player back. A sustained ordinary W-input check confirmed the issue.",
+    "Two existing cobblestone blocks were placed through first-hit visible anchors at (56,61,113) and (56,62,113), then the shaft was restarted toward land at columns x55/x54. This intervention was not performed automatically by shaft_miner.py."
+  ],
+  "server_audit": {
+    "event_counts": {
+      "join": 1,
+      "block_break": 95,
+      "kick_blocked": 2,
+      "block_place": 5
+    },
+    "uncancelled_breaks": 95,
+    "uncancelled_places": 5,
+    "file": "docs/noop-shaft-test/server-events.json",
+    "blocked_kicks": [
+      {
+        "time": "2026-10-25T22:30:42.467958Z",
+        "detail": "PLUGIN You were kicked for being AFK."
+      },
+      {
+        "time": "2026-10-25T22:35:52.407574Z",
+        "detail": "PLUGIN You were kicked for being AFK."
+      }
+    ]
+  },
+  "validation": {
+    "python_regressions": 28,
+    "passed": true,
+    "java_changed": false
+  },
+  "limits": [
+    "Test endpoint was already running; only client was restarted with --username Player827 to retain survival identity.",
+    "Test server retains peaceful difficulty, disabled punishments and cancellable-kick guard; anti-xray is disabled. Not a production anti-cheat or hostile-survival validation.",
+    "Simulation and FastBreak(A) alerts occurred during this run and are retained in the server log excerpt; no anti-cheat settings were changed.",
+    "Validated target is Y32, not Y-54.",
+    "No hidden ore information informed the shaft or tunnel route.",
+    "Complex water sealing and safe relocation required supervised normal client actions; not fully unattended from initial spawn.",
+    "Two AFK plugin kick attempts during debugging were cancelled by the pre-existing audit guard; continued connection does not establish normal production-server acceptance."
+  ]
+}

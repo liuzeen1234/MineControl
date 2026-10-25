@@ -6,10 +6,11 @@ import json
 import math
 from pathlib import Path
 import time
-from vein_miner import Miner, Unsafe, ROCK, ORES, FALLING, add, at_destination
+from vein_miner import Miner, Unsafe, ROCK, ORES, FALLING, PLANTS, TORCHES, add, at_destination
 
 BUILDING = ROCK - {'minecraft:moss_block', 'minecraft:dripstone_block'}
 SOLID = ROCK | ORES.keys() | {'minecraft:bedrock'}
+CLEARABLE = ROCK | ORES.keys() | PLANTS | TORCHES | {'minecraft:lily_pad'}
 
 
 class StraightMiner(Miner):
@@ -42,7 +43,8 @@ class StraightMiner(Miner):
             if hit and math.dist(eye, tuple(v+.5 for v in hit[0])) < math.dist(eye, tuple(v+.5 for v in point)):
                 raise Unsafe(f'Occluded tunnel cell: {point}')
             return
-        if hit[1] not in (ROCK | ORES.keys() | (FALLING if allow_falling else set())):
+        wood_or_leaves = hit[1].startswith('minecraft:') and hit[1].endswith(('_log','_wood','_leaves'))
+        if hit[1] not in (CLEARABLE | (FALLING if allow_falling else set())) and not wood_or_leaves:
             raise Unsafe(f'Unsupported/falling visible block: {hit}')
         started = time.monotonic()
         try:

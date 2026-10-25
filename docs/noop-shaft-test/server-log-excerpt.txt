@@ -1,0 +1,5 @@
+[06:15:21] [User Authenticator #2/INFO]: UUID of player Player827 is f7494cf2-23c9-3033-9230-c4a9565d6251
+[06:15:22] [Server thread/INFO]: Player827 joined the game
+[06:15:22] [Server thread/INFO]: Player827[/127.0.0.1:50233] logged in with entity id 717 at ([minecraft:overworld]50.49998804862375, 160.0, 113.42221863427234)
+[06:20:31] [Server thread/INFO]: Player827 failed Simulation: Simulation fail best=fall offXZ=0.0000 offY=2.4992 hover=0 air=56 dX=0.0000 dY=-0.1500 dZ=0.0000 lastY=-2.6296 onGround=false lastGround=false clientG=false input=true g=[54.52,73.10,113.49] pred=[0.0000,-2.6554,0.0000] feet=AIR b1=AIR b2=AIR n=AIR s=AIR e=AIR w=AIR supProbe=false in=[s:false,j:false,sh:false] trk=[spr:false,snk:false] gnd=[srv:false,cli:false,last:false,air:56] mom=[lX:0.0000,lY:-2.6296,lZ:0.0000] t=[jmp:495,glide:495(never),vel:495,dmg:395,atk:495,veh:495,pi:495,plc:395] rg=[gld:false,liq:false,clb:false,web:false,veh:false,kbF:false]
+[06:25:34] [Server thread/INFO]: Player827 failed FastBreak(A): FastBreak elapsed=1 req=3 block=stone
