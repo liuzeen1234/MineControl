@@ -8,5 +8,5 @@
   "license": "MIT",
   "entrypoints": {"client": ["dev.minecontrol.MineControlClient"]},
   "mixins": ["minecontrol.mixins.json"],
-  "depends": {"fabricloader": ">=0.15.11", "minecraft": "${minecraft_dependency}", "java": ">=17", "fabric-api": "*"}
+  "depends": {"fabricloader": "${loader_dependency}", "minecraft": "${minecraft_dependency}", "java": "${java_dependency}", "fabric-api": "*"}
 }

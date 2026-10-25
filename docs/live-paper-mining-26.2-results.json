@@ -1,0 +1,173 @@
+{
+  "started": "2026-10-24T13:14:28.281752+00:00",
+  "scenario": "survival, netherite pickaxe Unbreaking III Efficiency V, normal input through MineControl, W+left hold, alternating pitch 0/30 every 0.7 seconds",
+  "samples": [
+    {
+      "screen": null,
+      "world_loaded": true,
+      "window_focused": false,
+      "background_control": true,
+      "cursor_locked": true,
+      "tick": 35363,
+      "gui_width": 427,
+      "gui_height": 240,
+      "cursor_x": 213.5,
+      "cursor_y": 120.0,
+      "held_keys": [
+        87
+      ],
+      "held_buttons": [
+        0
+      ],
+      "yaw": 0.0,
+      "pitch": 0.0,
+      "player_x": 2.5,
+      "player_y": 80.0,
+      "player_z": 21.532290931567037,
+      "on_ground": true
+    },
+    {
+      "screen": null,
+      "world_loaded": true,
+      "window_focused": false,
+      "background_control": true,
+      "cursor_locked": true,
+      "tick": 35664,
+      "gui_width": 427,
+      "gui_height": 240,
+      "cursor_x": 213.5,
+      "cursor_y": 120.0,
+      "held_keys": [
+        87
+      ],
+      "held_buttons": [
+        0
+      ],
+      "yaw": 0.0,
+      "pitch": 0.0,
+      "player_x": 2.5,
+      "player_y": 80.0,
+      "player_z": 40.326906374327535,
+      "on_ground": true
+    },
+    {
+      "screen": null,
+      "world_loaded": true,
+      "window_focused": false,
+      "background_control": true,
+      "cursor_locked": true,
+      "tick": 35964,
+      "gui_width": 427,
+      "gui_height": 240,
+      "cursor_x": 213.5,
+      "cursor_y": 120.0,
+      "held_keys": [
+        87
+      ],
+      "held_buttons": [
+        0
+      ],
+      "yaw": 0.0,
+      "pitch": 0.0,
+      "player_x": 2.5,
+      "player_y": 80.0,
+      "player_z": 57.949508002868235,
+      "on_ground": true
+    },
+    {
+      "screen": null,
+      "world_loaded": true,
+      "window_focused": false,
+      "background_control": true,
+      "cursor_locked": true,
+      "tick": 36265,
+      "gui_width": 427,
+      "gui_height": 240,
+      "cursor_x": 213.5,
+      "cursor_y": 120.0,
+      "held_keys": [],
+      "held_buttons": [],
+      "yaw": 0.0,
+      "pitch": 0.0,
+      "player_x": 2.5,
+      "player_y": 80.0,
+      "player_z": 70.69999998807907,
+      "on_ground": true
+    }
+  ],
+  "before": {
+    "screen": null,
+    "world_loaded": true,
+    "window_focused": false,
+    "background_control": true,
+    "cursor_locked": true,
+    "tick": 35061,
+    "gui_width": 427,
+    "gui_height": 240,
+    "cursor_x": 213.5,
+    "cursor_y": 120.0,
+    "held_keys": [],
+    "held_buttons": [],
+    "yaw": 0.0,
+    "pitch": 0.0,
+    "player_x": 2.5,
+    "player_y": 80.0,
+    "player_z": 1.5,
+    "on_ground": true
+  },
+  "after": {
+    "screen": null,
+    "world_loaded": true,
+    "window_focused": false,
+    "background_control": true,
+    "cursor_locked": true,
+    "tick": 36267,
+    "gui_width": 427,
+    "gui_height": 240,
+    "cursor_x": 213.5,
+    "cursor_y": 120.0,
+    "held_keys": [],
+    "held_buttons": [],
+    "yaw": 0.0,
+    "pitch": 0.0,
+    "player_x": 2.5,
+    "player_y": 80.0,
+    "player_z": 70.69999998807907,
+    "on_ground": true
+  },
+  "ended": "2026-10-24T13:15:28.796684+00:00",
+  "server_events": {
+    "move": 467,
+    "interact": 167,
+    "dig_start": 155,
+    "swing": 1137,
+    "block_break": 138,
+    "dig_abort": 17
+  },
+  "distance_z": 69.19999998807907,
+  "duration_seconds": 60.514932,
+  "truthful_flags": [],
+  "paper": "26.2 build 134 STABLE",
+  "tool": {
+    "item": "netherite_pickaxe",
+    "enchantments": {
+      "unbreaking": 3,
+      "efficiency": 5
+    },
+    "applied_using": "two anvil UI merges",
+    "post_test_damage": 32
+  },
+  "gamemode": "survival",
+  "operator": false,
+  "hawk_profile": {
+    "violations": "none",
+    "layered_score_percent": 0,
+    "silent_watch": true
+  },
+  "grim_flags_during_mining": [],
+  "grim_flags_before_mining": [
+    "Timer x1 at 21:11:14",
+    "TimerLimit x1 at 21:11:14"
+  ],
+  "kicks_during_mining": 0
+}

@@ -1,11 +1,11 @@
 # MineControl
 
-Minecraft Fabric 客户端控制 Mod，配套标准库 Python CLI `minectl`。支持 Minecraft **1.20.4 / 1.20.1**，Java 17。
+Minecraft Fabric 客户端控制 Mod，配套标准库 Python CLI `minectl`。支持 Minecraft **26.2 / 1.20.4 / 1.20.1**。26.2 使用 Java 25，1.20.x 使用 Java 17。
 
 ## 安装
 
-1. 使用匹配 Minecraft 版本的 Fabric Loader（0.15.11 或更新版本），并安装相应版本 Fabric API。
-2. 将 `build/libs/minecontrol-mc1.20.4-1.0.0.jar` 或 `minecontrol-mc1.20.1-1.0.0.jar` 放入该实例的 `mods`。选择对应版本的普通 jar，sources jar 用于阅读源码。
+1. 使用匹配 Minecraft 版本的 Fabric Loader（26.2 需 0.19.3+；1.20.x 需 0.15.11+），并安装相应版本 Fabric API。
+2. 将 `build/libs/minecontrol-mc26.2-1.0.0.jar`、`minecontrol-mc1.20.4-1.0.0.jar` 或 `minecontrol-mc1.20.1-1.0.0.jar` 放入该实例的 `mods`。选择对应版本的普通 jar，sources jar 用于阅读源码。
 3. 启动游戏。配置首次自动写入实例的 `config/minecontrol.json`；日志出现 `MineControl listening on 127.0.0.1:25580` 表示就绪。
 4. 安装 Python 3.9+，在此项目目录运行 `./minectl ping`。Windows 使用 `python cli/minectl.py ping`。
 
@@ -79,3 +79,25 @@ python3 tests/live_world.py
 ```
 
 构建产物带 Minecraft 版本，两个版本可同时保存在 build/libs。开发客户端数据默认位于本项目 run，和普通游戏实例分离。可以用 `-PrunDir=run-1.20.1` 为不同版本指定隔离目录。实际验证及限制见 [测试记录](docs/TESTING.md)，协议见 [协议文档](docs/PROTOCOL.md)。
+
+## MC 26.2 适配
+
+参考 debug_menu 的 `-Pmc` 多版本构建方式，各目标分别生成 jar。
+Gradle 9.5.1 / Loom 1.17.21 需用 Java 25 启动；编译 1.20.x 时还需安装 JDK 17。
+默认目标仍为 1.20.4。
+
+```sh
+./gradlew build -Pmc=26.2
+./gradlew build -Pmc=1.20.4
+./gradlew build -Pmc=1.20.1
+```
+
+26.2 使用官方无混淆类名，版本适配代码在 `src/mc26.2/java`，旧版在
+`src/main/java`；协议服务和配置在 `src/common/java` 共用。构建中间文件按版本隔离，
+可安装 jar 汇总到 `build/libs`。修改控制功能时须同步两套适配并验证三个目标。
+26.2 的 ui list 返回官方控件类名（如 EditBox、Checkbox、CycleButton），
+wait screen 同样使用该版本的屏幕类名；CLI 命令与协议保持一致。
+
+验证：三个目标的 build 与协议检查、4 项 CLI 单元测试均通过；26.2 开发客户端
+已实测 GUI 点击、失焦键鼠输入、高 DPI 坐标、组合键、重置、定时释放、
+EditBox 中文输入以及布尔 CycleButton 的幂等设置。未完成进入世界后的移动实测。

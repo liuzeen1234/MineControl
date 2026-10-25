@@ -1,0 +1,33 @@
+[
+  {
+    "check": "movement and release",
+    "distance": 1.3356457449336647,
+    "drift": 0.0,
+    "focused": false
+  },
+  {
+    "check": "timed movement",
+    "distance": 1.5168513245412978
+  },
+  {
+    "check": "combination and reset"
+  },
+  {
+    "check": "jump",
+    "rise": 1.1661092609382138
+  },
+  {
+    "check": "camera",
+    "yaw_delta": 4.5,
+    "pitch_delta": -1.49999996
+  },
+  {
+    "check": "mouse clicks release"
+  },
+  {
+    "check": "inventory and escape"
+  },
+  {
+    "check": "screenshot requested"
+  }
+]

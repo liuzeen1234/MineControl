@@ -1,0 +1,5 @@
+name: MineControlTestAudit
+version: 1.0.0
+main: dev.minecontrol.audit.TestAudit
+api-version: '26.2'
+description: Local server event audit and cancellable kick guard, not an anticheat

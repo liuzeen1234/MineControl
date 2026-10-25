@@ -1,37 +1,28 @@
-// Fabric 官方 maven 已清理旧版 Loom 的“插件标记”(gradle.plugin marker，仅保留 1.14+)，
-// 导致 plugins { id 'fabric-loom' } 无法解析旧版本。改用 buildscript classpath 直接
-// 引用真实构件 net.fabricmc:fabric-loom:<版本>（该 jar 仍然存在），再 apply 应用。
-buildscript {
-    repositories {
-        maven { name = 'Fabric'; url = 'https://maven.fabricmc.net/' }
-        mavenCentral()
-        gradlePluginPortal()
-    }
-    dependencies {
-        classpath 'net.fabricmc:fabric-loom:1.7.4'
-    }
+plugins {
+    id 'net.fabricmc.fabric-loom-remap' version '1.17.21' apply false
+    id 'net.fabricmc.fabric-loom' version '1.17.21' apply false
+    id 'maven-publish'
 }
 
-apply plugin: 'fabric-loom'
-apply plugin: 'maven-publish'
-
 // ---------------------------------------------------------------------------
-// 单源码 · 多 Minecraft 版本构建
+// 同仓库 · 多 Minecraft 版本构建
 //
 //   ./gradlew build                 使用 default_mc（见 gradle.properties）
 //   ./gradlew build -Pmc=1.20.1     构建 Minecraft 1.20.1
 //   ./gradlew build -Pmc=1.20.4     构建 Minecraft 1.20.4
+//   ./gradlew build -Pmc=26.2       构建 Minecraft 26.2
 //   ./gradlew runClient             启动测试客户端（同样支持 -Pmc=<版本>）
 //   ./gradlew runServer             启动测试服务端
 //
-// 每个目标版本的坐标集中维护在下面的 supportedVersions 里，新增版本只需在此
-// 追加一行。产物名带上 MC 版本，因此不同目标的 jar 不会互相覆盖。
+// 每个目标版本的坐标集中维护在 supportedVersions，API 差异由版本源码适配。
+// 产物名带上 MC 版本，因此不同目标的 jar 不会互相覆盖。
 // ---------------------------------------------------------------------------
 ext.supportedVersions = [
     '1.20.1': [ minecraft: '1.20.1', yarn: '1.20.1+build.10', loader: '0.15.11',
-                fabricApi: '0.92.2+1.20.1', dependency: '~1.20.1' ],
+                fabricApi: '0.92.2+1.20.1', dependency: '~1.20.1', java: 17 ],
     '1.20.4': [ minecraft: '1.20.4', yarn: '1.20.4+build.3',  loader: '0.15.11',
-                fabricApi: '0.97.1+1.20.4', dependency: '~1.20.4' ],
+                fabricApi: '0.97.1+1.20.4', dependency: '~1.20.4', java: 17 ],
+    '26.2': [minecraft: '26.2', loader: '0.19.3', fabricApi: '0.161.0+26.2', dependency: '~26.2', java: 25],
 ]
 
 def mcTarget = (project.findProperty('mc') ?: project.property('default_mc')).toString()
@@ -39,6 +30,12 @@ def target = supportedVersions[mcTarget]
 if (target == null) {
     throw new GradleException("不支持的 Minecraft 版本: ${mcTarget}。可选: ${supportedVersions.keySet()}")
 }
+
+def modern = mcTarget == '26.2'
+apply plugin: modern ? 'net.fabricmc.fabric-loom' : 'net.fabricmc.fabric-loom-remap'
+layout.buildDirectory = file("build/targets/${mcTarget}")
+// Share protocol/config code; isolate Minecraft APIs and mixins by version family.
+sourceSets.main.java.setSrcDirs(modern ? ['src/mc26.2/java', 'src/common/java'] : ['src/main/java', 'src/common/java'])
 
 version = project.mod_version
 group = project.maven_group
@@ -57,11 +54,11 @@ repositories {
 dependencies {
     // 坐标来自上面选中的 target；修改版本请编辑 supportedVersions。
     minecraft "com.mojang:minecraft:${target.minecraft}"
-    mappings "net.fabricmc:yarn:${target.yarn}:v2"
-    modImplementation "net.fabricmc:fabric-loader:${target.loader}"
+    if (!modern) mappings "net.fabricmc:yarn:${target.yarn}:v2"
+    add(modern ? "implementation" : "modImplementation", "net.fabricmc:fabric-loader:${target.loader}")
 
     // Fabric API
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${target.fabricApi}"
+    add(modern ? "implementation" : "modImplementation", "net.fabricmc.fabric-api:fabric-api:${target.fabricApi}")
 }
 
 // fabric.mod.json 里保留完整版本号（含游戏版本），便于在游戏内 mod 列表中辨认，
@@ -70,29 +67,25 @@ def metadataVersion = "${project.mod_version}+mc${target.minecraft}"
 
 processResources {
     // version 与 minecraft 依赖范围按目标版本参数化。
-    def props = [version: metadataVersion, minecraft_dependency: target.dependency]
+    def props = [version: metadataVersion, minecraft_dependency: target.dependency, loader_dependency: ">=${target.loader}", java_dependency: ">=${target.java}", mixin_java: "JAVA_${target.java}"]
     inputs.properties(props)
 
-    filesMatching("fabric.mod.json") {
+    filesMatching(["fabric.mod.json", "minecontrol.mixins.json"]) {
         expand(props)
     }
 }
 
 tasks.withType(JavaCompile).configureEach {
-    it.options.release = 17
+    it.options.release = target.java
 }
 
 java {
     withSourcesJar()
 
-    // 锁定构建所用的 JDK 为 17：Gradle 会自动查找已安装的 JDK 17，
-    // 无需手动设置 JAVA_HOME 或依赖系统默认 JDK。
+    // 按目标选择编译 JDK；Gradle 本身需使用 Java 25。
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(target.java)
     }
-
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
 }
 
 jar {
@@ -116,3 +109,12 @@ loom {
         }
     }
 }
+
+// Keep all installable artifacts together while isolating target intermediates.
+['sourcesJar', modern ? 'jar' : 'remapJar'].each { name ->
+    tasks.named(name) { destinationDirectory = file('build/libs') }
+}
+if (!modern) tasks.named('remapSourcesJar') { destinationDirectory = file('build/libs') }
+
+// Regression checks run via protocolTest, a standalone Java main, not JUnit.
+tasks.named("test") { failOnNoDiscoveredTests = false }
