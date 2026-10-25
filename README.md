@@ -144,3 +144,13 @@ wait.screen 遵循现有超时规则。
 宏条件可用 `observe.main_hand.remaining_durability`、`observe.target.id` 等路径，支持路径数组、exists、all/any/not。原始数据位于 `nbt.data`，26.2 有效组件位于 `components.data`。完整字段与示例见 [协议文档](docs/PROTOCOL.md#客户端观察observe)。
 
 这是客户端快照，不代表服务端完整 NBT；未同步数据无法取得。普通 status 保持轻量，完整观察通过 observe 按需读取。
+
+## 玩家位置与区域地形
+
+```sh
+./minectl position
+./minectl region -10 60 -10 10 70 10
+./minectl region -10 60 -10 10 70 10 --text > terrain.txt
+```
+
+区域按两个角的绝对坐标查询，包含端点，输出兼容 AI Helper 的 MCBLUEPRINT v3 方块列表（方块 ID、全部状态属性，省略空气）。无需安装 AI Helper。单次最多 32768 格，只读客户端已加载区块；不会触发区块加载。区域暂不包含容器物品和告示牌文字。详见[协议](docs/PROTOCOL.md#玩家位置与区域方块查询)。

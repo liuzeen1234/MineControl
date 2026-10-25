@@ -75,6 +75,8 @@ public final class Controller {
             switch (command) {
                 case "ping" -> { var pong = new JsonObject(); pong.addProperty("pong", true); pong.addProperty("protocol", 1); result = pong; }
                 case "status" -> result = status();
+                case "position" -> result = position();
+                case "region.query" -> result = region(request);
                 case "observe" -> {
                     try { result = Observation.capture(client, tick); }
                     catch (IllegalStateException e) { throw fail("OBSERVATION_FAILED", e.getMessage()); }
@@ -125,7 +127,8 @@ public final class Controller {
                 default -> throw fail("UNKNOWN_COMMAND", "Unknown command: " + command);
             }
             job.future.complete(success(request, result));
-        } catch (CommandError e) { job.future.complete(LocalServer.error(request.get("id"), e.code, e.getMessage())); }
+        } catch (RegionQuery.Error e) { job.future.complete(LocalServer.error(request.get("id"), e.code, e.getMessage())); }
+        catch (CommandError e) { job.future.complete(LocalServer.error(request.get("id"), e.code, e.getMessage())); }
         catch (IllegalArgumentException | IllegalStateException e) { job.future.complete(LocalServer.error(request.get("id"), "INVALID_ARGUMENT", e.getMessage())); }
         catch (Exception e) { MineControlClient.LOG.error("Command failed", e); job.future.complete(LocalServer.error(request.get("id"), "INTERNAL_ERROR", "See client log")); }
     }
@@ -232,6 +235,28 @@ public final class Controller {
     private boolean screenMatches(String name) {
         if (name.equalsIgnoreCase("none")) return client.gui.screen() == null;
         return client.gui.screen() != null && (client.gui.screen().getClass().getName().equals(name) || client.gui.screen().getClass().getSimpleName().equals(name));
+    }
+    private JsonObject position() {
+        if (client.player == null || client.level == null) throw fail("NO_WORLD", "No player world loaded");
+        var r = new JsonObject(); r.addProperty("tick", tick); r.addProperty("dimension", client.level.dimension().identifier().toString());
+        r.addProperty("x", client.player.getX()); r.addProperty("y", client.player.getY()); r.addProperty("z", client.player.getZ());
+        var block = new JsonObject(); block.addProperty("x", (int)Math.floor(client.player.getX()));
+        block.addProperty("y", (int)Math.floor(client.player.getY())); block.addProperty("z", (int)Math.floor(client.player.getZ()));
+        r.add("block", block); r.addProperty("yaw", client.player.getYRot()); r.addProperty("pitch", client.player.getXRot());
+        return r;
+    }
+    private JsonObject region(JsonObject request) {
+        var range = RegionQuery.parse(request);
+        if (client.level == null) throw fail("NO_WORLD", "No client world loaded");
+        return RegionQuery.scan(range, client.level.getMinY(), client.level.getMaxY() + 1, (cx,cz) -> client.level.isLoaded(new net.minecraft.core.BlockPos(cx * 16, client.level.getMinY(), cz * 16)), (x,y,z) -> {
+            var state = client.level.getBlockState(new net.minecraft.core.BlockPos(x,y,z));
+            if (state.isAir()) return null;
+            String id = net.minecraft.core.registries.BuiltInRegistries.BLOCK.getKey(state.getBlock()).toString();
+            var properties = new TreeMap<String,String>(); state.getValues().forEach(value -> properties.put(value.property().getName(), value.valueName()));
+            var line = new StringBuilder(id);
+            properties.forEach((key,value) -> line.append("   ").append(key).append('=').append(value));
+            return line.toString();
+        }, client.level.dimension().identifier().toString(), tick);
     }
     private JsonObject macroSnapshot() {
         var result = status();

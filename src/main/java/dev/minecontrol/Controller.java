@@ -75,6 +75,8 @@ public final class Controller {
             switch (command) {
                 case "ping" -> { var pong = new JsonObject(); pong.addProperty("pong", true); pong.addProperty("protocol", 1); result = pong; }
                 case "status" -> result = status();
+                case "position" -> result = position();
+                case "region.query" -> result = region(request);
                 case "observe" -> {
                     try { result = Observation.capture(client, tick); }
                     catch (IllegalStateException e) { throw fail("OBSERVATION_FAILED", e.getMessage()); }
@@ -125,7 +127,8 @@ public final class Controller {
                 default -> throw fail("UNKNOWN_COMMAND", "Unknown command: " + command);
             }
             job.future.complete(success(request, result));
-        } catch (CommandError e) { job.future.complete(LocalServer.error(request.get("id"), e.code, e.getMessage())); }
+        } catch (RegionQuery.Error e) { job.future.complete(LocalServer.error(request.get("id"), e.code, e.getMessage())); }
+        catch (CommandError e) { job.future.complete(LocalServer.error(request.get("id"), e.code, e.getMessage())); }
         catch (IllegalArgumentException | IllegalStateException e) { job.future.complete(LocalServer.error(request.get("id"), "INVALID_ARGUMENT", e.getMessage())); }
         catch (Exception e) { MineControlClient.LOG.error("Command failed", e); job.future.complete(LocalServer.error(request.get("id"), "INTERNAL_ERROR", "See client log")); }
     }
@@ -233,6 +236,30 @@ public final class Controller {
         if (name.equalsIgnoreCase("none")) return client.currentScreen == null;
         return client.currentScreen != null && (client.currentScreen.getClass().getName().equals(name) || client.currentScreen.getClass().getSimpleName().equals(name));
     }
+    private JsonObject position() {
+        if (client.player == null || client.world == null) throw fail("NO_WORLD", "No player world loaded");
+        var r = new JsonObject(); r.addProperty("tick", tick); r.addProperty("dimension", client.world.getRegistryKey().getValue().toString());
+        r.addProperty("x", client.player.getX()); r.addProperty("y", client.player.getY()); r.addProperty("z", client.player.getZ());
+        var block = new JsonObject(); block.addProperty("x", (int)Math.floor(client.player.getX()));
+        block.addProperty("y", (int)Math.floor(client.player.getY())); block.addProperty("z", (int)Math.floor(client.player.getZ()));
+        r.add("block", block); r.addProperty("yaw", client.player.getYaw()); r.addProperty("pitch", client.player.getPitch());
+        return r;
+    }
+    private JsonObject region(JsonObject request) {
+        var range = RegionQuery.parse(request);
+        if (client.world == null) throw fail("NO_WORLD", "No client world loaded");
+        return RegionQuery.scan(range, client.world.getBottomY(), client.world.getTopY(), client.world::isChunkLoaded, (x,y,z) -> {
+            var state = client.world.getBlockState(new net.minecraft.util.math.BlockPos(x,y,z));
+            if (state.isAir()) return null;
+            String id = net.minecraft.registry.Registries.BLOCK.getId(state.getBlock()).toString();
+            var properties = new TreeMap<String,String>(); state.getEntries().forEach((key,value) -> properties.put(key.getName(), propertyValue(key, value)));
+            var line = new StringBuilder(id);
+            properties.forEach((key,value) -> line.append("   ").append(key).append('=').append(value));
+            return line.toString();
+        }, client.world.getRegistryKey().getValue().toString(), tick);
+    }
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    private static String propertyValue(net.minecraft.state.property.Property property, Comparable value) { return property.name(value); }
     private JsonObject macroSnapshot() {
         var result = status();
         result.add("observe", Observation.capture(client, tick));

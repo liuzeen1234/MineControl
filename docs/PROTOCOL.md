@@ -94,3 +94,28 @@ field 支持点路径或字符串数组；数组形式可精确访问含点号�
 ```
 
 组合条件支持非空 `all`/`any` 数组及 `not` 对象。`op:"exists",value:true/false` 判断路径是否存在（显式 null 也算存在）。合法根字段下路径不存在时所有普通比较均为 false，包括 !=；未知根字段仍报错。要判断“没有目标”，用 observe.target == null。组件/NBT 的客户端可见性和版本变化仍然适用。
+
+## 玩家位置与区域方块查询
+
+- `position`：返回玩家精确 x/y/z、向下取整的 `block:{x,y,z}`、yaw/pitch、dimension、tick。无玩家世界时 NO_WORLD。CLI：`./minectl position`。原 status 的 player_x/y/z 保留；observe 新增 `player:{x,y,z}`，无玩家时为 null，宏可读取 `observe.player.x` 等路径。
+- `region.query`：`{"id":"r1","command":"region.query","from":[-10,60,-10],"to":[10,70,10]}`。两角包含端点，顺序不限；坐标必须是世界绝对整数坐标，查询当前客户端维度。
+- CLI：`./minectl region -10 60 -10 10 70 10`。加 `--text` 只向 stdout 输出蓝图文本，可用 `> terrain.txt` 保存；默认输出协议 JSON。
+
+区域结果包含 format=MCBLUEPRINT v3、source=client_snapshot、dimension、tick、规范化 from/to、volume、block_count、air_omitted=true、block_entity_data_included=false 和 blueprint 文本。例如：
+
+```text
+# MCBLUEPRINT v3
+# name: region_query
+# size: 2x1x1
+# source: client_snapshot; air omitted; unloaded chunks rejected
+
+## BLOCKS
+
+# --- y=64 ---
+-1,64,0   minecraft:oak_log   axis=y
+0,64,0   example:custom_block   facing=north
+```
+
+与 AI Helper v3 的方块列表语法兼容，保留绝对坐标和完整命名空间，不依赖安装 AI Helper。它原有的服务端扫描器不能直接作为纯客户端数据源。区域输出仅包含方块及全部 BlockState 属性，暂不输出 v3 的 items/sign_text 扩展，也不读取服务器或假定客户端容器库存完整。单个准星目标的 NBT 仍可用 observe 获取。
+
+单次最多 32768 格；先检查高度和所有涉及的区块，未加载区块返回 CHUNK_NOT_LOADED，不触发加载、不把缺失区块当成空气。超出世界高度返回 OUT_OF_HEIGHT；超体积返回 REGION_TOO_LARGE；过长文本或响应返回 RESPONSE_TOO_LARGE，均不返回截断蓝图。无世界返回 NO_WORLD，参数错误返回 INVALID_ARGUMENT。宏也允许调用 position 和 region.query，但命令结果不存为变量。

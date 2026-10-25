@@ -16,6 +16,10 @@ def parser():
     sub.add_parser('ping')
     sub.add_parser('status')
     sub.add_parser('observe')
+    sub.add_parser('position')
+    region = sub.add_parser('region', help='query an inclusive coordinate box as MCBLUEPRINT v3')
+    region.add_argument('corners', type=int, nargs=6, metavar='N', help='x1 y1 z1 x2 y2 z2')
+    region.add_argument('--text', action='store_true', help='print only the v3 blueprint')
     ui = sub.add_parser('ui').add_subparsers(dest='action', required=True)
     ui.add_parser('list')
     click = ui.add_parser('click'); click.add_argument('widget', type=int)
@@ -47,6 +51,10 @@ def make_request(args):
     action = values.pop('action', None)
     for name in ['port', 'timeout']:
         values.pop(name)
+    if group == 'region':
+        corners = values.pop('corners')
+        values.pop('text', None)
+        return {'id': uuid.uuid4().hex, 'command': 'region.query', 'from': corners[:3], 'to': corners[3:]}
     if group == 'ui' and action == 'set':
         values['value'] = values['value'] == 'on'
     if group == 'macro' and action == 'run':
@@ -80,7 +88,10 @@ def main(argv=None):
     except (OSError, ValueError) as error:
         print(f'minectl: {error}. Check the client and port; after a timeout inspect status before retrying.', file=sys.stderr)
         return 2
-    print(json.dumps(response, ensure_ascii=False, indent=2))
+    if getattr(args, 'text', False) and response['ok']:
+        print(response['result']['blueprint'], end='')
+    else:
+        print(json.dumps(response, ensure_ascii=False, indent=2))
     return 0 if response['ok'] else 1
 
 

@@ -59,7 +59,7 @@ public final class MacroEngine {
             }
         } catch (Exception e) { finish("failed", e.getMessage()); }
     }
-    private static final Set<String> COMMANDS = Set.of("observe", "ping", "status", "key.tap", "key.down", "key.up", "key.hold", "mouse.click", "mouse.down", "mouse.up", "mouse.hold", "mouse.goto", "mouse.move", "ui.list", "ui.click", "ui.set", "ui.type", "wait.screen");
+    private static final Set<String> COMMANDS = Set.of("position", "region.query", "observe", "ping", "status", "key.tap", "key.down", "key.up", "key.hold", "mouse.click", "mouse.down", "mouse.up", "mouse.hold", "mouse.goto", "mouse.move", "ui.list", "ui.click", "ui.set", "ui.type", "wait.screen");
     private static void compile(JsonArray body, List<Op> out, int depth, int loop) {
         if (depth > 32) throw new IllegalArgumentException("Macro nesting exceeds 32");
         for (JsonElement value : body) {

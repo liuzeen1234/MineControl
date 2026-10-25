@@ -63,3 +63,13 @@ live_smoke 会操作菜单并停留在创建世界界面；要求实例中没有
   - 抬头未命中时 target=null；暂停界面 active=false；未加载世界时双手/目标均为 null。
   - dimension 输出 minecraft:overworld。
 - 旧版本次只验证构建及公共回归，未进行新版对应的完整世界内实测。多人服务器、第三方 Mod 自定义序列化和未同步字段尚未实测，不据此宣称服务端 NBT 完整可见。
+
+## 玩家位置与 AI Helper v3 区域查询（2026-10-25）
+
+- 1.20.1、1.20.4、26.2 离线 build 和 protocolTest 全部通过。RegionQueryTest 覆盖反向坐标规范化、负坐标跨区块边界、含端点体积、空气省略、命名空间、高度上界、未加载区块预检、非法/溢出参数及响应超限。
+- 启动包含本次最终代码的 26.2 客户端，在独立 Observation Test 世界实测：position 返回精确坐标 (-4.5,100,1.5)、方块坐标 (-5,100,1)、维度；observe.player 一致。
+- 放置 oak_log[axis=x] 于 (-5,110,4)，查询反向两角 (-4,110,4) 到 (-5,110,4)，返回 volume=2、block_count=1，v3 中保留绝对坐标与 axis=x，空气不输出。
+- 未加载远端区块、y=320、超体积、非整数分别返回 CHUNK_NOT_LOADED、OUT_OF_HEIGHT、REGION_TOO_LARGE、INVALID_ARGUMENT；y=319 查询正常。无世界时 position/region.query 返回 NO_WORLD。
+- 宏通过 observe.player.x 条件连续执行 position、region.query，状态 completed；CLI --text 输出与协议 blueprint 完全相同。
+- 将实际客户端导出的蓝图交给现有 minecraft-AI-helper 的 BlueprintParser/BlueprintData 源码编译后的解析器，确认识别为 v3、无 origin、单个方块坐标 (-5,110,4)、oak_log 与 axis=x 正确。该解析器会规范化去掉原版 minecraft: 前缀。
+- 区域导出仅兼容 v3 方块列表；未实现 items/sign_text，未验证第三方 Mod 联动或多人服务器。旧版本次只有构建与公共回归验证。

@@ -32,8 +32,11 @@ public final class Observation {
         r.addProperty("tick", tick); r.addProperty("source", "client_snapshot");
         r.addProperty("world_loaded", client.level != null);
         r.addProperty("active", client.gui.screen() == null && client.player != null && client.level != null);
+        r.add("player", JsonNull.INSTANCE);
         r.add("main_hand", JsonNull.INSTANCE); r.add("off_hand", JsonNull.INSTANCE); r.add("target", JsonNull.INSTANCE);
         if (client.level == null || client.player == null) return r;
+        var player = new JsonObject(); player.addProperty("x", client.player.getX()); player.addProperty("y", client.player.getY()); player.addProperty("z", client.player.getZ());
+        r.add("player", player);
         r.add("main_hand", item(client, client.player.getMainHandItem()));
         r.add("off_hand", item(client, client.player.getOffhandItem()));
         r.addProperty("dimension", client.level.dimension().identifier().toString());
