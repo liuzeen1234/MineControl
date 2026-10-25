@@ -50,3 +50,16 @@ live_smoke 会操作菜单并停留在创建世界界面；要求实例中没有
 各版本运行数据默认放在 `run-<版本>`，原 `run` 中的旧测试数据保留，不自动升级世界。
 测试旧版时显式添加 `-Pmc=1.20.4` 或 `-Pmc=1.20.1`；`-PrunDir` 仍可覆盖目录。
 上文历史验证记录保持其原有版本归属。
+
+## 客户端完整观察与宏路径条件（2026-10-25）
+
+- 1.20.1、1.20.4、26.2：离线 build 成功，protocolTest（包含 MacroTest）通过。新增覆盖带冒号/点号的字段、数组下标、缺失字段、exists、all/any/not、非法条件和超大输出拒绝。
+- 启动包含最终改动的 26.2 客户端，在独立 `MineControl Observation Test` 世界实测通过：
+  - 主手 diamond_pickaxe 的 custom_data.tool_type=miner、number=42L、damage=123；JSON 字段可读，SNBT 保留 long 类型。有效组件包含默认属性。
+  - 副手 stick 及自定义数据；空手输出 air/count=0。
+  - 准星普通方块 ID、命中面和 BlockState；箱子目标输出客户端方块实体 NBT（id=minecraft:chest）。
+  - 准星命中 pig，返回 UUID、实体类型和含 Pos 的客户端 NBT。
+  - 宏通过 all/not、组件路径和 target.kind 条件执行 F 交换主副手，macro.status=completed，观察确认主手变为 stick，随后恢复。
+  - 抬头未命中时 target=null；暂停界面 active=false；未加载世界时双手/目标均为 null。
+  - dimension 输出 minecraft:overworld。
+- 旧版本次只验证构建及公共回归，未进行新版对应的完整世界内实测。多人服务器、第三方 Mod 自定义序列化和未同步字段尚未实测，不据此宣称服务端 NBT 完整可见。

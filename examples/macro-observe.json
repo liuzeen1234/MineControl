@@ -1,0 +1,13 @@
+[
+  {
+    "if": {
+      "all": [
+        {"field": "observe.active", "value": true},
+        {"field": "observe.main_hand.max_damage", "op": ">", "value": 0},
+        {"field": "observe.main_hand.remaining_durability", "op": "<=", "value": 10}
+      ]
+    },
+    "then": [{"command": "ping"}],
+    "else": [{"command": "observe"}]
+  }
+]

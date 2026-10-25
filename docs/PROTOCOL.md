@@ -59,3 +59,38 @@ CLI 退出码：0 成功；1 服务返回错误；2 连接、协议或读取错�
 状态结果包含 `state`（idle/running/completed/stopped/failed）、`instruction`（从 0 开始的内部指令位置）、
 `steps`（已执行内部指令数）；失败还包含 `error`。终态保留至下一次启动。
 宏结构和示例见 README「宏脚本」。宏完成后的错误由 macro.status 查询，不会修改已返回的 macro.run 回复。
+
+## 客户端观察（observe）
+
+`{"id":"o1","command":"observe"}` 返回同一客户端 tick 的 `main_hand`、`off_hand` 和 `target`。CLI：`./minectl observe`。
+
+- 无世界/玩家时双手和目标为 null；未命中时 target 为 null。`active` 仅在世界内且未打开 GUI 时为 true；GUI 打开时目标可能是背后的旧命中，宏应先检查 active。
+- 物品包含 id、count、damage、max_damage、remaining_durability、format 和 nbt。非耐久物品 remaining_durability 为 0，应同时检查 max_damage。
+- nbt 是 `{source:"client_snapshot",completeness:"unknown",data:{...},snbt:"..."}`。data 方便按路径读取；SNBT 保留数值类型和数组类型，JSON 数值不能代替 SNBT 做无损往返。
+- 1.20.1/1.20.4 导出完整物品栈 NBT；26.2 导出物品栈保存数据（nbt）和包含默认值的有效组件（components，同样有 data/snbt）。仅支持游戏序列化器可保存的字段，运行时专用组件不保证能够导出。
+- 方块 target 包含 kind=block、id、pos、state、face、distance 和 nbt；普通方块没有方块实体，nbt 为 null。
+- 实体 target 包含 kind=entity、id、uuid、entity_id、distance 和 nbt。实体类型由外层 id 给出。序列化警告通过 serialization_warnings 返回。
+- 只读客户端世界，不访问单人内置服务器，不要求 OP，不发送 NBT 查询包。客户端 NBT 包含本地默认/推导值，**不能据此断言服务端字段的真实值或完整性**。箱子库存等未同步信息不可知。
+- 不设字段白名单，不静默截断。结果超过 900000 UTF-8 字节会返回 OBSERVATION_FAILED；序列化失败也会明确报错。
+
+### 宏观察条件
+
+宏条件快照在原 status 字段之外增加 `observe`，内容同 observe 命令。仅在执行条件时采集，普通 status 不携带原始数据。宏命令允许 observe，但其返回结果不会存为变量。
+
+field 支持点路径或字符串数组；数组形式可精确访问含点号、冒号的键，列表下标使用十进制字符串：
+
+```json
+[{"if":{"all":[
+  {"field":"observe.active","value":true},
+  {"field":"observe.main_hand.max_damage","op":">","value":0},
+  {"field":"observe.main_hand.remaining_durability","op":"<=","value":10}
+]},"then":[{"command":"ping"}]}]
+```
+
+上例在耐久不足时执行 ping；实际挖矿脚本可在循环中改用 `{"break":true}`。下例是自定义数据分支：
+
+```json
+[{"if":{"field":["observe","main_hand","components","data","minecraft:custom_data","tool_type"],"value":"miner"},"then":[{"command":"ping"}]}]
+```
+
+组合条件支持非空 `all`/`any` 数组及 `not` 对象。`op:"exists",value:true/false` 判断路径是否存在（显式 null 也算存在）。合法根字段下路径不存在时所有普通比较均为 false，包括 !=；未知根字段仍报错。要判断“没有目标”，用 observe.target == null。组件/NBT 的客户端可见性和版本变化仍然适用。

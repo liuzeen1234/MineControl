@@ -60,7 +60,7 @@ public final class Controller {
                 waiting.future.complete(LocalServer.error(waiting.request.get("id"), "TIMEOUT", "Screen did not appear")); it.remove();
             }
         }
-        macro.tick(tick, this::status, this::macroCommand);
+        macro.tick(tick, this::macroSnapshot, this::macroCommand);
     }
     private CompletableFuture<JsonObject> macroCommand(JsonObject request) {
         var future = new CompletableFuture<JsonObject>();
@@ -75,6 +75,10 @@ public final class Controller {
             switch (command) {
                 case "ping" -> { var pong = new JsonObject(); pong.addProperty("pong", true); pong.addProperty("protocol", 1); result = pong; }
                 case "status" -> result = status();
+                case "observe" -> {
+                    try { result = Observation.capture(client, tick); }
+                    catch (IllegalStateException e) { throw fail("OBSERVATION_FAILED", e.getMessage()); }
+                }
                 case "macro.run" -> {
                     if (!request.has("script") || !request.get("script").isJsonArray()) throw fail("INVALID_ARGUMENT", "script must be an array");
                     macro.start(request.getAsJsonArray("script")); result = macro.status();
@@ -228,6 +232,11 @@ public final class Controller {
     private boolean screenMatches(String name) {
         if (name.equalsIgnoreCase("none")) return client.gui.screen() == null;
         return client.gui.screen() != null && (client.gui.screen().getClass().getName().equals(name) || client.gui.screen().getClass().getSimpleName().equals(name));
+    }
+    private JsonObject macroSnapshot() {
+        var result = status();
+        result.add("observe", Observation.capture(client, tick));
+        return result;
     }
     private JsonObject status() {
         var result = new JsonObject();

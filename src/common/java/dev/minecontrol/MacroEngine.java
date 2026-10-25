@@ -59,7 +59,7 @@ public final class MacroEngine {
             }
         } catch (Exception e) { finish("failed", e.getMessage()); }
     }
-    private static final Set<String> COMMANDS = Set.of("ping", "status", "key.tap", "key.down", "key.up", "key.hold", "mouse.click", "mouse.down", "mouse.up", "mouse.hold", "mouse.goto", "mouse.move", "ui.list", "ui.click", "ui.set", "ui.type", "wait.screen");
+    private static final Set<String> COMMANDS = Set.of("observe", "ping", "status", "key.tap", "key.down", "key.up", "key.hold", "mouse.click", "mouse.down", "mouse.up", "mouse.hold", "mouse.goto", "mouse.move", "ui.list", "ui.click", "ui.set", "ui.type", "wait.screen");
     private static void compile(JsonArray body, List<Op> out, int depth, int loop) {
         if (depth > 32) throw new IllegalArgumentException("Macro nesting exceeds 32");
         for (JsonElement value : body) {
@@ -99,21 +99,63 @@ public final class MacroEngine {
         if (!Double.isFinite(n) || n != Math.rint(n) || n < min || n > max) throw new IllegalArgumentException("Integer must be " + min + ".." + max);
         return (int)n;
     }
-    private static void validateCondition(JsonObject c) {
-        if (c == null || !c.has("field") || !c.get("field").isJsonPrimitive() || !c.getAsJsonPrimitive("field").isString() || !c.has("value")) throw new IllegalArgumentException("Condition needs field and value");
+    private static void validateCondition(JsonObject c) { validateCondition(c, 0); }
+    private static void validateCondition(JsonObject c, int depth) {
+        if (depth > 32) throw new IllegalArgumentException("Condition nesting exceeds 32");
+        if (c == null) throw new IllegalArgumentException("Condition required");
+        for (String group : List.of("all", "any", "not")) {
+            if (!c.has(group)) continue;
+            if (c.size() != 1) throw new IllegalArgumentException("Combination condition must have one key");
+            if (group.equals("not")) validateCondition(c.getAsJsonObject(group), depth + 1);
+            else {
+                var children = c.getAsJsonArray(group);
+                if (children.isEmpty()) throw new IllegalArgumentException("Empty condition group");
+                for (var child : children) validateCondition(child.getAsJsonObject(), depth + 1);
+            }
+            return;
+        }
+        if (!c.has("field")) throw new IllegalArgumentException("Condition needs field");
+        var field = c.get("field");
+        if (field.isJsonArray()) {
+            if (field.getAsJsonArray().isEmpty()) throw new IllegalArgumentException("Empty field path");
+            for (var part : field.getAsJsonArray()) {
+                if (!part.isJsonPrimitive() || !part.getAsJsonPrimitive().isString() || part.getAsString().isEmpty())
+                    throw new IllegalArgumentException("Path segments must be nonempty strings (array indexes use strings)");
+            }
+        } else if (!field.isJsonPrimitive() || !field.getAsJsonPrimitive().isString() || field.getAsString().isEmpty())
+            throw new IllegalArgumentException("field must be a string or path array");
         String op = c.has("op") ? c.get("op").getAsString() : "==";
-        if (!Set.of("==", "!=", "<", "<=", ">", ">=").contains(op)) throw new IllegalArgumentException("Invalid comparison");
-        if (!c.get("value").isJsonNull() && !c.get("value").isJsonPrimitive()) throw new IllegalArgumentException("Comparison value must be scalar");
+        if (!Set.of("==", "!=", "<", "<=", ">", ">=", "exists").contains(op)) throw new IllegalArgumentException("Invalid comparison");
+        if (op.equals("exists")) {
+            if (!c.has("value") || !c.get("value").isJsonPrimitive() || !c.getAsJsonPrimitive("value").isBoolean())
+                throw new IllegalArgumentException("exists requires boolean value");
+        } else if (!c.has("value") || (!c.get("value").isJsonNull() && !c.get("value").isJsonPrimitive()))
+            throw new IllegalArgumentException("Comparison value must be scalar");
     }
     private static boolean condition(JsonObject c, JsonObject status) {
-        String field = c.get("field").getAsString();
-        if (!status.has(field)) throw new IllegalArgumentException("Unknown status field: " + field);
-        JsonElement a = status.get(field), b = c.get("value");
+        if (c.has("all")) { for (var child : c.getAsJsonArray("all")) if (!condition(child.getAsJsonObject(), status)) return false; return true; }
+        if (c.has("any")) { for (var child : c.getAsJsonArray("any")) if (condition(child.getAsJsonObject(), status)) return true; return false; }
+        if (c.has("not")) return !condition(c.getAsJsonObject("not"), status);
+        var path = new ArrayList<String>();
+        if (c.get("field").isJsonArray()) for (var part : c.getAsJsonArray("field")) path.add(part.getAsString());
+        else path.addAll(Arrays.asList(c.get("field").getAsString().split("\\.", -1)));
+        if (!status.has(path.get(0))) throw new IllegalArgumentException("Unknown status field: " + path.get(0));
+        JsonElement a = status;
+        for (String part : path) {
+            if (a != null && a.isJsonObject()) a = a.getAsJsonObject().get(part);
+            else if (a != null && a.isJsonArray() && part.matches("0|[1-9][0-9]{0,8}")) {
+                int index = Integer.parseInt(part); a = index < a.getAsJsonArray().size() ? a.getAsJsonArray().get(index) : null;
+            } else a = null;
+        }
+        String comparison = c.has("op") ? c.get("op").getAsString() : "==";
+        if (comparison.equals("exists")) return (a != null) == c.get("value").getAsBoolean();
+        if (a == null) return false;
+        JsonElement b = c.get("value");
         String op = c.has("op") ? c.get("op").getAsString() : "==";
         if (op.equals("==")) return a.equals(b);
         if (op.equals("!=")) return !a.equals(b);
         if (!a.isJsonPrimitive() || !a.getAsJsonPrimitive().isNumber() || !b.isJsonPrimitive() || !b.getAsJsonPrimitive().isNumber()) throw new IllegalArgumentException("Ordered comparison requires numbers");
-        double x = a.getAsDouble(), y = b.getAsDouble();
-        return switch (op) { case "<" -> x < y; case "<=" -> x <= y; case ">" -> x > y; default -> x >= y; };
+        int order = new java.math.BigDecimal(a.getAsString()).compareTo(new java.math.BigDecimal(b.getAsString()));
+        return switch (op) { case "<" -> order < 0; case "<=" -> order <= 0; case ">" -> order > 0; default -> order >= 0; };
     }
 }

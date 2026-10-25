@@ -51,6 +51,29 @@ public final class MacroTest {
         engine.start(script("[{\"command\":\"ping\"}]"));
         engine.tick(0, () -> state, r -> CompletableFuture.completedFuture(JsonParser.parseString("{\"ok\":false,\"error\":{\"code\":\"TEST\"}}").getAsJsonObject()));
         engine.tick(1, () -> state, exec); require(engine.status().get("state").getAsString().equals("failed"));
+        state.add("observe", JsonParser.parseString("{\"target\":null,\"main_hand\":{\"nbt\":{\"data\":{\"minecraft:custom_data\":{\"a.b\":[7]}}}}}"));
+        commands.clear();
+        engine.start(script("""
+            [{"if":{"all":[
+              {"field":["observe","main_hand","nbt","data","minecraft:custom_data","a.b","0"],"value":7},
+              {"not":{"field":"observe.target.missing","op":"exists","value":true}},
+              {"any":[{"field":"observe.target","value":null},{"field":"tick","value":-1}]},
+              {"field":"observe.target.absent","op":"!=","value":3}
+            ]},"then":[{"command":"ping"}],"else":[{"command":"observe"}]}]
+            """));
+        for (int t=0;t<10;t++) engine.tick(t, () -> state, exec);
+        require(commands.equals(List.of("observe")));
+        commands.clear();
+        engine.start(script("""
+            [{"if":{"field":["observe","main_hand","nbt","data","minecraft:custom_data","a.b","0"],"op":">=","value":7},"then":[{"command":"ping"}]}]
+            """));
+        for (int t=0;t<10;t++) engine.tick(t, () -> state, exec);
+        require(commands.equals(List.of("ping")));
+        for (String invalid : List.of("[{\"if\":{\"all\":[]},\"then\":[]}]", "[{\"if\":{\"field\":[],\"value\":0},\"then\":[]}]", "[{\"if\":{\"field\":\"tick\",\"op\":\"exists\",\"value\":0},\"then\":[]}]")) {
+            try { engine.start(script(invalid)); throw new AssertionError(invalid); } catch (IllegalArgumentException expected) {}
+        }
+        var oversized = new JsonObject(); oversized.addProperty("snbt", "x".repeat(900001));
+        try { ObservationData.bounded(oversized); throw new AssertionError(); } catch (IllegalStateException expected) {}
         System.out.println("Macro loop/condition/wait/stop/error checks passed");
     }
 }

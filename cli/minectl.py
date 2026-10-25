@@ -15,6 +15,7 @@ def parser():
     sub = root.add_subparsers(dest='group', required=True)
     sub.add_parser('ping')
     sub.add_parser('status')
+    sub.add_parser('observe')
     ui = sub.add_parser('ui').add_subparsers(dest='action', required=True)
     ui.add_parser('list')
     click = ui.add_parser('click'); click.add_argument('widget', type=int)
