@@ -1,0 +1,54 @@
+{
+  "world": "MineControl Natural Vein Test",
+  "terrain": "natural generation; no fill/setblock/ore placement",
+  "difficulty": "normal, default world setting",
+  "setup_commands": [
+    "/time set day",
+    "/give @s minecraft:netherite_pickaxe",
+    "/give @s minecraft:cooked_beef 64",
+    "/give @s minecraft:torch 64",
+    "/item replace entity @s armor.head with minecraft:iron_helmet",
+    "/item replace entity @s armor.chest with minecraft:iron_chestplate",
+    "/item replace entity @s armor.legs with minecraft:iron_leggings",
+    "/item replace entity @s armor.feet with minecraft:iron_boots",
+    "/tp @s 26.5 80 -27.5 0 0"
+  ],
+  "natural_start": [
+    26,
+    80,
+    -28
+  ],
+  "first_ore_seed": [
+    28,
+    76,
+    -28
+  ],
+  "first_vein_family": "copper",
+  "first_vein_members": [
+    [
+      27,
+      75,
+      -27
+    ],
+    [
+      28,
+      75,
+      -28
+    ],
+    [
+      28,
+      75,
+      -27
+    ],
+    [
+      28,
+      76,
+      -28
+    ],
+    [
+      29,
+      75,
+      -28
+    ]
+  ]
+}

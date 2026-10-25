@@ -1,0 +1,165 @@
+[
+  {
+    "family": "copper",
+    "seed": [
+      36,
+      59,
+      -18
+    ],
+    "members": [
+      [
+        36,
+        58,
+        -19
+      ],
+      [
+        36,
+        58,
+        -18
+      ],
+      [
+        36,
+        59,
+        -19
+      ],
+      [
+        36,
+        59,
+        -18
+      ],
+      [
+        37,
+        58,
+        -19
+      ],
+      [
+        37,
+        58,
+        -18
+      ],
+      [
+        37,
+        59,
+        -19
+      ],
+      [
+        37,
+        59,
+        -18
+      ]
+    ],
+    "boundary_complete": true,
+    "complete": true,
+    "remaining": [],
+    "collection_unreachable": []
+  },
+  {
+    "family": "copper",
+    "seed": [
+      34,
+      58,
+      -21
+    ],
+    "members": [
+      [
+        32,
+        58,
+        -22
+      ],
+      [
+        32,
+        58,
+        -21
+      ],
+      [
+        32,
+        59,
+        -22
+      ],
+      [
+        32,
+        59,
+        -21
+      ],
+      [
+        33,
+        58,
+        -22
+      ],
+      [
+        33,
+        58,
+        -21
+      ],
+      [
+        33,
+        59,
+        -22
+      ],
+      [
+        33,
+        59,
+        -21
+      ],
+      [
+        34,
+        58,
+        -21
+      ],
+      [
+        34,
+        59,
+        -21
+      ]
+    ],
+    "boundary_complete": true,
+    "complete": true,
+    "remaining": [],
+    "collection_unreachable": []
+  },
+  {
+    "family": "copper",
+    "seed": [
+      32,
+      54,
+      -10
+    ],
+    "members": [
+      [
+        30,
+        54,
+        -10
+      ],
+      [
+        31,
+        54,
+        -9
+      ],
+      [
+        32,
+        54,
+        -10
+      ]
+    ],
+    "boundary_complete": true,
+    "complete": false,
+    "remaining": [
+      [
+        30,
+        54,
+        -10
+      ],
+      [
+        31,
+        54,
+        -9
+      ],
+      [
+        32,
+        54,
+        -10
+      ]
+    ],
+    "error": "Unsupported block (29, 54, -13): minecraft:sandstone"
+  }
+]

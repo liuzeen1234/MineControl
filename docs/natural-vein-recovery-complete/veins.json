@@ -1,0 +1,61 @@
+[
+  {
+    "family": "iron",
+    "seed": [
+      26,
+      69,
+      -33
+    ],
+    "members": [
+      [
+        26,
+        69,
+        -33
+      ],
+      [
+        26,
+        70,
+        -33
+      ]
+    ],
+    "boundary_complete": true,
+    "complete": true,
+    "remaining": [],
+    "collection_unreachable": []
+  },
+  {
+    "family": "copper",
+    "seed": [
+      31,
+      71,
+      -27
+    ],
+    "members": [
+      [
+        31,
+        71,
+        -27
+      ],
+      [
+        31,
+        72,
+        -27
+      ],
+      [
+        31,
+        72,
+        -26
+      ]
+    ],
+    "boundary_complete": true,
+    "complete": true,
+    "remaining": [],
+    "collection_unreachable": [
+      [
+        31,
+        72,
+        -26
+      ]
+    ]
+  }
+]

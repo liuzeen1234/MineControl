@@ -1,0 +1,751 @@
+{
+  "world": "MineControl Natural Vein Test",
+  "natural_terrain": true,
+  "continuous_600_seconds": false,
+  "main_test_segments_seconds": [
+    345.44890858302824,
+    257.5997323328629
+  ],
+  "main_test_active_seconds": 603.0486409158912,
+  "main_test_pause_reason": "Unsafe('Unsupported block (29, 54, -13): minecraft:sandstone')",
+  "main_test_net_items": {
+    "minecraft:andesite": 4,
+    "minecraft:coal": 17,
+    "minecraft:cobblestone": 167,
+    "minecraft:dirt": 33,
+    "minecraft:granite": 10,
+    "minecraft:lapis_lazuli": 26,
+    "minecraft:leaf_litter": 2,
+    "minecraft:raw_copper": 84,
+    "minecraft:sand": 6,
+    "minecraft:sandstone": 4,
+    "minecraft:torch": -12
+  },
+  "all_development_and_test_net_items": {
+    "minecraft:andesite": 4,
+    "minecraft:coal": 42,
+    "minecraft:cobblestone": 228,
+    "minecraft:dirt": 64,
+    "minecraft:granite": 10,
+    "minecraft:gravel": 1,
+    "minecraft:lapis_lazuli": 26,
+    "minecraft:leaf_litter": 2,
+    "minecraft:raw_copper": 116,
+    "minecraft:raw_iron": 4,
+    "minecraft:sand": 6,
+    "minecraft:sandstone": 4,
+    "minecraft:torch": -22
+  },
+  "veins": [
+    {
+      "family": "iron",
+      "members": [
+        [
+          29,
+          68,
+          -30
+        ],
+        [
+          30,
+          68,
+          -31
+        ]
+      ],
+      "boundary_cells_checked": 42,
+      "remaining": [],
+      "complete": true
+    },
+    {
+      "family": "coal",
+      "members": [
+        [
+          29,
+          72,
+          -31
+        ],
+        [
+          30,
+          71,
+          -32
+        ],
+        [
+          30,
+          71,
+          -31
+        ],
+        [
+          30,
+          71,
+          -30
+        ],
+        [
+          30,
+          71,
+          -29
+        ],
+        [
+          30,
+          72,
+          -33
+        ],
+        [
+          30,
+          72,
+          -32
+        ],
+        [
+          30,
+          72,
+          -31
+        ],
+        [
+          30,
+          72,
+          -30
+        ],
+        [
+          30,
+          72,
+          -29
+        ],
+        [
+          30,
+          73,
+          -33
+        ],
+        [
+          30,
+          73,
+          -32
+        ],
+        [
+          30,
+          73,
+          -31
+        ],
+        [
+          31,
+          71,
+          -32
+        ],
+        [
+          31,
+          71,
+          -31
+        ],
+        [
+          31,
+          71,
+          -30
+        ],
+        [
+          31,
+          72,
+          -34
+        ],
+        [
+          31,
+          72,
+          -33
+        ],
+        [
+          31,
+          72,
+          -32
+        ],
+        [
+          31,
+          72,
+          -31
+        ],
+        [
+          31,
+          72,
+          -30
+        ],
+        [
+          31,
+          73,
+          -34
+        ],
+        [
+          31,
+          73,
+          -33
+        ],
+        [
+          31,
+          73,
+          -32
+        ],
+        [
+          31,
+          73,
+          -31
+        ]
+      ],
+      "boundary_cells_checked": 145,
+      "remaining": [],
+      "complete": true
+    },
+    {
+      "family": "iron",
+      "members": [
+        [
+          26,
+          69,
+          -33
+        ],
+        [
+          26,
+          70,
+          -33
+        ]
+      ],
+      "boundary_cells_checked": 36,
+      "remaining": [],
+      "complete": true
+    },
+    {
+      "family": "copper",
+      "members": [
+        [
+          31,
+          71,
+          -27
+        ],
+        [
+          31,
+          72,
+          -27
+        ],
+        [
+          31,
+          72,
+          -26
+        ]
+      ],
+      "boundary_cells_checked": 45,
+      "remaining": [],
+      "complete": true
+    },
+    {
+      "family": "copper",
+      "members": [
+        [
+          27,
+          75,
+          -27
+        ],
+        [
+          28,
+          75,
+          -28
+        ],
+        [
+          28,
+          75,
+          -27
+        ],
+        [
+          28,
+          76,
+          -28
+        ],
+        [
+          29,
+          75,
+          -28
+        ]
+      ],
+      "boundary_cells_checked": 63,
+      "remaining": [],
+      "complete": true
+    },
+    {
+      "family": "copper",
+      "members": [
+        [
+          36,
+          58,
+          -19
+        ],
+        [
+          36,
+          58,
+          -18
+        ],
+        [
+          36,
+          59,
+          -19
+        ],
+        [
+          36,
+          59,
+          -18
+        ],
+        [
+          37,
+          58,
+          -19
+        ],
+        [
+          37,
+          58,
+          -18
+        ],
+        [
+          37,
+          59,
+          -19
+        ],
+        [
+          37,
+          59,
+          -18
+        ]
+      ],
+      "boundary_cells_checked": 64,
+      "remaining": [],
+      "complete": true
+    },
+    {
+      "family": "copper",
+      "members": [
+        [
+          32,
+          58,
+          -22
+        ],
+        [
+          32,
+          58,
+          -21
+        ],
+        [
+          32,
+          59,
+          -22
+        ],
+        [
+          32,
+          59,
+          -21
+        ],
+        [
+          33,
+          58,
+          -22
+        ],
+        [
+          33,
+          58,
+          -21
+        ],
+        [
+          33,
+          59,
+          -22
+        ],
+        [
+          33,
+          59,
+          -21
+        ],
+        [
+          34,
+          58,
+          -21
+        ],
+        [
+          34,
+          59,
+          -21
+        ]
+      ],
+      "boundary_cells_checked": 76,
+      "remaining": [],
+      "complete": true
+    },
+    {
+      "family": "copper",
+      "members": [
+        [
+          30,
+          54,
+          -10
+        ],
+        [
+          31,
+          54,
+          -9
+        ],
+        [
+          32,
+          54,
+          -10
+        ]
+      ],
+      "boundary_cells_checked": 54,
+      "remaining": [],
+      "complete": true
+    },
+    {
+      "family": "lapis",
+      "members": [
+        [
+          30,
+          51,
+          -7
+        ],
+        [
+          30,
+          52,
+          -7
+        ],
+        [
+          31,
+          51,
+          -8
+        ],
+        [
+          31,
+          52,
+          -8
+        ]
+      ],
+      "boundary_cells_checked": 56,
+      "remaining": [],
+      "complete": true
+    },
+    {
+      "family": "copper",
+      "members": [
+        [
+          24,
+          48,
+          -9
+        ],
+        [
+          24,
+          48,
+          -8
+        ],
+        [
+          24,
+          49,
+          -8
+        ],
+        [
+          25,
+          48,
+          -9
+        ],
+        [
+          25,
+          48,
+          -8
+        ],
+        [
+          25,
+          49,
+          -8
+        ],
+        [
+          26,
+          48,
+          -8
+        ],
+        [
+          26,
+          49,
+          -8
+        ]
+      ],
+      "boundary_cells_checked": 72,
+      "remaining": [],
+      "complete": true
+    },
+    {
+      "family": "coal",
+      "members": [
+        [
+          19,
+          49,
+          -2
+        ],
+        [
+          19,
+          49,
+          -1
+        ],
+        [
+          19,
+          50,
+          -2
+        ],
+        [
+          20,
+          49,
+          -1
+        ],
+        [
+          20,
+          49,
+          0
+        ],
+        [
+          20,
+          50,
+          -1
+        ],
+        [
+          20,
+          50,
+          0
+        ],
+        [
+          21,
+          48,
+          0
+        ],
+        [
+          21,
+          48,
+          1
+        ],
+        [
+          21,
+          49,
+          -1
+        ],
+        [
+          21,
+          49,
+          0
+        ],
+        [
+          21,
+          49,
+          1
+        ],
+        [
+          21,
+          50,
+          0
+        ],
+        [
+          22,
+          48,
+          0
+        ],
+        [
+          22,
+          48,
+          1
+        ],
+        [
+          22,
+          49,
+          0
+        ],
+        [
+          22,
+          49,
+          1
+        ]
+      ],
+      "boundary_cells_checked": 123,
+      "remaining": [],
+      "complete": true
+    }
+  ],
+  "verified_complete_veins": 11,
+  "original_ore_blocks": 87,
+  "families": {
+    "iron": 2,
+    "coal": 2,
+    "copper": 6,
+    "lapis": 1
+  },
+  "untracked_mined_ore_cells_before_audit": [],
+  "remaining_ore_cells": 0,
+  "all_trials": [
+    {
+      "path": "docs/natural-vein-breaking-stop/report.json",
+      "seconds": 11.24706279207021,
+      "reason": "stopped_incomplete_or_unsafe",
+      "error": "Unsafe('Block not breaking: (29, 78, -27)')",
+      "net_items": {
+        "minecraft:torch": -1
+      },
+      "inputs_released": true
+    },
+    {
+      "path": "docs/natural-vein-cliff-stop/report.json",
+      "seconds": 24.746054999995977,
+      "reason": "stopped_incomplete_or_unsafe",
+      "error": "Unsafe('No known solid landing support')",
+      "net_items": {
+        "minecraft:cobblestone": 1,
+        "minecraft:dirt": 8,
+        "minecraft:torch": -1
+      },
+      "inputs_released": true
+    },
+    {
+      "path": "docs/natural-vein-coal-iron-complete/report.json",
+      "seconds": 189.34816491696984,
+      "reason": "stopped_incomplete_or_unsafe",
+      "error": "Unsafe('Cannot walk to (28, 69, -32)')",
+      "net_items": {
+        "minecraft:coal": 25,
+        "minecraft:cobblestone": 32,
+        "minecraft:raw_iron": 2,
+        "minecraft:torch": -3
+      },
+      "inputs_released": true
+    },
+    {
+      "path": "docs/natural-vein-copper-complete/report.json",
+      "seconds": 19.191681958036497,
+      "reason": "stopped_incomplete_or_unsafe",
+      "error": "Unsafe('Cannot walk to (28, 74, -27)')",
+      "net_items": {
+        "minecraft:cobblestone": 1,
+        "minecraft:dirt": 5,
+        "minecraft:gravel": 1,
+        "minecraft:raw_copper": 19,
+        "minecraft:torch": -1
+      },
+      "inputs_released": true
+    },
+    {
+      "path": "docs/natural-vein-gravity-stop/report.json",
+      "seconds": 40.25019329204224,
+      "reason": "stopped_incomplete_or_unsafe",
+      "error": "Unsafe('Water/lava/falling block near (27, 75, -27)')",
+      "net_items": {
+        "minecraft:dirt": 8
+      },
+      "inputs_released": true
+    },
+    {
+      "path": "docs/natural-vein-recovery-complete/report.json",
+      "seconds": 52.79665916599333,
+      "reason": "vein_limit_reached",
+      "error": null,
+      "net_items": {
+        "minecraft:cobblestone": 27,
+        "minecraft:raw_copper": 13,
+        "minecraft:raw_iron": 2,
+        "minecraft:torch": -1
+      },
+      "inputs_released": true
+    },
+    {
+      "path": "docs/natural-vein-safety-stop/report.json",
+      "seconds": 10.645057833986357,
+      "reason": "stopped_incomplete_or_unsafe",
+      "error": "Unsafe('Water/lava/falling block near (28, 76, -28)')",
+      "net_items": {
+        "minecraft:torch": -1
+      },
+      "inputs_released": true
+    },
+    {
+      "path": "docs/natural-vein-sandstone-stop/report.json",
+      "seconds": 345.44890858302824,
+      "reason": "stopped_incomplete_or_unsafe",
+      "error": "Unsafe('Unsupported block (29, 54, -13): minecraft:sandstone')",
+      "net_items": {
+        "minecraft:andesite": 4,
+        "minecraft:cobblestone": 78,
+        "minecraft:dirt": 28,
+        "minecraft:granite": 9,
+        "minecraft:leaf_litter": 2,
+        "minecraft:raw_copper": 59,
+        "minecraft:sand": 6,
+        "minecraft:torch": -7
+      },
+      "inputs_released": true
+    },
+    {
+      "path": "docs/natural-vein-test/report.json",
+      "seconds": 257.5997323328629,
+      "reason": "duration_reached",
+      "error": null,
+      "net_items": {
+        "minecraft:coal": 17,
+        "minecraft:cobblestone": 89,
+        "minecraft:dirt": 5,
+        "minecraft:granite": 1,
+        "minecraft:lapis_lazuli": 26,
+        "minecraft:raw_copper": 25,
+        "minecraft:sandstone": 4,
+        "minecraft:torch": -5
+      },
+      "inputs_released": true
+    },
+    {
+      "path": "docs/natural-vein-vegetation-stop/report.json",
+      "seconds": 38.397638249909505,
+      "reason": "stopped_incomplete_or_unsafe",
+      "error": "Unsafe('Unsupported block (33, 71, -22): minecraft:short_grass')",
+      "net_items": {
+        "minecraft:dirt": 10,
+        "minecraft:torch": -2
+      },
+      "inputs_released": true
+    }
+  ],
+  "final_player": {
+    "x": 22.500020623896162,
+    "y": 48.0,
+    "z": 10.461340274713686,
+    "health": 20.0,
+    "food": 20,
+    "alive": true,
+    "game_mode": "survival"
+  },
+  "inputs_released": true,
+  "final_tool_damage": 405,
+  "note": "Phased natural terrain test with development pauses; main yield excludes earlier debugging. Each original ore and all 26-neighbors were queried afresh. Mineral removal and inventory pickup are distinct metrics.",
+  "historical_unreachable_collection_approach_points": [
+    [
+      19,
+      49,
+      -1
+    ],
+    [
+      24,
+      48,
+      -9
+    ],
+    [
+      30,
+      54,
+      -10
+    ],
+    [
+      31,
+      54,
+      -9
+    ],
+    [
+      31,
+      72,
+      -26
+    ],
+    [
+      32,
+      54,
+      -10
+    ]
+  ],
+  "collection_note": "These are recorded unreachable standing/approach cells, not an exact count of uncollected items. Full pickup cannot be guaranteed; yields are actual client inventory deltas.",
+  "difficulty_verified": "Normal (client log 2026-10-25 18:11:20)",
+  "world_saved_and_exited": true,
+  "final_remaining_durability": 1626
+}

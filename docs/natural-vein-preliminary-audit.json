@@ -1,0 +1,251 @@
+{
+  "veins": [
+    {
+      "family": "copper",
+      "members": [
+        [
+          27,
+          75,
+          -27
+        ],
+        [
+          28,
+          75,
+          -28
+        ],
+        [
+          28,
+          75,
+          -27
+        ],
+        [
+          28,
+          76,
+          -28
+        ],
+        [
+          29,
+          75,
+          -28
+        ]
+      ],
+      "boundary_cells": 63,
+      "remaining": [],
+      "complete": true
+    },
+    {
+      "family": "coal",
+      "members": [
+        [
+          29,
+          72,
+          -31
+        ],
+        [
+          30,
+          71,
+          -32
+        ],
+        [
+          30,
+          71,
+          -31
+        ],
+        [
+          30,
+          71,
+          -30
+        ],
+        [
+          30,
+          71,
+          -29
+        ],
+        [
+          30,
+          72,
+          -33
+        ],
+        [
+          30,
+          72,
+          -32
+        ],
+        [
+          30,
+          72,
+          -31
+        ],
+        [
+          30,
+          72,
+          -30
+        ],
+        [
+          30,
+          72,
+          -29
+        ],
+        [
+          30,
+          73,
+          -33
+        ],
+        [
+          30,
+          73,
+          -32
+        ],
+        [
+          30,
+          73,
+          -31
+        ],
+        [
+          31,
+          71,
+          -32
+        ],
+        [
+          31,
+          71,
+          -31
+        ],
+        [
+          31,
+          71,
+          -30
+        ],
+        [
+          31,
+          72,
+          -34
+        ],
+        [
+          31,
+          72,
+          -33
+        ],
+        [
+          31,
+          72,
+          -32
+        ],
+        [
+          31,
+          72,
+          -31
+        ],
+        [
+          31,
+          72,
+          -30
+        ],
+        [
+          31,
+          73,
+          -34
+        ],
+        [
+          31,
+          73,
+          -33
+        ],
+        [
+          31,
+          73,
+          -32
+        ],
+        [
+          31,
+          73,
+          -31
+        ]
+      ],
+      "boundary_cells": 145,
+      "remaining": [],
+      "complete": true
+    },
+    {
+      "family": "iron",
+      "members": [
+        [
+          29,
+          68,
+          -30
+        ],
+        [
+          30,
+          68,
+          -31
+        ]
+      ],
+      "boundary_cells": 42,
+      "remaining": [],
+      "complete": true
+    },
+    {
+      "family": "iron",
+      "members": [
+        [
+          26,
+          69,
+          -33
+        ],
+        [
+          26,
+          70,
+          -33
+        ]
+      ],
+      "boundary_cells": 36,
+      "remaining": [],
+      "complete": true
+    },
+    {
+      "family": "copper",
+      "members": [
+        [
+          31,
+          71,
+          -27
+        ],
+        [
+          31,
+          72,
+          -27
+        ],
+        [
+          31,
+          72,
+          -26
+        ]
+      ],
+      "boundary_cells": 45,
+      "remaining": [],
+      "complete": true
+    }
+  ],
+  "verified_veins": 5,
+  "original_ore_blocks": 37,
+  "inputs": {
+    "screen": "net.minecraft.client.gui.screens.PauseScreen",
+    "world_loaded": true,
+    "window_focused": false,
+    "background_control": true,
+    "cursor_locked": false,
+    "tick": 36933,
+    "gui_width": 427,
+    "gui_height": 240,
+    "cursor_x": 213.5,
+    "cursor_y": 120.0,
+    "held_keys": [],
+    "held_buttons": [],
+    "yaw": 6746.1445,
+    "pitch": 0.0,
+    "player_x": 31.56527285470195,
+    "player_y": 71.0,
+    "player_z": -26.5044081791549,
+    "on_ground": true
+  }
+}
