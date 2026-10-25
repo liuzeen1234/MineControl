@@ -33,6 +33,10 @@ def parser():
     sub.add_parser('input').add_subparsers(dest='action', required=True).add_parser('reset')
     screen = sub.add_parser('wait').add_subparsers(dest='action', required=True).add_parser('screen')
     screen.add_argument('screen'); screen.add_argument('--timeout-ms', type=int, default=10000)
+    macro = sub.add_parser('macro').add_subparsers(dest='action', required=True)
+    macro.add_parser('run').add_argument('file')
+    macro.add_parser('status')
+    macro.add_parser('stop')
     return root
 
 
@@ -44,6 +48,11 @@ def make_request(args):
         values.pop(name)
     if group == 'ui' and action == 'set':
         values['value'] = values['value'] == 'on'
+    if group == 'macro' and action == 'run':
+        with open(values.pop('file'), encoding='utf-8') as stream:
+            values['script'] = json.load(stream)
+        if not isinstance(values['script'], list):
+            raise ValueError('macro file must contain a JSON array')
     return {'id': uuid.uuid4().hex, 'command': group + ('.' + action if action else ''), **values}
 
 
@@ -64,8 +73,8 @@ def exchange(request, port, timeout):
 
 def main(argv=None):
     args = parser().parse_args(argv)
-    request = make_request(args)
     try:
+        request = make_request(args)
         response = exchange(request, args.port, args.timeout)
     except (OSError, ValueError) as error:
         print(f'minectl: {error}. Check the client and port; after a timeout inspect status before retrying.', file=sys.stderr)

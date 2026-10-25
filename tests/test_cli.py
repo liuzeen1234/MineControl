@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 import socket
 import threading
+import tempfile
 import unittest
 
 spec = importlib.util.spec_from_file_location('minectl', Path(__file__).resolve().parents[1] / 'cli/minectl.py')
@@ -20,6 +21,20 @@ class CliTests(unittest.TestCase):
             request = cli.make_request(cli.parser().parse_args(arguments))
             request.pop('id')
             self.assertEqual(request, expected)
+
+    def test_macro_commands(self):
+        for action in ['status', 'stop']:
+            request = cli.make_request(cli.parser().parse_args(['macro', action]))
+            self.assertEqual(request['command'], 'macro.' + action)
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'macro.json'
+            path.write_text('[{"wait": 20}]', encoding='utf-8')
+            request = cli.make_request(cli.parser().parse_args(['macro', 'run', str(path)]))
+            self.assertEqual(request['script'], [{'wait': 20}])
+            self.assertNotIn('file', request)
+            path.write_text('{}', encoding='utf-8')
+            with self.assertRaisesRegex(ValueError, 'JSON array'):
+                cli.make_request(cli.parser().parse_args(['macro', 'run', str(path)]))
 
     def mock_exchange(self, responder):
         with socket.socket() as listener:

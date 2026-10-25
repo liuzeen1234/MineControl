@@ -4,6 +4,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 public final class ProtocolTest {
     public static void main(String[] args) throws Exception {
+        MacroTest.run();
         var input = new ByteArrayInputStream("{\"text\":\"测试\"}\r\n{}\n".getBytes(StandardCharsets.UTF_8));
         require(LocalServer.readLine(input, 100).equals("{\"text\":\"测试\"}\r"), "UTF-8 / CRLF");
         require(LocalServer.readLine(input, 100).equals("{}"), "multiple lines");

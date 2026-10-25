@@ -105,7 +105,7 @@ check.dependsOn protocolTest
 loom {
     runs {
         client {
-            runDir = (project.findProperty('runDir') ?: 'run').toString()
+            runDir = (project.findProperty('runDir') ?: "run-${mcTarget}").toString()
         }
     }
 }

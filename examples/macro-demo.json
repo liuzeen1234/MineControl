@@ -1,0 +1,15 @@
+[
+  {
+    "repeat": 3,
+    "do": [
+      {
+        "if": {"field": "world_loaded", "value": true},
+        "then": [
+          {"command": "key.hold", "key": "W", "ticks": 20},
+          {"wait": 25}
+        ],
+        "else": [{"break": true}]
+      }
+    ]
+  }
+]

@@ -49,3 +49,13 @@ ui.list 包括 id、type、label、enabled、visible、x/y、width/height；文�
 | INTERNAL_ERROR | 意外错误，查看客户端日志 |
 
 CLI 退出码：0 成功；1 服务返回错误；2 连接、协议或读取错误。超过请求上限、未完成行就断开、空闲超时都会结束连接。回复不提供结果查询；timeout 后先检查实际状态。
+
+## 宏（macro）
+
+- `macro.run`: `script` 为 JSON 步骤数组，立即返回启动状态，后台按 tick 执行。
+- `macro.status`: 查询宏状态。
+- `macro.stop`: 停止当前宏并释放模拟输入；重复停止无副作用。
+
+状态结果包含 `state`（idle/running/completed/stopped/failed）、`instruction`（从 0 开始的内部指令位置）、
+`steps`（已执行内部指令数）；失败还包含 `error`。终态保留至下一次启动。
+宏结构和示例见 README「宏脚本」。宏完成后的错误由 macro.status 查询，不会修改已返回的 macro.run 回复。

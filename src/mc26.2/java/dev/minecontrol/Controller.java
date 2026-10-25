@@ -19,6 +19,7 @@ public final class Controller {
     private final List<Job> waits = new ArrayList<>();
     private final Map<Integer, Long> keys = new ConcurrentHashMap<>();
     private final Map<Integer, Long> buttons = new HashMap<>();
+    private final MacroEngine macro = new MacroEngine(this::reset);
     private long tick;
     private Object previousWorld;
     private volatile boolean stopped;
@@ -37,7 +38,7 @@ public final class Controller {
     public boolean isHeld(long window, int key) { return client.getWindow().handle() == window && keys.containsKey(key); }
     public void tick() {
         tick++;
-        if (previousWorld != null && previousWorld != client.level) reset();
+        if (previousWorld != null && previousWorld != client.level) { macro.stop(); reset(); }
         previousWorld = client.level;
         for (int key : new ArrayList<>(keys.keySet())) if (tick >= keys.get(key)) keyState(key, false, 0);
         for (int button : new ArrayList<>(buttons.keySet())) if (tick >= buttons.get(button)) buttonState(button, false, 0);
@@ -59,6 +60,12 @@ public final class Controller {
                 waiting.future.complete(LocalServer.error(waiting.request.get("id"), "TIMEOUT", "Screen did not appear")); it.remove();
             }
         }
+        macro.tick(tick, this::status, this::macroCommand);
+    }
+    private CompletableFuture<JsonObject> macroCommand(JsonObject request) {
+        var future = new CompletableFuture<JsonObject>();
+        run(new Job(request, future, System.nanoTime() + TimeUnit.MILLISECONDS.toNanos(config.requestTimeoutMs)));
+        return future;
     }
     private void run(Job job) {
         JsonObject request = job.request;
@@ -68,7 +75,13 @@ public final class Controller {
             switch (command) {
                 case "ping" -> { var pong = new JsonObject(); pong.addProperty("pong", true); pong.addProperty("protocol", 1); result = pong; }
                 case "status" -> result = status();
-                case "input.reset" -> { reset(); result = status(); }
+                case "macro.run" -> {
+                    if (!request.has("script") || !request.get("script").isJsonArray()) throw fail("INVALID_ARGUMENT", "script must be an array");
+                    macro.start(request.getAsJsonArray("script")); result = macro.status();
+                }
+                case "macro.status" -> result = macro.status();
+                case "macro.stop" -> { macro.stop(); result = macro.status(); }
+                case "input.reset" -> { macro.stop(); reset(); result = status(); }
                 case "key.tap", "key.down", "key.up", "key.hold" -> {
                     int key = keyCode(string(request, "key"));
                     boolean down = !command.equals("key.up");
@@ -139,7 +152,7 @@ public final class Controller {
         for (int button : new ArrayList<>(buttons.keySet())) buttonState(button, false, 0);
     }
     public void stop() {
-        stopped = true; reset();
+        stopped = true; macro.stop(); reset();
         for (Job job : queue) job.future.complete(LocalServer.error(job.request.get("id"), "STOPPED", "Service stopped"));
         for (Job job : waits) job.future.complete(LocalServer.error(job.request.get("id"), "STOPPED", "Service stopped"));
         queue.clear(); waits.clear();
