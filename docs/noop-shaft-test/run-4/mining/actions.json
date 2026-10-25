@@ -1,0 +1,1652 @@
+[
+  {
+    "seen": [
+      56,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      54,
+      32,
+      113
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      55,
+      33,
+      114
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      55,
+      33,
+      112
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      56,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      53,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      55,
+      33,
+      114
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      55,
+      33,
+      112
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      53,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      53,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      54,
+      32,
+      113
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "mined": [
+      54,
+      32,
+      113
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      53,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      54,
+      31,
+      113
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      54,
+      31,
+      113
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "walked": [
+      54,
+      32,
+      113
+    ]
+  },
+  {
+    "seen": [
+      55,
+      31,
+      113
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      53,
+      32,
+      113
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      54,
+      33,
+      114
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      54,
+      33,
+      112
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      56,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      53,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      54,
+      33,
+      114
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      54,
+      33,
+      112
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      53,
+      36,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      53,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "mined": [
+      53,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      52,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      53,
+      32,
+      113
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "mined": [
+      53,
+      32,
+      113
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      52,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      52,
+      32,
+      113
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      53,
+      31,
+      113
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "walked": [
+      53,
+      32,
+      113
+    ]
+  },
+  {
+    "seen": [
+      54,
+      31,
+      113
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      52,
+      32,
+      113
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      53,
+      33,
+      114
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      53,
+      33,
+      112
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      56,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      52,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      53,
+      33,
+      114
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      53,
+      33,
+      112
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      53,
+      34,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      52,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "mined": [
+      52,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      51,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      52,
+      32,
+      113
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "mined": [
+      52,
+      32,
+      113
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      51,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      51,
+      32,
+      113
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      52,
+      31,
+      113
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "walked": [
+      52,
+      32,
+      113
+    ]
+  },
+  {
+    "seen": [
+      53,
+      31,
+      113
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      51,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      52,
+      33,
+      114
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      52,
+      33,
+      112
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      56,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      51,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      52,
+      33,
+      114
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      52,
+      33,
+      112
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      52,
+      34,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      51,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "mined": [
+      51,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      50,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      51,
+      32,
+      113
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "mined": [
+      51,
+      32,
+      113
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      50,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      51,
+      31,
+      113
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      51,
+      31,
+      113
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "walked": [
+      51,
+      32,
+      113
+    ]
+  },
+  {
+    "seen": [
+      52,
+      31,
+      113
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      50,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      51,
+      33,
+      114
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      51,
+      33,
+      112
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      50,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      51,
+      33,
+      114
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      51,
+      33,
+      112
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      51,
+      34,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      50,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "mined": [
+      50,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      49,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      50,
+      32,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "mined": [
+      50,
+      32,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      49,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      50,
+      31,
+      113
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      50,
+      31,
+      113
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "walked": [
+      50,
+      32,
+      113
+    ]
+  },
+  {
+    "seen": [
+      51,
+      31,
+      113
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      49,
+      32,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      50,
+      33,
+      114
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      50,
+      33,
+      112
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      49,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      50,
+      33,
+      114
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      50,
+      33,
+      112
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      50,
+      34,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      49,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "mined": [
+      49,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      48,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      49,
+      32,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "mined": [
+      49,
+      32,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      48,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      48,
+      32,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      49,
+      31,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "walked": [
+      49,
+      32,
+      113
+    ]
+  },
+  {
+    "seen": [
+      50,
+      31,
+      113
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      48,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      49,
+      33,
+      114
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      49,
+      33,
+      112
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      48,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      49,
+      33,
+      114
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      49,
+      33,
+      112
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      49,
+      34,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      48,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "mined": [
+      48,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      47,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      48,
+      32,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "mined": [
+      48,
+      32,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      47,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      48,
+      31,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      48,
+      31,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "walked": [
+      48,
+      32,
+      113
+    ]
+  },
+  {
+    "seen": [
+      49,
+      31,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      47,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      48,
+      33,
+      114
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      48,
+      33,
+      112
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      47,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      48,
+      33,
+      114
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      48,
+      33,
+      112
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      48,
+      34,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      47,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "mined": [
+      47,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      46,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      47,
+      32,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "mined": [
+      47,
+      32,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      46,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      47,
+      31,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      47,
+      31,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "walked": [
+      47,
+      32,
+      113
+    ]
+  },
+  {
+    "seen": [
+      48,
+      31,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      46,
+      32,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      47,
+      33,
+      114
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      47,
+      33,
+      112
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      46,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      47,
+      33,
+      114
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      47,
+      33,
+      112
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      47,
+      34,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      46,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "mined": [
+      46,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      45,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      46,
+      32,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "mined": [
+      46,
+      32,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      45,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      45,
+      32,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      46,
+      31,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "walked": [
+      46,
+      32,
+      113
+    ]
+  },
+  {
+    "seen": [
+      47,
+      31,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      45,
+      32,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      46,
+      33,
+      114
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      46,
+      33,
+      112
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      45,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      46,
+      33,
+      114
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      46,
+      33,
+      112
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      46,
+      34,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      45,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "mined": [
+      45,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      44,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      45,
+      32,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "mined": [
+      45,
+      32,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      44,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      44,
+      32,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      45,
+      31,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "walked": [
+      45,
+      32,
+      113
+    ]
+  },
+  {
+    "seen": [
+      46,
+      31,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      44,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      45,
+      33,
+      114
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      45,
+      33,
+      112
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      44,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      45,
+      33,
+      114
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      45,
+      33,
+      112
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      45,
+      34,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      44,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "mined": [
+      44,
+      33,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      44,
+      32,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "mined": [
+      44,
+      32,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      44,
+      31,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      44,
+      31,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "walked": [
+      44,
+      32,
+      113
+    ]
+  },
+  {
+    "seen": [
+      45,
+      31,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      44,
+      33,
+      114
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      44,
+      33,
+      112
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      44,
+      33,
+      114
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      44,
+      33,
+      112
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      44,
+      34,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      44,
+      31,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "placed": [
+      43,
+      31,
+      113
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "walked": [
+      43,
+      32,
+      113
+    ]
+  },
+  {
+    "seen": [
+      44,
+      31,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      43,
+      33,
+      112
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      43,
+      33,
+      112
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      43,
+      31,
+      113
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "placed": [
+      42,
+      31,
+      113
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "walked": [
+      42,
+      32,
+      113
+    ]
+  },
+  {
+    "seen": [
+      43,
+      31,
+      113
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "seen": [
+      42,
+      30,
+      110
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      42,
+      33,
+      109
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      42,
+      31,
+      113
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "placed": [
+      41,
+      31,
+      113
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "walked": [
+      41,
+      32,
+      113
+    ]
+  }
+]

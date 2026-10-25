@@ -1,0 +1,60 @@
+[
+  {
+    "command": "macro.status"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "inventory"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "status"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": -1.1260356292799165,
+    "dy": 128.11898964667697
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": -1198.6288453918391,
+    "dy": -526.5148359343975
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "input.reset"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "inventory"
+  },
+  {
+    "command": "status"
+  }
+]

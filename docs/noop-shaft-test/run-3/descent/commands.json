@@ -1,0 +1,1336 @@
+[
+  {
+    "command": "macro.status"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "inventory"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "status"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": 1198.629231037387,
+    "dy": 526.5148309800104
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": -1198.6291120585058,
+    "dy": -526.5148359343975
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "mouse.hold",
+    "button": "left",
+    "ticks": 180
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "mouse.up",
+    "button": "left"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": 0.000221274827557257,
+    "dy": 5.398935840617014e-06
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": -0.0001787251729486646,
+    "dy": 290.5178838955205
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "mouse.hold",
+    "button": "left",
+    "ticks": 180
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "mouse.up",
+    "button": "left"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": -0.0001787251729486646,
+    "dy": 1.5228853840199008e-05
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": -0.0001787251729486646,
+    "dy": 105.31547995429075
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "mouse.hold",
+    "button": "left",
+    "ticks": 180
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "mouse.up",
+    "button": "left"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": -0.0001787251729486646,
+    "dy": -2.0045709258435334e-05
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": -0.0001787251729486646,
+    "dy": 27.452267686448124
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": -0.0001787251729486646,
+    "dy": -473.81093333333337
+  },
+  {
+    "command": "key.hold",
+    "key": "w",
+    "ticks": 2
+  },
+  {
+    "command": "key.up",
+    "key": "w"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": -0.010768924571493699,
+    "dy": 5.0862630000000005e-05
+  },
+  {
+    "command": "key.hold",
+    "key": "w",
+    "ticks": 2
+  },
+  {
+    "command": "key.up",
+    "key": "w"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": -0.3370772315565773,
+    "dy": -562.3525659349547
+  },
+  {
+    "command": "key.hold",
+    "key": "w",
+    "ticks": 1
+  },
+  {
+    "command": "key.up",
+    "key": "w"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "status"
+  },
+  {
+    "command": "key.up",
+    "key": "w"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "status"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": -1199.882262655085,
+    "dy": 1115.7179193444704
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": 0.07951178017795732,
+    "dy": -515.2948054067456
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": 0.00017844684407464229,
+    "dy": -5.40674556385549e-06
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": 0.00017844684407464229,
+    "dy": 248.76315499010985
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "mouse.hold",
+    "button": "left",
+    "ticks": 180
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "mouse.up",
+    "button": "left"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": 0.00017844684407464229,
+    "dy": -2.500989012332866e-05
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": 0.00017844684407464229,
+    "dy": 116.42290443893762
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "mouse.hold",
+    "button": "left",
+    "ticks": 180
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "mouse.up",
+    "button": "left"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": 0.00017844684407464229,
+    "dy": -8.894395714757291e-06
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": 0.00017844684407464229,
+    "dy": 33.23684885408724
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": 0.00017844684407464229,
+    "dy": -436.49353333333335
+  },
+  {
+    "command": "key.hold",
+    "key": "w",
+    "ticks": 2
+  },
+  {
+    "command": "key.up",
+    "key": "w"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": -0.00843094596575611,
+    "dy": -0.0
+  },
+  {
+    "command": "key.hold",
+    "key": "w",
+    "ticks": 2
+  },
+  {
+    "command": "key.up",
+    "key": "w"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": -0.029809238047467566,
+    "dy": -0.0
+  },
+  {
+    "command": "key.hold",
+    "key": "w",
+    "ticks": 1
+  },
+  {
+    "command": "key.up",
+    "key": "w"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": -0.04006262294372694,
+    "dy": -430.8522806712736
+  },
+  {
+    "command": "key.hold",
+    "key": "w",
+    "ticks": 1
+  },
+  {
+    "command": "key.up",
+    "key": "w"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "status"
+  },
+  {
+    "command": "key.up",
+    "key": "w"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "status"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": -1199.953797339628,
+    "dy": 1001.7928184886355
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": 0.04271767058223001,
+    "dy": -530.3234022483545
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": 5.100391566278025e-05,
+    "dy": 3.10849789878868e-05
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": 5.100391566278025e-05,
+    "dy": 258.6600917094967
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "mouse.hold",
+    "button": "left",
+    "ticks": 180
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "mouse.up",
+    "button": "left"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": 5.100391566278025e-05,
+    "dy": -1.6238366148021064e-06
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": 5.100391566278025e-05,
+    "dy": 114.4745537691314
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "mouse.hold",
+    "button": "left",
+    "ticks": 180
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "mouse.up",
+    "button": "left"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": 5.100391566278025e-05,
+    "dy": -1.956420192072983e-05
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": 5.100391566278025e-05,
+    "dy": 31.946454710564563
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": 5.100391566278025e-05,
+    "dy": -445.6982933333333
+  },
+  {
+    "command": "key.hold",
+    "key": "w",
+    "ticks": 2
+  },
+  {
+    "command": "key.up",
+    "key": "w"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": -0.003133867541388706,
+    "dy": 5.0862630000000005e-05
+  },
+  {
+    "command": "key.hold",
+    "key": "w",
+    "ticks": 2
+  },
+  {
+    "command": "key.up",
+    "key": "w"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": -0.012969356716894254,
+    "dy": -0.0
+  },
+  {
+    "command": "key.hold",
+    "key": "w",
+    "ticks": 1
+  },
+  {
+    "command": "key.up",
+    "key": "w"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "status"
+  },
+  {
+    "command": "key.up",
+    "key": "w"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "status"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": -1199.7231540805449,
+    "dy": 594.5495919430073
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": -0.24952968874458747,
+    "dy": -549.958651665007
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": -0.00019635541169312395,
+    "dy": 5.233499306219377e-05
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": -0.00019635541169312395,
+    "dy": 272.63824919216825
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "mouse.hold",
+    "button": "left",
+    "ticks": 180
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "mouse.up",
+    "button": "left"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": -0.0007812751467402753,
+    "dy": -20.26546900043324
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": 0.00028219912413381587,
+    "dy": 106.29289789899512
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "mouse.hold",
+    "button": "left",
+    "ticks": 180
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "mouse.up",
+    "button": "left"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": 0.00028219912413381587,
+    "dy": -8.767671554702854e-06
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": 0.00028219912413381587,
+    "dy": 33.236848965725066
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": 0.00028219912413381587,
+    "dy": -436.49353333333335
+  },
+  {
+    "command": "key.hold",
+    "key": "w",
+    "ticks": 2
+  },
+  {
+    "command": "key.up",
+    "key": "w"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": -0.0029429963554624314,
+    "dy": -0.0
+  },
+  {
+    "command": "key.hold",
+    "key": "w",
+    "ticks": 2
+  },
+  {
+    "command": "key.up",
+    "key": "w"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": -0.0033680889782772283,
+    "dy": -0.0
+  },
+  {
+    "command": "key.hold",
+    "key": "w",
+    "ticks": 2
+  },
+  {
+    "command": "key.up",
+    "key": "w"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": -0.0013062217870659274,
+    "dy": -0.0
+  },
+  {
+    "command": "key.hold",
+    "key": "w",
+    "ticks": 2
+  },
+  {
+    "command": "key.up",
+    "key": "w"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": 0.0006937782139478562,
+    "dy": -0.0
+  },
+  {
+    "command": "key.hold",
+    "key": "w",
+    "ticks": 2
+  },
+  {
+    "command": "key.up",
+    "key": "w"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": 2.7111545932712033e-05,
+    "dy": -0.0
+  },
+  {
+    "command": "key.hold",
+    "key": "w",
+    "ticks": 2
+  },
+  {
+    "command": "key.up",
+    "key": "w"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": 2.7111545932712033e-05,
+    "dy": -0.0
+  },
+  {
+    "command": "key.hold",
+    "key": "w",
+    "ticks": 2
+  },
+  {
+    "command": "key.up",
+    "key": "w"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": 2.7111545932712033e-05,
+    "dy": -0.0
+  },
+  {
+    "command": "key.hold",
+    "key": "w",
+    "ticks": 2
+  },
+  {
+    "command": "key.up",
+    "key": "w"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": 2.7111545932712033e-05,
+    "dy": -0.0
+  },
+  {
+    "command": "key.hold",
+    "key": "w",
+    "ticks": 2
+  },
+  {
+    "command": "key.up",
+    "key": "w"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": 2.7111545932712033e-05,
+    "dy": -0.0
+  },
+  {
+    "command": "key.hold",
+    "key": "w",
+    "ticks": 2
+  },
+  {
+    "command": "key.up",
+    "key": "w"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "mouse.move",
+    "dx": 2.7111545932712033e-05,
+    "dy": -0.0
+  },
+  {
+    "command": "key.hold",
+    "key": "w",
+    "ticks": 2
+  },
+  {
+    "command": "key.up",
+    "key": "w"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "position"
+  },
+  {
+    "command": "key.up",
+    "key": "w"
+  },
+  {
+    "command": "input.reset"
+  },
+  {
+    "command": "observe"
+  },
+  {
+    "command": "inventory"
+  },
+  {
+    "command": "status"
+  }
+]

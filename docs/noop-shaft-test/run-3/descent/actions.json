@@ -1,0 +1,318 @@
+[
+  {
+    "seen": [
+      56,
+      64,
+      113
+    ],
+    "id": "minecraft:dirt"
+  },
+  {
+    "seen": [
+      55,
+      66,
+      113
+    ],
+    "id": "minecraft:vine"
+  },
+  {
+    "mined": [
+      55,
+      66,
+      113
+    ],
+    "id": "minecraft:vine"
+  },
+  {
+    "seen": [
+      55,
+      65,
+      113
+    ],
+    "id": "minecraft:grass_block"
+  },
+  {
+    "mined": [
+      55,
+      65,
+      113
+    ],
+    "id": "minecraft:grass_block"
+  },
+  {
+    "seen": [
+      55,
+      64,
+      113
+    ],
+    "id": "minecraft:dirt"
+  },
+  {
+    "seen": [
+      55,
+      64,
+      113
+    ],
+    "id": "minecraft:dirt"
+  },
+  {
+    "mined": [
+      55,
+      64,
+      113
+    ],
+    "id": "minecraft:dirt"
+  },
+  {
+    "seen": [
+      55,
+      63,
+      113
+    ],
+    "id": "minecraft:dirt"
+  },
+  {
+    "seen": [
+      55,
+      63,
+      113
+    ],
+    "id": "minecraft:dirt"
+  },
+  {
+    "descended_to": [
+      55,
+      64,
+      113
+    ],
+    "support_preserved": [
+      56,
+      64,
+      113
+    ]
+  },
+  {
+    "seen": [
+      55,
+      63,
+      113
+    ],
+    "id": "minecraft:dirt"
+  },
+  {
+    "seen": [
+      56,
+      64,
+      113
+    ],
+    "id": "minecraft:dirt"
+  },
+  {
+    "mined": [
+      56,
+      64,
+      113
+    ],
+    "id": "minecraft:dirt"
+  },
+  {
+    "seen": [
+      56,
+      63,
+      113
+    ],
+    "id": "minecraft:dirt"
+  },
+  {
+    "mined": [
+      56,
+      63,
+      113
+    ],
+    "id": "minecraft:dirt"
+  },
+  {
+    "seen": [
+      56,
+      62,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      56,
+      62,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "descended_to": [
+      56,
+      63,
+      113
+    ],
+    "support_preserved": [
+      55,
+      63,
+      113
+    ]
+  },
+  {
+    "seen": [
+      56,
+      62,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      54,
+      64,
+      113
+    ],
+    "id": "minecraft:dirt"
+  },
+  {
+    "seen": [
+      54,
+      64,
+      113
+    ],
+    "id": "minecraft:dirt"
+  },
+  {
+    "seen": [
+      55,
+      63,
+      113
+    ],
+    "id": "minecraft:dirt"
+  },
+  {
+    "mined": [
+      55,
+      63,
+      113
+    ],
+    "id": "minecraft:dirt"
+  },
+  {
+    "seen": [
+      54,
+      63,
+      113
+    ],
+    "id": "minecraft:dirt"
+  },
+  {
+    "seen": [
+      55,
+      62,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "mined": [
+      55,
+      62,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      55,
+      61,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      55,
+      61,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "descended_to": [
+      55,
+      62,
+      113
+    ],
+    "support_preserved": [
+      56,
+      62,
+      113
+    ]
+  },
+  {
+    "seen": [
+      55,
+      61,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      56,
+      62,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "mined": [
+      56,
+      62,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      56,
+      61,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      56,
+      61,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "mined": [
+      56,
+      61,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      56,
+      60,
+      113
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      56,
+      60,
+      113
+    ],
+    "id": "minecraft:stone"
+  }
+]

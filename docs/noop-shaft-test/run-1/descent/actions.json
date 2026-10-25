@@ -1,0 +1,118 @@
+[
+  {
+    "seen": [
+      57,
+      65,
+      113
+    ],
+    "id": "minecraft:grass_block"
+  },
+  {
+    "seen": [
+      55,
+      67,
+      113
+    ],
+    "id": "minecraft:vine"
+  },
+  {
+    "seen": [
+      55,
+      67,
+      113
+    ],
+    "id": "minecraft:vine"
+  },
+  {
+    "seen": [
+      55,
+      65,
+      113
+    ],
+    "id": "minecraft:grass_block"
+  },
+  {
+    "seen": [
+      55,
+      65,
+      113
+    ],
+    "id": "minecraft:grass_block"
+  },
+  {
+    "seen": [
+      56,
+      65,
+      113
+    ],
+    "id": "minecraft:grass_block"
+  },
+  {
+    "mined": [
+      56,
+      65,
+      113
+    ],
+    "id": "minecraft:grass_block"
+  },
+  {
+    "seen": [
+      56,
+      64,
+      113
+    ],
+    "id": "minecraft:dirt"
+  },
+  {
+    "seen": [
+      56,
+      64,
+      113
+    ],
+    "id": "minecraft:dirt"
+  },
+  {
+    "descended_to": [
+      56,
+      65,
+      113
+    ],
+    "support_preserved": [
+      57,
+      65,
+      113
+    ]
+  },
+  {
+    "seen": [
+      56,
+      64,
+      113
+    ],
+    "id": "minecraft:dirt"
+  },
+  {
+    "seen": [
+      57,
+      65,
+      113
+    ],
+    "id": "minecraft:grass_block"
+  },
+  {
+    "mined": [
+      57,
+      65,
+      113
+    ],
+    "id": "minecraft:grass_block"
+  },
+  {
+    "seen": [
+      57,
+      63,
+      113
+    ],
+    "id": "minecraft:lily_pad"
+  }
+]
