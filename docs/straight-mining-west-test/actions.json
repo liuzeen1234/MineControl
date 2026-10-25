@@ -1,0 +1,1025 @@
+[
+  {
+    "seen": [
+      23,
+      49,
+      16
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      21,
+      49,
+      16
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      22,
+      46,
+      18
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      22,
+      47,
+      15
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      23,
+      49,
+      16
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      21,
+      49,
+      16
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      22,
+      49,
+      19
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      22,
+      50,
+      16
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      21,
+      49,
+      16
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "mined": [
+      21,
+      49,
+      16
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      21,
+      48,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "mined": [
+      21,
+      48,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      21,
+      47,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "walked": [
+      21,
+      48,
+      16
+    ]
+  },
+  {
+    "seen": [
+      22,
+      47,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      19,
+      47,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      21,
+      46,
+      18
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      21,
+      49,
+      15
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      23,
+      49,
+      16
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      20,
+      49,
+      16
+    ],
+    "id": "minecraft:iron_ore"
+  },
+  {
+    "seen": [
+      20,
+      49,
+      16
+    ],
+    "id": "minecraft:iron_ore"
+  },
+  {
+    "mined": [
+      20,
+      49,
+      16
+    ],
+    "id": "minecraft:iron_ore"
+  },
+  {
+    "seen": [
+      22,
+      47,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      19,
+      47,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      21,
+      46,
+      18
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      21,
+      49,
+      15
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      23,
+      49,
+      16
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      19,
+      49,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      21,
+      49,
+      19
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      21,
+      49,
+      15
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      21,
+      50,
+      16
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      19,
+      49,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      19,
+      47,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      20,
+      47,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "walked": [
+      20,
+      48,
+      16
+    ]
+  },
+  {
+    "seen": [
+      21,
+      47,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      19,
+      49,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      20,
+      46,
+      18
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      20,
+      49,
+      15
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      23,
+      49,
+      16
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      19,
+      49,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      20,
+      49,
+      20
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      20,
+      49,
+      15
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      20,
+      50,
+      16
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      19,
+      49,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "mined": [
+      19,
+      49,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      19,
+      47,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      19,
+      47,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "walked": [
+      19,
+      48,
+      16
+    ]
+  },
+  {
+    "seen": [
+      20,
+      47,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      18,
+      47,
+      16
+    ],
+    "id": "minecraft:coal_ore"
+  },
+  {
+    "seen": [
+      19,
+      46,
+      18
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      19,
+      49,
+      15
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      23,
+      49,
+      16
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      19,
+      49,
+      20
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      19,
+      49,
+      15
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      19,
+      50,
+      16
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      18,
+      47,
+      16
+    ],
+    "id": "minecraft:coal_ore"
+  },
+  {
+    "seen": [
+      18,
+      47,
+      16
+    ],
+    "id": "minecraft:coal_ore"
+  },
+  {
+    "walked": [
+      18,
+      48,
+      16
+    ]
+  },
+  {
+    "seen": [
+      19,
+      47,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      16,
+      47,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      18,
+      46,
+      18
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      18,
+      49,
+      15
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      23,
+      48,
+      16
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      18,
+      49,
+      20
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      18,
+      49,
+      15
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      18,
+      50,
+      16
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      16,
+      47,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      17,
+      47,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "walked": [
+      17,
+      48,
+      16
+    ]
+  },
+  {
+    "seen": [
+      18,
+      47,
+      16
+    ],
+    "id": "minecraft:coal_ore"
+  },
+  {
+    "seen": [
+      16,
+      47,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      17,
+      47,
+      17
+    ],
+    "id": "minecraft:coal_ore"
+  },
+  {
+    "seen": [
+      17,
+      49,
+      15
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      17,
+      49,
+      20
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      17,
+      49,
+      15
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      17,
+      50,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      16,
+      47,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      16,
+      47,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "walked": [
+      16,
+      48,
+      16
+    ]
+  },
+  {
+    "seen": [
+      17,
+      47,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      15,
+      47,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      16,
+      47,
+      17
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      16,
+      49,
+      15
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      12,
+      49,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      16,
+      49,
+      19
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      16,
+      49,
+      15
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      16,
+      50,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      12,
+      49,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      15,
+      47,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      15,
+      47,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "walked": [
+      15,
+      48,
+      16
+    ]
+  },
+  {
+    "seen": [
+      16,
+      47,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      13,
+      47,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      15,
+      46,
+      18
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      15,
+      49,
+      15
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      12,
+      49,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      15,
+      49,
+      19
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      15,
+      49,
+      15
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      15,
+      50,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      12,
+      49,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      13,
+      47,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      14,
+      47,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "walked": [
+      14,
+      48,
+      16
+    ]
+  },
+  {
+    "seen": [
+      15,
+      47,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      11,
+      46,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      14,
+      46,
+      18
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      14,
+      49,
+      15
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      12,
+      49,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      14,
+      49,
+      19
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      14,
+      49,
+      15
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      14,
+      50,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      12,
+      49,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      11,
+      46,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      13,
+      47,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "walked": [
+      13,
+      48,
+      16
+    ]
+  },
+  {
+    "seen": [
+      14,
+      47,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      12,
+      49,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      13,
+      46,
+      19
+    ],
+    "id": "minecraft:copper_ore"
+  },
+  {
+    "seen": [
+      13,
+      49,
+      15
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      12,
+      49,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      13,
+      49,
+      20
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      13,
+      49,
+      15
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      13,
+      50,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      12,
+      49,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "mined": [
+      12,
+      49,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      11,
+      46,
+      16
+    ],
+    "id": "minecraft:granite"
+  },
+  {
+    "seen": [
+      11,
+      46,
+      16
+    ],
+    "id": "minecraft:granite"
+  }
+]

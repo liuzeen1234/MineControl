@@ -1,0 +1,76 @@
+{
+  "client": "Minecraft 26.2 / MineControl localhost API",
+  "world": "MineControl Natural Vein Test",
+  "mode": "survival",
+  "tool": "unenchanted netherite pickaxe",
+  "policy": "fixed straight route, observe first hit only; region.query prohibited",
+  "runs": [
+    {
+      "report": "docs/straight-mining-test/report.json",
+      "requested_seconds": 600.0,
+      "elapsed_seconds": 40.59737366694026,
+      "reason": "stopped",
+      "error": "No visible solid landing floor: (22, 48, 17)",
+      "steps": 6,
+      "net_items": {
+        "minecraft:cobblestone": 12
+      },
+      "durability_used": 12,
+      "inputs_released": true
+    },
+    {
+      "report": "docs/straight-mining-west-test/report.json",
+      "requested_seconds": 600.0,
+      "elapsed_seconds": 54.451103625120595,
+      "reason": "stopped",
+      "error": "No visible solid landing floor: (12, 48, 16)",
+      "steps": 9,
+      "net_items": {
+        "minecraft:cobblestone": 1,
+        "minecraft:granite": 2,
+        "minecraft:raw_iron": 1
+      },
+      "durability_used": 5,
+      "inputs_released": true
+    },
+    {
+      "report": "docs/straight-mining-deep-test/report.json",
+      "requested_seconds": 600.0,
+      "elapsed_seconds": 84.4508893340826,
+      "reason": "stopped",
+      "error": "No visible solid landing floor: (1000, -58, 1013)",
+      "steps": 12,
+      "net_items": {
+        "minecraft:cobbled_deepslate": 26
+      },
+      "durability_used": 26,
+      "inputs_released": true
+    },
+    {
+      "report": "docs/straight-mining-timer-test/report.json",
+      "requested_seconds": 20.0,
+      "elapsed_seconds": 25.80084912502207,
+      "reason": "duration_reached",
+      "error": null,
+      "steps": 5,
+      "net_items": {},
+      "durability_used": 0,
+      "inputs_released": true
+    }
+  ],
+  "notes": [
+    "The three 600-second requests stopped early for safety; none is a completed 10-minute yield benchmark.",
+    "First two tests used existing natural cave terrain at Y=48. Deep test used fixed arbitrary position (1000,-58,1000), with only the two starting air blocks cleared by setup commands; no ores were placed and no hidden ore query chose the route.",
+    "First deep setup attempted fill before the destination chunk loaded; it failed and the test character suffocated before mining. Respawned, loaded destination in spectator, confirmed server log Successfully filled 2 blocks, issued replacement pickaxe/food, then switched to survival before starting the recorded deep run.",
+    "Deep stop was visible gravel support at (1000,-59,1013), rejected by conservative floor whitelist.",
+    "Timer test walked back along the already excavated straight tunnel; it validates duration exit, not new mining yield. Time is checked between work units, so 20-second request took 25.8 seconds including final collection wait.",
+    "Reachable exposed ores are mined; below-floor ores and inaccessible branches are left. No full-vein or complete-pickup claim.",
+    "All recorded runs released inputs; after tests the singleplayer world is paused."
+  ],
+  "verification": {
+    "python_unit_tests": 17,
+    "new_visible_miner_tests": 5,
+    "result": "passed",
+    "java_changed": false
+  }
+}
