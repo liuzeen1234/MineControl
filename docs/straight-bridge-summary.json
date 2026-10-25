@@ -1,0 +1,154 @@
+{
+  "feature": "visible-only straight mining: remove falling floor material and bridge gaps",
+  "runs": [
+    {
+      "report": "docs/straight-bridge-natural-test/report.json",
+      "elapsed_seconds": 16.201615625061095,
+      "reason": "stopped",
+      "error": "Unsupported/falling visible block: ((1000, -58, 1014), 'minecraft:gravel')",
+      "steps": 1,
+      "net_items": {
+        "minecraft:gravel": 1
+      },
+      "inputs_released": true,
+      "placed": [
+        {
+          "placed": [
+            1000,
+            -59,
+            1013
+          ],
+          "id": "minecraft:cobbled_deepslate"
+        }
+      ],
+      "initial_health": 20.0,
+      "final_health": 20.0
+    },
+    {
+      "report": "docs/straight-bridge-continued-test/report.json",
+      "elapsed_seconds": 39.40037045907229,
+      "reason": "stopped",
+      "error": "Could not reach bridge edge while sneaking",
+      "steps": 2,
+      "net_items": {
+        "minecraft:cobbled_deepslate": -2,
+        "minecraft:flint": 2,
+        "minecraft:gravel": 5
+      },
+      "inputs_released": true,
+      "placed": [
+        {
+          "placed": [
+            1000,
+            -59,
+            1014
+          ],
+          "id": "minecraft:cobbled_deepslate"
+        },
+        {
+          "placed": [
+            1000,
+            -59,
+            1015
+          ],
+          "id": "minecraft:cobbled_deepslate"
+        }
+      ],
+      "initial_health": 20.0,
+      "final_health": 20.0
+    },
+    {
+      "report": "docs/straight-bridge-settling-test/report.json",
+      "elapsed_seconds": 18.100853208918124,
+      "reason": "stopped",
+      "error": "Occluded tunnel cell: (1000, -58, 1017)",
+      "steps": 1,
+      "net_items": {
+        "minecraft:cobbled_deepslate": -1,
+        "minecraft:gravel": 3
+      },
+      "inputs_released": true,
+      "placed": [
+        {
+          "placed": [
+            1000,
+            -59,
+            1016
+          ],
+          "id": "minecraft:cobbled_deepslate"
+        }
+      ],
+      "initial_health": 20.0,
+      "final_health": 20.0
+    },
+    {
+      "report": "docs/straight-bridge-final-natural-test/report.json",
+      "elapsed_seconds": 42.25131233315915,
+      "reason": "stopped",
+      "error": "Health or hunger protection",
+      "steps": 3,
+      "net_items": {
+        "minecraft:cobbled_deepslate": 3,
+        "minecraft:flint": 1,
+        "minecraft:gravel": 4
+      },
+      "inputs_released": true,
+      "placed": [
+        {
+          "placed": [
+            1000,
+            -59,
+            1017
+          ],
+          "id": "minecraft:cobbled_deepslate"
+        }
+      ],
+      "initial_health": 20.0,
+      "final_health": 6.000001
+    },
+    {
+      "report": "docs/straight-bridge-gap-test/report.json",
+      "elapsed_seconds": 22.69815379101783,
+      "reason": "duration_reached",
+      "error": null,
+      "steps": 2,
+      "net_items": {
+        "minecraft:cobbled_deepslate": -2
+      },
+      "inputs_released": true,
+      "placed": [
+        {
+          "placed": [
+            1000,
+            -59,
+            1007
+          ],
+          "id": "minecraft:cobbled_deepslate"
+        },
+        {
+          "placed": [
+            1000,
+            -59,
+            1006
+          ],
+          "id": "minecraft:cobbled_deepslate"
+        }
+      ],
+      "initial_health": 20.0,
+      "final_health": 20.0
+    }
+  ],
+  "verification": {
+    "unit_tests": 23,
+    "result": "passed",
+    "client": "Minecraft 26.2, actual survival gameplay"
+  },
+  "notes": [
+    "The first three natural runs are development records, preserving stops for front gravel, refilling gravel, and head occlusion; the final implementation waits for the head cell to settle before clearing feet.",
+    "Final natural run removed gravel, placed one support block and advanced three cells, then stopped for health protection. Damage source was not established; final health was 6.000001. No full-duration or general-safety claim.",
+    "Final controlled test used the existing excavated tunnel: only support blocks at (1000,-59,1006) and (1000,-59,1007) were removed with setup commands. Repositioned to (1000.5,-58,1008.5), facing north. Restored health before the test; survival mode during mining. No ores were placed or queried.",
+    "Controlled test placed two blocks and crossed both cells, stopped normally after its 20-second target at 22.70 seconds.",
+    "Building materials and netherite pickaxe must be in hotbar. Each placement is checked via the first visible hit before advancing. Missing materials, failed placement, unsettled material, unsafe anchor or movement failure stop the script.",
+    "Generic terrain queries remain forbidden by the miner command allowlist. All recorded runs released simulated inputs."
+  ]
+}

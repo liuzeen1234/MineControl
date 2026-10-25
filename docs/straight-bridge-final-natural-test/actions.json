@@ -1,0 +1,575 @@
+[
+  {
+    "seen": [
+      1001,
+      -57,
+      1016
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      999,
+      -57,
+      1016
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      1000,
+      -57,
+      1017
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      1000,
+      -59,
+      1015
+    ],
+    "id": "minecraft:cobbled_deepslate"
+  },
+  {
+    "seen": [
+      1001,
+      -57,
+      1016
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      999,
+      -57,
+      1016
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      1000,
+      -57,
+      1017
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      1000,
+      -55,
+      1016
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "seen": [
+      1000,
+      -57,
+      1017
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "mined": [
+      1000,
+      -57,
+      1017
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      1000,
+      -57,
+      1018
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      1000,
+      -58,
+      1017
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "mined": [
+      1000,
+      -58,
+      1017
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      1000,
+      -57,
+      1018
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      1000,
+      -59,
+      1017
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      1000,
+      -59,
+      1017
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      1000,
+      -59,
+      1017
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "mined": [
+      1000,
+      -59,
+      1017
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      1000,
+      -59,
+      1018
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "seen": [
+      1000,
+      -59,
+      1016
+    ],
+    "id": "minecraft:cobbled_deepslate"
+  },
+  {
+    "placed": [
+      1000,
+      -59,
+      1017
+    ],
+    "id": "minecraft:cobbled_deepslate"
+  },
+  {
+    "walked": [
+      1000,
+      -58,
+      1017
+    ]
+  },
+  {
+    "seen": [
+      1001,
+      -57,
+      1017
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      999,
+      -57,
+      1017
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      1000,
+      -58,
+      1018
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      1000,
+      -59,
+      1016
+    ],
+    "id": "minecraft:cobbled_deepslate"
+  },
+  {
+    "seen": [
+      1001,
+      -57,
+      1017
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      999,
+      -57,
+      1017
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      1000,
+      -57,
+      1018
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      1000,
+      -55,
+      1017
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "seen": [
+      1000,
+      -57,
+      1018
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "mined": [
+      1000,
+      -57,
+      1018
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      1000,
+      -57,
+      1019
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "seen": [
+      1000,
+      -58,
+      1018
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "mined": [
+      1000,
+      -58,
+      1018
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      1000,
+      -57,
+      1019
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "seen": [
+      1000,
+      -58,
+      1019
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "seen": [
+      1000,
+      -59,
+      1018
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "walked": [
+      1000,
+      -58,
+      1018
+    ]
+  },
+  {
+    "seen": [
+      1001,
+      -57,
+      1018
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      999,
+      -57,
+      1018
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      1000,
+      -57,
+      1019
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "seen": [
+      1000,
+      -59,
+      1017
+    ],
+    "id": "minecraft:cobbled_deepslate"
+  },
+  {
+    "seen": [
+      1001,
+      -57,
+      1018
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      999,
+      -57,
+      1018
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      1000,
+      -57,
+      1019
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "seen": [
+      1000,
+      -56,
+      1018
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "seen": [
+      1000,
+      -57,
+      1019
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "mined": [
+      1000,
+      -57,
+      1019
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "seen": [
+      1000,
+      -57,
+      1020
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "seen": [
+      1000,
+      -58,
+      1019
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "mined": [
+      1000,
+      -58,
+      1019
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "seen": [
+      1000,
+      -57,
+      1020
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "seen": [
+      1000,
+      -59,
+      1019
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "seen": [
+      1000,
+      -59,
+      1019
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "walked": [
+      1000,
+      -58,
+      1019
+    ]
+  },
+  {
+    "seen": [
+      1001,
+      -57,
+      1019
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "seen": [
+      999,
+      -57,
+      1019
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "seen": [
+      1000,
+      -58,
+      1020
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "seen": [
+      1000,
+      -59,
+      1018
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "seen": [
+      1001,
+      -57,
+      1019
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "seen": [
+      999,
+      -57,
+      1019
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "seen": [
+      1000,
+      -57,
+      1020
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "seen": [
+      1000,
+      -56,
+      1019
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "seen": [
+      1000,
+      -57,
+      1020
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "mined": [
+      1000,
+      -57,
+      1020
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "seen": [
+      1000,
+      -57,
+      1021
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "seen": [
+      1000,
+      -58,
+      1020
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "mined": [
+      1000,
+      -58,
+      1020
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "seen": [
+      1000,
+      -57,
+      1021
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "seen": [
+      1000,
+      -58,
+      1021
+    ],
+    "id": "minecraft:deepslate"
+  },
+  {
+    "seen": [
+      1000,
+      -59,
+      1020
+    ],
+    "id": "minecraft:deepslate"
+  }
+]

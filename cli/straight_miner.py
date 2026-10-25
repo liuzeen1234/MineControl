@@ -8,12 +8,15 @@ from pathlib import Path
 import time
 from vein_miner import Miner, Unsafe, ROCK, ORES, FALLING, add, at_destination
 
+BUILDING = ROCK - {'minecraft:moss_block', 'minecraft:dripstone_block'}
+SOLID = ROCK | ORES.keys() | {'minecraft:bedrock'}
+
 
 class StraightMiner(Miner):
     def call(self, command, **args):
         # Deliberately fail closed if inherited or future code attempts a terrain query.
         if command not in {'observe', 'position', 'inventory', 'status', 'macro.status',
-                           'mouse.move', 'mouse.hold', 'mouse.up', 'key.hold', 'key.up',
+                           'mouse.move', 'mouse.hold', 'mouse.click', 'mouse.up', 'key.hold', 'key.up',
                            'key.tap', 'input.reset'}:
             raise Unsafe(f'Command forbidden by visible-only policy: {command}')
         return super().call(command, **args)
@@ -29,7 +32,7 @@ class StraightMiner(Miner):
             return pos, target['id']
         return None
 
-    def clear(self, point):
+    def clear(self, point, allow_falling=False):
         """Only break the requested cell if it is the first visible hit."""
         hit = self.look(tuple(v+.5 for v in point))
         if hit is None or hit[0] != point:
@@ -39,7 +42,7 @@ class StraightMiner(Miner):
             if hit and math.dist(eye, tuple(v+.5 for v in hit[0])) < math.dist(eye, tuple(v+.5 for v in point)):
                 raise Unsafe(f'Occluded tunnel cell: {point}')
             return
-        if hit[1] not in ROCK | ORES.keys():
+        if hit[1] not in (ROCK | ORES.keys() | (FALLING if allow_falling else set())):
             raise Unsafe(f'Unsupported/falling visible block: {hit}')
         started = time.monotonic()
         try:
@@ -75,13 +78,89 @@ class StraightMiner(Miner):
             self.clear(found)
         raise Unsafe('Visible ore work limit reached')
 
-    def step(self, destination):
-        self.clear(add(destination,(0,1,0)))
-        self.clear(destination)
+    def bridge(self, destination):
+        """Sneak to the edge, place against our visible support, verify before walking."""
+        p = self.call('position')
+        origin = tuple(math.floor(p[k]) for k in ('x','y','z'))
+        direction = tuple(destination[i]-origin[i] for i in range(3))
+        if direction not in {(1,0,0),(-1,0,0),(0,0,1),(0,0,-1)}:
+            raise Unsafe('Bridge requires an adjacent level destination')
+        support = add(origin,(0,-1,0))
+        hit = self.look(tuple(v+.5 for v in support))
+        if not hit or hit[0] != support or hit[1] not in SOLID:
+            raise Unsafe('No visible stable bridge anchor')
+        slots = self.call('inventory')['slots']
+        blocks = [s for s in slots if 0 <= s['slot'] < 9 and s['stack']['id'] in BUILDING and s['stack']['count'] > 0]
+        tools = [s for s in slots if 0 <= s['slot'] < 9 and s['stack']['id'] == 'minecraft:netherite_pickaxe']
+        if not blocks or not tools:
+            raise Unsafe('Bridge needs building blocks and netherite pickaxe in hotbar')
+        material = blocks[0]; tool = tools[0]
+        floor = add(destination,(0,-1,0))
+        expected_face = {(1,0,0):'east',(-1,0,0):'west',(0,0,1):'south',(0,0,-1):'north'}[direction]
+        started = time.monotonic()
+        try:
+            self.call('key.hold',key='left_shift',ticks=200)
+            while True:
+                self.state();p = self.call('position')
+                advance = sum((p[k]-origin[i]-.5)*direction[i] for i,k in enumerate(('x','y','z')))
+                if abs(p['y']-origin[1]) > .2:
+                    raise Unsafe('Bridge edge height changed')
+                if advance >= .65:break
+                if time.monotonic()-started > 5:raise Unsafe('Could not reach bridge edge while sneaking')
+                self.aim((destination[0]+.5,p['y']+1.62,destination[2]+.5))
+                self.call('key.hold',key='w',ticks=2);time.sleep(.15);self.call('key.up',key='w')
+            # Sneaking eye height is 0.35 lower than the standing-eye aim helper.
+            point = tuple(support[i]+.5+direction[i]*.499 for i in range(3))
+            self.aim((point[0],point[1]+.35,point[2]));time.sleep(.15)
+            target = self.call('observe')['target']
+            if not target or target['kind'] != 'block' or tuple(target['pos'][k] for k in ('x','y','z')) != support or target['face'] != expected_face:
+                raise Unsafe('Bridge anchor side is not visible')
+            self.call('key.tap',key=str(material['slot']+1));time.sleep(.15)
+            self.call('mouse.click',button='right');time.sleep(.25)
+            self.call('mouse.up',button='right')
+            self.call('key.tap',key=str(tool['slot']+1));time.sleep(.15)
+            # Keep sneaking while checking the newly placed block's top.
+            self.aim((floor[0]+.5,floor[1]+.99+.35,floor[2]+.5));time.sleep(.15)
+            target = self.call('observe')['target']
+            if not target or target['kind'] != 'block' or tuple(target['pos'][k] for k in ('x','y','z')) != floor or target['id'] != material['stack']['id']:
+                raise Unsafe('Bridge placement not confirmed')
+            self.events.append({'placed':floor,'id':target['id']})
+        finally:
+            self.call('mouse.up',button='right')
+            self.call('key.up',key='w')
+            self.call('key.tap',key=str(tool['slot']+1))
+            self.call('key.up',key='left_shift')
+
+    def prepare_floor(self, destination):
         floor = add(destination,(0,-1,0))
         hit = self.look((floor[0]+.5, floor[1]+.99, floor[2]+.5))
-        if not hit or hit[0] != floor or hit[1] not in ROCK | ORES.keys() | {'minecraft:bedrock'}:
-            raise Unsafe(f'No visible solid landing floor: {destination}')
+        attempts = 0
+        while hit and hit[0] == floor and hit[1] in FALLING:
+            if attempts >= 16:raise Unsafe('Falling floor did not clear within work limit')
+            self.clear(floor,allow_falling=True)
+            time.sleep(.5)
+            hit = self.look((floor[0]+.5,floor[1]+.99,floor[2]+.5))
+            attempts += 1
+        if hit and hit[0] == floor and hit[1] in SOLID:return
+        if hit and hit[0] == floor:
+            raise Unsafe(f'Unsupported visible landing floor: {hit}')
+        self.bridge(destination)
+
+    def step(self, destination):
+        # Both cells are ahead of us: clear falling material from the side.
+        cells = [add(destination,(0,1,0)),destination]
+        for _ in range(16):
+            self.clear(cells[0],allow_falling=True)
+            time.sleep(.5)
+            head = self.look(tuple(v+.5 for v in cells[0]))
+            if head and head[0] == cells[0]:continue
+            self.clear(cells[1],allow_falling=True)
+            time.sleep(.5)
+            # Gravel can fall into the cells after the mining ray moves away.
+            hits = [self.look(tuple(v+.5 for v in cell)) for cell in cells]
+            if all(not hit or hit[0] != cell for cell,hit in zip(cells,hits)):break
+        else:raise Unsafe('Falling tunnel blocks did not settle within work limit')
+        self.prepare_floor(destination)
         start = time.monotonic()
         try:
             while True:

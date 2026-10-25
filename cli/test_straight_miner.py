@@ -37,9 +37,80 @@ class VisibleTests(unittest.TestCase):
         miner.exposed_ores((0,0,0))
         self.assertEqual(mined,[(1,1,0),(2,1,0)])
 
-    def test_unsupported_floor_stops_before_walking(self):
-        miner=self.miner();miner.clear=lambda point:None;miner.look=lambda point:None
-        with self.assertRaisesRegex(Unsafe,'landing floor'):
+    def test_gap_requests_bridge_before_walking(self):
+        miner=self.miner();miner.look=lambda point:None
+        calls=[];miner.bridge=lambda point:calls.append(point)
+        miner.prepare_floor((0,0,1))
+        self.assertEqual(calls,[(0,0,1)])
+
+    def test_gravel_is_removed_then_gap_is_bridged(self):
+        miner=self.miner();hits=iter([((0,-1,1),'minecraft:gravel'),None]);actions=[]
+        miner.look=lambda point:next(hits)
+        miner.clear=lambda point,**args:actions.append(('clear',point,args))
+        miner.bridge=lambda point:actions.append(('bridge',point))
+        with patch('straight_miner.time.sleep'):
+            miner.prepare_floor((0,0,1))
+        self.assertEqual(actions,[('clear',(0,-1,1),{'allow_falling':True}),('bridge',(0,0,1))])
+
+    def test_solid_floor_does_not_consume_blocks(self):
+        miner=self.miner();miner.look=lambda point:((0,-1,1),'minecraft:stone')
+        miner.bridge=lambda point:self.fail('Unnecessary bridge')
+        miner.prepare_floor((0,0,1))
+
+    def test_falling_gravel_refilling_tunnel_is_cleared_again(self):
+        miner=self.miner();cleared=[];floors=[]
+        miner.clear=lambda point,**args:cleared.append(point)
+        hits=iter([((0,1,1),'minecraft:gravel'),None,None,None])
+        miner.look=lambda point:next(hits)
+        miner.prepare_floor=lambda point:floors.append(point)
+        miner.state=lambda:None
+        miner.call=lambda command,**args:{'x':.5,'y':0,'z':1.5} if command=='position' else {}
+        with patch('straight_miner.time.sleep'):
             miner.step((0,0,1))
+        self.assertEqual(cleared,[(0,1,1),(0,1,1),(0,0,1)])
+        self.assertEqual(floors,[(0,0,1)])
+
+    def test_refilled_gravel_floor_is_removed_before_bridge(self):
+        miner=self.miner();cleared=[];bridged=[]
+        hits=iter([((0,-1,1),'minecraft:gravel'),((0,-1,1),'minecraft:gravel'),None])
+        miner.look=lambda point:next(hits)
+        miner.clear=lambda point,**args:cleared.append(point)
+        miner.bridge=lambda point:bridged.append(point)
+        with patch('straight_miner.time.sleep'):
+            miner.prepare_floor((0,0,1))
+        self.assertEqual(cleared,[(0,-1,1)]*2)
+        self.assertEqual(bridged,[(0,0,1)])
+
+    def test_missing_material_stops_before_edge_movement(self):
+        miner=self.miner();miner.look=lambda point:((0,-1,0),'minecraft:stone')
+        def call(command,**args):
+            if command=='position':return {'x':.5,'y':0,'z':.5}
+            if command=='inventory':return {'slots':[]}
+            self.fail('Unexpected input before materials check')
+        miner.call=call
+        with self.assertRaisesRegex(Unsafe,'hotbar'):
+            miner.bridge((0,0,1))
+
+    def test_rejected_placement_releases_inputs_and_restores_pickaxe(self):
+        miner=self.miner();calls=[];positions=iter([
+            {'x':.5,'y':0,'z':.5},{'x':.5,'y':0,'z':1.2}])
+        observations=iter([
+            {'target':{'kind':'block','pos':{'x':0,'y':-1,'z':0},'face':'south'}},
+            {'target':None}])
+        def call(command,**args):
+            calls.append((command,args))
+            if command=='position':return next(positions)
+            if command=='inventory':return {'slots':[
+                {'slot':0,'stack':{'id':'minecraft:netherite_pickaxe','count':1}},
+                {'slot':2,'stack':{'id':'minecraft:cobblestone','count':8}}]}
+            if command=='observe':return next(observations)
+            return {}
+        miner.call=call;miner.state=lambda:None;miner.aim=lambda point:None
+        miner.look=lambda point:((0,-1,0),'minecraft:stone')
+        with patch('straight_miner.time.sleep'):
+            with self.assertRaisesRegex(Unsafe,'not confirmed'):
+                miner.bridge((0,0,1))
+        self.assertEqual(calls[-4:],[('mouse.up',{'button':'right'}),('key.up',{'key':'w'}),
+                                    ('key.tap',{'key':'1'}),('key.up',{'key':'left_shift'})])
 
 if __name__=='__main__':unittest.main()
