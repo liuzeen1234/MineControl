@@ -1,0 +1,223 @@
+{
+  "observe": {
+    "tick": 2274,
+    "source": "client_snapshot",
+    "world_loaded": true,
+    "active": true,
+    "player": {
+      "x": 1.5,
+      "y": 200.0,
+      "z": 0.5,
+      "health": 20.0,
+      "food": 20,
+      "alive": true,
+      "game_mode": "survival"
+    },
+    "main_hand": {
+      "id": "minecraft:netherite_pickaxe",
+      "count": 1,
+      "damage": 0,
+      "max_damage": 2031,
+      "remaining_durability": 2031,
+      "format": "components",
+      "components": {
+        "source": "client_snapshot",
+        "completeness": "unknown",
+        "data": {
+          "minecraft:enchantable": {
+            "value": 15
+          },
+          "minecraft:lore": [],
+          "minecraft:max_stack_size": 1,
+          "minecraft:attribute_modifiers": [
+            {
+              "amount": 5.0,
+              "id": "minecraft:base_attack_damage",
+              "slot": "mainhand",
+              "type": "minecraft:attack_damage",
+              "operation": "add_value"
+            },
+            {
+              "amount": -2.799999952316284,
+              "id": "minecraft:base_attack_speed",
+              "slot": "mainhand",
+              "type": "minecraft:attack_speed",
+              "operation": "add_value"
+            }
+          ],
+          "minecraft:tool": {
+            "rules": [
+              {
+                "blocks": "#minecraft:incorrect_for_netherite_tool",
+                "correct_for_drops": 0
+              },
+              {
+                "blocks": "#minecraft:mineable/pickaxe",
+                "correct_for_drops": 1,
+                "speed": 9.0
+              }
+            ]
+          },
+          "minecraft:enchantments": {},
+          "minecraft:damage": 0,
+          "minecraft:tooltip_display": {},
+          "minecraft:swing_animation": {},
+          "minecraft:damage_resistant": {
+            "types": "#minecraft:is_fire"
+          },
+          "minecraft:repairable": {
+            "items": "#minecraft:netherite_tool_materials"
+          },
+          "minecraft:repair_cost": 0,
+          "minecraft:item_name": {
+            "translate": "item.minecraft.netherite_pickaxe"
+          },
+          "minecraft:use_effects": {},
+          "minecraft:item_model": "minecraft:netherite_pickaxe",
+          "minecraft:weapon": {
+            "item_damage_per_attack": 2
+          },
+          "minecraft:rarity": "common",
+          "minecraft:break_sound": "minecraft:entity.item.break",
+          "minecraft:max_damage": 2031
+        },
+        "snbt": "{\"minecraft:attribute_modifiers\":[{amount:5.0d,id:\"minecraft:base_attack_damage\",operation:\"add_value\",slot:\"mainhand\",type:\"minecraft:attack_damage\"},{amount:-2.799999952316284d,id:\"minecraft:base_attack_speed\",operation:\"add_value\",slot:\"mainhand\",type:\"minecraft:attack_speed\"}],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:damage\":0,\"minecraft:damage_resistant\":{types:\"#minecraft:is_fire\"},\"minecraft:enchantable\":{value:15},\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:netherite_pickaxe\",\"minecraft:item_name\":{translate:\"item.minecraft.netherite_pickaxe\"},\"minecraft:lore\":[],\"minecraft:max_damage\":2031,\"minecraft:max_stack_size\":1,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:repairable\":{items:\"#minecraft:netherite_tool_materials\"},\"minecraft:swing_animation\":{},\"minecraft:tool\":{rules:[{blocks:\"#minecraft:incorrect_for_netherite_tool\",correct_for_drops:0b},{blocks:\"#minecraft:mineable/pickaxe\",correct_for_drops:1b,speed:9.0f}]},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{},\"minecraft:weapon\":{item_damage_per_attack:2}}"
+      },
+      "nbt": {
+        "source": "client_snapshot",
+        "completeness": "unknown",
+        "data": {
+          "count": 1,
+          "id": "minecraft:netherite_pickaxe"
+        },
+        "snbt": "{count:1,id:\"minecraft:netherite_pickaxe\"}"
+      }
+    },
+    "off_hand": {
+      "id": "minecraft:air",
+      "count": 0,
+      "damage": 0,
+      "max_damage": 0,
+      "remaining_durability": 0,
+      "format": "components",
+      "components": {
+        "source": "client_snapshot",
+        "completeness": "unknown",
+        "data": {},
+        "snbt": "{}"
+      },
+      "nbt": {
+        "source": "client_snapshot",
+        "completeness": "unknown",
+        "data": {},
+        "snbt": "{}"
+      }
+    },
+    "target": {
+      "distance": 1.5,
+      "kind": "block",
+      "id": "minecraft:stone",
+      "pos": {
+        "x": 1,
+        "y": 201,
+        "z": 2
+      },
+      "face": "north",
+      "state": {},
+      "nbt": null
+    },
+    "dimension": "minecraft:overworld"
+  },
+  "inventory": {
+    "tick": 2276,
+    "source": "client_snapshot",
+    "slots": [
+      {
+        "slot": 0,
+        "stack": {
+          "id": "minecraft:netherite_pickaxe",
+          "count": 1,
+          "damage": 0,
+          "max_damage": 2031,
+          "remaining_durability": 2031,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:enchantable": {
+                "value": 15
+              },
+              "minecraft:lore": [],
+              "minecraft:max_stack_size": 1,
+              "minecraft:attribute_modifiers": [
+                {
+                  "amount": 5.0,
+                  "id": "minecraft:base_attack_damage",
+                  "slot": "mainhand",
+                  "type": "minecraft:attack_damage",
+                  "operation": "add_value"
+                },
+                {
+                  "amount": -2.799999952316284,
+                  "id": "minecraft:base_attack_speed",
+                  "slot": "mainhand",
+                  "type": "minecraft:attack_speed",
+                  "operation": "add_value"
+                }
+              ],
+              "minecraft:tool": {
+                "rules": [
+                  {
+                    "blocks": "#minecraft:incorrect_for_netherite_tool",
+                    "correct_for_drops": 0
+                  },
+                  {
+                    "blocks": "#minecraft:mineable/pickaxe",
+                    "correct_for_drops": 1,
+                    "speed": 9.0
+                  }
+                ]
+              },
+              "minecraft:enchantments": {},
+              "minecraft:damage": 0,
+              "minecraft:tooltip_display": {},
+              "minecraft:swing_animation": {},
+              "minecraft:damage_resistant": {
+                "types": "#minecraft:is_fire"
+              },
+              "minecraft:repairable": {
+                "items": "#minecraft:netherite_tool_materials"
+              },
+              "minecraft:repair_cost": 0,
+              "minecraft:item_name": {
+                "translate": "item.minecraft.netherite_pickaxe"
+              },
+              "minecraft:use_effects": {},
+              "minecraft:item_model": "minecraft:netherite_pickaxe",
+              "minecraft:weapon": {
+                "item_damage_per_attack": 2
+              },
+              "minecraft:rarity": "common",
+              "minecraft:break_sound": "minecraft:entity.item.break",
+              "minecraft:max_damage": 2031
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[{amount:5.0d,id:\"minecraft:base_attack_damage\",operation:\"add_value\",slot:\"mainhand\",type:\"minecraft:attack_damage\"},{amount:-2.799999952316284d,id:\"minecraft:base_attack_speed\",operation:\"add_value\",slot:\"mainhand\",type:\"minecraft:attack_speed\"}],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:damage\":0,\"minecraft:damage_resistant\":{types:\"#minecraft:is_fire\"},\"minecraft:enchantable\":{value:15},\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:netherite_pickaxe\",\"minecraft:item_name\":{translate:\"item.minecraft.netherite_pickaxe\"},\"minecraft:lore\":[],\"minecraft:max_damage\":2031,\"minecraft:max_stack_size\":1,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:repairable\":{items:\"#minecraft:netherite_tool_materials\"},\"minecraft:swing_animation\":{},\"minecraft:tool\":{rules:[{blocks:\"#minecraft:incorrect_for_netherite_tool\",correct_for_drops:0b},{blocks:\"#minecraft:mineable/pickaxe\",correct_for_drops:1b,speed:9.0f}]},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{},\"minecraft:weapon\":{item_damage_per_attack:2}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 1,
+              "id": "minecraft:netherite_pickaxe"
+            },
+            "snbt": "{count:1,id:\"minecraft:netherite_pickaxe\"}"
+          }
+        }
+      }
+    ],
+    "counts": {
+      "minecraft:netherite_pickaxe": 1
+    }
+  }
+}

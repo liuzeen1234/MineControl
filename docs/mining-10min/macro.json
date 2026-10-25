@@ -1,0 +1,177 @@
+[
+  {
+    "while": {
+      "all": [
+        {
+          "field": "tick",
+          "op": "<",
+          "value": 14315
+        },
+        {
+          "field": "observe.active",
+          "value": true
+        },
+        {
+          "field": "observe.player.game_mode",
+          "value": "survival"
+        },
+        {
+          "field": "observe.player.alive",
+          "value": true
+        },
+        {
+          "field": "observe.player.health",
+          "op": ">=",
+          "value": 16
+        },
+        {
+          "field": "observe.player.food",
+          "op": ">=",
+          "value": 4
+        },
+        {
+          "field": "observe.main_hand.id",
+          "value": "minecraft:netherite_pickaxe"
+        },
+        {
+          "field": "observe.main_hand.remaining_durability",
+          "op": ">",
+          "value": 32
+        },
+        {
+          "field": "observe.target.kind",
+          "value": "block"
+        },
+        {
+          "any": [
+            {
+              "field": "observe.target.id",
+              "value": "minecraft:stone"
+            },
+            {
+              "field": "observe.target.id",
+              "value": "minecraft:deepslate"
+            },
+            {
+              "field": "observe.target.id",
+              "value": "minecraft:granite"
+            },
+            {
+              "field": "observe.target.id",
+              "value": "minecraft:diorite"
+            },
+            {
+              "field": "observe.target.id",
+              "value": "minecraft:andesite"
+            },
+            {
+              "field": "observe.target.id",
+              "value": "minecraft:tuff"
+            },
+            {
+              "field": "observe.target.id",
+              "value": "minecraft:coal_ore"
+            },
+            {
+              "field": "observe.target.id",
+              "value": "minecraft:iron_ore"
+            },
+            {
+              "field": "observe.target.id",
+              "value": "minecraft:copper_ore"
+            },
+            {
+              "field": "observe.target.id",
+              "value": "minecraft:gold_ore"
+            },
+            {
+              "field": "observe.target.id",
+              "value": "minecraft:redstone_ore"
+            },
+            {
+              "field": "observe.target.id",
+              "value": "minecraft:lapis_ore"
+            },
+            {
+              "field": "observe.target.id",
+              "value": "minecraft:diamond_ore"
+            },
+            {
+              "field": "observe.target.id",
+              "value": "minecraft:emerald_ore"
+            },
+            {
+              "field": "observe.target.id",
+              "value": "minecraft:deepslate_coal_ore"
+            },
+            {
+              "field": "observe.target.id",
+              "value": "minecraft:deepslate_iron_ore"
+            },
+            {
+              "field": "observe.target.id",
+              "value": "minecraft:deepslate_copper_ore"
+            },
+            {
+              "field": "observe.target.id",
+              "value": "minecraft:deepslate_gold_ore"
+            },
+            {
+              "field": "observe.target.id",
+              "value": "minecraft:deepslate_redstone_ore"
+            },
+            {
+              "field": "observe.target.id",
+              "value": "minecraft:deepslate_lapis_ore"
+            },
+            {
+              "field": "observe.target.id",
+              "value": "minecraft:deepslate_diamond_ore"
+            },
+            {
+              "field": "observe.target.id",
+              "value": "minecraft:deepslate_emerald_ore"
+            }
+          ]
+        }
+      ]
+    },
+    "do": [
+      {
+        "command": "key.down",
+        "key": "w"
+      },
+      {
+        "command": "mouse.down",
+        "button": "left"
+      },
+      {
+        "wait": 10
+      },
+      {
+        "command": "mouse.move",
+        "dx": 0,
+        "dy": 200
+      },
+      {
+        "wait": 10
+      },
+      {
+        "command": "mouse.move",
+        "dx": 0,
+        "dy": -200
+      },
+      {
+        "command": "mouse.up",
+        "button": "left"
+      },
+      {
+        "command": "key.up",
+        "key": "w"
+      },
+      {
+        "wait": 1
+      }
+    ]
+  }
+]

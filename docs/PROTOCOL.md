@@ -119,3 +119,9 @@ field 支持点路径或字符串数组；数组形式可精确访问含点号�
 与 AI Helper v3 的方块列表语法兼容，保留绝对坐标和完整命名空间，不依赖安装 AI Helper。它原有的服务端扫描器不能直接作为纯客户端数据源。区域输出仅包含方块及全部 BlockState 属性，暂不输出 v3 的 items/sign_text 扩展，也不读取服务器或假定客户端容器库存完整。单个准星目标的 NBT 仍可用 observe 获取。
 
 单次最多 32768 格；先检查高度和所有涉及的区块，未加载区块返回 CHUNK_NOT_LOADED，不触发加载、不把缺失区块当成空气。超出世界高度返回 OUT_OF_HEIGHT；超体积返回 REGION_TOO_LARGE；过长文本或响应返回 RESPONSE_TOO_LARGE，均不返回截断蓝图。无世界返回 NO_WORLD，参数错误返回 INVALID_ARGUMENT。宏也允许调用 position 和 region.query，但命令结果不存为变量。
+
+## 背包快照与生存状态
+
+`inventory`（CLI `./minectl inventory`）只读返回玩家背包/快捷栏及装备槽中的非空物品，`slots:[{slot,stack}]` 中 stack 使用 observe 的完整物品结构；`counts` 按完整物品 ID 汇总数量，另含 tick/source。槽编号沿用当前版本原生 Inventory，跨版本应优先使用 counts。无玩家世界返回 NO_WORLD。此接口不包含箱子、合成界面临时物品或地面掉落，测试时应关闭界面，并用前后 counts 的差值统计背包净增量。
+
+observe.player 新增 health、food、alive、game_mode；宏可用这些字段保护生存测试。

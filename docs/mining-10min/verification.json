@@ -1,0 +1,29 @@
+{
+  "final_status": {
+    "screen": null,
+    "world_loaded": true,
+    "window_focused": false,
+    "background_control": true,
+    "cursor_locked": true,
+    "tick": 15476,
+    "gui_width": 427,
+    "gui_height": 240,
+    "cursor_x": 213.5,
+    "cursor_y": 120.0,
+    "held_keys": [],
+    "held_buttons": [],
+    "yaw": 0.0,
+    "pitch": 30.000002,
+    "player_x": 1.5,
+    "player_y": 200.0,
+    "player_z": 413.69999998807907,
+    "on_ground": true
+  },
+  "macro": {
+    "state": "stopped",
+    "instruction": 6,
+    "steps": 4549
+  },
+  "timing_and_baseline_verified": true,
+  "all_samples_straight_yaw": true
+}

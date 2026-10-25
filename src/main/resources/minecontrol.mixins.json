@@ -2,6 +2,6 @@
   "required": true,
   "package": "dev.minecontrol.mixin",
   "compatibilityLevel": "${mixin_java}",
-  "client": ["KeyboardInvoker", "MouseInvoker", "TextFieldAccessor", "InputUtilMixin", "ClientFocusMixin"],
+  "client": ["KeyboardInvoker", "MouseInvoker", "TextFieldAccessor", "InputUtilMixin", "ClientFocusMixin", "BackgroundMouseMixin"],
   "injectors": {"defaultRequire": 1}
 }

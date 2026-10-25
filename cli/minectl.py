@@ -17,6 +17,7 @@ def parser():
     sub.add_parser('status')
     sub.add_parser('observe')
     sub.add_parser('position')
+    sub.add_parser('inventory')
     region = sub.add_parser('region', help='query an inclusive coordinate box as MCBLUEPRINT v3')
     region.add_argument('corners', type=int, nargs=6, metavar='N', help='x1 y1 z1 x2 y2 z2')
     region.add_argument('--text', action='store_true', help='print only the v3 blueprint')

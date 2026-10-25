@@ -27,6 +27,20 @@ public final class Observation {
         r.add("nbt", raw(stack.isEmpty() ? new CompoundTag() : ItemStack.CODEC.encodeStart(client.level.registryAccess().createSerializationContext(NbtOps.INSTANCE), stack).getOrThrow()));
         return r;
     }
+    public static JsonObject inventory(Minecraft client, long tick) {
+        if (client.player == null || client.level == null) throw new IllegalStateException("No player world loaded");
+        var r = new JsonObject(); r.addProperty("tick", tick); r.addProperty("source", "client_snapshot");
+        var slots = new JsonArray(); var counts = new java.util.TreeMap<String,Integer>();
+        var inventory = client.player.getInventory();
+        for (int slot=0; slot<inventory.getContainerSize(); slot++) {
+            var stack = inventory.getItem(slot);
+            if (stack.isEmpty()) continue;
+            var entry = new JsonObject(); entry.addProperty("slot", slot);
+            var data = item(client, stack); entry.add("stack", data); slots.add(entry);
+            counts.merge(data.get("id").getAsString(), stack.getCount(), Integer::sum);
+        }
+        r.add("slots", slots); r.add("counts", new Gson().toJsonTree(counts)); return ObservationData.bounded(r);
+    }
     public static JsonObject capture(Minecraft client, long tick) {
         var r = new JsonObject();
         r.addProperty("tick", tick); r.addProperty("source", "client_snapshot");
@@ -36,6 +50,8 @@ public final class Observation {
         r.add("main_hand", JsonNull.INSTANCE); r.add("off_hand", JsonNull.INSTANCE); r.add("target", JsonNull.INSTANCE);
         if (client.level == null || client.player == null) return r;
         var player = new JsonObject(); player.addProperty("x", client.player.getX()); player.addProperty("y", client.player.getY()); player.addProperty("z", client.player.getZ());
+        player.addProperty("health", client.player.getHealth()); player.addProperty("food", client.player.getFoodData().getFoodLevel());
+        player.addProperty("alive", client.player.isAlive()); player.addProperty("game_mode", client.gameMode.getPlayerMode().getName());
         r.add("player", player);
         r.add("main_hand", item(client, client.player.getMainHandItem()));
         r.add("off_hand", item(client, client.player.getOffhandItem()));

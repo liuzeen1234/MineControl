@@ -76,6 +76,10 @@ public final class Controller {
                 case "ping" -> { var pong = new JsonObject(); pong.addProperty("pong", true); pong.addProperty("protocol", 1); result = pong; }
                 case "status" -> result = status();
                 case "position" -> result = position();
+                case "inventory" -> {
+                    if (client.player == null || client.level == null) throw fail("NO_WORLD", "No player world loaded");
+                    result = Observation.inventory(client, tick);
+                }
                 case "region.query" -> result = region(request);
                 case "observe" -> {
                     try { result = Observation.capture(client, tick); }
