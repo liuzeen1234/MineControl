@@ -1,0 +1,80 @@
+diff --git a/cli/shaft_miner.py b/cli/shaft_miner.py
+index 17334ff..01969f5 100644
+--- a/cli/shaft_miner.py
++++ b/cli/shaft_miner.py
+@@ -10,7 +10,7 @@ import json
+ import math
+ from pathlib import Path
+ import time
+-from straight_miner import StraightMiner, SOLID, FALLING, add, at_destination, Unsafe
++from straight_miner import StraightMiner, SOLID, FALLING, BUILDING, add, at_destination, Unsafe
+ 
+ HEADINGS = {'south':(0,0,1),'west':(-1,0,0),'north':(0,0,-1),'east':(1,0,0)}
+ 
+@@ -25,6 +25,56 @@ class ShaftMiner(StraightMiner):
+         self.commands.append({'command':command,**args})
+         return super().call(command,**args)
+ 
++    def replace_falling_landing(self, origin, destination):
++        """Keep the current support; clear reachable gravel and rebuild from a visible base."""
++        floor=add(destination,(0,-1,0));direction=(destination[0]-origin[0],0,destination[2]-origin[2])
++        started=time.monotonic()
++        try:
++            self.call('key.hold',key='left_shift',ticks=400)
++            while True:
++                self.state();p=self.call('position')
++                advance=sum((p[k]-origin[i]-.5)*direction[i] for i,k in enumerate(('x','y','z')))
++                if abs(p['y']-origin[1])>.2:raise Unsafe('Shaft edge height changed')
++                if advance>=.65:break
++                if time.monotonic()-started>5:raise Unsafe('Cannot reach shaft edge while sneaking')
++                self.aim((destination[0]+.5,p['y']+1.62,destination[2]+.5))
++                self.call('key.hold',key='w',ticks=2);time.sleep(.15);self.call('key.up',key='w')
++            anchor=None
++            for depth in range(4):
++                cell=add(floor,(0,-depth,0))
++                # Compensate for the lower sneaking eye, as in ordinary bridging.
++                point=(cell[0]+.5,cell[1]+.99+.35,cell[2]+.5)
++                p=self.call('position')
++                if math.dist((p['x'],p['y']+1.27,p['z']),(point[0],point[1]-.35,point[2]))>4.4:
++                    raise Unsafe('Stable shaft base is out of visible reach')
++                hit=self.look(point)
++                if not hit or hit[0]!=cell:raise Unsafe('Cannot confirm shaft base through first hit')
++                if hit[1] in SOLID:anchor=cell;break
++                if hit[1] not in FALLING:raise Unsafe('Unsupported shaft landing material')
++                self.clear(cell,allow_falling=True,aim_point=point);time.sleep(.5)
++            if anchor is None:raise Unsafe('No stable base under falling shaft floor')
++            while anchor[1]<floor[1]:
++                self.state();slots=self.call('inventory')['slots']
++                materials=[s for s in slots if 0<=s['slot']<9 and s['stack']['id'] in BUILDING and s['stack']['count']>0]
++                tools=[s for s in slots if 0<=s['slot']<9 and s['stack']['id']=='minecraft:netherite_pickaxe']
++                if not materials or not tools:raise Unsafe('No hotbar material/tool for shaft landing')
++                material=materials[0];tool=tools[0];target=add(anchor,(0,1,0))
++                self.look((anchor[0]+.5,anchor[1]+.99+.35,anchor[2]+.5))
++                hit=self.call('observe')['target']
++                if not hit or hit['kind']!='block' or tuple(hit['pos'][k] for k in ('x','y','z'))!=anchor or hit['face']!='up':
++                    raise Unsafe('Stable shaft anchor top is not visible')
++                try:
++                    self.call('key.tap',key=str(material['slot']+1));time.sleep(.15)
++                    self.call('mouse.click',button='right');time.sleep(.25)
++                finally:
++                    self.call('mouse.up',button='right');self.call('key.tap',key=str(tool['slot']+1));time.sleep(.15)
++                hit=self.look((target[0]+.5,target[1]+.99+.35,target[2]+.5))
++                if not hit or hit[0]!=target or hit[1]!=material['stack']['id']:raise Unsafe('Shaft floor placement not confirmed')
++                self.events.append({'placed':target,'id':hit[1],'purpose':'replace_falling_landing'})
++                anchor=target
++        finally:
++            self.call('key.up',key='w');self.call('key.up',key='left_shift');self.call('mouse.up',button='right')
++
+     def lower_step(self, destination):
+         """Open the OTHER column and inspect its landing before leaving support."""
+         p=self.call('position')
+@@ -49,6 +99,9 @@ class ShaftMiner(StraightMiner):
+             else:raise Unsafe('Falling shaft material did not settle')
+         landing=add(destination,(0,-1,0))
+         hit=self.look((landing[0]+.5,landing[1]+.99,landing[2]+.5))
++        if hit and hit[0]==landing and hit[1] in FALLING:
++            self.replace_falling_landing(origin,destination)
++            hit=self.look((landing[0]+.5,landing[1]+.99,landing[2]+.5))
+         if not hit or hit[0] != landing or hit[1] not in SOLID:
+             raise Unsafe(f'No visible solid one-level landing at {landing}; refuse blind drop')
+         started=time.monotonic()

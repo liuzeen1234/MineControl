@@ -1,0 +1,122 @@
+{
+  "date": "2026-10-26",
+  "client": "Minecraft 26.2",
+  "script_commit": "12a6c3f",
+  "preparation": "Admin console spectator teleport to 1000.5,-55,1000.5; clear only two body cells; return survival. Player never granted OP. Existing kit, no ore placement or new equipment grants. Preparation excluded from timer.",
+  "command": "python3 cli/fishbone_miner.py --heading east --spacing 3 --branch-length 12 --main-length 64 --seconds 600 --out docs/y-minus-55-10min/admin-prepared/mining",
+  "requested_seconds": 600.0,
+  "elapsed_seconds": 601.9185293328483,
+  "reason": "duration_reached",
+  "error": null,
+  "net_items": {
+    "minecraft:cobbled_deepslate": 128,
+    "minecraft:redstone": 19
+  },
+  "mined_ores": [
+    {
+      "pos": [
+        1010,
+        -54,
+        995
+      ],
+      "id": "minecraft:deepslate_redstone_ore"
+    },
+    {
+      "pos": [
+        1010,
+        -54,
+        994
+      ],
+      "id": "minecraft:deepslate_redstone_ore"
+    },
+    {
+      "pos": [
+        1010,
+        -53,
+        995
+      ],
+      "id": "minecraft:deepslate_redstone_ore"
+    },
+    {
+      "pos": [
+        1011,
+        -54,
+        995
+      ],
+      "id": "minecraft:deepslate_redstone_ore"
+    },
+    {
+      "pos": [
+        1010,
+        -53,
+        994
+      ],
+      "id": "minecraft:deepslate_redstone_ore"
+    },
+    {
+      "pos": [
+        1011,
+        -54,
+        994
+      ],
+      "id": "minecraft:deepslate_redstone_ore"
+    },
+    {
+      "pos": [
+        1011,
+        -53,
+        995
+      ],
+      "id": "minecraft:deepslate_redstone_ore"
+    },
+    {
+      "pos": [
+        1011,
+        -53,
+        994
+      ],
+      "id": "minecraft:deepslate_redstone_ore"
+    }
+  ],
+  "waypoint_count": 112,
+  "unique_waypoint_cells": 64,
+  "server_events": {
+    "block_break": 136
+  },
+  "server_breaks_uncancelled": true,
+  "server_break_player_y_range": [
+    -55.0,
+    -55.0
+  ],
+  "pickaxe_damage_before": 169,
+  "pickaxe_damage_after": 305,
+  "final_player": {
+    "x": 1009.5000157854936,
+    "y": -55.0,
+    "z": 993.6836889192679,
+    "health": 20.0,
+    "food": 20,
+    "alive": true,
+    "game_mode": "survival"
+  },
+  "inputs_released": true,
+  "search_shell_sizes": {
+    "34": 65,
+    "26": 8
+  },
+  "limitations": [
+    "Actual server log contains repeated BadPacket(I) impossible position jump warnings starting 20:35:43; cause not confirmed.",
+    "Existing peaceful, punishment disabled, kick interception and anti-xray disabled configuration; not a formal anticheat compatibility pass.",
+    "Net harvest is inventory delta; all ore drops are not guaranteed collected.",
+    "Timer completes current work unit; final player remains inside a branch.",
+    "Three failed descent preparations retained separately and excluded; experimental landing helper reverted, patch retained for evidence."
+  ],
+  "evidence": [
+    "admin-prepared/setup.json",
+    "admin-prepared/mining/report.json",
+    "admin-prepared/mining/actions.json",
+    "admin-prepared/server-events.json",
+    "admin-prepared/server-player-log.txt",
+    "admin-prepared/samples.json"
+  ]
+}

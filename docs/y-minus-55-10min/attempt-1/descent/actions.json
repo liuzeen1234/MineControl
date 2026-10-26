@@ -1,0 +1,242 @@
+[
+  {
+    "seen": [
+      43,
+      22,
+      109
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      42,
+      22,
+      109
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "seen": [
+      42,
+      22,
+      109
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "seen": [
+      42,
+      22,
+      109
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "mined": [
+      42,
+      22,
+      109
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "seen": [
+      42,
+      21,
+      109
+    ],
+    "id": "minecraft:andesite"
+  },
+  {
+    "seen": [
+      42,
+      21,
+      109
+    ],
+    "id": "minecraft:andesite"
+  },
+  {
+    "descended_to": [
+      42,
+      22,
+      109
+    ],
+    "support_preserved": [
+      43,
+      22,
+      109
+    ]
+  },
+  {
+    "seen": [
+      42,
+      21,
+      109
+    ],
+    "id": "minecraft:andesite"
+  },
+  {
+    "seen": [
+      46,
+      23,
+      109
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      46,
+      23,
+      109
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      43,
+      22,
+      109
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "mined": [
+      43,
+      22,
+      109
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      43,
+      21,
+      109
+    ],
+    "id": "minecraft:andesite"
+  },
+  {
+    "seen": [
+      43,
+      21,
+      109
+    ],
+    "id": "minecraft:andesite"
+  },
+  {
+    "mined": [
+      43,
+      21,
+      109
+    ],
+    "id": "minecraft:andesite"
+  },
+  {
+    "seen": [
+      43,
+      20,
+      109
+    ],
+    "id": "minecraft:andesite"
+  },
+  {
+    "seen": [
+      43,
+      20,
+      109
+    ],
+    "id": "minecraft:andesite"
+  },
+  {
+    "descended_to": [
+      43,
+      21,
+      109
+    ],
+    "support_preserved": [
+      42,
+      21,
+      109
+    ]
+  },
+  {
+    "seen": [
+      43,
+      20,
+      109
+    ],
+    "id": "minecraft:andesite"
+  },
+  {
+    "seen": [
+      41,
+      22,
+      109
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "seen": [
+      41,
+      22,
+      109
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "seen": [
+      42,
+      21,
+      109
+    ],
+    "id": "minecraft:andesite"
+  },
+  {
+    "mined": [
+      42,
+      21,
+      109
+    ],
+    "id": "minecraft:andesite"
+  },
+  {
+    "seen": [
+      42,
+      20,
+      109
+    ],
+    "id": "minecraft:andesite"
+  },
+  {
+    "seen": [
+      42,
+      20,
+      109
+    ],
+    "id": "minecraft:andesite"
+  },
+  {
+    "mined": [
+      42,
+      20,
+      109
+    ],
+    "id": "minecraft:andesite"
+  },
+  {
+    "seen": [
+      42,
+      19,
+      109
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      42,
+      19,
+      109
+    ],
+    "id": "minecraft:gravel"
+  }
+]

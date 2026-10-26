@@ -1,0 +1,138 @@
+[
+  {
+    "seen": [
+      43,
+      20,
+      109
+    ],
+    "id": "minecraft:andesite"
+  },
+  {
+    "seen": [
+      46,
+      22,
+      109
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      46,
+      22,
+      109
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      45,
+      20,
+      109
+    ],
+    "id": "minecraft:andesite"
+  },
+  {
+    "seen": [
+      45,
+      20,
+      109
+    ],
+    "id": "minecraft:andesite"
+  },
+  {
+    "seen": [
+      44,
+      19,
+      109
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      44,
+      19,
+      109
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      44,
+      19,
+      109
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      44,
+      19,
+      109
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      44,
+      19,
+      109
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "mined": [
+      44,
+      19,
+      109
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      44,
+      18,
+      109
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      44,
+      18,
+      109
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "mined": [
+      44,
+      18,
+      109
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      44,
+      17,
+      109
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "seen": [
+      44,
+      17,
+      109
+    ],
+    "id": "minecraft:gravel"
+  },
+  {
+    "mined": [
+      44,
+      17,
+      109
+    ],
+    "id": "minecraft:gravel"
+  }
+]

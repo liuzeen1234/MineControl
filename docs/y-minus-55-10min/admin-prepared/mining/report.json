@@ -1,0 +1,3721 @@
+{
+  "requested_seconds": 600.0,
+  "elapsed_seconds": 601.9185293328483,
+  "reason": "duration_reached",
+  "error": null,
+  "origin": [
+    1000,
+    -55,
+    1000
+  ],
+  "heading": "east",
+  "main_length": 64,
+  "spacing": 3,
+  "branch_length": 12,
+  "waypoints": [
+    {
+      "pos": [
+        1001,
+        -55,
+        1000
+      ],
+      "phase": "main"
+    },
+    {
+      "pos": [
+        1002,
+        -55,
+        1000
+      ],
+      "phase": "main"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        1000
+      ],
+      "phase": "main"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        999
+      ],
+      "phase": "left"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        998
+      ],
+      "phase": "left"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        997
+      ],
+      "phase": "left"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        996
+      ],
+      "phase": "left"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        995
+      ],
+      "phase": "left"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        994
+      ],
+      "phase": "left"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        993
+      ],
+      "phase": "left"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        992
+      ],
+      "phase": "left"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        991
+      ],
+      "phase": "left"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        990
+      ],
+      "phase": "left"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        989
+      ],
+      "phase": "left"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        988
+      ],
+      "phase": "left"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        989
+      ],
+      "phase": "left_return"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        990
+      ],
+      "phase": "left_return"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        991
+      ],
+      "phase": "left_return"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        992
+      ],
+      "phase": "left_return"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        993
+      ],
+      "phase": "left_return"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        994
+      ],
+      "phase": "left_return"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        995
+      ],
+      "phase": "left_return"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        996
+      ],
+      "phase": "left_return"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        997
+      ],
+      "phase": "left_return"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        998
+      ],
+      "phase": "left_return"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        999
+      ],
+      "phase": "left_return"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        1000
+      ],
+      "phase": "left_return"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        1001
+      ],
+      "phase": "right"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        1002
+      ],
+      "phase": "right"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        1003
+      ],
+      "phase": "right"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        1004
+      ],
+      "phase": "right"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        1005
+      ],
+      "phase": "right"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        1006
+      ],
+      "phase": "right"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        1007
+      ],
+      "phase": "right"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        1008
+      ],
+      "phase": "right"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        1009
+      ],
+      "phase": "right"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        1010
+      ],
+      "phase": "right"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        1011
+      ],
+      "phase": "right"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        1012
+      ],
+      "phase": "right"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        1011
+      ],
+      "phase": "right_return"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        1010
+      ],
+      "phase": "right_return"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        1009
+      ],
+      "phase": "right_return"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        1008
+      ],
+      "phase": "right_return"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        1007
+      ],
+      "phase": "right_return"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        1006
+      ],
+      "phase": "right_return"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        1005
+      ],
+      "phase": "right_return"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        1004
+      ],
+      "phase": "right_return"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        1003
+      ],
+      "phase": "right_return"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        1002
+      ],
+      "phase": "right_return"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        1001
+      ],
+      "phase": "right_return"
+    },
+    {
+      "pos": [
+        1003,
+        -55,
+        1000
+      ],
+      "phase": "right_return"
+    },
+    {
+      "pos": [
+        1004,
+        -55,
+        1000
+      ],
+      "phase": "main"
+    },
+    {
+      "pos": [
+        1005,
+        -55,
+        1000
+      ],
+      "phase": "main"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        1000
+      ],
+      "phase": "main"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        999
+      ],
+      "phase": "left"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        998
+      ],
+      "phase": "left"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        997
+      ],
+      "phase": "left"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        996
+      ],
+      "phase": "left"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        995
+      ],
+      "phase": "left"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        994
+      ],
+      "phase": "left"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        993
+      ],
+      "phase": "left"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        992
+      ],
+      "phase": "left"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        991
+      ],
+      "phase": "left"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        990
+      ],
+      "phase": "left"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        989
+      ],
+      "phase": "left"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        988
+      ],
+      "phase": "left"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        989
+      ],
+      "phase": "left_return"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        990
+      ],
+      "phase": "left_return"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        991
+      ],
+      "phase": "left_return"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        992
+      ],
+      "phase": "left_return"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        993
+      ],
+      "phase": "left_return"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        994
+      ],
+      "phase": "left_return"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        995
+      ],
+      "phase": "left_return"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        996
+      ],
+      "phase": "left_return"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        997
+      ],
+      "phase": "left_return"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        998
+      ],
+      "phase": "left_return"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        999
+      ],
+      "phase": "left_return"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        1000
+      ],
+      "phase": "left_return"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        1001
+      ],
+      "phase": "right"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        1002
+      ],
+      "phase": "right"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        1003
+      ],
+      "phase": "right"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        1004
+      ],
+      "phase": "right"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        1005
+      ],
+      "phase": "right"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        1006
+      ],
+      "phase": "right"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        1007
+      ],
+      "phase": "right"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        1008
+      ],
+      "phase": "right"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        1009
+      ],
+      "phase": "right"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        1010
+      ],
+      "phase": "right"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        1011
+      ],
+      "phase": "right"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        1012
+      ],
+      "phase": "right"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        1011
+      ],
+      "phase": "right_return"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        1010
+      ],
+      "phase": "right_return"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        1009
+      ],
+      "phase": "right_return"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        1008
+      ],
+      "phase": "right_return"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        1007
+      ],
+      "phase": "right_return"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        1006
+      ],
+      "phase": "right_return"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        1005
+      ],
+      "phase": "right_return"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        1004
+      ],
+      "phase": "right_return"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        1003
+      ],
+      "phase": "right_return"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        1002
+      ],
+      "phase": "right_return"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        1001
+      ],
+      "phase": "right_return"
+    },
+    {
+      "pos": [
+        1006,
+        -55,
+        1000
+      ],
+      "phase": "right_return"
+    },
+    {
+      "pos": [
+        1007,
+        -55,
+        1000
+      ],
+      "phase": "main"
+    },
+    {
+      "pos": [
+        1008,
+        -55,
+        1000
+      ],
+      "phase": "main"
+    },
+    {
+      "pos": [
+        1009,
+        -55,
+        1000
+      ],
+      "phase": "main"
+    },
+    {
+      "pos": [
+        1009,
+        -55,
+        999
+      ],
+      "phase": "left"
+    },
+    {
+      "pos": [
+        1009,
+        -55,
+        998
+      ],
+      "phase": "left"
+    },
+    {
+      "pos": [
+        1009,
+        -55,
+        997
+      ],
+      "phase": "left"
+    },
+    {
+      "pos": [
+        1009,
+        -55,
+        996
+      ],
+      "phase": "left"
+    },
+    {
+      "pos": [
+        1009,
+        -55,
+        995
+      ],
+      "phase": "left"
+    },
+    {
+      "pos": [
+        1009,
+        -55,
+        994
+      ],
+      "phase": "left"
+    },
+    {
+      "pos": [
+        1009,
+        -55,
+        993
+      ],
+      "phase": "left"
+    }
+  ],
+  "mined_ores": [
+    {
+      "pos": [
+        1010,
+        -54,
+        995
+      ],
+      "id": "minecraft:deepslate_redstone_ore"
+    },
+    {
+      "pos": [
+        1010,
+        -54,
+        994
+      ],
+      "id": "minecraft:deepslate_redstone_ore"
+    },
+    {
+      "pos": [
+        1010,
+        -53,
+        995
+      ],
+      "id": "minecraft:deepslate_redstone_ore"
+    },
+    {
+      "pos": [
+        1011,
+        -54,
+        995
+      ],
+      "id": "minecraft:deepslate_redstone_ore"
+    },
+    {
+      "pos": [
+        1010,
+        -53,
+        994
+      ],
+      "id": "minecraft:deepslate_redstone_ore"
+    },
+    {
+      "pos": [
+        1011,
+        -54,
+        994
+      ],
+      "id": "minecraft:deepslate_redstone_ore"
+    },
+    {
+      "pos": [
+        1011,
+        -53,
+        995
+      ],
+      "id": "minecraft:deepslate_redstone_ore"
+    },
+    {
+      "pos": [
+        1011,
+        -53,
+        994
+      ],
+      "id": "minecraft:deepslate_redstone_ore"
+    }
+  ],
+  "deferred_candidates": [],
+  "searches": [
+    {
+      "center": [
+        1000,
+        -55,
+        1000
+      ],
+      "height": 2,
+      "from": [
+        999,
+        -56,
+        999
+      ],
+      "to": [
+        1001,
+        -53,
+        1001
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1001,
+        -55,
+        1000
+      ],
+      "height": 2,
+      "from": [
+        1000,
+        -56,
+        999
+      ],
+      "to": [
+        1002,
+        -53,
+        1001
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1002,
+        -55,
+        1000
+      ],
+      "height": 2,
+      "from": [
+        1001,
+        -56,
+        999
+      ],
+      "to": [
+        1003,
+        -53,
+        1001
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1003,
+        -55,
+        1000
+      ],
+      "height": 2,
+      "from": [
+        1002,
+        -56,
+        999
+      ],
+      "to": [
+        1004,
+        -53,
+        1001
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1003,
+        -55,
+        999
+      ],
+      "height": 2,
+      "from": [
+        1002,
+        -56,
+        998
+      ],
+      "to": [
+        1004,
+        -53,
+        1000
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1003,
+        -55,
+        998
+      ],
+      "height": 2,
+      "from": [
+        1002,
+        -56,
+        997
+      ],
+      "to": [
+        1004,
+        -53,
+        999
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1003,
+        -55,
+        997
+      ],
+      "height": 2,
+      "from": [
+        1002,
+        -56,
+        996
+      ],
+      "to": [
+        1004,
+        -53,
+        998
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1003,
+        -55,
+        996
+      ],
+      "height": 2,
+      "from": [
+        1002,
+        -56,
+        995
+      ],
+      "to": [
+        1004,
+        -53,
+        997
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1003,
+        -55,
+        995
+      ],
+      "height": 2,
+      "from": [
+        1002,
+        -56,
+        994
+      ],
+      "to": [
+        1004,
+        -53,
+        996
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1003,
+        -55,
+        994
+      ],
+      "height": 2,
+      "from": [
+        1002,
+        -56,
+        993
+      ],
+      "to": [
+        1004,
+        -53,
+        995
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1003,
+        -55,
+        993
+      ],
+      "height": 2,
+      "from": [
+        1002,
+        -56,
+        992
+      ],
+      "to": [
+        1004,
+        -53,
+        994
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1003,
+        -55,
+        992
+      ],
+      "height": 2,
+      "from": [
+        1002,
+        -56,
+        991
+      ],
+      "to": [
+        1004,
+        -53,
+        993
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1003,
+        -55,
+        991
+      ],
+      "height": 2,
+      "from": [
+        1002,
+        -56,
+        990
+      ],
+      "to": [
+        1004,
+        -53,
+        992
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1003,
+        -55,
+        990
+      ],
+      "height": 2,
+      "from": [
+        1002,
+        -56,
+        989
+      ],
+      "to": [
+        1004,
+        -53,
+        991
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1003,
+        -55,
+        989
+      ],
+      "height": 2,
+      "from": [
+        1002,
+        -56,
+        988
+      ],
+      "to": [
+        1004,
+        -53,
+        990
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1003,
+        -55,
+        988
+      ],
+      "height": 2,
+      "from": [
+        1002,
+        -56,
+        987
+      ],
+      "to": [
+        1004,
+        -53,
+        989
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1003,
+        -55,
+        1001
+      ],
+      "height": 2,
+      "from": [
+        1002,
+        -56,
+        1000
+      ],
+      "to": [
+        1004,
+        -53,
+        1002
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1003,
+        -55,
+        1002
+      ],
+      "height": 2,
+      "from": [
+        1002,
+        -56,
+        1001
+      ],
+      "to": [
+        1004,
+        -53,
+        1003
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1003,
+        -55,
+        1003
+      ],
+      "height": 2,
+      "from": [
+        1002,
+        -56,
+        1002
+      ],
+      "to": [
+        1004,
+        -53,
+        1004
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1003,
+        -55,
+        1004
+      ],
+      "height": 2,
+      "from": [
+        1002,
+        -56,
+        1003
+      ],
+      "to": [
+        1004,
+        -53,
+        1005
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1003,
+        -55,
+        1005
+      ],
+      "height": 2,
+      "from": [
+        1002,
+        -56,
+        1004
+      ],
+      "to": [
+        1004,
+        -53,
+        1006
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1003,
+        -55,
+        1006
+      ],
+      "height": 2,
+      "from": [
+        1002,
+        -56,
+        1005
+      ],
+      "to": [
+        1004,
+        -53,
+        1007
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1003,
+        -55,
+        1007
+      ],
+      "height": 2,
+      "from": [
+        1002,
+        -56,
+        1006
+      ],
+      "to": [
+        1004,
+        -53,
+        1008
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1003,
+        -55,
+        1008
+      ],
+      "height": 2,
+      "from": [
+        1002,
+        -56,
+        1007
+      ],
+      "to": [
+        1004,
+        -53,
+        1009
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1003,
+        -55,
+        1009
+      ],
+      "height": 2,
+      "from": [
+        1002,
+        -56,
+        1008
+      ],
+      "to": [
+        1004,
+        -53,
+        1010
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1003,
+        -55,
+        1010
+      ],
+      "height": 2,
+      "from": [
+        1002,
+        -56,
+        1009
+      ],
+      "to": [
+        1004,
+        -53,
+        1011
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1003,
+        -55,
+        1011
+      ],
+      "height": 2,
+      "from": [
+        1002,
+        -56,
+        1010
+      ],
+      "to": [
+        1004,
+        -53,
+        1012
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1003,
+        -55,
+        1012
+      ],
+      "height": 2,
+      "from": [
+        1002,
+        -56,
+        1011
+      ],
+      "to": [
+        1004,
+        -53,
+        1013
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1004,
+        -55,
+        1000
+      ],
+      "height": 2,
+      "from": [
+        1003,
+        -56,
+        999
+      ],
+      "to": [
+        1005,
+        -53,
+        1001
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1005,
+        -55,
+        1000
+      ],
+      "height": 2,
+      "from": [
+        1004,
+        -56,
+        999
+      ],
+      "to": [
+        1006,
+        -53,
+        1001
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1006,
+        -55,
+        1000
+      ],
+      "height": 2,
+      "from": [
+        1005,
+        -56,
+        999
+      ],
+      "to": [
+        1007,
+        -53,
+        1001
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1006,
+        -55,
+        999
+      ],
+      "height": 2,
+      "from": [
+        1005,
+        -56,
+        998
+      ],
+      "to": [
+        1007,
+        -53,
+        1000
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1006,
+        -55,
+        998
+      ],
+      "height": 2,
+      "from": [
+        1005,
+        -56,
+        997
+      ],
+      "to": [
+        1007,
+        -53,
+        999
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1006,
+        -55,
+        997
+      ],
+      "height": 2,
+      "from": [
+        1005,
+        -56,
+        996
+      ],
+      "to": [
+        1007,
+        -53,
+        998
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1006,
+        -55,
+        996
+      ],
+      "height": 2,
+      "from": [
+        1005,
+        -56,
+        995
+      ],
+      "to": [
+        1007,
+        -53,
+        997
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1006,
+        -55,
+        995
+      ],
+      "height": 2,
+      "from": [
+        1005,
+        -56,
+        994
+      ],
+      "to": [
+        1007,
+        -53,
+        996
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1006,
+        -55,
+        994
+      ],
+      "height": 2,
+      "from": [
+        1005,
+        -56,
+        993
+      ],
+      "to": [
+        1007,
+        -53,
+        995
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1006,
+        -55,
+        993
+      ],
+      "height": 2,
+      "from": [
+        1005,
+        -56,
+        992
+      ],
+      "to": [
+        1007,
+        -53,
+        994
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1006,
+        -55,
+        992
+      ],
+      "height": 2,
+      "from": [
+        1005,
+        -56,
+        991
+      ],
+      "to": [
+        1007,
+        -53,
+        993
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1006,
+        -55,
+        991
+      ],
+      "height": 2,
+      "from": [
+        1005,
+        -56,
+        990
+      ],
+      "to": [
+        1007,
+        -53,
+        992
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1006,
+        -55,
+        990
+      ],
+      "height": 2,
+      "from": [
+        1005,
+        -56,
+        989
+      ],
+      "to": [
+        1007,
+        -53,
+        991
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1006,
+        -55,
+        989
+      ],
+      "height": 2,
+      "from": [
+        1005,
+        -56,
+        988
+      ],
+      "to": [
+        1007,
+        -53,
+        990
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1006,
+        -55,
+        988
+      ],
+      "height": 2,
+      "from": [
+        1005,
+        -56,
+        987
+      ],
+      "to": [
+        1007,
+        -53,
+        989
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1006,
+        -55,
+        1001
+      ],
+      "height": 2,
+      "from": [
+        1005,
+        -56,
+        1000
+      ],
+      "to": [
+        1007,
+        -53,
+        1002
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1006,
+        -55,
+        1002
+      ],
+      "height": 2,
+      "from": [
+        1005,
+        -56,
+        1001
+      ],
+      "to": [
+        1007,
+        -53,
+        1003
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1006,
+        -55,
+        1003
+      ],
+      "height": 2,
+      "from": [
+        1005,
+        -56,
+        1002
+      ],
+      "to": [
+        1007,
+        -53,
+        1004
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1006,
+        -55,
+        1004
+      ],
+      "height": 2,
+      "from": [
+        1005,
+        -56,
+        1003
+      ],
+      "to": [
+        1007,
+        -53,
+        1005
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1006,
+        -55,
+        1005
+      ],
+      "height": 2,
+      "from": [
+        1005,
+        -56,
+        1004
+      ],
+      "to": [
+        1007,
+        -53,
+        1006
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1006,
+        -55,
+        1006
+      ],
+      "height": 2,
+      "from": [
+        1005,
+        -56,
+        1005
+      ],
+      "to": [
+        1007,
+        -53,
+        1007
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1006,
+        -55,
+        1007
+      ],
+      "height": 2,
+      "from": [
+        1005,
+        -56,
+        1006
+      ],
+      "to": [
+        1007,
+        -53,
+        1008
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1006,
+        -55,
+        1008
+      ],
+      "height": 2,
+      "from": [
+        1005,
+        -56,
+        1007
+      ],
+      "to": [
+        1007,
+        -53,
+        1009
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1006,
+        -55,
+        1009
+      ],
+      "height": 2,
+      "from": [
+        1005,
+        -56,
+        1008
+      ],
+      "to": [
+        1007,
+        -53,
+        1010
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1006,
+        -55,
+        1010
+      ],
+      "height": 2,
+      "from": [
+        1005,
+        -56,
+        1009
+      ],
+      "to": [
+        1007,
+        -53,
+        1011
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1006,
+        -55,
+        1011
+      ],
+      "height": 2,
+      "from": [
+        1005,
+        -56,
+        1010
+      ],
+      "to": [
+        1007,
+        -53,
+        1012
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1006,
+        -55,
+        1012
+      ],
+      "height": 2,
+      "from": [
+        1005,
+        -56,
+        1011
+      ],
+      "to": [
+        1007,
+        -53,
+        1013
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1007,
+        -55,
+        1000
+      ],
+      "height": 2,
+      "from": [
+        1006,
+        -56,
+        999
+      ],
+      "to": [
+        1008,
+        -53,
+        1001
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1008,
+        -55,
+        1000
+      ],
+      "height": 2,
+      "from": [
+        1007,
+        -56,
+        999
+      ],
+      "to": [
+        1009,
+        -53,
+        1001
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1009,
+        -55,
+        1000
+      ],
+      "height": 2,
+      "from": [
+        1008,
+        -56,
+        999
+      ],
+      "to": [
+        1010,
+        -53,
+        1001
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1009,
+        -55,
+        999
+      ],
+      "height": 2,
+      "from": [
+        1008,
+        -56,
+        998
+      ],
+      "to": [
+        1010,
+        -53,
+        1000
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1009,
+        -55,
+        998
+      ],
+      "height": 2,
+      "from": [
+        1008,
+        -56,
+        997
+      ],
+      "to": [
+        1010,
+        -53,
+        999
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1009,
+        -55,
+        997
+      ],
+      "height": 2,
+      "from": [
+        1008,
+        -56,
+        996
+      ],
+      "to": [
+        1010,
+        -53,
+        998
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1009,
+        -55,
+        996
+      ],
+      "height": 2,
+      "from": [
+        1008,
+        -56,
+        995
+      ],
+      "to": [
+        1010,
+        -53,
+        997
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1009,
+        -55,
+        995
+      ],
+      "height": 2,
+      "from": [
+        1008,
+        -56,
+        994
+      ],
+      "to": [
+        1010,
+        -53,
+        996
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1010,
+        -54,
+        995
+      ],
+      "height": 1,
+      "from": [
+        1009,
+        -55,
+        994
+      ],
+      "to": [
+        1011,
+        -53,
+        996
+      ],
+      "shell_cells": 26
+    },
+    {
+      "center": [
+        1010,
+        -54,
+        994
+      ],
+      "height": 1,
+      "from": [
+        1009,
+        -55,
+        993
+      ],
+      "to": [
+        1011,
+        -53,
+        995
+      ],
+      "shell_cells": 26
+    },
+    {
+      "center": [
+        1010,
+        -53,
+        995
+      ],
+      "height": 1,
+      "from": [
+        1009,
+        -54,
+        994
+      ],
+      "to": [
+        1011,
+        -52,
+        996
+      ],
+      "shell_cells": 26
+    },
+    {
+      "center": [
+        1011,
+        -54,
+        995
+      ],
+      "height": 1,
+      "from": [
+        1010,
+        -55,
+        994
+      ],
+      "to": [
+        1012,
+        -53,
+        996
+      ],
+      "shell_cells": 26
+    },
+    {
+      "center": [
+        1010,
+        -53,
+        994
+      ],
+      "height": 1,
+      "from": [
+        1009,
+        -54,
+        993
+      ],
+      "to": [
+        1011,
+        -52,
+        995
+      ],
+      "shell_cells": 26
+    },
+    {
+      "center": [
+        1011,
+        -54,
+        994
+      ],
+      "height": 1,
+      "from": [
+        1010,
+        -55,
+        993
+      ],
+      "to": [
+        1012,
+        -53,
+        995
+      ],
+      "shell_cells": 26
+    },
+    {
+      "center": [
+        1011,
+        -53,
+        995
+      ],
+      "height": 1,
+      "from": [
+        1010,
+        -54,
+        994
+      ],
+      "to": [
+        1012,
+        -52,
+        996
+      ],
+      "shell_cells": 26
+    },
+    {
+      "center": [
+        1011,
+        -53,
+        994
+      ],
+      "height": 1,
+      "from": [
+        1010,
+        -54,
+        993
+      ],
+      "to": [
+        1012,
+        -52,
+        995
+      ],
+      "shell_cells": 26
+    },
+    {
+      "center": [
+        1009,
+        -55,
+        994
+      ],
+      "height": 2,
+      "from": [
+        1008,
+        -56,
+        993
+      ],
+      "to": [
+        1010,
+        -53,
+        995
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        1009,
+        -55,
+        993
+      ],
+      "height": 2,
+      "from": [
+        1008,
+        -56,
+        992
+      ],
+      "to": [
+        1010,
+        -53,
+        994
+      ],
+      "shell_cells": 34
+    }
+  ],
+  "initial": {
+    "tick": 2064,
+    "source": "client_snapshot",
+    "world_loaded": true,
+    "active": true,
+    "player": {
+      "x": 1000.5,
+      "y": -55.0,
+      "z": 1000.5,
+      "health": 20.0,
+      "food": 20,
+      "alive": true,
+      "game_mode": "survival"
+    },
+    "main_hand": {
+      "id": "minecraft:netherite_pickaxe",
+      "count": 1,
+      "damage": 169,
+      "max_damage": 2031,
+      "remaining_durability": 1862,
+      "format": "components",
+      "components": {
+        "source": "client_snapshot",
+        "completeness": "unknown",
+        "data": {
+          "minecraft:enchantable": {
+            "value": 15
+          },
+          "minecraft:lore": [],
+          "minecraft:max_stack_size": 1,
+          "minecraft:attribute_modifiers": [
+            {
+              "amount": 5.0,
+              "id": "minecraft:base_attack_damage",
+              "slot": "mainhand",
+              "type": "minecraft:attack_damage",
+              "operation": "add_value"
+            },
+            {
+              "amount": -2.799999952316284,
+              "id": "minecraft:base_attack_speed",
+              "slot": "mainhand",
+              "type": "minecraft:attack_speed",
+              "operation": "add_value"
+            }
+          ],
+          "minecraft:tool": {
+            "rules": [
+              {
+                "blocks": "#minecraft:incorrect_for_netherite_tool",
+                "correct_for_drops": 0
+              },
+              {
+                "blocks": "#minecraft:mineable/pickaxe",
+                "correct_for_drops": 1,
+                "speed": 9.0
+              }
+            ]
+          },
+          "minecraft:enchantments": {},
+          "minecraft:damage": 169,
+          "minecraft:tooltip_display": {},
+          "minecraft:swing_animation": {},
+          "minecraft:repairable": {
+            "items": "#minecraft:netherite_tool_materials"
+          },
+          "minecraft:damage_resistant": {
+            "types": "#minecraft:is_fire"
+          },
+          "minecraft:repair_cost": 0,
+          "minecraft:item_name": {
+            "translate": "item.minecraft.netherite_pickaxe"
+          },
+          "minecraft:use_effects": {},
+          "minecraft:item_model": "minecraft:netherite_pickaxe",
+          "minecraft:weapon": {
+            "item_damage_per_attack": 2
+          },
+          "minecraft:rarity": "common",
+          "minecraft:break_sound": "minecraft:entity.item.break",
+          "minecraft:max_damage": 2031
+        },
+        "snbt": "{\"minecraft:attribute_modifiers\":[{amount:5.0d,id:\"minecraft:base_attack_damage\",operation:\"add_value\",slot:\"mainhand\",type:\"minecraft:attack_damage\"},{amount:-2.799999952316284d,id:\"minecraft:base_attack_speed\",operation:\"add_value\",slot:\"mainhand\",type:\"minecraft:attack_speed\"}],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:damage\":169,\"minecraft:damage_resistant\":{types:\"#minecraft:is_fire\"},\"minecraft:enchantable\":{value:15},\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:netherite_pickaxe\",\"minecraft:item_name\":{translate:\"item.minecraft.netherite_pickaxe\"},\"minecraft:lore\":[],\"minecraft:max_damage\":2031,\"minecraft:max_stack_size\":1,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:repairable\":{items:\"#minecraft:netherite_tool_materials\"},\"minecraft:swing_animation\":{},\"minecraft:tool\":{rules:[{blocks:\"#minecraft:incorrect_for_netherite_tool\",correct_for_drops:0b},{blocks:\"#minecraft:mineable/pickaxe\",correct_for_drops:1b,speed:9.0f}]},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{},\"minecraft:weapon\":{item_damage_per_attack:2}}"
+      },
+      "nbt": {
+        "source": "client_snapshot",
+        "completeness": "unknown",
+        "data": {
+          "components": {
+            "minecraft:damage": 169
+          },
+          "count": 1,
+          "id": "minecraft:netherite_pickaxe"
+        },
+        "snbt": "{components:{\"minecraft:damage\":169},count:1,id:\"minecraft:netherite_pickaxe\"}"
+      }
+    },
+    "off_hand": {
+      "id": "minecraft:air",
+      "count": 0,
+      "damage": 0,
+      "max_damage": 0,
+      "remaining_durability": 0,
+      "format": "components",
+      "components": {
+        "source": "client_snapshot",
+        "completeness": "unknown",
+        "data": {},
+        "snbt": "{}"
+      },
+      "nbt": {
+        "source": "client_snapshot",
+        "completeness": "unknown",
+        "data": {},
+        "snbt": "{}"
+      }
+    },
+    "target": {
+      "distance": 0.5,
+      "kind": "block",
+      "id": "minecraft:deepslate",
+      "pos": {
+        "x": 1001,
+        "y": -54,
+        "z": 1000
+      },
+      "face": "west",
+      "state": {
+        "axis": "y"
+      },
+      "nbt": null
+    },
+    "dimension": "minecraft:overworld"
+  },
+  "final": {
+    "tick": 14104,
+    "source": "client_snapshot",
+    "world_loaded": true,
+    "active": true,
+    "player": {
+      "x": 1009.5000157854936,
+      "y": -55.0,
+      "z": 993.6836889192679,
+      "health": 20.0,
+      "food": 20,
+      "alive": true,
+      "game_mode": "survival"
+    },
+    "main_hand": {
+      "id": "minecraft:netherite_pickaxe",
+      "count": 1,
+      "damage": 305,
+      "max_damage": 2031,
+      "remaining_durability": 1726,
+      "format": "components",
+      "components": {
+        "source": "client_snapshot",
+        "completeness": "unknown",
+        "data": {
+          "minecraft:enchantable": {
+            "value": 15
+          },
+          "minecraft:lore": [],
+          "minecraft:max_stack_size": 1,
+          "minecraft:attribute_modifiers": [
+            {
+              "amount": 5.0,
+              "id": "minecraft:base_attack_damage",
+              "slot": "mainhand",
+              "type": "minecraft:attack_damage",
+              "operation": "add_value"
+            },
+            {
+              "amount": -2.799999952316284,
+              "id": "minecraft:base_attack_speed",
+              "slot": "mainhand",
+              "type": "minecraft:attack_speed",
+              "operation": "add_value"
+            }
+          ],
+          "minecraft:tool": {
+            "rules": [
+              {
+                "blocks": "#minecraft:incorrect_for_netherite_tool",
+                "correct_for_drops": 0
+              },
+              {
+                "blocks": "#minecraft:mineable/pickaxe",
+                "correct_for_drops": 1,
+                "speed": 9.0
+              }
+            ]
+          },
+          "minecraft:enchantments": {},
+          "minecraft:damage": 305,
+          "minecraft:tooltip_display": {},
+          "minecraft:swing_animation": {},
+          "minecraft:repairable": {
+            "items": "#minecraft:netherite_tool_materials"
+          },
+          "minecraft:damage_resistant": {
+            "types": "#minecraft:is_fire"
+          },
+          "minecraft:repair_cost": 0,
+          "minecraft:item_name": {
+            "translate": "item.minecraft.netherite_pickaxe"
+          },
+          "minecraft:use_effects": {},
+          "minecraft:item_model": "minecraft:netherite_pickaxe",
+          "minecraft:weapon": {
+            "item_damage_per_attack": 2
+          },
+          "minecraft:rarity": "common",
+          "minecraft:break_sound": "minecraft:entity.item.break",
+          "minecraft:max_damage": 2031
+        },
+        "snbt": "{\"minecraft:attribute_modifiers\":[{amount:5.0d,id:\"minecraft:base_attack_damage\",operation:\"add_value\",slot:\"mainhand\",type:\"minecraft:attack_damage\"},{amount:-2.799999952316284d,id:\"minecraft:base_attack_speed\",operation:\"add_value\",slot:\"mainhand\",type:\"minecraft:attack_speed\"}],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:damage\":305,\"minecraft:damage_resistant\":{types:\"#minecraft:is_fire\"},\"minecraft:enchantable\":{value:15},\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:netherite_pickaxe\",\"minecraft:item_name\":{translate:\"item.minecraft.netherite_pickaxe\"},\"minecraft:lore\":[],\"minecraft:max_damage\":2031,\"minecraft:max_stack_size\":1,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:repairable\":{items:\"#minecraft:netherite_tool_materials\"},\"minecraft:swing_animation\":{},\"minecraft:tool\":{rules:[{blocks:\"#minecraft:incorrect_for_netherite_tool\",correct_for_drops:0b},{blocks:\"#minecraft:mineable/pickaxe\",correct_for_drops:1b,speed:9.0f}]},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{},\"minecraft:weapon\":{item_damage_per_attack:2}}"
+      },
+      "nbt": {
+        "source": "client_snapshot",
+        "completeness": "unknown",
+        "data": {
+          "components": {
+            "minecraft:damage": 305
+          },
+          "count": 1,
+          "id": "minecraft:netherite_pickaxe"
+        },
+        "snbt": "{components:{\"minecraft:damage\":305},count:1,id:\"minecraft:netherite_pickaxe\"}"
+      }
+    },
+    "off_hand": {
+      "id": "minecraft:air",
+      "count": 0,
+      "damage": 0,
+      "max_damage": 0,
+      "remaining_durability": 0,
+      "format": "components",
+      "components": {
+        "source": "client_snapshot",
+        "completeness": "unknown",
+        "data": {},
+        "snbt": "{}"
+      },
+      "nbt": {
+        "source": "client_snapshot",
+        "completeness": "unknown",
+        "data": {},
+        "snbt": "{}"
+      }
+    },
+    "target": {
+      "distance": 0.6836889192678655,
+      "kind": "block",
+      "id": "minecraft:deepslate",
+      "pos": {
+        "x": 1009,
+        "y": -54,
+        "z": 992
+      },
+      "face": "south",
+      "state": {
+        "axis": "y"
+      },
+      "nbt": null
+    },
+    "dimension": "minecraft:overworld"
+  },
+  "inventory_before": {
+    "tick": 2065,
+    "source": "client_snapshot",
+    "slots": [
+      {
+        "slot": 0,
+        "stack": {
+          "id": "minecraft:netherite_pickaxe",
+          "count": 1,
+          "damage": 169,
+          "max_damage": 2031,
+          "remaining_durability": 1862,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:enchantable": {
+                "value": 15
+              },
+              "minecraft:lore": [],
+              "minecraft:max_stack_size": 1,
+              "minecraft:attribute_modifiers": [
+                {
+                  "amount": 5.0,
+                  "id": "minecraft:base_attack_damage",
+                  "slot": "mainhand",
+                  "type": "minecraft:attack_damage",
+                  "operation": "add_value"
+                },
+                {
+                  "amount": -2.799999952316284,
+                  "id": "minecraft:base_attack_speed",
+                  "slot": "mainhand",
+                  "type": "minecraft:attack_speed",
+                  "operation": "add_value"
+                }
+              ],
+              "minecraft:tool": {
+                "rules": [
+                  {
+                    "blocks": "#minecraft:incorrect_for_netherite_tool",
+                    "correct_for_drops": 0
+                  },
+                  {
+                    "blocks": "#minecraft:mineable/pickaxe",
+                    "correct_for_drops": 1,
+                    "speed": 9.0
+                  }
+                ]
+              },
+              "minecraft:enchantments": {},
+              "minecraft:damage": 169,
+              "minecraft:tooltip_display": {},
+              "minecraft:swing_animation": {},
+              "minecraft:repairable": {
+                "items": "#minecraft:netherite_tool_materials"
+              },
+              "minecraft:damage_resistant": {
+                "types": "#minecraft:is_fire"
+              },
+              "minecraft:repair_cost": 0,
+              "minecraft:item_name": {
+                "translate": "item.minecraft.netherite_pickaxe"
+              },
+              "minecraft:use_effects": {},
+              "minecraft:item_model": "minecraft:netherite_pickaxe",
+              "minecraft:weapon": {
+                "item_damage_per_attack": 2
+              },
+              "minecraft:rarity": "common",
+              "minecraft:break_sound": "minecraft:entity.item.break",
+              "minecraft:max_damage": 2031
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[{amount:5.0d,id:\"minecraft:base_attack_damage\",operation:\"add_value\",slot:\"mainhand\",type:\"minecraft:attack_damage\"},{amount:-2.799999952316284d,id:\"minecraft:base_attack_speed\",operation:\"add_value\",slot:\"mainhand\",type:\"minecraft:attack_speed\"}],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:damage\":169,\"minecraft:damage_resistant\":{types:\"#minecraft:is_fire\"},\"minecraft:enchantable\":{value:15},\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:netherite_pickaxe\",\"minecraft:item_name\":{translate:\"item.minecraft.netherite_pickaxe\"},\"minecraft:lore\":[],\"minecraft:max_damage\":2031,\"minecraft:max_stack_size\":1,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:repairable\":{items:\"#minecraft:netherite_tool_materials\"},\"minecraft:swing_animation\":{},\"minecraft:tool\":{rules:[{blocks:\"#minecraft:incorrect_for_netherite_tool\",correct_for_drops:0b},{blocks:\"#minecraft:mineable/pickaxe\",correct_for_drops:1b,speed:9.0f}]},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{},\"minecraft:weapon\":{item_damage_per_attack:2}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "components": {
+                "minecraft:damage": 169
+              },
+              "count": 1,
+              "id": "minecraft:netherite_pickaxe"
+            },
+            "snbt": "{components:{\"minecraft:damage\":169},count:1,id:\"minecraft:netherite_pickaxe\"}"
+          }
+        }
+      },
+      {
+        "slot": 1,
+        "stack": {
+          "id": "minecraft:cooked_beef",
+          "count": 64,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:lore": [],
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:consumable": {},
+              "minecraft:item_name": {
+                "translate": "item.minecraft.cooked_beef"
+              },
+              "minecraft:use_effects": {},
+              "minecraft:item_model": "minecraft:cooked_beef",
+              "minecraft:food": {
+                "saturation": 12.8,
+                "nutrition": 8
+              },
+              "minecraft:rarity": "common",
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:consumable\":{},\"minecraft:enchantments\":{},\"minecraft:food\":{nutrition:8,saturation:12.8f},\"minecraft:item_model\":\"minecraft:cooked_beef\",\"minecraft:item_name\":{translate:\"item.minecraft.cooked_beef\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 64,
+              "id": "minecraft:cooked_beef"
+            },
+            "snbt": "{count:64,id:\"minecraft:cooked_beef\"}"
+          }
+        }
+      },
+      {
+        "slot": 2,
+        "stack": {
+          "id": "minecraft:cobblestone",
+          "count": 64,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:item_name": {
+                "translate": "block.minecraft.cobblestone"
+              },
+              "minecraft:lore": [],
+              "minecraft:use_effects": {},
+              "minecraft:item_model": "minecraft:cobblestone",
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:rarity": "common",
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:cobblestone\",\"minecraft:item_name\":{translate:\"block.minecraft.cobblestone\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 64,
+              "id": "minecraft:cobblestone"
+            },
+            "snbt": "{count:64,id:\"minecraft:cobblestone\"}"
+          }
+        }
+      },
+      {
+        "slot": 3,
+        "stack": {
+          "id": "minecraft:cobblestone",
+          "count": 64,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:item_name": {
+                "translate": "block.minecraft.cobblestone"
+              },
+              "minecraft:lore": [],
+              "minecraft:use_effects": {},
+              "minecraft:item_model": "minecraft:cobblestone",
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:rarity": "common",
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:cobblestone\",\"minecraft:item_name\":{translate:\"block.minecraft.cobblestone\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 64,
+              "id": "minecraft:cobblestone"
+            },
+            "snbt": "{count:64,id:\"minecraft:cobblestone\"}"
+          }
+        }
+      },
+      {
+        "slot": 4,
+        "stack": {
+          "id": "minecraft:gravel",
+          "count": 5,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:item_name": {
+                "translate": "block.minecraft.gravel"
+              },
+              "minecraft:lore": [],
+              "minecraft:use_effects": {},
+              "minecraft:item_model": "minecraft:gravel",
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:rarity": "common",
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:gravel\",\"minecraft:item_name\":{translate:\"block.minecraft.gravel\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 5,
+              "id": "minecraft:gravel"
+            },
+            "snbt": "{count:5,id:\"minecraft:gravel\"}"
+          }
+        }
+      },
+      {
+        "slot": 5,
+        "stack": {
+          "id": "minecraft:dirt",
+          "count": 8,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:item_name": {
+                "translate": "block.minecraft.dirt"
+              },
+              "minecraft:lore": [],
+              "minecraft:use_effects": {},
+              "minecraft:item_model": "minecraft:dirt",
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:rarity": "common",
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:dirt\",\"minecraft:item_name\":{translate:\"block.minecraft.dirt\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 8,
+              "id": "minecraft:dirt"
+            },
+            "snbt": "{count:8,id:\"minecraft:dirt\"}"
+          }
+        }
+      },
+      {
+        "slot": 6,
+        "stack": {
+          "id": "minecraft:cobblestone",
+          "count": 45,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:item_name": {
+                "translate": "block.minecraft.cobblestone"
+              },
+              "minecraft:lore": [],
+              "minecraft:use_effects": {},
+              "minecraft:item_model": "minecraft:cobblestone",
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:rarity": "common",
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:cobblestone\",\"minecraft:item_name\":{translate:\"block.minecraft.cobblestone\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 45,
+              "id": "minecraft:cobblestone"
+            },
+            "snbt": "{count:45,id:\"minecraft:cobblestone\"}"
+          }
+        }
+      },
+      {
+        "slot": 7,
+        "stack": {
+          "id": "minecraft:granite",
+          "count": 5,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:item_name": {
+                "translate": "block.minecraft.granite"
+              },
+              "minecraft:lore": [],
+              "minecraft:use_effects": {},
+              "minecraft:item_model": "minecraft:granite",
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:rarity": "common",
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:granite\",\"minecraft:item_name\":{translate:\"block.minecraft.granite\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 5,
+              "id": "minecraft:granite"
+            },
+            "snbt": "{count:5,id:\"minecraft:granite\"}"
+          }
+        }
+      },
+      {
+        "slot": 8,
+        "stack": {
+          "id": "minecraft:raw_copper",
+          "count": 17,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:item_name": {
+                "translate": "item.minecraft.raw_copper"
+              },
+              "minecraft:lore": [],
+              "minecraft:use_effects": {},
+              "minecraft:item_model": "minecraft:raw_copper",
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:rarity": "common",
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:raw_copper\",\"minecraft:item_name\":{translate:\"item.minecraft.raw_copper\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 17,
+              "id": "minecraft:raw_copper"
+            },
+            "snbt": "{count:17,id:\"minecraft:raw_copper\"}"
+          }
+        }
+      },
+      {
+        "slot": 9,
+        "stack": {
+          "id": "minecraft:andesite",
+          "count": 7,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:item_name": {
+                "translate": "block.minecraft.andesite"
+              },
+              "minecraft:lore": [],
+              "minecraft:use_effects": {},
+              "minecraft:item_model": "minecraft:andesite",
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:rarity": "common",
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:andesite\",\"minecraft:item_name\":{translate:\"block.minecraft.andesite\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 7,
+              "id": "minecraft:andesite"
+            },
+            "snbt": "{count:7,id:\"minecraft:andesite\"}"
+          }
+        }
+      }
+    ],
+    "counts": {
+      "minecraft:andesite": 7,
+      "minecraft:cobblestone": 173,
+      "minecraft:cooked_beef": 64,
+      "minecraft:dirt": 8,
+      "minecraft:granite": 5,
+      "minecraft:gravel": 5,
+      "minecraft:netherite_pickaxe": 1,
+      "minecraft:raw_copper": 17
+    }
+  },
+  "inventory_after": {
+    "tick": 14103,
+    "source": "client_snapshot",
+    "slots": [
+      {
+        "slot": 0,
+        "stack": {
+          "id": "minecraft:netherite_pickaxe",
+          "count": 1,
+          "damage": 305,
+          "max_damage": 2031,
+          "remaining_durability": 1726,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:enchantable": {
+                "value": 15
+              },
+              "minecraft:lore": [],
+              "minecraft:max_stack_size": 1,
+              "minecraft:attribute_modifiers": [
+                {
+                  "amount": 5.0,
+                  "id": "minecraft:base_attack_damage",
+                  "slot": "mainhand",
+                  "type": "minecraft:attack_damage",
+                  "operation": "add_value"
+                },
+                {
+                  "amount": -2.799999952316284,
+                  "id": "minecraft:base_attack_speed",
+                  "slot": "mainhand",
+                  "type": "minecraft:attack_speed",
+                  "operation": "add_value"
+                }
+              ],
+              "minecraft:tool": {
+                "rules": [
+                  {
+                    "blocks": "#minecraft:incorrect_for_netherite_tool",
+                    "correct_for_drops": 0
+                  },
+                  {
+                    "blocks": "#minecraft:mineable/pickaxe",
+                    "correct_for_drops": 1,
+                    "speed": 9.0
+                  }
+                ]
+              },
+              "minecraft:enchantments": {},
+              "minecraft:damage": 305,
+              "minecraft:tooltip_display": {},
+              "minecraft:swing_animation": {},
+              "minecraft:repairable": {
+                "items": "#minecraft:netherite_tool_materials"
+              },
+              "minecraft:damage_resistant": {
+                "types": "#minecraft:is_fire"
+              },
+              "minecraft:repair_cost": 0,
+              "minecraft:item_name": {
+                "translate": "item.minecraft.netherite_pickaxe"
+              },
+              "minecraft:use_effects": {},
+              "minecraft:item_model": "minecraft:netherite_pickaxe",
+              "minecraft:weapon": {
+                "item_damage_per_attack": 2
+              },
+              "minecraft:rarity": "common",
+              "minecraft:break_sound": "minecraft:entity.item.break",
+              "minecraft:max_damage": 2031
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[{amount:5.0d,id:\"minecraft:base_attack_damage\",operation:\"add_value\",slot:\"mainhand\",type:\"minecraft:attack_damage\"},{amount:-2.799999952316284d,id:\"minecraft:base_attack_speed\",operation:\"add_value\",slot:\"mainhand\",type:\"minecraft:attack_speed\"}],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:damage\":305,\"minecraft:damage_resistant\":{types:\"#minecraft:is_fire\"},\"minecraft:enchantable\":{value:15},\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:netherite_pickaxe\",\"minecraft:item_name\":{translate:\"item.minecraft.netherite_pickaxe\"},\"minecraft:lore\":[],\"minecraft:max_damage\":2031,\"minecraft:max_stack_size\":1,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:repairable\":{items:\"#minecraft:netherite_tool_materials\"},\"minecraft:swing_animation\":{},\"minecraft:tool\":{rules:[{blocks:\"#minecraft:incorrect_for_netherite_tool\",correct_for_drops:0b},{blocks:\"#minecraft:mineable/pickaxe\",correct_for_drops:1b,speed:9.0f}]},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{},\"minecraft:weapon\":{item_damage_per_attack:2}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "components": {
+                "minecraft:damage": 305
+              },
+              "count": 1,
+              "id": "minecraft:netherite_pickaxe"
+            },
+            "snbt": "{components:{\"minecraft:damage\":305},count:1,id:\"minecraft:netherite_pickaxe\"}"
+          }
+        }
+      },
+      {
+        "slot": 1,
+        "stack": {
+          "id": "minecraft:cooked_beef",
+          "count": 64,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:lore": [],
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:consumable": {},
+              "minecraft:item_name": {
+                "translate": "item.minecraft.cooked_beef"
+              },
+              "minecraft:use_effects": {},
+              "minecraft:item_model": "minecraft:cooked_beef",
+              "minecraft:food": {
+                "saturation": 12.8,
+                "nutrition": 8
+              },
+              "minecraft:rarity": "common",
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:consumable\":{},\"minecraft:enchantments\":{},\"minecraft:food\":{nutrition:8,saturation:12.8f},\"minecraft:item_model\":\"minecraft:cooked_beef\",\"minecraft:item_name\":{translate:\"item.minecraft.cooked_beef\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 64,
+              "id": "minecraft:cooked_beef"
+            },
+            "snbt": "{count:64,id:\"minecraft:cooked_beef\"}"
+          }
+        }
+      },
+      {
+        "slot": 2,
+        "stack": {
+          "id": "minecraft:cobblestone",
+          "count": 64,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:item_name": {
+                "translate": "block.minecraft.cobblestone"
+              },
+              "minecraft:lore": [],
+              "minecraft:use_effects": {},
+              "minecraft:item_model": "minecraft:cobblestone",
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:rarity": "common",
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:cobblestone\",\"minecraft:item_name\":{translate:\"block.minecraft.cobblestone\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 64,
+              "id": "minecraft:cobblestone"
+            },
+            "snbt": "{count:64,id:\"minecraft:cobblestone\"}"
+          }
+        }
+      },
+      {
+        "slot": 3,
+        "stack": {
+          "id": "minecraft:cobblestone",
+          "count": 64,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:item_name": {
+                "translate": "block.minecraft.cobblestone"
+              },
+              "minecraft:lore": [],
+              "minecraft:use_effects": {},
+              "minecraft:item_model": "minecraft:cobblestone",
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:rarity": "common",
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:cobblestone\",\"minecraft:item_name\":{translate:\"block.minecraft.cobblestone\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 64,
+              "id": "minecraft:cobblestone"
+            },
+            "snbt": "{count:64,id:\"minecraft:cobblestone\"}"
+          }
+        }
+      },
+      {
+        "slot": 4,
+        "stack": {
+          "id": "minecraft:gravel",
+          "count": 5,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:item_name": {
+                "translate": "block.minecraft.gravel"
+              },
+              "minecraft:lore": [],
+              "minecraft:use_effects": {},
+              "minecraft:item_model": "minecraft:gravel",
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:rarity": "common",
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:gravel\",\"minecraft:item_name\":{translate:\"block.minecraft.gravel\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 5,
+              "id": "minecraft:gravel"
+            },
+            "snbt": "{count:5,id:\"minecraft:gravel\"}"
+          }
+        }
+      },
+      {
+        "slot": 5,
+        "stack": {
+          "id": "minecraft:dirt",
+          "count": 8,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:item_name": {
+                "translate": "block.minecraft.dirt"
+              },
+              "minecraft:lore": [],
+              "minecraft:use_effects": {},
+              "minecraft:item_model": "minecraft:dirt",
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:rarity": "common",
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:dirt\",\"minecraft:item_name\":{translate:\"block.minecraft.dirt\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 8,
+              "id": "minecraft:dirt"
+            },
+            "snbt": "{count:8,id:\"minecraft:dirt\"}"
+          }
+        }
+      },
+      {
+        "slot": 6,
+        "stack": {
+          "id": "minecraft:cobblestone",
+          "count": 45,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:item_name": {
+                "translate": "block.minecraft.cobblestone"
+              },
+              "minecraft:lore": [],
+              "minecraft:use_effects": {},
+              "minecraft:item_model": "minecraft:cobblestone",
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:rarity": "common",
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:cobblestone\",\"minecraft:item_name\":{translate:\"block.minecraft.cobblestone\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 45,
+              "id": "minecraft:cobblestone"
+            },
+            "snbt": "{count:45,id:\"minecraft:cobblestone\"}"
+          }
+        }
+      },
+      {
+        "slot": 7,
+        "stack": {
+          "id": "minecraft:granite",
+          "count": 5,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:item_name": {
+                "translate": "block.minecraft.granite"
+              },
+              "minecraft:lore": [],
+              "minecraft:use_effects": {},
+              "minecraft:item_model": "minecraft:granite",
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:rarity": "common",
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:granite\",\"minecraft:item_name\":{translate:\"block.minecraft.granite\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 5,
+              "id": "minecraft:granite"
+            },
+            "snbt": "{count:5,id:\"minecraft:granite\"}"
+          }
+        }
+      },
+      {
+        "slot": 8,
+        "stack": {
+          "id": "minecraft:raw_copper",
+          "count": 17,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:item_name": {
+                "translate": "item.minecraft.raw_copper"
+              },
+              "minecraft:lore": [],
+              "minecraft:use_effects": {},
+              "minecraft:item_model": "minecraft:raw_copper",
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:rarity": "common",
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:raw_copper\",\"minecraft:item_name\":{translate:\"item.minecraft.raw_copper\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 17,
+              "id": "minecraft:raw_copper"
+            },
+            "snbt": "{count:17,id:\"minecraft:raw_copper\"}"
+          }
+        }
+      },
+      {
+        "slot": 9,
+        "stack": {
+          "id": "minecraft:andesite",
+          "count": 7,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:item_name": {
+                "translate": "block.minecraft.andesite"
+              },
+              "minecraft:lore": [],
+              "minecraft:use_effects": {},
+              "minecraft:item_model": "minecraft:andesite",
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:rarity": "common",
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:andesite\",\"minecraft:item_name\":{translate:\"block.minecraft.andesite\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 7,
+              "id": "minecraft:andesite"
+            },
+            "snbt": "{count:7,id:\"minecraft:andesite\"}"
+          }
+        }
+      },
+      {
+        "slot": 10,
+        "stack": {
+          "id": "minecraft:cobbled_deepslate",
+          "count": 64,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:item_name": {
+                "translate": "block.minecraft.cobbled_deepslate"
+              },
+              "minecraft:lore": [],
+              "minecraft:use_effects": {},
+              "minecraft:item_model": "minecraft:cobbled_deepslate",
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:rarity": "common",
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:cobbled_deepslate\",\"minecraft:item_name\":{translate:\"block.minecraft.cobbled_deepslate\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 64,
+              "id": "minecraft:cobbled_deepslate"
+            },
+            "snbt": "{count:64,id:\"minecraft:cobbled_deepslate\"}"
+          }
+        }
+      },
+      {
+        "slot": 11,
+        "stack": {
+          "id": "minecraft:cobbled_deepslate",
+          "count": 64,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:item_name": {
+                "translate": "block.minecraft.cobbled_deepslate"
+              },
+              "minecraft:lore": [],
+              "minecraft:use_effects": {},
+              "minecraft:item_model": "minecraft:cobbled_deepslate",
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:rarity": "common",
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:cobbled_deepslate\",\"minecraft:item_name\":{translate:\"block.minecraft.cobbled_deepslate\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 64,
+              "id": "minecraft:cobbled_deepslate"
+            },
+            "snbt": "{count:64,id:\"minecraft:cobbled_deepslate\"}"
+          }
+        }
+      },
+      {
+        "slot": 12,
+        "stack": {
+          "id": "minecraft:redstone",
+          "count": 19,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:lore": [],
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:provides_trim_material": "minecraft:redstone",
+              "minecraft:item_name": {
+                "translate": "item.minecraft.redstone"
+              },
+              "minecraft:use_effects": {},
+              "minecraft:item_model": "minecraft:redstone",
+              "minecraft:rarity": "common",
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:redstone\",\"minecraft:item_name\":{translate:\"item.minecraft.redstone\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:provides_trim_material\":\"minecraft:redstone\",\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 19,
+              "id": "minecraft:redstone"
+            },
+            "snbt": "{count:19,id:\"minecraft:redstone\"}"
+          }
+        }
+      }
+    ],
+    "counts": {
+      "minecraft:andesite": 7,
+      "minecraft:cobbled_deepslate": 128,
+      "minecraft:cobblestone": 173,
+      "minecraft:cooked_beef": 64,
+      "minecraft:dirt": 8,
+      "minecraft:granite": 5,
+      "minecraft:gravel": 5,
+      "minecraft:netherite_pickaxe": 1,
+      "minecraft:raw_copper": 17,
+      "minecraft:redstone": 19
+    }
+  },
+  "net_items": {
+    "minecraft:cobbled_deepslate": 128,
+    "minecraft:redstone": 19
+  },
+  "inputs_released": true,
+  "policy": "fixed orthogonal fishbone; 1-block shell only around opened passages/ore cavities; exposed face plus first-hit verification; no hidden-ore route planning; no complete-vein claim"
+}

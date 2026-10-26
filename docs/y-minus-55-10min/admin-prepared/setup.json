@@ -1,0 +1,27 @@
+{
+  "prepared_utc": "2026-10-26T12:35:13.779606+00:00",
+  "admin_commands": [
+    "gamemode spectator Player827",
+    "tp Player827 1000.5 -55 1000.5 -90 0",
+    "execute if block 1000 -56 1000 #minecraft:base_stone_overworld if block 1000 -55 1000 #minecraft:base_stone_overworld if block 1000 -54 1000 #minecraft:base_stone_overworld run data get entity Player827 Pos",
+    "fill 1000 -55 1000 1000 -54 1000 minecraft:air",
+    "gamemode survival Player827",
+    "deop Player827"
+  ],
+  "player": {
+    "x": 1000.5,
+    "y": -55.0,
+    "z": 1000.5,
+    "health": 20.0,
+    "food": 20,
+    "alive": true,
+    "game_mode": "survival"
+  },
+  "ops": [],
+  "tool": {
+    "id": "minecraft:netherite_pickaxe",
+    "damage": 169,
+    "remaining_durability": 1862
+  },
+  "rules": "Admin preparation only: fixed arbitrary coordinate, checked three start cells are base stone and cleared only two body cells. No ores placed, no item grants. Mining starts after this snapshot."
+}

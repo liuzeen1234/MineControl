@@ -1,0 +1,269 @@
+[
+  {
+    "utc": "2026-10-26T12:36:39.511682+00:00",
+    "player": {
+      "x": 1003.5000120060066,
+      "y": -55.0,
+      "z": 989.9683141364843,
+      "health": 20.0,
+      "food": 20,
+      "alive": true,
+      "game_mode": "survival"
+    },
+    "position": {
+      "tick": 3727,
+      "dimension": "minecraft:overworld",
+      "x": 1003.5000120060066,
+      "y": -55.0,
+      "z": 989.885020993233,
+      "block": {
+        "x": 1003,
+        "y": -55,
+        "z": 989
+      },
+      "yaw": -180.00085,
+      "pitch": 0.0
+    },
+    "tool_damage": 197,
+    "counts": {
+      "minecraft:andesite": 7,
+      "minecraft:cobbled_deepslate": 28,
+      "minecraft:cobblestone": 173,
+      "minecraft:cooked_beef": 64,
+      "minecraft:dirt": 8,
+      "minecraft:granite": 5,
+      "minecraft:gravel": 5,
+      "minecraft:netherite_pickaxe": 1,
+      "minecraft:raw_copper": 17
+    }
+  },
+  {
+    "utc": "2026-10-26T12:39:39.016333+00:00",
+    "player": {
+      "x": 1003.5000120060066,
+      "y": -55.0,
+      "z": 1000.7336308488897,
+      "health": 20.0,
+      "food": 20,
+      "alive": true,
+      "game_mode": "survival"
+    },
+    "position": {
+      "tick": 7317,
+      "dimension": "minecraft:overworld",
+      "x": 1003.5000120060066,
+      "y": -55.0,
+      "z": 1000.7296167158983,
+      "block": {
+        "x": 1003,
+        "y": -55,
+        "z": 1000
+      },
+      "yaw": -540.003,
+      "pitch": 0.0
+    },
+    "tool_damage": 223,
+    "counts": {
+      "minecraft:andesite": 7,
+      "minecraft:cobbled_deepslate": 54,
+      "minecraft:cobblestone": 173,
+      "minecraft:cooked_beef": 64,
+      "minecraft:dirt": 8,
+      "minecraft:granite": 5,
+      "minecraft:gravel": 5,
+      "minecraft:netherite_pickaxe": 1,
+      "minecraft:raw_copper": 17
+    }
+  },
+  {
+    "utc": "2026-10-26T12:41:34.583541+00:00",
+    "player": {
+      "x": 1006.4999813131571,
+      "y": -55.0,
+      "z": 994.3267683047773,
+      "health": 20.0,
+      "food": 20,
+      "alive": true,
+      "game_mode": "survival"
+    },
+    "position": {
+      "tick": 9628,
+      "dimension": "minecraft:overworld",
+      "x": 1006.4999813131571,
+      "y": -55.0,
+      "z": 994.3267683047773,
+      "block": {
+        "x": 1006,
+        "y": -55,
+        "z": 994
+      },
+      "yaw": -720.00085,
+      "pitch": 5.8399944
+    },
+    "tool_damage": 253,
+    "counts": {
+      "minecraft:andesite": 7,
+      "minecraft:cobbled_deepslate": 84,
+      "minecraft:cobblestone": 173,
+      "minecraft:cooked_beef": 64,
+      "minecraft:dirt": 8,
+      "minecraft:granite": 5,
+      "minecraft:gravel": 5,
+      "minecraft:netherite_pickaxe": 1,
+      "minecraft:raw_copper": 17
+    }
+  },
+  {
+    "utc": "2026-10-26T12:42:26.785826+00:00",
+    "player": {
+      "x": 1006.4999813131571,
+      "y": -55.0,
+      "z": 1004.3355595162657,
+      "health": 20.0,
+      "food": 20,
+      "alive": true,
+      "game_mode": "survival"
+    },
+    "position": {
+      "tick": 10672,
+      "dimension": "minecraft:overworld",
+      "x": 1006.4999813131571,
+      "y": -55.0,
+      "z": 1004.3355595162657,
+      "block": {
+        "x": 1006,
+        "y": -55,
+        "z": 1004
+      },
+      "yaw": -720.0009,
+      "pitch": 43.885536
+    },
+    "tool_damage": 263,
+    "counts": {
+      "minecraft:andesite": 7,
+      "minecraft:cobbled_deepslate": 93,
+      "minecraft:cobblestone": 173,
+      "minecraft:cooked_beef": 64,
+      "minecraft:dirt": 8,
+      "minecraft:granite": 5,
+      "minecraft:gravel": 5,
+      "minecraft:netherite_pickaxe": 1,
+      "minecraft:raw_copper": 17
+    }
+  },
+  {
+    "utc": "2026-10-26T12:43:41.885937+00:00",
+    "player": {
+      "x": 1006.5000222407787,
+      "y": -55.0,
+      "z": 1005.6096206174541,
+      "health": 20.0,
+      "food": 20,
+      "alive": true,
+      "game_mode": "survival"
+    },
+    "position": {
+      "tick": 12174,
+      "dimension": "minecraft:overworld",
+      "x": 1006.5000222407787,
+      "y": -55.0,
+      "z": 1005.6096206174541,
+      "block": {
+        "x": 1006,
+        "y": -55,
+        "z": 1005
+      },
+      "yaw": -900.00116,
+      "pitch": 6.172269
+    },
+    "tool_damage": 277,
+    "counts": {
+      "minecraft:andesite": 7,
+      "minecraft:cobbled_deepslate": 108,
+      "minecraft:cobblestone": 173,
+      "minecraft:cooked_beef": 64,
+      "minecraft:dirt": 8,
+      "minecraft:granite": 5,
+      "minecraft:gravel": 5,
+      "minecraft:netherite_pickaxe": 1,
+      "minecraft:raw_copper": 17
+    }
+  },
+  {
+    "utc": "2026-10-26T12:44:35.636731+00:00",
+    "player": {
+      "x": 1009.4996279237897,
+      "y": -55.0,
+      "z": 998.5830144692744,
+      "health": 20.0,
+      "food": 20,
+      "alive": true,
+      "game_mode": "survival"
+    },
+    "position": {
+      "tick": 13249,
+      "dimension": "minecraft:overworld",
+      "x": 1009.4996279237897,
+      "y": -55.0,
+      "z": 998.5830144692744,
+      "block": {
+        "x": 1009,
+        "y": -55,
+        "z": 998
+      },
+      "yaw": -899.9803,
+      "pitch": 45.96183
+    },
+    "tool_damage": 288,
+    "counts": {
+      "minecraft:andesite": 7,
+      "minecraft:cobbled_deepslate": 118,
+      "minecraft:cobblestone": 173,
+      "minecraft:cooked_beef": 64,
+      "minecraft:dirt": 8,
+      "minecraft:granite": 5,
+      "minecraft:gravel": 5,
+      "minecraft:netherite_pickaxe": 1,
+      "minecraft:raw_copper": 17
+    }
+  },
+  {
+    "utc": "2026-10-26T12:46:22.574349+00:00",
+    "player": {
+      "x": 1009.5000157854936,
+      "y": -55.0,
+      "z": 993.6836889192679,
+      "health": 20.0,
+      "food": 20,
+      "alive": true,
+      "game_mode": "survival"
+    },
+    "position": {
+      "tick": 15388,
+      "dimension": "minecraft:overworld",
+      "x": 1009.5000157854936,
+      "y": -55.0,
+      "z": 993.6836889192679,
+      "block": {
+        "x": 1009,
+        "y": -55,
+        "z": 993
+      },
+      "yaw": -900.00146,
+      "pitch": 0.0
+    },
+    "tool_damage": 305,
+    "counts": {
+      "minecraft:andesite": 7,
+      "minecraft:cobbled_deepslate": 128,
+      "minecraft:cobblestone": 173,
+      "minecraft:cooked_beef": 64,
+      "minecraft:dirt": 8,
+      "minecraft:granite": 5,
+      "minecraft:gravel": 5,
+      "minecraft:netherite_pickaxe": 1,
+      "minecraft:raw_copper": 17,
+      "minecraft:redstone": 19
+    }
+  }
+]
