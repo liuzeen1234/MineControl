@@ -111,6 +111,10 @@ def main():
     p.add_argument('--target-y',type=int,default=-54)
     p.add_argument('--heading',choices=HEADINGS,default='south')
     p.add_argument('--mine-seconds',type=float,default=600)
+    p.add_argument('--pattern',choices=['straight','fishbone'],default='straight')
+    p.add_argument('--main-length',type=int,default=64)
+    p.add_argument('--branch-length',type=int,default=12)
+    p.add_argument('--spacing',type=int,default=3)
     p.add_argument('--descent-timeout',type=float,default=1800)
     p.add_argument('--out',type=Path,default=Path('shaft-results'))
     p.add_argument('--degrees-per-mouse',type=float,default=.15)
@@ -120,10 +124,15 @@ def main():
         value=getattr(a,name)
         if not math.isfinite(value) or not 1<=value<=3600:p.error(name+' must be 1..3600')
     if not math.isfinite(a.degrees_per_mouse) or not 0<a.degrees_per_mouse<=10:p.error('invalid mouse scale')
+    if not 1<=a.main_length<=256 or not 1<=a.spacing<=64 or not 1<=a.branch_length<=32:p.error('invalid fishbone dimensions')
     miner=ShaftMiner(a.port,a.descent_timeout,a.out/'descent',a.degrees_per_mouse)
     if not miner.descend(a.target_y,a.heading,a.descent_timeout):return 1
     pos=miner.call('position');d=HEADINGS[a.heading]
     miner.aim((pos['x']+d[0]*5,pos['y']+1.62,pos['z']+d[2]*5))
+    if a.pattern=='fishbone':
+        from fishbone_miner import FishboneMiner
+        return FishboneMiner(a.port,a.mine_seconds,a.out/'mining',a.degrees_per_mouse,
+                             heading=a.heading,main_length=a.main_length,spacing=a.spacing,branch_length=a.branch_length).run()
     return StraightMiner(a.port,a.mine_seconds,a.out/'mining',a.degrees_per_mouse).run()
 
 if __name__=='__main__':raise SystemExit(main())

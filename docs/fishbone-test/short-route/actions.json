@@ -1,0 +1,471 @@
+[
+  {
+    "seen": [
+      41,
+      31,
+      113
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "placed": [
+      41,
+      31,
+      112
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "walked": [
+      41,
+      32,
+      112
+    ]
+  },
+  {
+    "seen": [
+      41,
+      31,
+      112
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "placed": [
+      41,
+      31,
+      111
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "walked": [
+      41,
+      32,
+      111
+    ]
+  },
+  {
+    "seen": [
+      41,
+      33,
+      107
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      41,
+      33,
+      107
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      41,
+      33,
+      107
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      41,
+      31,
+      111
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "placed": [
+      41,
+      31,
+      110
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "walked": [
+      41,
+      32,
+      110
+    ]
+  },
+  {
+    "seen": [
+      41,
+      31,
+      110
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "placed": [
+      40,
+      31,
+      110
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "walked": [
+      40,
+      32,
+      110
+    ]
+  },
+  {
+    "seen": [
+      36,
+      33,
+      110
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      36,
+      33,
+      110
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      36,
+      33,
+      110
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      40,
+      31,
+      110
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "placed": [
+      39,
+      31,
+      110
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "walked": [
+      39,
+      32,
+      110
+    ]
+  },
+  {
+    "seen": [
+      43,
+      33,
+      110
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      43,
+      33,
+      110
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      40,
+      31,
+      110
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "seen": [
+      43,
+      33,
+      110
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      40,
+      31,
+      110
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "seen": [
+      40,
+      31,
+      110
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "walked": [
+      40,
+      32,
+      110
+    ]
+  },
+  {
+    "seen": [
+      43,
+      33,
+      110
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      43,
+      33,
+      110
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      41,
+      31,
+      110
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "seen": [
+      43,
+      33,
+      110
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      41,
+      31,
+      110
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "seen": [
+      41,
+      31,
+      110
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "walked": [
+      41,
+      32,
+      110
+    ]
+  },
+  {
+    "seen": [
+      43,
+      33,
+      110
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      43,
+      33,
+      110
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      42,
+      32,
+      110
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "mined": [
+      42,
+      32,
+      110
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      43,
+      33,
+      110
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      43,
+      32,
+      110
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      42,
+      31,
+      110
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "walked": [
+      42,
+      32,
+      110
+    ]
+  },
+  {
+    "seen": [
+      43,
+      33,
+      110
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "mined": [
+      43,
+      33,
+      110
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      44,
+      33,
+      110
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      43,
+      32,
+      110
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "mined": [
+      43,
+      32,
+      110
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      44,
+      33,
+      110
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      44,
+      32,
+      110
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      43,
+      31,
+      110
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "walked": [
+      43,
+      32,
+      110
+    ]
+  },
+  {
+    "seen": [
+      42,
+      31,
+      110
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      42,
+      31,
+      110
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      42,
+      31,
+      110
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "walked": [
+      42,
+      32,
+      110
+    ]
+  },
+  {
+    "seen": [
+      41,
+      31,
+      110
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "seen": [
+      41,
+      31,
+      110
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "seen": [
+      41,
+      31,
+      110
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "walked": [
+      41,
+      32,
+      110
+    ]
+  }
+]

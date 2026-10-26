@@ -33,9 +33,9 @@ class StraightMiner(Miner):
             return pos, target['id']
         return None
 
-    def clear(self, point, allow_falling=False):
+    def clear(self, point, allow_falling=False, aim_point=None):
         """Only break the requested cell if it is the first visible hit."""
-        hit = self.look(tuple(v+.5 for v in point))
+        hit = self.look(aim_point if aim_point is not None else tuple(v+.5 for v in point))
         if hit is None or hit[0] != point:
             # A nearer occluder is not evidence that the requested cell is empty.
             p = self.call('position')

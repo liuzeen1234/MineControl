@@ -1,0 +1,1135 @@
+{
+  "requested_seconds": 600.0,
+  "elapsed_seconds": 23.90121200005524,
+  "reason": "stopped",
+  "error": "Health or hunger protection",
+  "origin": [
+    41,
+    32,
+    110
+  ],
+  "heading": "north",
+  "main_length": 3,
+  "spacing": 3,
+  "branch_length": 8,
+  "waypoints": [
+    {
+      "pos": [
+        41,
+        32,
+        109
+      ],
+      "phase": "main"
+    },
+    {
+      "pos": [
+        41,
+        32,
+        108
+      ],
+      "phase": "main"
+    }
+  ],
+  "mined_ores": [],
+  "deferred_candidates": [],
+  "searches": [
+    {
+      "center": [
+        41,
+        32,
+        110
+      ],
+      "height": 2,
+      "from": [
+        40,
+        31,
+        109
+      ],
+      "to": [
+        42,
+        34,
+        111
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        41,
+        32,
+        109
+      ],
+      "height": 2,
+      "from": [
+        40,
+        31,
+        108
+      ],
+      "to": [
+        42,
+        34,
+        110
+      ],
+      "shell_cells": 34
+    },
+    {
+      "center": [
+        41,
+        32,
+        108
+      ],
+      "height": 2,
+      "from": [
+        40,
+        31,
+        107
+      ],
+      "to": [
+        42,
+        34,
+        109
+      ],
+      "shell_cells": 34
+    }
+  ],
+  "initial": {
+    "tick": 969824,
+    "source": "client_snapshot",
+    "world_loaded": true,
+    "active": true,
+    "player": {
+      "x": 41.71302644583581,
+      "y": 32.0,
+      "z": 110.49998596773897,
+      "health": 20.0,
+      "food": 20,
+      "alive": true,
+      "game_mode": "survival"
+    },
+    "main_hand": {
+      "id": "minecraft:netherite_pickaxe",
+      "count": 1,
+      "damage": 127,
+      "max_damage": 2031,
+      "remaining_durability": 1904,
+      "format": "components",
+      "components": {
+        "source": "client_snapshot",
+        "completeness": "unknown",
+        "data": {
+          "minecraft:enchantable": {
+            "value": 15
+          },
+          "minecraft:lore": [],
+          "minecraft:max_stack_size": 1,
+          "minecraft:attribute_modifiers": [
+            {
+              "amount": 5.0,
+              "id": "minecraft:base_attack_damage",
+              "slot": "mainhand",
+              "type": "minecraft:attack_damage",
+              "operation": "add_value"
+            },
+            {
+              "amount": -2.799999952316284,
+              "id": "minecraft:base_attack_speed",
+              "slot": "mainhand",
+              "type": "minecraft:attack_speed",
+              "operation": "add_value"
+            }
+          ],
+          "minecraft:tool": {
+            "rules": [
+              {
+                "blocks": "#minecraft:incorrect_for_netherite_tool",
+                "correct_for_drops": 0
+              },
+              {
+                "blocks": "#minecraft:mineable/pickaxe",
+                "correct_for_drops": 1,
+                "speed": 9.0
+              }
+            ]
+          },
+          "minecraft:enchantments": {},
+          "minecraft:damage": 127,
+          "minecraft:tooltip_display": {},
+          "minecraft:swing_animation": {},
+          "minecraft:repairable": {
+            "items": "#minecraft:netherite_tool_materials"
+          },
+          "minecraft:damage_resistant": {
+            "types": "#minecraft:is_fire"
+          },
+          "minecraft:repair_cost": 0,
+          "minecraft:item_name": {
+            "translate": "item.minecraft.netherite_pickaxe"
+          },
+          "minecraft:weapon": {
+            "item_damage_per_attack": 2
+          },
+          "minecraft:use_effects": {},
+          "minecraft:item_model": "minecraft:netherite_pickaxe",
+          "minecraft:rarity": "common",
+          "minecraft:max_damage": 2031,
+          "minecraft:break_sound": "minecraft:entity.item.break"
+        },
+        "snbt": "{\"minecraft:attribute_modifiers\":[{amount:5.0d,id:\"minecraft:base_attack_damage\",operation:\"add_value\",slot:\"mainhand\",type:\"minecraft:attack_damage\"},{amount:-2.799999952316284d,id:\"minecraft:base_attack_speed\",operation:\"add_value\",slot:\"mainhand\",type:\"minecraft:attack_speed\"}],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:damage\":127,\"minecraft:damage_resistant\":{types:\"#minecraft:is_fire\"},\"minecraft:enchantable\":{value:15},\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:netherite_pickaxe\",\"minecraft:item_name\":{translate:\"item.minecraft.netherite_pickaxe\"},\"minecraft:lore\":[],\"minecraft:max_damage\":2031,\"minecraft:max_stack_size\":1,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:repairable\":{items:\"#minecraft:netherite_tool_materials\"},\"minecraft:swing_animation\":{},\"minecraft:tool\":{rules:[{blocks:\"#minecraft:incorrect_for_netherite_tool\",correct_for_drops:0b},{blocks:\"#minecraft:mineable/pickaxe\",correct_for_drops:1b,speed:9.0f}]},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{},\"minecraft:weapon\":{item_damage_per_attack:2}}"
+      },
+      "nbt": {
+        "source": "client_snapshot",
+        "completeness": "unknown",
+        "data": {
+          "components": {
+            "minecraft:damage": 127
+          },
+          "count": 1,
+          "id": "minecraft:netherite_pickaxe"
+        },
+        "snbt": "{components:{\"minecraft:damage\":127},count:1,id:\"minecraft:netherite_pickaxe\"}"
+      }
+    },
+    "off_hand": {
+      "id": "minecraft:air",
+      "count": 0,
+      "damage": 0,
+      "max_damage": 0,
+      "remaining_durability": 0,
+      "format": "components",
+      "components": {
+        "source": "client_snapshot",
+        "completeness": "unknown",
+        "data": {},
+        "snbt": "{}"
+      },
+      "nbt": {
+        "source": "client_snapshot",
+        "completeness": "unknown",
+        "data": {},
+        "snbt": "{}"
+      }
+    },
+    "target": null,
+    "dimension": "minecraft:overworld"
+  },
+  "final": {
+    "tick": 970303,
+    "source": "client_snapshot",
+    "world_loaded": true,
+    "active": true,
+    "player": {
+      "x": 40.17192293656563,
+      "y": 23.0,
+      "z": 109.49105280536254,
+      "health": 16.0,
+      "food": 20,
+      "alive": true,
+      "game_mode": "survival"
+    },
+    "main_hand": {
+      "id": "minecraft:netherite_pickaxe",
+      "count": 1,
+      "damage": 128,
+      "max_damage": 2031,
+      "remaining_durability": 1903,
+      "format": "components",
+      "components": {
+        "source": "client_snapshot",
+        "completeness": "unknown",
+        "data": {
+          "minecraft:enchantable": {
+            "value": 15
+          },
+          "minecraft:lore": [],
+          "minecraft:max_stack_size": 1,
+          "minecraft:attribute_modifiers": [
+            {
+              "amount": 5.0,
+              "id": "minecraft:base_attack_damage",
+              "slot": "mainhand",
+              "type": "minecraft:attack_damage",
+              "operation": "add_value"
+            },
+            {
+              "amount": -2.799999952316284,
+              "id": "minecraft:base_attack_speed",
+              "slot": "mainhand",
+              "type": "minecraft:attack_speed",
+              "operation": "add_value"
+            }
+          ],
+          "minecraft:tool": {
+            "rules": [
+              {
+                "blocks": "#minecraft:incorrect_for_netherite_tool",
+                "correct_for_drops": 0
+              },
+              {
+                "blocks": "#minecraft:mineable/pickaxe",
+                "correct_for_drops": 1,
+                "speed": 9.0
+              }
+            ]
+          },
+          "minecraft:enchantments": {},
+          "minecraft:damage": 128,
+          "minecraft:tooltip_display": {},
+          "minecraft:swing_animation": {},
+          "minecraft:repairable": {
+            "items": "#minecraft:netherite_tool_materials"
+          },
+          "minecraft:damage_resistant": {
+            "types": "#minecraft:is_fire"
+          },
+          "minecraft:repair_cost": 0,
+          "minecraft:item_name": {
+            "translate": "item.minecraft.netherite_pickaxe"
+          },
+          "minecraft:weapon": {
+            "item_damage_per_attack": 2
+          },
+          "minecraft:use_effects": {},
+          "minecraft:item_model": "minecraft:netherite_pickaxe",
+          "minecraft:rarity": "common",
+          "minecraft:max_damage": 2031,
+          "minecraft:break_sound": "minecraft:entity.item.break"
+        },
+        "snbt": "{\"minecraft:attribute_modifiers\":[{amount:5.0d,id:\"minecraft:base_attack_damage\",operation:\"add_value\",slot:\"mainhand\",type:\"minecraft:attack_damage\"},{amount:-2.799999952316284d,id:\"minecraft:base_attack_speed\",operation:\"add_value\",slot:\"mainhand\",type:\"minecraft:attack_speed\"}],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:damage\":128,\"minecraft:damage_resistant\":{types:\"#minecraft:is_fire\"},\"minecraft:enchantable\":{value:15},\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:netherite_pickaxe\",\"minecraft:item_name\":{translate:\"item.minecraft.netherite_pickaxe\"},\"minecraft:lore\":[],\"minecraft:max_damage\":2031,\"minecraft:max_stack_size\":1,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:repairable\":{items:\"#minecraft:netherite_tool_materials\"},\"minecraft:swing_animation\":{},\"minecraft:tool\":{rules:[{blocks:\"#minecraft:incorrect_for_netherite_tool\",correct_for_drops:0b},{blocks:\"#minecraft:mineable/pickaxe\",correct_for_drops:1b,speed:9.0f}]},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{},\"minecraft:weapon\":{item_damage_per_attack:2}}"
+      },
+      "nbt": {
+        "source": "client_snapshot",
+        "completeness": "unknown",
+        "data": {
+          "components": {
+            "minecraft:damage": 128
+          },
+          "count": 1,
+          "id": "minecraft:netherite_pickaxe"
+        },
+        "snbt": "{components:{\"minecraft:damage\":128},count:1,id:\"minecraft:netherite_pickaxe\"}"
+      }
+    },
+    "off_hand": {
+      "id": "minecraft:air",
+      "count": 0,
+      "damage": 0,
+      "max_damage": 0,
+      "remaining_durability": 0,
+      "format": "components",
+      "components": {
+        "source": "client_snapshot",
+        "completeness": "unknown",
+        "data": {},
+        "snbt": "{}"
+      },
+      "nbt": {
+        "source": "client_snapshot",
+        "completeness": "unknown",
+        "data": {},
+        "snbt": "{}"
+      }
+    },
+    "target": {
+      "distance": 3.7359708012638753,
+      "kind": "block",
+      "id": "minecraft:stone",
+      "pos": {
+        "x": 42,
+        "y": 23,
+        "z": 106
+      },
+      "face": "west",
+      "state": {},
+      "nbt": null
+    },
+    "dimension": "minecraft:overworld"
+  },
+  "inventory_before": {
+    "tick": 969825,
+    "source": "client_snapshot",
+    "slots": [
+      {
+        "slot": 0,
+        "stack": {
+          "id": "minecraft:netherite_pickaxe",
+          "count": 1,
+          "damage": 127,
+          "max_damage": 2031,
+          "remaining_durability": 1904,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:enchantable": {
+                "value": 15
+              },
+              "minecraft:lore": [],
+              "minecraft:max_stack_size": 1,
+              "minecraft:attribute_modifiers": [
+                {
+                  "amount": 5.0,
+                  "id": "minecraft:base_attack_damage",
+                  "slot": "mainhand",
+                  "type": "minecraft:attack_damage",
+                  "operation": "add_value"
+                },
+                {
+                  "amount": -2.799999952316284,
+                  "id": "minecraft:base_attack_speed",
+                  "slot": "mainhand",
+                  "type": "minecraft:attack_speed",
+                  "operation": "add_value"
+                }
+              ],
+              "minecraft:tool": {
+                "rules": [
+                  {
+                    "blocks": "#minecraft:incorrect_for_netherite_tool",
+                    "correct_for_drops": 0
+                  },
+                  {
+                    "blocks": "#minecraft:mineable/pickaxe",
+                    "correct_for_drops": 1,
+                    "speed": 9.0
+                  }
+                ]
+              },
+              "minecraft:enchantments": {},
+              "minecraft:damage": 127,
+              "minecraft:tooltip_display": {},
+              "minecraft:swing_animation": {},
+              "minecraft:repairable": {
+                "items": "#minecraft:netherite_tool_materials"
+              },
+              "minecraft:damage_resistant": {
+                "types": "#minecraft:is_fire"
+              },
+              "minecraft:repair_cost": 0,
+              "minecraft:item_name": {
+                "translate": "item.minecraft.netherite_pickaxe"
+              },
+              "minecraft:weapon": {
+                "item_damage_per_attack": 2
+              },
+              "minecraft:use_effects": {},
+              "minecraft:item_model": "minecraft:netherite_pickaxe",
+              "minecraft:rarity": "common",
+              "minecraft:max_damage": 2031,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[{amount:5.0d,id:\"minecraft:base_attack_damage\",operation:\"add_value\",slot:\"mainhand\",type:\"minecraft:attack_damage\"},{amount:-2.799999952316284d,id:\"minecraft:base_attack_speed\",operation:\"add_value\",slot:\"mainhand\",type:\"minecraft:attack_speed\"}],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:damage\":127,\"minecraft:damage_resistant\":{types:\"#minecraft:is_fire\"},\"minecraft:enchantable\":{value:15},\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:netherite_pickaxe\",\"minecraft:item_name\":{translate:\"item.minecraft.netherite_pickaxe\"},\"minecraft:lore\":[],\"minecraft:max_damage\":2031,\"minecraft:max_stack_size\":1,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:repairable\":{items:\"#minecraft:netherite_tool_materials\"},\"minecraft:swing_animation\":{},\"minecraft:tool\":{rules:[{blocks:\"#minecraft:incorrect_for_netherite_tool\",correct_for_drops:0b},{blocks:\"#minecraft:mineable/pickaxe\",correct_for_drops:1b,speed:9.0f}]},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{},\"minecraft:weapon\":{item_damage_per_attack:2}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "components": {
+                "minecraft:damage": 127
+              },
+              "count": 1,
+              "id": "minecraft:netherite_pickaxe"
+            },
+            "snbt": "{components:{\"minecraft:damage\":127},count:1,id:\"minecraft:netherite_pickaxe\"}"
+          }
+        }
+      },
+      {
+        "slot": 1,
+        "stack": {
+          "id": "minecraft:cooked_beef",
+          "count": 64,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:lore": [],
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:consumable": {},
+              "minecraft:item_name": {
+                "translate": "item.minecraft.cooked_beef"
+              },
+              "minecraft:use_effects": {},
+              "minecraft:item_model": "minecraft:cooked_beef",
+              "minecraft:food": {
+                "saturation": 12.8,
+                "nutrition": 8
+              },
+              "minecraft:rarity": "common",
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:consumable\":{},\"minecraft:enchantments\":{},\"minecraft:food\":{nutrition:8,saturation:12.8f},\"minecraft:item_model\":\"minecraft:cooked_beef\",\"minecraft:item_name\":{translate:\"item.minecraft.cooked_beef\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 64,
+              "id": "minecraft:cooked_beef"
+            },
+            "snbt": "{count:64,id:\"minecraft:cooked_beef\"}"
+          }
+        }
+      },
+      {
+        "slot": 2,
+        "stack": {
+          "id": "minecraft:cobblestone",
+          "count": 59,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:item_name": {
+                "translate": "block.minecraft.cobblestone"
+              },
+              "minecraft:lore": [],
+              "minecraft:item_model": "minecraft:cobblestone",
+              "minecraft:use_effects": {},
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:rarity": "common",
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:cobblestone\",\"minecraft:item_name\":{translate:\"block.minecraft.cobblestone\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 59,
+              "id": "minecraft:cobblestone"
+            },
+            "snbt": "{count:59,id:\"minecraft:cobblestone\"}"
+          }
+        }
+      },
+      {
+        "slot": 3,
+        "stack": {
+          "id": "minecraft:cobblestone",
+          "count": 64,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:item_name": {
+                "translate": "block.minecraft.cobblestone"
+              },
+              "minecraft:lore": [],
+              "minecraft:item_model": "minecraft:cobblestone",
+              "minecraft:use_effects": {},
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:rarity": "common",
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:cobblestone\",\"minecraft:item_name\":{translate:\"block.minecraft.cobblestone\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 64,
+              "id": "minecraft:cobblestone"
+            },
+            "snbt": "{count:64,id:\"minecraft:cobblestone\"}"
+          }
+        }
+      },
+      {
+        "slot": 4,
+        "stack": {
+          "id": "minecraft:gravel",
+          "count": 5,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:item_name": {
+                "translate": "block.minecraft.gravel"
+              },
+              "minecraft:lore": [],
+              "minecraft:item_model": "minecraft:gravel",
+              "minecraft:use_effects": {},
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:rarity": "common",
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:gravel\",\"minecraft:item_name\":{translate:\"block.minecraft.gravel\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 5,
+              "id": "minecraft:gravel"
+            },
+            "snbt": "{count:5,id:\"minecraft:gravel\"}"
+          }
+        }
+      },
+      {
+        "slot": 5,
+        "stack": {
+          "id": "minecraft:dirt",
+          "count": 8,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:item_name": {
+                "translate": "block.minecraft.dirt"
+              },
+              "minecraft:lore": [],
+              "minecraft:item_model": "minecraft:dirt",
+              "minecraft:use_effects": {},
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:rarity": "common",
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:dirt\",\"minecraft:item_name\":{translate:\"block.minecraft.dirt\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 8,
+              "id": "minecraft:dirt"
+            },
+            "snbt": "{count:8,id:\"minecraft:dirt\"}"
+          }
+        }
+      },
+      {
+        "slot": 6,
+        "stack": {
+          "id": "minecraft:cobblestone",
+          "count": 34,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:item_name": {
+                "translate": "block.minecraft.cobblestone"
+              },
+              "minecraft:lore": [],
+              "minecraft:item_model": "minecraft:cobblestone",
+              "minecraft:use_effects": {},
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:rarity": "common",
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:cobblestone\",\"minecraft:item_name\":{translate:\"block.minecraft.cobblestone\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 34,
+              "id": "minecraft:cobblestone"
+            },
+            "snbt": "{count:34,id:\"minecraft:cobblestone\"}"
+          }
+        }
+      },
+      {
+        "slot": 7,
+        "stack": {
+          "id": "minecraft:granite",
+          "count": 5,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:item_name": {
+                "translate": "block.minecraft.granite"
+              },
+              "minecraft:lore": [],
+              "minecraft:item_model": "minecraft:granite",
+              "minecraft:use_effects": {},
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:rarity": "common",
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:granite\",\"minecraft:item_name\":{translate:\"block.minecraft.granite\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 5,
+              "id": "minecraft:granite"
+            },
+            "snbt": "{count:5,id:\"minecraft:granite\"}"
+          }
+        }
+      }
+    ],
+    "counts": {
+      "minecraft:cobblestone": 157,
+      "minecraft:cooked_beef": 64,
+      "minecraft:dirt": 8,
+      "minecraft:granite": 5,
+      "minecraft:gravel": 5,
+      "minecraft:netherite_pickaxe": 1
+    }
+  },
+  "inventory_after": {
+    "tick": 970302,
+    "source": "client_snapshot",
+    "slots": [
+      {
+        "slot": 0,
+        "stack": {
+          "id": "minecraft:netherite_pickaxe",
+          "count": 1,
+          "damage": 128,
+          "max_damage": 2031,
+          "remaining_durability": 1903,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:enchantable": {
+                "value": 15
+              },
+              "minecraft:lore": [],
+              "minecraft:max_stack_size": 1,
+              "minecraft:attribute_modifiers": [
+                {
+                  "amount": 5.0,
+                  "id": "minecraft:base_attack_damage",
+                  "slot": "mainhand",
+                  "type": "minecraft:attack_damage",
+                  "operation": "add_value"
+                },
+                {
+                  "amount": -2.799999952316284,
+                  "id": "minecraft:base_attack_speed",
+                  "slot": "mainhand",
+                  "type": "minecraft:attack_speed",
+                  "operation": "add_value"
+                }
+              ],
+              "minecraft:tool": {
+                "rules": [
+                  {
+                    "blocks": "#minecraft:incorrect_for_netherite_tool",
+                    "correct_for_drops": 0
+                  },
+                  {
+                    "blocks": "#minecraft:mineable/pickaxe",
+                    "correct_for_drops": 1,
+                    "speed": 9.0
+                  }
+                ]
+              },
+              "minecraft:enchantments": {},
+              "minecraft:damage": 128,
+              "minecraft:tooltip_display": {},
+              "minecraft:swing_animation": {},
+              "minecraft:repairable": {
+                "items": "#minecraft:netherite_tool_materials"
+              },
+              "minecraft:damage_resistant": {
+                "types": "#minecraft:is_fire"
+              },
+              "minecraft:repair_cost": 0,
+              "minecraft:item_name": {
+                "translate": "item.minecraft.netherite_pickaxe"
+              },
+              "minecraft:weapon": {
+                "item_damage_per_attack": 2
+              },
+              "minecraft:use_effects": {},
+              "minecraft:item_model": "minecraft:netherite_pickaxe",
+              "minecraft:rarity": "common",
+              "minecraft:max_damage": 2031,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[{amount:5.0d,id:\"minecraft:base_attack_damage\",operation:\"add_value\",slot:\"mainhand\",type:\"minecraft:attack_damage\"},{amount:-2.799999952316284d,id:\"minecraft:base_attack_speed\",operation:\"add_value\",slot:\"mainhand\",type:\"minecraft:attack_speed\"}],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:damage\":128,\"minecraft:damage_resistant\":{types:\"#minecraft:is_fire\"},\"minecraft:enchantable\":{value:15},\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:netherite_pickaxe\",\"minecraft:item_name\":{translate:\"item.minecraft.netherite_pickaxe\"},\"minecraft:lore\":[],\"minecraft:max_damage\":2031,\"minecraft:max_stack_size\":1,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:repairable\":{items:\"#minecraft:netherite_tool_materials\"},\"minecraft:swing_animation\":{},\"minecraft:tool\":{rules:[{blocks:\"#minecraft:incorrect_for_netherite_tool\",correct_for_drops:0b},{blocks:\"#minecraft:mineable/pickaxe\",correct_for_drops:1b,speed:9.0f}]},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{},\"minecraft:weapon\":{item_damage_per_attack:2}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "components": {
+                "minecraft:damage": 128
+              },
+              "count": 1,
+              "id": "minecraft:netherite_pickaxe"
+            },
+            "snbt": "{components:{\"minecraft:damage\":128},count:1,id:\"minecraft:netherite_pickaxe\"}"
+          }
+        }
+      },
+      {
+        "slot": 1,
+        "stack": {
+          "id": "minecraft:cooked_beef",
+          "count": 64,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:lore": [],
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:consumable": {},
+              "minecraft:item_name": {
+                "translate": "item.minecraft.cooked_beef"
+              },
+              "minecraft:use_effects": {},
+              "minecraft:item_model": "minecraft:cooked_beef",
+              "minecraft:food": {
+                "saturation": 12.8,
+                "nutrition": 8
+              },
+              "minecraft:rarity": "common",
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:consumable\":{},\"minecraft:enchantments\":{},\"minecraft:food\":{nutrition:8,saturation:12.8f},\"minecraft:item_model\":\"minecraft:cooked_beef\",\"minecraft:item_name\":{translate:\"item.minecraft.cooked_beef\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 64,
+              "id": "minecraft:cooked_beef"
+            },
+            "snbt": "{count:64,id:\"minecraft:cooked_beef\"}"
+          }
+        }
+      },
+      {
+        "slot": 2,
+        "stack": {
+          "id": "minecraft:cobblestone",
+          "count": 57,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:item_name": {
+                "translate": "block.minecraft.cobblestone"
+              },
+              "minecraft:lore": [],
+              "minecraft:item_model": "minecraft:cobblestone",
+              "minecraft:use_effects": {},
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:rarity": "common",
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:cobblestone\",\"minecraft:item_name\":{translate:\"block.minecraft.cobblestone\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 57,
+              "id": "minecraft:cobblestone"
+            },
+            "snbt": "{count:57,id:\"minecraft:cobblestone\"}"
+          }
+        }
+      },
+      {
+        "slot": 3,
+        "stack": {
+          "id": "minecraft:cobblestone",
+          "count": 64,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:item_name": {
+                "translate": "block.minecraft.cobblestone"
+              },
+              "minecraft:lore": [],
+              "minecraft:item_model": "minecraft:cobblestone",
+              "minecraft:use_effects": {},
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:rarity": "common",
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:cobblestone\",\"minecraft:item_name\":{translate:\"block.minecraft.cobblestone\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 64,
+              "id": "minecraft:cobblestone"
+            },
+            "snbt": "{count:64,id:\"minecraft:cobblestone\"}"
+          }
+        }
+      },
+      {
+        "slot": 4,
+        "stack": {
+          "id": "minecraft:gravel",
+          "count": 5,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:item_name": {
+                "translate": "block.minecraft.gravel"
+              },
+              "minecraft:lore": [],
+              "minecraft:item_model": "minecraft:gravel",
+              "minecraft:use_effects": {},
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:rarity": "common",
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:gravel\",\"minecraft:item_name\":{translate:\"block.minecraft.gravel\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 5,
+              "id": "minecraft:gravel"
+            },
+            "snbt": "{count:5,id:\"minecraft:gravel\"}"
+          }
+        }
+      },
+      {
+        "slot": 5,
+        "stack": {
+          "id": "minecraft:dirt",
+          "count": 8,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:item_name": {
+                "translate": "block.minecraft.dirt"
+              },
+              "minecraft:lore": [],
+              "minecraft:item_model": "minecraft:dirt",
+              "minecraft:use_effects": {},
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:rarity": "common",
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:dirt\",\"minecraft:item_name\":{translate:\"block.minecraft.dirt\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 8,
+              "id": "minecraft:dirt"
+            },
+            "snbt": "{count:8,id:\"minecraft:dirt\"}"
+          }
+        }
+      },
+      {
+        "slot": 6,
+        "stack": {
+          "id": "minecraft:cobblestone",
+          "count": 34,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:item_name": {
+                "translate": "block.minecraft.cobblestone"
+              },
+              "minecraft:lore": [],
+              "minecraft:item_model": "minecraft:cobblestone",
+              "minecraft:use_effects": {},
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:rarity": "common",
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:cobblestone\",\"minecraft:item_name\":{translate:\"block.minecraft.cobblestone\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 34,
+              "id": "minecraft:cobblestone"
+            },
+            "snbt": "{count:34,id:\"minecraft:cobblestone\"}"
+          }
+        }
+      },
+      {
+        "slot": 7,
+        "stack": {
+          "id": "minecraft:granite",
+          "count": 5,
+          "damage": 0,
+          "max_damage": 0,
+          "remaining_durability": 0,
+          "format": "components",
+          "components": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "minecraft:item_name": {
+                "translate": "block.minecraft.granite"
+              },
+              "minecraft:lore": [],
+              "minecraft:item_model": "minecraft:granite",
+              "minecraft:use_effects": {},
+              "minecraft:max_stack_size": 64,
+              "minecraft:attribute_modifiers": [],
+              "minecraft:enchantments": {},
+              "minecraft:tooltip_display": {},
+              "minecraft:rarity": "common",
+              "minecraft:swing_animation": {},
+              "minecraft:repair_cost": 0,
+              "minecraft:break_sound": "minecraft:entity.item.break"
+            },
+            "snbt": "{\"minecraft:attribute_modifiers\":[],\"minecraft:break_sound\":\"minecraft:entity.item.break\",\"minecraft:enchantments\":{},\"minecraft:item_model\":\"minecraft:granite\",\"minecraft:item_name\":{translate:\"block.minecraft.granite\"},\"minecraft:lore\":[],\"minecraft:max_stack_size\":64,\"minecraft:rarity\":\"common\",\"minecraft:repair_cost\":0,\"minecraft:swing_animation\":{},\"minecraft:tooltip_display\":{},\"minecraft:use_effects\":{}}"
+          },
+          "nbt": {
+            "source": "client_snapshot",
+            "completeness": "unknown",
+            "data": {
+              "count": 5,
+              "id": "minecraft:granite"
+            },
+            "snbt": "{count:5,id:\"minecraft:granite\"}"
+          }
+        }
+      }
+    ],
+    "counts": {
+      "minecraft:cobblestone": 155,
+      "minecraft:cooked_beef": 64,
+      "minecraft:dirt": 8,
+      "minecraft:granite": 5,
+      "minecraft:gravel": 5,
+      "minecraft:netherite_pickaxe": 1
+    }
+  },
+  "net_items": {
+    "minecraft:cobblestone": -2
+  },
+  "inputs_released": true,
+  "policy": "fixed orthogonal fishbone; 1-block shell only around opened passages/ore cavities; exposed face plus first-hit verification; no hidden-ore route planning; no complete-vein claim"
+}

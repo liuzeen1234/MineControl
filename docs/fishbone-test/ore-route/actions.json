@@ -1,0 +1,176 @@
+[
+  {
+    "seen": [
+      41,
+      33,
+      107
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      41,
+      33,
+      107
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      41,
+      30,
+      107
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      41,
+      33,
+      107
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      41,
+      30,
+      107
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      41,
+      31,
+      110
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "placed": [
+      41,
+      31,
+      109
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "walked": [
+      41,
+      32,
+      109
+    ]
+  },
+  {
+    "seen": [
+      41,
+      33,
+      107
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      41,
+      33,
+      107
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      41,
+      31,
+      107
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      41,
+      33,
+      107
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      41,
+      31,
+      107
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      41,
+      31,
+      107
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      41,
+      31,
+      109
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "placed": [
+      41,
+      31,
+      108
+    ],
+    "id": "minecraft:cobblestone"
+  },
+  {
+    "walked": [
+      41,
+      32,
+      108
+    ]
+  },
+  {
+    "seen": [
+      41,
+      33,
+      107
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "mined": [
+      41,
+      33,
+      107
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      41,
+      33,
+      106
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "seen": [
+      41,
+      32,
+      107
+    ],
+    "id": "minecraft:stone"
+  },
+  {
+    "mined": [
+      41,
+      32,
+      107
+    ],
+    "id": "minecraft:stone"
+  }
+]

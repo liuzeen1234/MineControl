@@ -1,0 +1,196 @@
+{
+  "date_local": "2026-10-26",
+  "feature": "orthogonal fishbone route with one-block shell block search and verified exposed ore mining",
+  "runs": [
+    {
+      "report": "docs/fishbone-test/short-route/report.json",
+      "elapsed_seconds": 70.9499645831529,
+      "reason": "route_completed",
+      "error": null,
+      "waypoints": 11,
+      "mined_ores": [],
+      "net_items": {
+        "minecraft:cobblestone": -2
+      },
+      "searches": 8,
+      "deferred_candidates": [],
+      "final_player": {
+        "x": 41.71302644583581,
+        "y": 32.0,
+        "z": 110.49998596773897,
+        "health": 20.0,
+        "food": 20,
+        "alive": true,
+        "game_mode": "survival"
+      },
+      "inputs_released": true
+    },
+    {
+      "report": "docs/fishbone-test/ore-route/report.json",
+      "elapsed_seconds": 23.90121200005524,
+      "reason": "stopped",
+      "error": "Health or hunger protection",
+      "waypoints": 2,
+      "mined_ores": [],
+      "net_items": {
+        "minecraft:cobblestone": -2
+      },
+      "searches": 3,
+      "deferred_candidates": [],
+      "final_player": {
+        "x": 40.17192293656563,
+        "y": 23.0,
+        "z": 109.49105280536254,
+        "health": 16.0,
+        "food": 20,
+        "alive": true,
+        "game_mode": "survival"
+      },
+      "inputs_released": true
+    },
+    {
+      "report": "docs/fishbone-test/cave-route/report.json",
+      "elapsed_seconds": 167.6487008340191,
+      "reason": "route_completed",
+      "error": null,
+      "waypoints": 27,
+      "mined_ores": [
+        {
+          "pos": [
+            43,
+            25,
+            107
+          ],
+          "id": "minecraft:copper_ore"
+        },
+        {
+          "pos": [
+            43,
+            25,
+            106
+          ],
+          "id": "minecraft:copper_ore"
+        },
+        {
+          "pos": [
+            44,
+            25,
+            107
+          ],
+          "id": "minecraft:copper_ore"
+        },
+        {
+          "pos": [
+            44,
+            25,
+            106
+          ],
+          "id": "minecraft:copper_ore"
+        }
+      ],
+      "net_items": {
+        "minecraft:cobblestone": 6,
+        "minecraft:raw_copper": 17
+      },
+      "searches": 20,
+      "deferred_candidates": [
+        [
+          42,
+          24,
+          102
+        ],
+        [
+          42,
+          25,
+          102
+        ],
+        [
+          42,
+          25,
+          103
+        ],
+        [
+          42,
+          25,
+          104
+        ],
+        [
+          45,
+          26,
+          106
+        ],
+        [
+          45,
+          26,
+          107
+        ]
+      ],
+      "final_player": {
+        "x": 43.500020565529255,
+        "y": 23.0,
+        "z": 109.6737228538522,
+        "health": 20.0,
+        "food": 20,
+        "alive": true,
+        "game_mode": "survival"
+      },
+      "inputs_released": true
+    },
+    {
+      "report": "docs/fishbone-test/shaft-combined/mining/report.json",
+      "elapsed_seconds": 45.69921374996193,
+      "reason": "route_completed",
+      "error": null,
+      "waypoints": 9,
+      "mined_ores": [],
+      "net_items": {
+        "minecraft:andesite": 3,
+        "minecraft:cobblestone": 7
+      },
+      "searches": 6,
+      "deferred_candidates": [],
+      "final_player": {
+        "x": 45.50000796331476,
+        "y": 22.0,
+        "z": 109.51973409100913,
+        "health": 20.0,
+        "food": 20,
+        "alive": true,
+        "game_mode": "survival"
+      },
+      "inputs_released": true
+    }
+  ],
+  "shaft_combined_descent": 1,
+  "query_bounds": {
+    "max_shell_cells": 34,
+    "max_fetched_cells": 36,
+    "all_queries_one_shell": true
+  },
+  "server": {
+    "endpoint": "127.0.0.1:25565",
+    "version": "Paper 26.2-134",
+    "ops_at_finish": [],
+    "agent_admin_commands": [],
+    "new_item_grants": false,
+    "events": {
+      "block_place": 15,
+      "block_break": 35
+    },
+    "uncancelled_copper_breaks": 4
+  },
+  "validation": {
+    "python_tests": 40,
+    "passed": true,
+    "java_changed": false
+  },
+  "limitations": [
+    "Expanded Y32 route stopped after water displaced player and the player fell to Y23; preserve failure, do not count it as completed. Height protection was subsequently added.",
+    "Four copper ore blocks yielded net 17 raw copper in cave-route; six queried candidates were not confirmed/handled, so no full-vein completion claim.",
+    "Only same-height mined foot-level cavities are used to approach a vein; temporary ore detour radius is 8 blocks and one work unit is capped at 128 mined ores.",
+    "Existing test server retains peaceful difficulty, disabled punishments/kick guard and disabled anti-xray; this is not production anticheat validation.",
+    "No commands, teleports, fresh item grants or ore fixtures were used in these fishbone tests.",
+    "Block search uses existing region.query with strictly constructed 3x4x3 or 3x3x3 boxes. Air found inside a shell cannot become another query origin. Candidate must have exposed face and first-hit confirmation before mining.",
+    "All reports have inputs_released=true; multiplayer menu does not pause the server."
+  ]
+}
