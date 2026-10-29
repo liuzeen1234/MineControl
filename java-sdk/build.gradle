@@ -1,0 +1,38 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+group = 'dev.minecontrol'
+version = rootProject.version
+base { archivesName = 'minecontrol-sdk' }
+repositories { mavenCentral() }
+dependencies { api 'com.google.code.gson:gson:2.10' }
+java {
+    toolchain { languageVersion = JavaLanguageVersion.of(17) }
+    withSourcesJar()
+}
+tasks.withType(JavaCompile).configureEach { options.release = 17 }
+tasks.register('sdkTest', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'dev.minecontrol.sdk.SdkTest'
+}
+tasks.named('test') { enabled = false }
+check.dependsOn sdkTest
+tasks.register('smoke', JavaExec) {
+    dependsOn classes
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'dev.minecontrol.sdk.Smoke'
+    if (project.hasProperty('controlPort')) args project.property('controlPort')
+}
+tasks.register('liveInputCheck', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'dev.minecontrol.sdk.LiveInputCheck'
+}
+publishing {
+    publications {
+        sdk(MavenPublication) { from components.java }
+    }
+}

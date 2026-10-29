@@ -10,3 +10,4 @@ pluginManagement {
 }
 
 rootProject.name = 'minecontrol'
+include 'java-sdk'

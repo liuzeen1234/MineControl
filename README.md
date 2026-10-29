@@ -102,6 +102,19 @@ wait screen 同样使用该版本的屏幕类名；CLI 命令与协议保持一�
 已实测 GUI 点击、失焦键鼠输入、高 DPI 坐标、组合键、重置、定时释放、
 EditBox 中文输入以及布尔 CycleButton 的幂等设置。未完成进入世界后的移动实测。
 
+## Java 编程接口
+
+现在可以使用独立运行的 Java 17+ 程序，通过 SDK 方法控制角色，直接使用 Java 的变量、循环、函数和第三方库。接入、示例和方法列表见 [Java SDK 文档](java-sdk/README.md)。Mod 继续负责在客户端线程执行操作；现有 CLI 和 JSON 宏保持兼容。
+
+```java
+try (var mc = dev.minecontrol.sdk.MineControl.connect()) {
+    mc.key().holdAndWait("w", 20);
+    System.out.println(mc.position());
+}
+```
+
+请先进入世界并选择可安全移动的位置。构建 SDK：`./gradlew :java-sdk:build`；只读连接检查：`./gradlew :java-sdk:smoke`。
+
 ## 宏脚本
 
 宏在 Mod 内随客户端 tick 执行，CLI 返回后继续运行。当前每次只运行一个宏。
