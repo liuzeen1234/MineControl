@@ -13,6 +13,31 @@ java {
     withSourcesJar()
 }
 tasks.withType(JavaCompile).configureEach { options.release = 17 }
+sourceSets {
+    examples {
+        java.srcDir 'examples'
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+}
+configurations.examplesImplementation.extendsFrom configurations.implementation, configurations.api
+tasks.named('check') { dependsOn tasks.named('examplesClasses') }
+tasks.register('entityClick', JavaExec) {
+    dependsOn examplesClasses
+    classpath = sourceSets.examples.runtimeClasspath
+    mainClass = 'EntityClick'
+    if (project.hasProperty('controlPort')) args project.property('controlPort')
+}
+tasks.register('macroProgramJar', Jar) {
+    dependsOn examplesClasses
+    archiveFileName = 'entity-click-program.jar'
+    manifest { attributes 'Main-Class': 'EntityClick' }
+    from(sourceSets.examples.output) { include 'EntityClick.class' }
+    from sourceSets.main.output
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    exclude 'META-INF/*.SF', 'META-INF/*.RSA', 'META-INF/*.DSA'
+}
 tasks.register('sdkTest', JavaExec) {
     dependsOn testClasses
     classpath = sourceSets.test.runtimeClasspath

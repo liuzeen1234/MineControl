@@ -66,6 +66,10 @@ dependencies {
 def metadataVersion = "${project.mod_version}+mc${target.minecraft}"
 
 processResources {
+    dependsOn ':java-sdk:macroProgramJar'
+    from(project(':java-sdk').layout.buildDirectory.file('libs/entity-click-program.jar')) {
+        into 'minecontrol'
+    }
     // version 与 minecraft 依赖范围按目标版本参数化。
     def props = [version: metadataVersion, minecraft_dependency: target.dependency, loader_dependency: ">=${target.loader}", java_dependency: ">=${target.java}", mixin_java: "JAVA_${target.java}"]
     inputs.properties(props)
