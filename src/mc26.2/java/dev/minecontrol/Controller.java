@@ -36,8 +36,11 @@ public final class Controller {
         return future;
     }
     public boolean isHeld(long window, int key) { return client.getWindow().handle() == window && keys.containsKey(key); }
+    public boolean macroRunning() { return macro.running(); }
+    public void stopMacros() { macro.stop(); reset(); }
     public void tick() {
         tick++;
+        MineControlClient.updateInputCapture();
         if (previousWorld != null && previousWorld != client.level) { macro.stop(); reset(); }
         previousWorld = client.level;
         for (int key : new ArrayList<>(keys.keySet())) if (tick >= keys.get(key)) keyState(key, false, 0);
@@ -87,7 +90,8 @@ public final class Controller {
                 }
                 case "macro.run" -> {
                     if (!request.has("script") || !request.get("script").isJsonArray()) throw fail("INVALID_ARGUMENT", "script must be an array");
-                    macro.start(request.getAsJsonArray("script")); result = macro.status();
+                    macro.start(request.getAsJsonArray("script"));
+                    MineControlClient.updateInputCapture(); result = macro.status();
                 }
                 case "macro.status" -> result = macro.status();
                 case "macro.stop" -> { macro.stop(); result = macro.status(); }
@@ -152,11 +156,13 @@ public final class Controller {
     private boolean held(int a, int b) { return InputConstants.isKeyDown(client.getWindow(), a) || InputConstants.isKeyDown(client.getWindow(), b); }
     private void keyState(int key, boolean down, int ticks) {
         if (down) keys.put(key, tick + ticks); else if (keys.remove(key) == null) return;
-        ((KeyboardInvoker) client.keyboardHandler).minecontrol$key(client.getWindow().handle(), down ? GLFW.GLFW_PRESS : GLFW.GLFW_RELEASE, new net.minecraft.client.input.KeyEvent(key, 0, mods()));
+        SimulatedInput.run(() -> ((KeyboardInvoker) client.keyboardHandler).minecontrol$key(client.getWindow().handle(),
+                down ? GLFW.GLFW_PRESS : GLFW.GLFW_RELEASE, new net.minecraft.client.input.KeyEvent(key, 0, mods())));
     }
     private void buttonState(int button, boolean down, int ticks) {
         if (down) buttons.put(button, tick + ticks); else if (buttons.remove(button) == null) return;
-        ((MouseInvoker) client.mouseHandler).minecontrol$button(client.getWindow().handle(), new net.minecraft.client.input.MouseButtonInfo(button, mods()), down ? GLFW.GLFW_PRESS : GLFW.GLFW_RELEASE);
+        SimulatedInput.run(() -> ((MouseInvoker) client.mouseHandler).minecontrol$button(client.getWindow().handle(),
+                new net.minecraft.client.input.MouseButtonInfo(button, mods()), down ? GLFW.GLFW_PRESS : GLFW.GLFW_RELEASE));
     }
     private void reset() {
         for (int key : new ArrayList<>(keys.keySet())) keyState(key, false, 0);
@@ -174,7 +180,8 @@ public final class Controller {
         if (client.gui.screen() == null) throw fail("NO_SCREEN", "GUI coordinates require an open screen");
         var window = client.getWindow();
         if (x < 0 || y < 0 || x >= window.getGuiScaledWidth() || y >= window.getGuiScaledHeight()) throw fail("INVALID_ARGUMENT", "Coordinates outside GUI");
-        ((MouseInvoker) client.mouseHandler).minecontrol$cursor(window.handle(), x * window.getScreenWidth() / window.getGuiScaledWidth(), y * window.getScreenHeight() / window.getGuiScaledHeight());
+        SimulatedInput.run(() -> ((MouseInvoker) client.mouseHandler).minecontrol$cursor(window.handle(),
+                x * window.getScreenWidth() / window.getGuiScaledWidth(), y * window.getScreenHeight() / window.getGuiScaledHeight()));
     }
     private List<AbstractWidget> widgets() {
         if (client.gui.screen() == null) throw fail("NO_SCREEN", "No screen open");

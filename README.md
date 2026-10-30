@@ -80,6 +80,8 @@ python3 tests/live_world.py
 
 构建产物带 Minecraft 版本，三个版本可同时保存在 build/libs。开发客户端数据默认按版本隔离：26.2 使用 `run-26.2`，旧版使用 `run-1.20.4` 或 `run-1.20.1`；原 `run` 目录保留。可以用 `-PrunDir=目录` 指定其他测试目录。实际验证及限制见 [测试记录](docs/TESTING.md)，协议见 [协议文档](docs/PROTOCOL.md)。
 
+26.2 原生输入隔离回归：`./gradlew inputCaptureTestJar` 生成 `build/test-mods/minecontrol-input-capture-test.jar`。仅将此测试探针放入隔离客户端的 mods，进入测试世界前创建该实例的 `config/input-capture-test.trigger` 文件。进入世界后自动验证原生键鼠/文字拦截、模拟输入通行、F9 停止、改键及恢复输入，结果写入 `config/input-capture-test-report.json`。探针不包含在正式 Mod 中。
+
 ## MC 26.2 适配
 
 参考 debug_menu 的 `-Pmc` 多版本构建方式，各目标分别生成 jar。
@@ -105,6 +107,8 @@ EditBox 中文输入以及布尔 CycleButton 的幂等设置。未完成进入�
 ## Java 编程接口
 
 Minecraft 26.2 内按 **F8**，或点击标题/暂停菜单左上角的 **MineControl 宏**，打开文件管理式宏列表。可选择、启动、停止 Java 宏，添加/删除 `.java`、可执行 `.jar` 文件，或打开宏文件夹。添加支持粘贴完整路径和拖入文件，同名自动改名；删除移入 `.trash` 回收站。文件位于当前游戏实例的 `config/minecontrol-programs/`，默认提供实体延迟点击宏；可保存多个文件，一次运行一个。启动后自动返回游戏，退出世界或游戏时会停止。运行库随 Mod 安装，源码可直接运行，无需另外打开终端。旧 JSON 宏仍通过 CLI 管理。
+
+在 26.2 中，界面启动的 Java 宏或 JSON 宏运行时，左上角显示当前宏和停止键，默认 **F9**，可在“控制 → 按键绑定 → 其他”修改。运行期间屏蔽手动移动、点击、滚轮、文字输入及其他游戏快捷键（包括 F8），保留停止键；停止或完成后恢复手动操作。宏通过 MineControl 接口注入的键鼠和 UI 操作继续生效。停止键被设为未绑定时仍保留 F9 作为备用键。独立终端自行启动、未由 Mod 管理的 Java 程序不纳入此运行状态检测。
 
 现在可以使用独立运行的 Java 17+ 程序，通过 SDK 方法控制角色，直接使用 Java 的变量、循环、函数和第三方库。接入、示例和方法列表见 [Java SDK 文档](java-sdk/README.md)。Mod 继续负责在客户端线程执行操作；现有 CLI 和 JSON 宏保持兼容。
 

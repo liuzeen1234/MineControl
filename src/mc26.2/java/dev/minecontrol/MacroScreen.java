@@ -122,7 +122,8 @@ public final class MacroScreen extends Screen {
         var logs = manager() == null ? List.<String>of() : manager().logs();
         String latest = !message.isEmpty() ? message : logs.isEmpty() ? "可添加多个文件；同一时间运行一个宏" : logs.get(logs.size() - 1);
         text(graphics, latest, 12, height - 83, width - 24, 0xFFCBD5E1);
-        text(graphics, minecraft.level == null ? "请先进入世界再启动宏" : "所选：" + (selected == null ? "无" : selected),
+        text(graphics, minecraft.level == null ? "请先进入世界再启动宏"
+                        : "停止键：" + MineControlClient.stopKeyLabel() + "  |  运行期间屏蔽手动键鼠",
                 12, height - 67, width - 24, 0xFF94A3B8);
     }
     private final class FileList extends ObjectSelectionList<Row> {

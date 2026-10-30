@@ -7,6 +7,15 @@ public final class ProtocolTest {
         MacroTest.run();
         RegionQueryTest.run();
         MacroFilesTest.run();
+        require(!SimulatedInput.active(), "normal input origin");
+        try {
+            SimulatedInput.run(() -> {
+                require(SimulatedInput.active(), "simulated input origin");
+                SimulatedInput.run(() -> require(SimulatedInput.active(), "nested input origin"));
+                throw new IllegalArgumentException("expected");
+            });
+        } catch (IllegalArgumentException expected) {}
+        require(!SimulatedInput.active(), "input origin restored after exception");
         var input = new ByteArrayInputStream("{\"text\":\"测试\"}\r\n{}\n".getBytes(StandardCharsets.UTF_8));
         require(LocalServer.readLine(input, 100).equals("{\"text\":\"测试\"}\r"), "UTF-8 / CRLF");
         require(LocalServer.readLine(input, 100).equals("{}"), "multiple lines");

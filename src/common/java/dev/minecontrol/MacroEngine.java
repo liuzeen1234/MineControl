@@ -16,6 +16,7 @@ public final class MacroEngine {
     private CompletableFuture<JsonObject> pending;
     private final Runnable release;
     public MacroEngine(Runnable release) { this.release = release; }
+    public boolean running() { return state.equals("running"); }
     public JsonObject status() {
         var r = new JsonObject(); r.addProperty("state", state); r.addProperty("instruction", pc);
         r.addProperty("steps", steps); if (error != null) r.addProperty("error", error); return r;

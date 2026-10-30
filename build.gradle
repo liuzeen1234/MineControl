@@ -71,7 +71,8 @@ processResources {
         into 'minecontrol'
     }
     // version 与 minecraft 依赖范围按目标版本参数化。
-    def props = [version: metadataVersion, minecraft_dependency: target.dependency, loader_dependency: ">=${target.loader}", java_dependency: ">=${target.java}", mixin_java: "JAVA_${target.java}"]
+    def props = [version: metadataVersion, minecraft_dependency: target.dependency, loader_dependency: ">=${target.loader}", java_dependency: ">=${target.java}", mixin_java: "JAVA_${target.java}",
+        macro_input_mixins: modern ? ', "MacroKeyboardMixin", "MacroMouseMixin", "MacroOverlayMixin"' : '']
     inputs.properties(props)
 
     filesMatching(["fabric.mod.json", "minecontrol.mixins.json"]) {
@@ -122,3 +123,20 @@ if (!modern) tasks.named('remapSourcesJar') { destinationDirectory = file('build
 
 // Regression checks run via protocolTest, a standalone Java main, not JUnit.
 tasks.named("test") { failOnNoDiscoveredTests = false }
+
+// Opt-in in-client regression probe; never included in the installable Mod.
+if (modern) {
+    sourceSets {
+        inputCaptureTest {
+            java.srcDir 'src/mc26.2Test/java'
+            compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath
+        }
+    }
+    tasks.register('inputCaptureTestJar', Jar) {
+        dependsOn inputCaptureTestClasses
+        archiveFileName = 'minecontrol-input-capture-test.jar'
+        destinationDirectory = file('build/test-mods')
+        from sourceSets.inputCaptureTest.output
+        from 'src/mc26.2Test/resources'
+    }
+}

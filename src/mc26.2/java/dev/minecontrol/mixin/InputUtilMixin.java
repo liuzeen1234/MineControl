@@ -9,6 +9,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class InputUtilMixin {
     @Inject(method = "isKeyDown", at = @At("HEAD"), cancellable = true)
     private static void minecontrol$held(com.mojang.blaze3d.platform.Window window, int key, CallbackInfoReturnable<Boolean> cir) {
-        if (MineControlClient.isHeld(window.handle(), key)) cir.setReturnValue(true);
+        if (MineControlClient.capturePhysicalInput(window.handle()))
+            cir.setReturnValue(MineControlClient.isHeld(window.handle(), key));
+        else if (MineControlClient.isHeld(window.handle(), key)) cir.setReturnValue(true);
     }
 }

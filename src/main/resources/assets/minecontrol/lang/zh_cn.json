@@ -1,3 +1,4 @@
 {
-  "key.minecontrol.macros": "打开 MineControl 宏控制台"
+  "key.minecontrol.macros": "打开 MineControl 宏控制台",
+  "key.minecontrol.stop_macro": "停止运行中的宏"
 }
