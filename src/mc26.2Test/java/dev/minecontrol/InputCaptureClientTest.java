@@ -73,6 +73,13 @@ public final class InputCaptureClientTest implements ClientModInitializer {
             }
             case 2 -> {
                 check(MineControlClient.inputCaptured(), "Java macro captures input");
+                check(GLFW.glfwGetInputMode(client.getWindow().handle(), GLFW.GLFW_CURSOR) == GLFW.GLFW_CURSOR_NORMAL,
+                        "OS cursor is visible and released while Java macro runs");
+                check(client.mouseHandler.isMouseGrabbed(), "logical grab retained for macro actions");
+                GLFW.glfwSetInputMode(client.getWindow().handle(), GLFW.GLFW_CURSOR, GLFW.GLFW_CURSOR_DISABLED);
+                client.mouseHandler.grabMouse();
+                check(GLFW.glfwGetInputMode(client.getWindow().handle(), GLFW.GLFW_CURSOR) == GLFW.GLFW_CURSOR_NORMAL,
+                        "vanilla regrab cannot hide cursor during macro");
                 check(!client.options.keyUp.isDown() && !client.mouseHandler.isLeftPressed(), "pre-held physical inputs cleared");
                 originalYaw = client.player.getYRot();
                 rawKey(client, GLFW.GLFW_KEY_W, GLFW.GLFW_PRESS);
@@ -127,11 +134,35 @@ public final class InputCaptureClientTest implements ClientModInitializer {
             }
             case 6 -> {
                 check(MineControlClient.inputCaptured() && controller.macroRunning(), "JSON macro captures input");
+                check(GLFW.glfwGetInputMode(client.getWindow().handle(), GLFW.GLFW_CURSOR) == GLFW.GLFW_CURSOR_NORMAL,
+                        "JSON macro releases OS cursor");
                 check(MineControlClient.stopKeyLabel().contains("F10"), "HUD follows remapped stop key");
                 rawKey(client, GLFW.GLFW_KEY_F9, GLFW.GLFW_PRESS);
                 check(controller.macroRunning(), "old stop key no longer triggers after remapping");
+                MineControlClient.pollStopShortcut(key -> key == GLFW.GLFW_KEY_F10, button -> false);
+                check(!controller.macroRunning(), "raw stop polling works independently of keyboard callbacks");
+                pending = command("macro.run", "script", JsonParser.parseString("[{\"wait\":10000}]"));
+                stage = 7;
+            }
+            case 7 -> {
                 rawKey(client, GLFW.GLFW_KEY_F10, GLFW.GLFW_PRESS);
                 check(!controller.macroRunning(), "remapped physical stop key stops JSON macro");
+                stopKey.setKey(InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_UNKNOWN)); KeyMapping.resetMapping();
+                pending = command("macro.run", "script", JsonParser.parseString("[{\"wait\":10000}]"));
+                stage = 8;
+            }
+            case 8 -> {
+                check(MineControlClient.stopKeyLabel().equals("F9"), "unbound stop key advertises F9 fallback");
+                MineControlClient.pollStopShortcut(key -> key == GLFW.GLFW_KEY_F9, button -> false);
+                check(!controller.macroRunning(), "unbound stop key still polls physical F9");
+                stage = 9;
+            }
+            case 9 -> {
+                check(!MineControlClient.inputCaptured(), "capture fully released after stop");
+                int expected = GLFW.glfwGetWindowAttrib(client.getWindow().handle(), GLFW.GLFW_FOCUSED) == GLFW.GLFW_TRUE
+                        ? GLFW.GLFW_CURSOR_DISABLED : GLFW.GLFW_CURSOR_NORMAL;
+                check(GLFW.glfwGetInputMode(client.getWindow().handle(), GLFW.GLFW_CURSOR) == expected,
+                        "cursor capture restored only when game has focus");
                 restoreStopKey();
                 writeReport("passed", "");
                 MineControlClient.LOG.info("Input capture in-client checks passed: {}", passed);

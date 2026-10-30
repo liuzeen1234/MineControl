@@ -19,6 +19,8 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.input.MouseButtonEvent;
+import com.mojang.blaze3d.platform.InputConstants;
+import java.util.function.IntPredicate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 public final class MineControlClient implements ClientModInitializer {
@@ -31,6 +33,7 @@ public final class MineControlClient implements ClientModInitializer {
     private static Object previousLevel;
     private static KeyMapping stopMacro;
     private static boolean inputWasCaptured;
+    private static boolean restoreCursorWhenFocused;
     public static JavaMacroManager javaMacros() { return javaMacros; }
     public static boolean inputCaptured() {
         return (javaMacros != null && javaMacros.active()) || (controller != null && controller.macroRunning());
@@ -40,12 +43,48 @@ public final class MineControlClient implements ClientModInitializer {
     }
     public static void updateInputCapture() {
         boolean captured = inputCaptured();
+        var client = Minecraft.getInstance();
         if (captured != inputWasCaptured) {
-            var client = Minecraft.getInstance();
+            inputWasCaptured = captured;
             KeyMapping.releaseAll();
             ((MouseCaptureAccess) client.mouseHandler).minecontrol$clearInputState();
-            inputWasCaptured = captured;
+            if (captured) restoreCursorWhenFocused = false;
+            else restoreCursorWhenFocused = client.level != null && client.gui.screen() == null
+                    && client.mouseHandler.isMouseGrabbed();
         }
+        if (captured) {
+            releaseSystemCursor();
+        } else if (restoreCursorWhenFocused) {
+            if (client.level == null || client.gui.screen() != null || !client.mouseHandler.isMouseGrabbed()) {
+                restoreCursorWhenFocused = false;
+            } else if (GLFW.glfwGetWindowAttrib(client.getWindow().handle(), GLFW.GLFW_FOCUSED) == GLFW.GLFW_TRUE) {
+                client.mouseHandler.setIgnoreFirstMove();
+                GLFW.glfwSetInputMode(client.getWindow().handle(), GLFW.GLFW_CURSOR, GLFW.GLFW_CURSOR_DISABLED);
+                restoreCursorWhenFocused = false;
+            }
+        }
+    }
+    /** Release the OS pointer without clearing Minecraft's logical grab required by macro clicks. */
+    public static void releaseSystemCursor() {
+        if (!inputCaptured()) return;
+        long window = Minecraft.getInstance().getWindow().handle();
+        if (GLFW.glfwGetInputMode(window, GLFW.GLFW_CURSOR) != GLFW.GLFW_CURSOR_NORMAL)
+            GLFW.glfwSetInputMode(window, GLFW.GLFW_CURSOR, GLFW.GLFW_CURSOR_NORMAL);
+    }
+    static void pollStopShortcut(IntPredicate rawKeyboardDown, IntPredicate rawMouseDown) {
+        if (!inputCaptured() || stopMacro == null) return;
+        var key = stopMacro.isUnbound() ? InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_F9)
+                : KeyMappingHelper.getBoundKeyOf(stopMacro);
+        boolean pressed = key.getType() == InputConstants.Type.KEYSYM ? rawKeyboardDown.test(key.getValue())
+                : key.getType() == InputConstants.Type.MOUSE && rawMouseDown.test(key.getValue());
+        if (pressed) stopRunningMacros();
+    }
+    private static void pollStopShortcut() {
+        long window = Minecraft.getInstance().getWindow().handle();
+        if (GLFW.glfwGetWindowAttrib(window, GLFW.GLFW_FOCUSED) != GLFW.GLFW_TRUE) return;
+        // Do not use InputConstants.isKeyDown: it intentionally hides physical keys from macros.
+        pollStopShortcut(key -> GLFW.glfwGetKey(window, key) == GLFW.GLFW_PRESS,
+                button -> GLFW.glfwGetMouseButton(window, button) == GLFW.GLFW_PRESS);
     }
     public static void handleStopKey(KeyEvent event) {
         if (stopMacro != null && (stopMacro.matches(event)
@@ -67,7 +106,7 @@ public final class MineControlClient implements ClientModInitializer {
         String name = javaMacros != null && javaMacros.active() ? javaMacros.activeFile() : "JSON 宏";
         int maxWidth = Math.max(80, client.getWindow().getGuiScaledWidth() - 24);
         String running = client.font.plainSubstrByWidth("运行中：" + name, maxWidth);
-        String hint = client.font.plainSubstrByWidth("停止：" + stopKeyLabel() + "  |  手动键鼠已屏蔽", maxWidth);
+        String hint = client.font.plainSubstrByWidth("停止：" + stopKeyLabel() + "  |  光标已释放，手动输入已屏蔽", maxWidth);
         int panelWidth = Math.max(client.font.width(running), client.font.width(hint)) + 12;
         graphics.fill(5, 5, 5 + panelWidth, 36, 0xDD142230);
         graphics.fill(5, 5, 7, 36, 0xFF73DBA1);
@@ -118,8 +157,9 @@ public final class MineControlClient implements ClientModInitializer {
         ClientTickEvents.START_CLIENT_TICK.register(client -> {
             if (previousLevel != null && previousLevel != client.level && javaMacros != null) javaMacros.stop();
             previousLevel = client.level;
+            pollStopShortcut();
             if (controller != null) controller.tick();
-            while (stopMacro.consumeClick()) { /* Native stop presses are handled before input is suppressed. */ }
+            while (stopMacro.consumeClick()) { /* Native callbacks and raw polling handle physical stop presses. */ }
             while (openMacros.consumeClick()) {
                 if (!(client.gui.screen() instanceof MacroScreen))
                     client.gui.setScreen(new MacroScreen(client.gui.screen()));
@@ -133,6 +173,7 @@ public final class MineControlClient implements ClientModInitializer {
             background = false;
             controller = null;
             inputWasCaptured = false;
+            restoreCursorWhenFocused = false;
         });
     }
 }

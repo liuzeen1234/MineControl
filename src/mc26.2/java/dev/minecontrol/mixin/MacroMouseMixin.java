@@ -34,6 +34,10 @@ public abstract class MacroMouseMixin implements MouseCaptureAccess {
         smoothTurnX.reset(); smoothTurnY.reset();
         ignoreFirstMove = true;
     }
+    @Inject(method = "grabMouse", at = @At("RETURN"))
+    private void minecontrol$keepSystemCursorReleased(CallbackInfo ci) {
+        MineControlClient.releaseSystemCursor();
+    }
     @Inject(method = "onButton", at = @At("HEAD"), cancellable = true)
     private void minecontrol$captureButton(long window, MouseButtonInfo button, int action, CallbackInfo ci) {
         if (MineControlClient.capturePhysicalInput(window) && !SimulatedInput.active()) {
