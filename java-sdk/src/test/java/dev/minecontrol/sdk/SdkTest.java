@@ -12,6 +12,7 @@ import static dev.minecontrol.sdk.Snapshots.*;
 /** Wire-level regression tests, with no Minecraft or testing framework dependency. */
 public final class SdkTest {
     public static void main(String[] args) throws Exception {
+        EntityClickTest.run();
         try (var server = new FakeServer()) {
             try (var mc = MineControl.connect(server.port())) {
                 check(mc.status().worldLoaded(), "status decoding");

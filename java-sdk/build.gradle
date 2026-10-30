@@ -39,8 +39,8 @@ tasks.register('macroProgramJar', Jar) {
     exclude 'META-INF/*.SF', 'META-INF/*.RSA', 'META-INF/*.DSA'
 }
 tasks.register('sdkTest', JavaExec) {
-    dependsOn testClasses
-    classpath = sourceSets.test.runtimeClasspath
+    dependsOn testClasses, examplesClasses
+    classpath = sourceSets.test.runtimeClasspath + sourceSets.examples.output
     mainClass = 'dev.minecontrol.sdk.SdkTest'
 }
 tasks.named('test') { enabled = false }
