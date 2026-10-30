@@ -8,18 +8,71 @@ import java.util.concurrent.*;
 
 /** Owns the external Java program. No Minecraft API or blocking work on the client thread. */
 public final class JavaMacroManager implements AutoCloseable {
-    private final Path directory;
+    private final MacroFiles files;
     private final int port;
     private final Runnable release;
     private final Deque<String> logs = new ArrayDeque<>();
     private String state = "未运行";
     private boolean active, stopping, closed;
     private Process process;
+    private String activeFile;
+    private final Map<String, String> states = new HashMap<>();
+    private volatile List<MacroFiles.Entry> entries = List.of();
+    private volatile boolean loading = true;
+    private final ExecutorService fileWorker = Executors.newSingleThreadExecutor(task -> {
+        var thread = new Thread(task, "MineControl macro files");
+        thread.setDaemon(true);
+        return thread;
+    });
 
     public JavaMacroManager(Path directory, int port, Runnable release) {
-        this.directory = directory;
+        this.files = new MacroFiles(directory);
         this.port = port;
         this.release = release;
+        fileWorker.execute(() -> {
+            try { files.initialize(); entries = files.list(); }
+            catch (IOException e) { log("无法读取宏目录：" + e.getMessage()); }
+            finally { loading = false; }
+        });
+    }
+    public Path directory() { return files.directory(); }
+    public List<MacroFiles.Entry> entries() { return entries; }
+    public boolean loading() { return loading; }
+    public synchronized String activeFile() { return activeFile; }
+    public synchronized String fileState(String name) { return states.getOrDefault(name, "就绪"); }
+    public CompletableFuture<Void> refresh() {
+        return fileOperation(() -> { entries = files.list(); });
+    }
+    public CompletableFuture<Void> addFiles(List<Path> paths) {
+        return fileOperation(() -> {
+            IOException failed = null;
+            for (Path path : paths) {
+                try { log("已添加：" + files.add(path).name()); }
+                catch (IOException e) { failed = e; log("添加失败：" + path.getFileName() + "：" + e.getMessage()); }
+            }
+            entries = files.list();
+            if (failed != null) throw failed;
+        });
+    }
+    public CompletableFuture<Void> deleteFile(String name) {
+        return fileOperation(() -> {
+            synchronized (this) {
+                if (active && name.equals(activeFile)) throw new IOException("请先停止此宏，再删除文件");
+                Path destination = files.trash(name);
+                states.remove(name);
+                log("已移入回收站：" + destination.getFileName());
+            }
+            entries = files.list();
+        });
+    }
+    @FunctionalInterface private interface FileOperation { void run() throws IOException; }
+    private CompletableFuture<Void> fileOperation(FileOperation operation) {
+        return CompletableFuture.runAsync(() -> {
+            loading = true;
+            try { operation.run(); }
+            catch (IOException e) { log(e.getMessage()); throw new CompletionException(e); }
+            finally { loading = false; }
+        }, fileWorker);
     }
     public synchronized boolean active() { return active; }
     public synchronized String state() { return state; }
@@ -28,31 +81,34 @@ public final class JavaMacroManager implements AutoCloseable {
         logs.addLast(message.length() > 240 ? message.substring(0, 240) : message);
         while (logs.size() > 40) logs.removeFirst();
     }
-    public synchronized void start() {
-        if (active || closed) return;
+    public synchronized boolean start(String name) {
+        if (active || closed || loading || entries.stream().noneMatch(entry -> entry.name().equals(name))) return false;
         active = true;
         stopping = false;
+        activeFile = name;
         state = "正在启动";
-        log("启动实体延迟点击：10–30 tick 后直接左键一次。");
+        states.put(name, state);
+        log("启动：" + name);
         var worker = new Thread(this::run, "MineControl Java macro");
         worker.setDaemon(true);
         worker.start();
+        return true;
     }
     private void run() {
         try {
-            Files.createDirectories(directory);
-            Path jar = directory.resolve("entity-click-program.jar");
-            try (var input = JavaMacroManager.class.getResourceAsStream("/minecontrol/entity-click-program.jar")) {
-                if (input == null) throw new IOException("Mod 缺少 Java 宏程序，请重新构建安装");
-                Files.copy(input, jar, StandardCopyOption.REPLACE_EXISTING);
-            }
             synchronized (this) {
                 if (stopping || closed) return;
+                Path program = files.resolve(activeFile);
+                MacroFiles.validate(program);
                 String executable = System.getProperty("os.name").startsWith("Windows") ? "java.exe" : "java";
                 String java = Path.of(System.getProperty("java.home"), "bin", executable).toString();
-                process = new ProcessBuilder(java, "-jar", jar.toAbsolutePath().toString(), Integer.toString(port))
-                        .redirectErrorStream(true).start();
+                List<String> command = MacroFiles.source(program)
+                        ? List.of(java, "-cp", files.runtime().toString(), program.toString(), Integer.toString(port))
+                        : List.of(java, "-cp", program + File.pathSeparator + files.runtime(),
+                                MacroFiles.mainClass(program), Integer.toString(port));
+                process = new ProcessBuilder(command).directory(files.directory().toFile()).redirectErrorStream(true).start();
                 state = "运行中";
+                states.put(activeFile, state);
             }
             try (var reader = new BufferedReader(new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8))) {
                 String line;
@@ -84,6 +140,7 @@ public final class JavaMacroManager implements AutoCloseable {
                 if (stopping) state = "已停止";
                 else if (!state.equals("运行失败")) state = "已结束";
                 log(state);
+                states.put(activeFile, state);
                 process = null;
                 active = false;
             }
@@ -93,6 +150,7 @@ public final class JavaMacroManager implements AutoCloseable {
         if (!active || stopping) return;
         stopping = true;
         state = "正在停止";
+        states.put(activeFile, state);
         log("停止程序并释放输入。");
         if (process != null) {
             Process current = process;
@@ -103,5 +161,5 @@ public final class JavaMacroManager implements AutoCloseable {
         }
         release.run();
     }
-    @Override public synchronized void close() { closed = true; stop(); }
+    @Override public synchronized void close() { closed = true; stop(); fileWorker.shutdown(); }
 }
