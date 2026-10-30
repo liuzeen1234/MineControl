@@ -104,7 +104,7 @@ public final class MineControlClient implements ClientModInitializer {
                     request.addProperty("id", "java-macro-cleanup");
                     request.addProperty("command", "input.reset");
                     if (controller != null) controller.submit(request);
-                });
+                }, line -> LOG.info("[Java 宏] {}", line));
                 oldPause = client.options.pauseOnLostFocus;
                 background = config.backgroundControl;
                 if (background) client.options.pauseOnLostFocus = false;

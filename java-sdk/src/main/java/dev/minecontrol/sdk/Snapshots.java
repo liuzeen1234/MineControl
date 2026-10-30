@@ -1,7 +1,11 @@
 package dev.minecontrol.sdk;
 
-import com.google.gson.JsonObject;
+import com.google.gson.*;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -29,10 +33,12 @@ public final class Snapshots {
     public record Item(String id, int count, int damage,
             @SerializedName("max_damage") int maxDamage,
             @SerializedName("remaining_durability") int remainingDurability,
-            String format, JsonObject nbt, JsonObject components) {}
-    public record Target(String kind, String id, BlockPos pos, JsonObject state,
+            String format, @JsonAdapter(NullableObjectAdapter.class) JsonObject nbt,
+            @JsonAdapter(NullableObjectAdapter.class) JsonObject components) {}
+    public record Target(String kind, String id, BlockPos pos,
+            @JsonAdapter(NullableObjectAdapter.class) JsonObject state,
             String face, double distance, String uuid,
-            @SerializedName("entity_id") Integer entityId, JsonObject nbt,
+            @SerializedName("entity_id") Integer entityId, @JsonAdapter(NullableObjectAdapter.class) JsonObject nbt,
             @SerializedName("serialization_warnings") String serializationWarnings) {}
     public record Observation(long tick, String source, String dimension,
             @SerializedName("world_loaded") boolean worldLoaded, boolean active, Player player,
@@ -48,4 +54,16 @@ public final class Snapshots {
             String blueprint) {}
     public record Widget(int id, String type, String label, boolean enabled, boolean visible,
             int x, int y, int width, int height, Boolean editable, String text, Boolean value) {}
+
+    /** Gson's JsonElement hierarchy adapter rejects JsonNull when the declared type is JsonObject. */
+    public static final class NullableObjectAdapter extends TypeAdapter<JsonObject> {
+        private static final TypeAdapter<JsonElement> TREE = new Gson().getAdapter(JsonElement.class);
+        @Override public JsonObject read(JsonReader input) throws IOException {
+            JsonElement value = TREE.read(input);
+            if (value == null || value.isJsonNull()) return null;
+            if (!value.isJsonObject()) throw new JsonParseException("Expected object or null");
+            return value.getAsJsonObject();
+        }
+        @Override public void write(JsonWriter output, JsonObject value) throws IOException { TREE.write(output, value); }
+    }
 }

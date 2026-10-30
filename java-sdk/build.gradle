@@ -38,6 +38,14 @@ tasks.register('macroProgramJar', Jar) {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     exclude 'META-INF/*.SF', 'META-INF/*.RSA', 'META-INF/*.DSA'
 }
+tasks.register('macroRuntimeJar', Jar) {
+    dependsOn classes
+    archiveFileName = 'macro-runtime.jar'
+    from sourceSets.main.output
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    exclude 'META-INF/*.SF', 'META-INF/*.RSA', 'META-INF/*.DSA'
+}
 tasks.register('sdkTest', JavaExec) {
     dependsOn testClasses, examplesClasses
     classpath = sourceSets.test.runtimeClasspath + sourceSets.examples.output

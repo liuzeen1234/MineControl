@@ -18,6 +18,10 @@ public final class SdkTest {
                 check(mc.status().worldLoaded(), "status decoding");
                 check(mc.observe().mainHand().remainingDurability() == 42, "typed observation");
                 check(mc.observe().target().serializationWarnings().equals("warning"), "target warnings");
+                var observation = mc.observe();
+                check(observation.target().nbt() == null && observation.mainHand().nbt() == null
+                        && observation.mainHand().components() == null, "explicit null NBT and components");
+                check(observation.target().state().get("axis").getAsString().equals("x"), "non-null object retained");
                 check(mc.region(new BlockPos(0, 1, 2), new BlockPos(3, 4, 5)).from().get(1) == 1, "region arrays");
                 mc.ui().type(7, "中文\ntext");
                 check(server.last.get("text").getAsString().equals("中文\ntext"), "UTF-8 and newline framing");
@@ -95,7 +99,7 @@ public final class SdkTest {
                     JsonElement result = JsonParser.parseString("{\"tick\":" + tick + ",\"world_loaded\":true}");
                     switch (command) {
                         case "ping" -> result = JsonParser.parseString("{\"pong\":true,\"protocol\":1}");
-                        case "observe" -> result = JsonParser.parseString("{\"active\":true,\"main_hand\":{\"remaining_durability\":42},\"target\":{\"serialization_warnings\":\"warning\"}}");
+                        case "observe" -> result = JsonParser.parseString("{\"active\":true,\"main_hand\":{\"remaining_durability\":42,\"nbt\":null,\"components\":null},\"off_hand\":null,\"target\":{\"kind\":\"block\",\"id\":\"minecraft:stone\",\"state\":{\"axis\":\"x\"},\"nbt\":null,\"serialization_warnings\":\"warning\"}}");
                         case "region.query" -> result = JsonParser.parseString("{\"from\":[0,1,2],\"to\":[3,4,5]}");
                         case "ui.list" -> result = JsonParser.parseString("[{\"id\":7,\"label\":\"输入\"}]");
                         case "key.hold", "mouse.hold" -> lastHoldTick = tick;

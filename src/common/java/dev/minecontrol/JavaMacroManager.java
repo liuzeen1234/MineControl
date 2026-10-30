@@ -5,17 +5,20 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.util.*;
 import java.util.concurrent.*;
+import java.util.function.Consumer;
 
 /** Owns the external Java program. No Minecraft API or blocking work on the client thread. */
 public final class JavaMacroManager implements AutoCloseable {
     private final MacroFiles files;
     private final int port;
     private final Runnable release;
+    private final Consumer<String> reporter;
     private final Deque<String> logs = new ArrayDeque<>();
     private String state = "未运行";
     private boolean active, stopping, closed;
     private Process process;
     private String activeFile;
+    private String failureDetail = "";
     private final Map<String, String> states = new HashMap<>();
     private volatile List<MacroFiles.Entry> entries = List.of();
     private volatile boolean loading = true;
@@ -26,9 +29,13 @@ public final class JavaMacroManager implements AutoCloseable {
     });
 
     public JavaMacroManager(Path directory, int port, Runnable release) {
+        this(directory, port, release, line -> {});
+    }
+    public JavaMacroManager(Path directory, int port, Runnable release, Consumer<String> reporter) {
         this.files = new MacroFiles(directory);
         this.port = port;
         this.release = release;
+        this.reporter = reporter;
         fileWorker.execute(() -> {
             try { files.initialize(); entries = files.list(); }
             catch (IOException e) { log("无法读取宏目录：" + e.getMessage()); }
@@ -80,12 +87,14 @@ public final class JavaMacroManager implements AutoCloseable {
     private synchronized void log(String message) {
         logs.addLast(message.length() > 240 ? message.substring(0, 240) : message);
         while (logs.size() > 40) logs.removeFirst();
+        reporter.accept(message);
     }
     public synchronized boolean start(String name) {
         if (active || closed || loading || entries.stream().noneMatch(entry -> entry.name().equals(name))) return false;
         active = true;
         stopping = false;
         activeFile = name;
+        failureDetail = "";
         state = "正在启动";
         states.put(name, state);
         log("启动：" + name);
@@ -104,7 +113,7 @@ public final class JavaMacroManager implements AutoCloseable {
                 String java = Path.of(System.getProperty("java.home"), "bin", executable).toString();
                 List<String> command = MacroFiles.source(program)
                         ? List.of(java, "-cp", files.runtime().toString(), program.toString(), Integer.toString(port))
-                        : List.of(java, "-cp", program + File.pathSeparator + files.runtime(),
+                        : List.of(java, "-cp", files.runtime() + File.pathSeparator + program,
                                 MacroFiles.mainClass(program), Integer.toString(port));
                 process = new ProcessBuilder(command).directory(files.directory().toFile()).redirectErrorStream(true).start();
                 state = "运行中";
@@ -112,7 +121,11 @@ public final class JavaMacroManager implements AutoCloseable {
             }
             try (var reader = new BufferedReader(new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8))) {
                 String line;
-                while ((line = reader.readLine()) != null) log(line);
+                while ((line = reader.readLine()) != null) {
+                    log(line);
+                    if (line.contains("Exception") || line.startsWith("Caused by:") || line.contains("error:"))
+                        failureDetail = line;
+                }
             } catch (IOException e) {
                 synchronized (this) { if (!stopping) throw e; }
             }
@@ -120,12 +133,13 @@ public final class JavaMacroManager implements AutoCloseable {
             synchronized (this) {
                 if (!stopping && result != 0) {
                     state = "运行失败";
+                    if (failureDetail.isBlank()) failureDetail = "程序退出码：" + result;
                     log("程序退出码：" + result + "。请检查日志和控制端口。");
                 }
             }
         } catch (Exception e) {
             synchronized (this) {
-                if (!stopping) { state = "运行失败"; log("运行失败：" + e.getMessage()); }
+                if (!stopping) { state = "运行失败"; failureDetail = e.toString(); log("运行失败：" + e.getMessage()); }
             }
         } finally {
             Process remaining;
@@ -139,7 +153,7 @@ public final class JavaMacroManager implements AutoCloseable {
             synchronized (this) {
                 if (stopping) state = "已停止";
                 else if (!state.equals("运行失败")) state = "已结束";
-                log(state);
+                log(state.equals("运行失败") ? state + "：" + failureDetail : state);
                 states.put(activeFile, state);
                 process = null;
                 active = false;

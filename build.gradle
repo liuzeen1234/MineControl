@@ -66,8 +66,11 @@ dependencies {
 def metadataVersion = "${project.mod_version}+mc${target.minecraft}"
 
 processResources {
-    dependsOn ':java-sdk:macroProgramJar'
+    dependsOn ':java-sdk:macroProgramJar', ':java-sdk:macroRuntimeJar'
     from(project(':java-sdk').layout.buildDirectory.file('libs/entity-click-program.jar')) {
+        into 'minecontrol'
+    }
+    from(project(':java-sdk').layout.buildDirectory.file('libs/macro-runtime.jar')) {
         into 'minecontrol'
     }
     // version 与 minecraft 依赖范围按目标版本参数化。

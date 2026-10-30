@@ -16,6 +16,7 @@ public final class EntityClickTest {
             var failure = new java.util.concurrent.atomic.AtomicReference<Throwable>();
             Thread server = new Thread(() -> {
                 long tick = 0;
+                int observations = 0;
                 while (!listener.isClosed()) {
                     try (var socket = listener.accept()) {
                         var reader = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
@@ -27,7 +28,11 @@ public final class EntityClickTest {
                         if (command.equals("ping")) result.addProperty("protocol", 1);
                         if (command.equals("observe")) {
                             result.addProperty("active", true);
-                            result.add("target", JsonParser.parseString("{\"kind\":\"entity\",\"uuid\":\"same-entity\"}"));
+                            observations++;
+                            result.add("target", JsonParser.parseString(observations == 1
+                                    ? "{\"kind\":\"block\",\"id\":\"minecraft:stone\",\"nbt\":null}"
+                                    : observations == 2 ? "null"
+                                    : "{\"kind\":\"entity\",\"uuid\":\"same-entity\",\"state\":null,\"nbt\":null}"));
                         }
                         if (command.equals("mouse.click")) clicks.incrementAndGet();
                         var response = new JsonObject();
@@ -53,6 +58,6 @@ public final class EntityClickTest {
             }
             listener.close(); server.join(1000);
         }
-        System.out.println("EntityClick repeated unchanged-target regression passed");
+        System.out.println("EntityClick null/block/entity transitions and repeated-target regression passed");
     }
 }

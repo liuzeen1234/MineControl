@@ -15,14 +15,19 @@ public final class MacroFiles {
         Files.createDirectories(directory);
         Path runtime = directory.resolve(".runtime");
         Files.createDirectories(runtime);
-        try (var input = MacroFiles.class.getResourceAsStream("/minecontrol/entity-click-program.jar")) {
+        try (var input = MacroFiles.class.getResourceAsStream("/minecontrol/macro-runtime.jar")) {
             if (input == null) throw new IOException("Mod 缺少 Java 宏运行库");
             Files.copy(input, runtime.resolve("sdk.jar"), StandardCopyOption.REPLACE_EXISTING);
         }
         Path marker = directory.resolve(".initialized");
         if (!Files.exists(marker)) {
             Path bundled = directory.resolve("entity-click-program.jar");
-            if (!Files.exists(bundled, LinkOption.NOFOLLOW_LINKS)) Files.copy(runtime.resolve("sdk.jar"), bundled);
+            if (!Files.exists(bundled, LinkOption.NOFOLLOW_LINKS)) {
+                try (var input = MacroFiles.class.getResourceAsStream("/minecontrol/entity-click-program.jar")) {
+                    if (input == null) throw new IOException("Mod 缺少默认宏程序");
+                    Files.copy(input, bundled);
+                }
+            }
             Files.writeString(marker, "Default macro installed. Deleted macros are not recreated.\n");
         }
     }

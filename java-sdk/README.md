@@ -53,11 +53,13 @@ Minecraft 26.2 游戏内界面：按 F8，或点击标题/暂停菜单的“Mine
 宏文件位于当前游戏实例的 `config/minecontrol-programs/`。点击“添加文件”粘贴完整文件路径，或把一个/多个文件拖入游戏窗口；文件复制到宏目录，同名自动改名，原文件保留。支持：
 
 - `.java`：含 `public static void main(String[] args)` 的单文件 Java 程序，游戏 Java 会即时编译运行，SDK 和 Gson 自动加入 classpath，无需额外安装。首个程序参数 `args[0]` 为当前控制端口，使用 `MineControl.connect(Integer.parseInt(args[0]))`。编译错误会记入宏日志。
-- `.jar`：带有 `Main-Class` 的可执行 JAR，自动加入 SDK/Gson 运行库，同样接收端口参数。其他第三方依赖需自行打包或通过 JAR manifest 的 Class-Path 提供。
+- `.jar`：带有 `Main-Class` 的可执行 JAR，同样接收端口参数。Mod 提供的 SDK/Gson 运行库优先于 JAR 内嵌版本，以便修复 SDK 后已有宏也能生效；运行库不包含任何宏主类，不会覆盖用户程序入口。其他第三方依赖需自行打包或通过 JAR manifest 的 Class-Path 提供。
 
 “删除所选”会移到同目录 `.trash/`，可在文件管理器显示隐藏文件后手动恢复；正在运行的文件须先停止再删。删除默认宏后不会自动恢复。点“打开文件夹”可在系统文件管理器中编辑或放入文件，列表每两秒自动扫描，也可手动刷新。运行库放在隐藏的 `.runtime/`，不出现在列表中。
 
 支持管理多个文件，同一时间运行一个，避免角色输入冲突。界面只管理自己启动的 Java 程序，不能停止另一个终端启动的控制器；旧 JSON 宏仍使用原 CLI 管理。每次运行使用独立 Java 进程，源文件修改后停止并重新启动即可生效。宏相当于本机 Java 程序，运行权限与游戏相同。
+
+宏退出失败时，界面会显示捕获到的异常原因，完整进程输出同时记录在当前游戏实例的 `logs/latest.log` 中，带有 `[Java 宏]` 前缀。观察数据中的 `nbt`、`components`、`state` 允许为空；SDK 会将显式 JSON null 转成 Java null，读取这些字段前应判空。
 
 输入屏蔽只针对真人/原生键鼠回调，SDK 的输入、移动和 UI 方法保留通行。程序自行读取系统设备或调用其他 Mod 的接口不属于 MineControl 模拟输入。F9 停止由物理按键事件触发，SDK 中的 `key().tap("f9")` 不会伪装成物理停止键；需要程序主动结束时退出 main/循环并关闭客户端即可。
 
