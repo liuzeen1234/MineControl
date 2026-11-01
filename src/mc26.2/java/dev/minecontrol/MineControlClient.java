@@ -26,6 +26,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 public final class MineControlClient implements ClientModInitializer {
     public static final Logger LOG = LoggerFactory.getLogger("minecontrol");
+    private static Config settings = new Config();
+    private static boolean settingsLoaded;
     private static Controller controller;
     private static LocalServer server;
     private static boolean background;
@@ -37,12 +39,27 @@ public final class MineControlClient implements ClientModInitializer {
     private static boolean restoreCursorWhenFocused;
     public static JavaMacroManager javaMacros() { return javaMacros; }
     public static boolean inputCaptured() {
-        return (javaMacros != null && javaMacros.executing()) || (controller != null && controller.macroRunning());
+        return settings.blockPhysicalInputDuringMacros && ((javaMacros != null && javaMacros.executing())
+                || (controller != null && controller.macroRunning()));
     }
     public static boolean capturePhysicalInput(long window) {
         var client = Minecraft.getInstance();
         return inputCaptured() && window == client.getWindow().handle()
-                && !(client.gui.screen() instanceof MacroScreen) && !(client.gui.screen() instanceof AddMacroScreen);
+                && !(client.gui.screen() instanceof MacroScreen) && !(client.gui.screen() instanceof AddMacroScreen)
+                && !(client.gui.screen() instanceof SettingsScreen);
+    }
+    public static boolean blockPhysicalInputDuringMacros() { return settings.blockPhysicalInputDuringMacros; }
+    public static boolean settingsAvailable() { return settingsLoaded; }
+    public static void setBlockPhysicalInputDuringMacros(boolean value) throws java.io.IOException {
+        boolean previous = settings.blockPhysicalInputDuringMacros;
+        settings.blockPhysicalInputDuringMacros = value;
+        try {
+            settings.save(FabricLoader.getInstance().getConfigDir().resolve("minecontrol.json"));
+        } catch (java.io.IOException e) {
+            settings.blockPhysicalInputDuringMacros = previous;
+            throw e;
+        }
+        updateInputCapture();
     }
     public static void updateInputCapture() {
         boolean captured = inputCaptured();
@@ -145,6 +162,8 @@ public final class MineControlClient implements ClientModInitializer {
         ClientLifecycleEvents.CLIENT_STARTED.register(client -> {
             try {
                 Config config = Config.load(FabricLoader.getInstance().getConfigDir().resolve("minecontrol.json"));
+                settings = config;
+                settingsLoaded = true;
                 if (!config.enabled) return;
                 controller = new Controller(client, config);
                 server = new LocalServer(config, controller);

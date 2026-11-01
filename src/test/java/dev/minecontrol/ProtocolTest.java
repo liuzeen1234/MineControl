@@ -32,6 +32,15 @@ public final class ProtocolTest {
             Files.writeString(file, "{\"port\":25581,\"maxHoldTicks\":5}");
             c = Config.load(file);
             require(c.port == 25581 && c.maxHoldTicks == 5 && c.requestTimeoutMs == 15000, "custom config and missing-field defaults");
+            require(c.blockPhysicalInputDuringMacros, "old config defaults to blocking physical input");
+            c.blockPhysicalInputDuringMacros = false;
+            c.save(file);
+            var saved = Config.load(file);
+            require(!saved.blockPhysicalInputDuringMacros && saved.port == 25581 && saved.maxHoldTicks == 5,
+                    "settings save preserves other configuration and reloads disabled capture");
+            c.blockPhysicalInputDuringMacros = true;
+            c.save(file);
+            require(Config.load(file).blockPhysicalInputDuringMacros, "capture setting can be enabled again");
             Files.writeString(file, "{\"port\":0}");
             try { Config.load(file); throw new AssertionError("invalid port accepted"); } catch (IOException expected) {}
             Files.writeString(file, "null");

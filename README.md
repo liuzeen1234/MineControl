@@ -54,13 +54,14 @@ GUI 的 goto/move 使用 GUI 缩放后坐标，原点在左上角；status 返�
   "enabled": true,
   "port": 25580,
   "backgroundControl": true,
+  "blockPhysicalInputDuringMacros": true,
   "maxHoldTicks": 1200,
   "requestTimeoutMs": 15000,
   "maxRequestBytes": 65536
 }
 ```
 
-修改后重启客户端。默认后台控制在游戏内允许失焦输入，并在本次会话禁用失焦暂停；正常关闭时恢复原失焦暂停值。`status.window_focused` 报告实际焦点。设为 false 使用原版焦点行为。世界菜单仍遵循原版暂停机制，客户端输入 tick 继续运行；先关闭暂停菜单再控制移动。`maxHoldTicks` 是所有 down 的最长客户端 tick 时长，也是 hold 上限。CLI 可设置 `MINECONTROL_PORT` 环境变量。
+26.2 可在宏管理界面右上角点击“设置”，进入全屏设置页，切换“宏运行时屏蔽键鼠输入”；默认开启，立即生效并自动保存，点击“返回”或按 Esc 回到宏管理界面。关闭后可在宏运行时手动操作，停止快捷键始终有效。检测宏和调度宏单独运行时不屏蔽输入。其他配置修改后重启客户端。默认后台控制在游戏内允许失焦输入，并在本次会话禁用失焦暂停；正常关闭时恢复原失焦暂停值。`status.window_focused` 报告实际焦点。设为 false 使用原版焦点行为。世界菜单仍遵循原版暂停机制，客户端输入 tick 继续运行；先关闭暂停菜单再控制移动。`maxHoldTicks` 是所有 down 的最长客户端 tick 时长，也是 hold 上限。CLI 可设置 `MINECONTROL_PORT` 环境变量。
 
 请求超时后先查看 status，再决定是否重试；已开始的游戏动作无法回滚。`wait screen` 超时必须小于服务的 requestTimeoutMs，默认 10 秒。退出世界和正常关闭客户端清理模拟输入。`input reset` 可随时释放本 Mod 保存的输入。
 

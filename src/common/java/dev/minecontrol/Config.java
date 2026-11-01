@@ -7,9 +7,25 @@ public final class Config {
     public boolean enabled = true;
     public int port = 25580;
     public boolean backgroundControl = true;
+    public boolean blockPhysicalInputDuringMacros = true;
     public int maxHoldTicks = 1200;
     public int requestTimeoutMs = 15000;
     public int maxRequestBytes = 65536;
+    public void save(Path path) throws IOException {
+        Files.createDirectories(path.getParent());
+        Path temporary = Files.createTempFile(path.getParent(), "minecontrol-", ".tmp");
+        try {
+            Files.writeString(temporary, new GsonBuilder().setPrettyPrinting().create().toJson(this));
+            try {
+                Files.move(temporary, path, java.nio.file.StandardCopyOption.ATOMIC_MOVE,
+                        java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+            } catch (java.nio.file.AtomicMoveNotSupportedException e) {
+                Files.move(temporary, path, java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+            }
+        } finally {
+            Files.deleteIfExists(temporary);
+        }
+    }
     public static Config load(Path path) throws IOException {
         var gson = new GsonBuilder().setPrettyPrinting().create();
         Config c;

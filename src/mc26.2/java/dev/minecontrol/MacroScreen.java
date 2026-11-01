@@ -19,12 +19,20 @@ public final class MacroScreen extends Screen {
     private String selected;
     private String message = "";
     private int ticks;
+    private double savedScroll;
+    @Override public void removed() {
+        if (list != null) savedScroll = list.scrollAmount();
+        super.removed();
+    }
     public MacroScreen(Screen parent) {
         super(Component.literal("MineControl · 宏文件"));
         this.parent = parent;
     }
     private JavaMacroManager manager() { return MineControlClient.javaMacros(); }
     @Override protected void init() {
+        addRenderableWidget(Button.builder(Component.literal("设置"), button ->
+                minecraft.gui.setScreen(new SettingsScreen(this)))
+                .bounds(width - 64, 4, 52, 20).build());
         int gap = 4, buttonWidth = (width - 24 - gap * 3) / 4;
         add = addRenderableWidget(Button.builder(Component.literal("添加文件"), button ->
                 minecraft.gui.setScreen(new AddMacroScreen(this)))
@@ -55,7 +63,9 @@ public final class MacroScreen extends Screen {
         addRenderableWidget(Button.builder(Component.literal("返回"), button -> onClose())
                 .bounds(width / 2 - 50, height - 26, 100, 20).build());
         displayed = List.of();
-        reload(); updateButtons();
+        reload();
+        list.setScrollAmount(savedScroll);
+        updateButtons();
         if (manager() != null) manager().refresh();
     }
     private void reload() {
@@ -138,7 +148,8 @@ public final class MacroScreen extends Screen {
         String latest = !message.isEmpty() ? message : logs.isEmpty() ? "执行宏限一个；检测宏可多个；调度宏限一个" : logs.get(logs.size() - 1);
         text(graphics, latest, 12, height - 83, width - 24, 0xFFCBD5E1);
         text(graphics, minecraft.level == null ? "请先进入世界再启动宏"
-                        : "停止键：" + MineControlClient.stopKeyLabel() + " 停止全部  |  仅执行宏接管输入",
+                        : "停止键：" + MineControlClient.stopKeyLabel() + " 停止全部  |  "
+                                + (MineControlClient.blockPhysicalInputDuringMacros() ? "执行宏时屏蔽手动输入" : "允许手动操作"),
                 12, height - 67, width - 24, 0xFF94A3B8);
     }
     private final class FileList extends ObjectSelectionList<Row> {
