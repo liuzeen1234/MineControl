@@ -40,6 +40,8 @@ public class FishboneMiningTest {
         try { m.discover(origin);throw new AssertionError("Queried-air expansion accepted"); }
         catch(FishboneMining.Stop expected) { check(expected.getMessage().contains("未挖开"),"Wrong shell guard"); }
         check(FishboneMining.LOW_DURABILITY_COMMAND.isEmpty(),"Low-durability command must remain empty");
+        check(FishboneMining.diggable("minecraft:gravel") && FishboneMining.diggable("minecraft:sand") && FishboneMining.diggable("minecraft:red_sand"),"Falling blocks must be clearable");
+        check(!FishboneMining.falling("minecraft:stone"),"Ordinary rock treated as falling");
         pitRoutes();
         protocolPolicy();
         System.out.println("Fishbone algorithms passed: waterlogged, 3x3x6 limits, 50-block survey, shortest detour/rejoin, excavation costs, six-face adjacency, opened-space guard");

@@ -1,0 +1,14 @@
+预探测 3x3x6：P[x=1200, y=96, z=0] 方向=[0, 0, 1]
+挖除 P[x=1200, y=97, z=1] minecraft:gravel
+挖除 P[x=1200, y=97, z=1] minecraft:gravel
+挖除 P[x=1200, y=97, z=1] minecraft:gravel
+挖除 P[x=1200, y=97, z=1] minecraft:gravel
+挖除 P[x=1200, y=97, z=1] minecraft:gravel
+挖除 P[x=1200, y=97, z=1] minecraft:gravel
+挖除 P[x=1200, y=97, z=1] minecraft:gravel
+落沙清理完成，连续20 tick无新掉落：P[x=1200, y=97, z=1]
+挖除 P[x=1200, y=96, z=1] minecraft:gravel
+落沙清理完成，连续20 tick无新掉落：P[x=1200, y=96, z=1]
+移动 P[x=1200, y=96, z=1]
+当前六面相连矿脉处理完成，返回 P[x=1200, y=96, z=1]
+LIVE PASS: gravel position=P[x=1200, y=96, z=1] minedOres=0

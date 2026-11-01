@@ -93,7 +93,8 @@ public class FishboneMining {
                 (state != null && state.contains("waterlogged=true"));
     }
     static boolean air(String s) { return id(s).equals("minecraft:air") || id(s).equals("minecraft:cave_air"); }
-    static boolean diggable(String s) { return air(s) || ore(s) || ROCK.contains(id(s).replace("minecraft:","")); }
+    static boolean falling(String s) { return Set.of("minecraft:gravel", "minecraft:sand", "minecraft:red_sand").contains(id(s)); }
+    static boolean diggable(String s) { return air(s) || ore(s) || falling(s) || ROCK.contains(id(s).replace("minecraft:","")); }
     static boolean support(String s) { return !air(s) && (diggable(s) || id(s).equals("minecraft:bedrock")); }
     static Map<P,String> parse(String blueprint) {
         var result = new HashMap<P,String>();
@@ -184,6 +185,32 @@ public class FishboneMining {
         return null;
     }
     boolean clear(P q) throws Exception {
+        scan(q,q.add(0,1,0),false);
+        boolean settling=falling(at(q)) || falling(at(q.add(0,1,0)));
+        boolean changed=false;
+        long deadline=System.nanoTime()+60_000_000_000L;
+        long emptySince=-1;
+        while(true) {
+            guard();scan(q,q.add(0,1,0),false);
+            settling |= falling(at(q)) || falling(at(q.add(0,1,0)));
+            if(System.nanoTime()>deadline) throw new Stop("落沙持续掉落超过60秒，停止等待："+q);
+            if(!air(at(q))) {
+                emptySince=-1;
+                changed |= clearOnce(q);
+                if(!settling) return changed;
+            } else {
+                if(!settling) { opened.add(q);return changed; }
+                long tick=mc.status().tick();
+                if(emptySince<0) emptySince=tick;
+                // Stay outside the column while falling entities turn back into blocks.
+                if(tick-emptySince>=20) {
+                    opened.add(q);log("落沙清理完成，连续20 tick无新掉落："+q);return changed;
+                }
+                mc.waitTicks(2);
+            }
+        }
+    }
+    boolean clearOnce(P q) throws Exception {
         guard();
         scan(q,q,false);
         if(air(at(q))) { opened.add(q);return false; }

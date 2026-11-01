@@ -13,7 +13,14 @@ public class FishboneMiningLiveCheck {
             String mode=args.length>1?args[1]:Files.readString(Path.of("fishbone-live-scenario.txt")).trim();
             var m=mode.equals("low")?new FishboneMining(mc):start(mc);
             try {
-                if(mode.equals("pit")) {
+                if(mode.equals("gravel")) {
+                    var origin=m.foot();
+                    check(m.advance(true,null),"Gravel blocked advance");
+                    check(m.foot().equals(origin.add(0,0,1)),"Did not advance after gravel settled");
+                    var column=m.scan(origin.add(0,0,1),origin.add(0,7,1),false);
+                    check(column.values().stream().noneMatch(FishboneMining::falling),"Falling gravel remains in test column");
+                    check(m.audit.stream().anyMatch(line->line.startsWith("落沙清理完成")),"No settling confirmation");
+                } else if(mode.equals("pit")) {
                     var origin=m.foot();
                     check(!m.advance(true,null),"Pit bypass must reset the main counter");
                     check(m.foot().y()==origin.y() && m.foot().x()==origin.x() && m.foot().z()>=origin.z()+2,"Pit bypass failed to rejoin");
