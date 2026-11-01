@@ -47,6 +47,26 @@ tasks.register('macroRuntimeJar', Jar) {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     exclude 'META-INF/*.SF', 'META-INF/*.RSA', 'META-INF/*.DSA'
 }
+tasks.register('playerGuardJar', Jar) {
+    dependsOn examplesClasses
+    archiveFileName = 'player-guard.jar'
+    manifest { attributes 'Main-Class': 'PlayerGuard' }
+    from(sourceSets.examples.output) { include 'PlayerGuard.class' }
+    from sourceSets.main.output
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    exclude 'META-INF/*.SF', 'META-INF/*.RSA', 'META-INF/*.DSA'
+}
+tasks.register('guardedEntityClickJar', Jar) {
+    dependsOn examplesClasses
+    archiveFileName = 'guarded-entity-click.jar'
+    manifest { attributes 'Main-Class': 'GuardedEntityClick' }
+    from(sourceSets.examples.output) { include 'GuardedEntityClick*.class' }
+    from sourceSets.main.output
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    exclude 'META-INF/*.SF', 'META-INF/*.RSA', 'META-INF/*.DSA'
+}
 tasks.register('sdkTest', JavaExec) {
     dependsOn testClasses, examplesClasses
     classpath = sourceSets.test.runtimeClasspath + sourceSets.examples.output

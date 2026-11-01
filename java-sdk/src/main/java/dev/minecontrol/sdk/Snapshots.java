@@ -26,6 +26,7 @@ public final class Snapshots {
             @SerializedName("gui_width") int guiWidth, @SerializedName("gui_height") int guiHeight,
             @SerializedName("cursor_x") double cursorX, @SerializedName("cursor_y") double cursorY) {}
     public record BlockPos(int x, int y, int z) {}
+    public record NearbyPlayer(String uuid, String name, double distance) {}
     public record Position(double x, double y, double z, BlockPos block,
             double yaw, double pitch, String dimension, long tick) {}
     public record Player(double x, double y, double z, double health, int food,

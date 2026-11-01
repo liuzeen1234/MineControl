@@ -48,6 +48,15 @@ public final class MineControl implements AutoCloseable {
     public Status status() throws IOException { return read("status", Status.class); }
     public Position position() throws IOException { return read("position", Position.class); }
     public Observation observe() throws IOException { return read("observe", Observation.class); }
+    /** Loaded, living non-spectator players within a spherical radius; excludes yourself. Minecraft 26.2. */
+    public List<NearbyPlayer> nearbyPlayers(double radius) throws IOException {
+        if (!Double.isFinite(radius) || radius <= 0 || radius > 128) throw new IllegalArgumentException("Invalid radius");
+        return List.of(decode(call("players.nearby", params("radius", radius)), NearbyPlayer[].class));
+    }
+    /** Sends once; a successful reply means sent, not that the server accepted the command. */
+    public void sendCommand(String command) throws IOException {
+        call("chat.command", params("text", command));
+    }
     public Inventory inventory() throws IOException { return read("inventory", Inventory.class); }
     public Region region(BlockPos from, BlockPos to) throws IOException {
         return decode(call("region.query", params("from", new int[]{from.x(), from.y(), from.z()},

@@ -2,6 +2,7 @@ package dev.minecontrol;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.KeyMapping;
@@ -30,7 +31,6 @@ public final class MineControlClient implements ClientModInitializer {
     private static boolean background;
     private static boolean oldPause;
     private static JavaMacroManager javaMacros;
-    private static Object previousLevel;
     private static KeyMapping stopMacro;
     private static boolean inputWasCaptured;
     private static boolean restoreCursorWhenFocused;
@@ -154,9 +154,9 @@ public final class MineControlClient implements ClientModInitializer {
                 controller = null;
             }
         });
+        // A dimension transfer replaces ClientLevel without ending the server session.
+        ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> stopRunningMacros());
         ClientTickEvents.START_CLIENT_TICK.register(client -> {
-            if (previousLevel != null && previousLevel != client.level && javaMacros != null) javaMacros.stop();
-            previousLevel = client.level;
             pollStopShortcut();
             if (controller != null) controller.tick();
             while (stopMacro.consumeClick()) { /* Native callbacks and raw polling handle physical stop presses. */ }

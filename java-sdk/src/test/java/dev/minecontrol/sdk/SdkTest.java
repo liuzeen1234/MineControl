@@ -13,6 +13,8 @@ import static dev.minecontrol.sdk.Snapshots.*;
 public final class SdkTest {
     public static void main(String[] args) throws Exception {
         EntityClickTest.run();
+        PlayerGuardTest.run();
+        Class.forName("GuardedEntityClickFlowTest").getMethod("run").invoke(null);
         try (var server = new FakeServer()) {
             try (var mc = MineControl.connect(server.port())) {
                 check(mc.status().worldLoaded(), "status decoding");

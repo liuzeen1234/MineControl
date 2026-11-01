@@ -12,7 +12,8 @@ import java.util.List;
 /** A file browser for the external Java macros in this instance. */
 public final class MacroScreen extends Screen {
     private final Screen parent;
-    private Button start, stop, delete, add;
+    private Button start, stop, delete, add, refresh;
+    private boolean refreshing;
     private FileList list;
     private List<MacroFiles.Entry> displayed = List.of();
     private String selected;
@@ -39,11 +40,8 @@ public final class MacroScreen extends Screen {
         addRenderableWidget(Button.builder(Component.literal("打开文件夹"), button -> {
             if (manager() != null) Util.getPlatform().openPath(manager().directory());
         }).bounds(12 + 2 * (buttonWidth + gap), 28, buttonWidth, 20).build());
-        addRenderableWidget(Button.builder(Component.literal("刷新"), button -> {
-            if (manager() != null) manager().refresh().exceptionally(error -> {
-                minecraft.execute(() -> message = errorMessage(error)); return null;
-            });
-        }).bounds(12 + 3 * (buttonWidth + gap), 28, buttonWidth, 20).build());
+        refresh = addRenderableWidget(Button.builder(Component.literal("刷新列表"), button -> refreshFiles())
+                .bounds(12 + 3 * (buttonWidth + gap), 28, buttonWidth, 20).build());
         list = addRenderableWidget(new FileList(Math.max(30, height - 184)));
         start = addRenderableWidget(Button.builder(Component.literal("启动所选"), button -> {
             if (manager() != null && selected != null && manager().start(selected)) minecraft.gui.setScreen(null);
@@ -79,6 +77,21 @@ public final class MacroScreen extends Screen {
         stop.active = manager != null && manager.active();
         delete.active = available && selected != null && !(manager.active() && selected.equals(manager.activeFile()));
         add.active = available;
+        refresh.active = available && !refreshing;
+        refresh.setMessage(Component.literal(refreshing ? "刷新中…" : "刷新列表"));
+    }
+    private void refreshFiles() {
+        var manager = manager();
+        if (manager == null || manager.loading() || refreshing) return;
+        refreshing = true;
+        message = "正在重新读取宏文件列表…";
+        updateButtons();
+        manager.refresh().whenComplete((result, error) -> minecraft.execute(() -> {
+            refreshing = false;
+            reload();
+            message = error == null ? "刷新完成，共 " + manager.entries().size() + " 个宏文件" : "刷新失败：" + errorMessage(error);
+            updateButtons();
+        }));
     }
     @Override public void tick() {
         reload(); updateButtons();

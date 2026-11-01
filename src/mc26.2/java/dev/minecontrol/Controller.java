@@ -79,6 +79,34 @@ public final class Controller {
                 case "ping" -> { var pong = new JsonObject(); pong.addProperty("pong", true); pong.addProperty("protocol", 1); result = pong; }
                 case "status" -> result = status();
                 case "position" -> result = position();
+                case "players.nearby" -> {
+                    if (client.player == null || client.level == null) throw fail("NO_WORLD", "No player world loaded");
+                    double radius = number(request, "radius");
+                    if (radius <= 0 || radius > 128) throw fail("INVALID_ARGUMENT", "radius must be in (0, 128]");
+                    var players = new JsonArray();
+                    for (var player : client.level.players()) {
+                        if (player.getUUID().equals(client.player.getUUID()) || !player.isAlive() || player.isSpectator()) continue;
+                        double distanceSquared = player.distanceToSqr(client.player);
+                        if (distanceSquared > radius * radius) continue;
+                        var entry = new JsonObject();
+                        entry.addProperty("uuid", player.getUUID().toString());
+                        entry.addProperty("name", player.getName().getString());
+                        entry.addProperty("distance", Math.sqrt(distanceSquared));
+                        players.add(entry);
+                    }
+                    result = players;
+                }
+                case "chat.command" -> {
+                    if (client.player == null || client.level == null) throw fail("NO_WORLD", "No player world loaded");
+                    String text = string(request, "text").strip();
+                    if (text.startsWith("/")) text = text.substring(1);
+                    if (text.isBlank() || text.length() > 256 || text.chars().anyMatch(Character::isISOControl))
+                        throw fail("INVALID_ARGUMENT", "Invalid chat command");
+                    client.player.connection.sendCommand(text);
+                    var sent = new JsonObject();
+                    sent.addProperty("sent", true);
+                    result = sent;
+                }
                 case "inventory" -> {
                     if (client.player == null || client.level == null) throw fail("NO_WORLD", "No player world loaded");
                     result = Observation.inventory(client, tick);

@@ -96,6 +96,23 @@ Minecraft 26.2 游戏内界面：按 F8，或点击标题/暂停菜单的“Mine
 
 ## 生命周期和错误
 
+### 周围玩家触发传送（Minecraft 26.2）
+
+`examples/PlayerGuard.java` 每个客户端 tick 扫描一次周围 10 格内已加载的其他存活玩家（排除自己和旁观者，按三维直线距离计算，包含恰好 10 格）。无需瞄准或视线无遮挡。检测到后发送一次 `/res tp liuhome` 并结束；再次监测需重新启动。服务器必须支持此命令，并允许当前账号传送；发送成功不代表传送成功。
+
+运行 `./gradlew :java-sdk:playerGuardJar` 生成 `java-sdk/build/libs/player-guard.jar`，将源码或 JAR 添加到宏列表后启动。当前宏管理器一次运行一个宏，因此此独立检测宏不能与攻击宏同时运行。
+
+SDK 新增 `nearbyPlayers(radius)`（半径大于 0 且不超过 128）和 `sendCommand(text)`，分别对应协议 `players.nearby` 和 `chat.command`。
+
+### 自动点击与玩家警戒合并
+
+`examples/GuardedEntityClick.java` 将自动点击与玩家警戒放在同一个进程中。准星前出现实体后随机等待 10–30 tick 再左键点击，不重新验证目标；等待期间仍扫描周围 10 格内已加载的其他存活非旁观玩家（不含自己）。
+
+发现玩家时取消待执行点击、释放模拟输入并发送一次 `/home out`，进入避让状态。避让期间持续检测，只有周围连续 20 个客户端 tick 没有玩家，才发送一次 `/home work` 并恢复自动点击。中途出现玩家或世界暂时不可用，会清零无玩家计时；同一轮避让不重复发送 `/home out`。恢复后继续警戒，可反复进入避让。已移除原来的 20–40 分钟和返回后 10 秒等待。
+
+运行 `./gradlew :java-sdk:guardedEntityClickJar` 生成 `java-sdk/build/libs/guarded-entity-click.jar`，宏列表只需启动这个 JAR，F9 可停止整个流程。跨维度传送保留宏与输入控制；世界短暂不可用时暂停操作、最多等待 30 秒。断开连接、加载超时或网络错误时结束宏。服务器需设置 `work`、`out` 家，并支持对应命令；宏确认命令发送，不确认传送成功。正常 20 TPS 下 20 tick 约为 1 秒，卡顿时更长；玩家查询与操作有调度间隔，检测仅覆盖客户端同步的数据。
+
+
 务必使用 try-with-resources。SDK 执行过输入/UI 操作后，close 会发送 input.reset；程序抛异常时同样执行。关闭幂等，只读客户端关闭不会清理其他程序的输入。另有 JVM shutdown hook，在正常 JVM 退出或 Ctrl+C 时尝试清理。请先停止旧宏，并且只运行一个控制程序：现有协议的输入状态是全局状态，没有客户端所有权，reset 会影响所有控制来源。
 
 强制结束进程、网络失败或游戏线程不响应时，不能保证立即释放。Mod 现有的 maxHoldTicks（默认 1200 tick）限制 down，hold 使用指定 tick；两者都按客户端 tick 到期释放。没有新增心跳租约或墙钟看门狗。
