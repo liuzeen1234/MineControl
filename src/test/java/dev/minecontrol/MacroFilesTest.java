@@ -12,7 +12,10 @@ public final class MacroFilesTest {
         try {
             var files = new MacroFiles(temp.resolve("macros"));
             files.initialize();
-            require(files.list().size() == 1, "initial bundled macro");
+            require(files.list().size() == 2, "initial bundled macros");
+            require(Files.readString(files.resolve("BlockDetector.java")).contains("MacroRole.DETECTION"), "bundled detector role");
+            files.trash("BlockDetector.java"); files.initialize();
+            require(files.list().size() == 1, "deleted detector not restored");
             try (var runtime = new JarFile(files.runtime().toFile())) {
                 require(runtime.getEntry("EntityClick.class") == null, "runtime must not shadow user main class");
             }

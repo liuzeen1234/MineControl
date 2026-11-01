@@ -126,3 +126,10 @@ tasks.register('fishboneMiningLiveJar', Jar) {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     exclude 'META-INF/*.SF', 'META-INF/*.RSA', 'META-INF/*.DSA'
 }
+
+tasks.register('blockDetectorTest', JavaExec) {
+    dependsOn testClasses, examplesClasses
+    classpath = sourceSets.test.runtimeClasspath + sourceSets.examples.output
+    mainClass = 'BlockDetectorTest'
+}
+check.dependsOn blockDetectorTest

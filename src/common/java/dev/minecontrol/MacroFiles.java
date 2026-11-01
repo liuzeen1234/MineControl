@@ -19,6 +19,16 @@ public final class MacroFiles {
             if (input == null) throw new IOException("Mod 缺少 Java 宏运行库");
             Files.copy(input, runtime.resolve("sdk.jar"), StandardCopyOption.REPLACE_EXISTING);
         }
+        Path detectorMarker = directory.resolve(".block-detector-installed");
+        if (!Files.exists(detectorMarker)) {
+            Path detector = directory.resolve("BlockDetector.java");
+            if (!Files.exists(detector)) {
+                try (var input = MacroFiles.class.getResourceAsStream("/minecontrol/BlockDetector.java")) {
+                    if (input != null) Files.copy(input, detector);
+                }
+            }
+            if (Files.exists(detector)) Files.writeString(detectorMarker, "Block detector installed.\n");
+        }
         Path marker = directory.resolve(".initialized");
         if (!Files.exists(marker)) {
             Path bundled = directory.resolve("entity-click-program.jar");

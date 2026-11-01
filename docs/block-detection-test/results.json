@@ -1,0 +1,536 @@
+{
+  "checks": [
+    "Client rejects upper iron door, special rails and trial spawner",
+    "Saved ordinary rails at 71 blocks and spawners at vertical 71 blocks",
+    "Exactly 70 blocks suppressed in vertical and horizontal directions",
+    "All seven target types detected",
+    "Iron door lower-half coordinates only",
+    "Detection macro leaves manual input available",
+    "Xaero active waypoint set contains every saved discovery",
+    "Restarted macro preserves all original records",
+    "Restarted macro has no same-type records within 70 blocks",
+    "Restarted macro preserves Xaero waypoints without duplicates"
+  ],
+  "records": [
+    {
+      "type": "spawner",
+      "x": 0,
+      "y": 100,
+      "z": 0,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:07.303265Z"
+    },
+    {
+      "type": "end_portal_frame",
+      "x": 3,
+      "y": 100,
+      "z": 0,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:07.303389Z"
+    },
+    {
+      "type": "iron_door",
+      "x": 6,
+      "y": 100,
+      "z": 0,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:07.303404Z"
+    },
+    {
+      "type": "iron_bars",
+      "x": 9,
+      "y": 100,
+      "z": 0,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:07.303413Z"
+    },
+    {
+      "type": "iron_chain",
+      "x": 12,
+      "y": 100,
+      "z": 0,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:07.303421Z"
+    },
+    {
+      "type": "rail",
+      "x": 15,
+      "y": 100,
+      "z": 0,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:07.303429Z"
+    },
+    {
+      "type": "spawner",
+      "x": 0,
+      "y": 171,
+      "z": 0,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:07.755001Z"
+    },
+    {
+      "type": "spawner",
+      "x": -15,
+      "y": -31,
+      "z": 15,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:08.150516Z"
+    },
+    {
+      "type": "reinforced_deepslate",
+      "x": 18,
+      "y": 100,
+      "z": 0,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:08.451613Z"
+    },
+    {
+      "type": "rail",
+      "x": -37,
+      "y": -23,
+      "z": 60,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:09.245576Z"
+    },
+    {
+      "type": "rail",
+      "x": 35,
+      "y": -20,
+      "z": 64,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:13.095892Z"
+    },
+    {
+      "type": "spawner",
+      "x": -5,
+      "y": 10,
+      "z": 95,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:14.151213Z"
+    },
+    {
+      "type": "spawner",
+      "x": 38,
+      "y": -18,
+      "z": -68,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:15.468027Z"
+    },
+    {
+      "type": "rail",
+      "x": 86,
+      "y": 100,
+      "z": 0,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:16.007374Z"
+    },
+    {
+      "type": "spawner",
+      "x": -83,
+      "y": -6,
+      "z": -30,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:16.296123Z"
+    },
+    {
+      "type": "spawner",
+      "x": -96,
+      "y": 118,
+      "z": -18,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:16.596876Z"
+    },
+    {
+      "type": "spawner",
+      "x": -40,
+      "y": -38,
+      "z": -84,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:16.896625Z"
+    },
+    {
+      "type": "iron_chain",
+      "x": -24,
+      "y": -8,
+      "z": 99,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:17.151565Z"
+    },
+    {
+      "type": "rail",
+      "x": -34,
+      "y": -6,
+      "z": 128,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:20.101815Z"
+    },
+    {
+      "type": "spawner",
+      "x": -115,
+      "y": 2,
+      "z": 152,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:21.907478Z"
+    },
+    {
+      "type": "spawner",
+      "x": -88,
+      "y": -17,
+      "z": -140,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:22.198209Z"
+    },
+    {
+      "type": "spawner",
+      "x": 0,
+      "y": -30,
+      "z": 158,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:23.051549Z"
+    },
+    {
+      "type": "spawner",
+      "x": 73,
+      "y": -19,
+      "z": -130,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:23.857081Z"
+    },
+    {
+      "type": "spawner",
+      "x": 182,
+      "y": -18,
+      "z": 44,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:26.407514Z"
+    },
+    {
+      "type": "rail",
+      "x": -47,
+      "y": -2,
+      "z": -190,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:27.398335Z"
+    },
+    {
+      "type": "spawner",
+      "x": 203,
+      "y": -29,
+      "z": -51,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:28.155707Z"
+    },
+    {
+      "type": "rail",
+      "x": 30,
+      "y": 1,
+      "z": -194,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:30.106900Z"
+    },
+    {
+      "type": "iron_chain",
+      "x": 83,
+      "y": -16,
+      "z": -207,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:30.897105Z"
+    },
+    {
+      "type": "spawner",
+      "x": 172,
+      "y": -31,
+      "z": -194,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:31.201994Z"
+    },
+    {
+      "type": "iron_chain",
+      "x": -215,
+      "y": -14,
+      "z": 50,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:31.998932Z"
+    },
+    {
+      "type": "spawner",
+      "x": 194,
+      "y": 57,
+      "z": -215,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:34.556295Z"
+    },
+    {
+      "type": "iron_chain",
+      "x": 236,
+      "y": 4,
+      "z": 42,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:35.102168Z"
+    },
+    {
+      "type": "spawner",
+      "x": 254,
+      "y": 72,
+      "z": 38,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:45.198020Z"
+    },
+    {
+      "type": "spawner",
+      "x": -109,
+      "y": -12,
+      "z": -245,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:45.952410Z"
+    },
+    {
+      "type": "iron_chain",
+      "x": -34,
+      "y": 0,
+      "z": -251,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:46.752618Z"
+    },
+    {
+      "type": "spawner",
+      "x": -33,
+      "y": 3,
+      "z": -247,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:46.752734Z"
+    },
+    {
+      "type": "spawner",
+      "x": 54,
+      "y": -20,
+      "z": -251,
+      "dimension": "minecraft:overworld",
+      "found_at": "2026-11-01T02:41:48.057085Z"
+    }
+  ],
+  "waypoints": [
+    {
+      "Name": "检测·刷怪笼",
+      "X": "0",
+      "Y": "100",
+      "Z": "0"
+    },
+    {
+      "Name": "检测·末地框架",
+      "X": "3",
+      "Y": "100",
+      "Z": "0"
+    },
+    {
+      "Name": "检测·铁门",
+      "X": "6",
+      "Y": "100",
+      "Z": "0"
+    },
+    {
+      "Name": "检测·铁栏杆",
+      "X": "9",
+      "Y": "100",
+      "Z": "0"
+    },
+    {
+      "Name": "检测·锁链",
+      "X": "12",
+      "Y": "100",
+      "Z": "0"
+    },
+    {
+      "Name": "检测·普通铁轨",
+      "X": "15",
+      "Y": "100",
+      "Z": "0"
+    },
+    {
+      "Name": "检测·刷怪笼",
+      "X": "0",
+      "Y": "171",
+      "Z": "0"
+    },
+    {
+      "Name": "检测·刷怪笼",
+      "X": "-15",
+      "Y": "-31",
+      "Z": "15"
+    },
+    {
+      "Name": "检测·强化深板岩",
+      "X": "18",
+      "Y": "100",
+      "Z": "0"
+    },
+    {
+      "Name": "检测·普通铁轨",
+      "X": "-37",
+      "Y": "-23",
+      "Z": "60"
+    },
+    {
+      "Name": "检测·普通铁轨",
+      "X": "35",
+      "Y": "-20",
+      "Z": "64"
+    },
+    {
+      "Name": "检测·刷怪笼",
+      "X": "-5",
+      "Y": "10",
+      "Z": "95"
+    },
+    {
+      "Name": "检测·刷怪笼",
+      "X": "38",
+      "Y": "-18",
+      "Z": "-68"
+    },
+    {
+      "Name": "检测·普通铁轨",
+      "X": "86",
+      "Y": "100",
+      "Z": "0"
+    },
+    {
+      "Name": "检测·刷怪笼",
+      "X": "-83",
+      "Y": "-6",
+      "Z": "-30"
+    },
+    {
+      "Name": "检测·刷怪笼",
+      "X": "-96",
+      "Y": "118",
+      "Z": "-18"
+    },
+    {
+      "Name": "检测·刷怪笼",
+      "X": "-40",
+      "Y": "-38",
+      "Z": "-84"
+    },
+    {
+      "Name": "检测·锁链",
+      "X": "-24",
+      "Y": "-8",
+      "Z": "99"
+    },
+    {
+      "Name": "检测·普通铁轨",
+      "X": "-34",
+      "Y": "-6",
+      "Z": "128"
+    },
+    {
+      "Name": "检测·刷怪笼",
+      "X": "-115",
+      "Y": "2",
+      "Z": "152"
+    },
+    {
+      "Name": "检测·刷怪笼",
+      "X": "-88",
+      "Y": "-17",
+      "Z": "-140"
+    },
+    {
+      "Name": "检测·刷怪笼",
+      "X": "0",
+      "Y": "-30",
+      "Z": "158"
+    },
+    {
+      "Name": "检测·刷怪笼",
+      "X": "73",
+      "Y": "-19",
+      "Z": "-130"
+    },
+    {
+      "Name": "检测·刷怪笼",
+      "X": "182",
+      "Y": "-18",
+      "Z": "44"
+    },
+    {
+      "Name": "检测·普通铁轨",
+      "X": "-47",
+      "Y": "-2",
+      "Z": "-190"
+    },
+    {
+      "Name": "检测·刷怪笼",
+      "X": "203",
+      "Y": "-29",
+      "Z": "-51"
+    },
+    {
+      "Name": "检测·普通铁轨",
+      "X": "30",
+      "Y": "1",
+      "Z": "-194"
+    },
+    {
+      "Name": "检测·锁链",
+      "X": "83",
+      "Y": "-16",
+      "Z": "-207"
+    },
+    {
+      "Name": "检测·刷怪笼",
+      "X": "172",
+      "Y": "-31",
+      "Z": "-194"
+    },
+    {
+      "Name": "检测·锁链",
+      "X": "-215",
+      "Y": "-14",
+      "Z": "50"
+    },
+    {
+      "Name": "检测·刷怪笼",
+      "X": "194",
+      "Y": "57",
+      "Z": "-215"
+    },
+    {
+      "Name": "检测·锁链",
+      "X": "236",
+      "Y": "4",
+      "Z": "42"
+    },
+    {
+      "Name": "检测·刷怪笼",
+      "X": "254",
+      "Y": "72",
+      "Z": "38"
+    },
+    {
+      "Name": "检测·刷怪笼",
+      "X": "-109",
+      "Y": "-12",
+      "Z": "-245"
+    },
+    {
+      "Name": "检测·锁链",
+      "X": "-34",
+      "Y": "0",
+      "Z": "-251"
+    },
+    {
+      "Name": "检测·刷怪笼",
+      "X": "-33",
+      "Y": "3",
+      "Z": "-247"
+    },
+    {
+      "Name": "检测·刷怪笼",
+      "X": "54",
+      "Y": "-20",
+      "Z": "-251"
+    }
+  ]
+}

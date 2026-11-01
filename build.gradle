@@ -67,6 +67,7 @@ def metadataVersion = "${project.mod_version}+mc${target.minecraft}"
 
 processResources {
     dependsOn ':java-sdk:macroProgramJar', ':java-sdk:macroRuntimeJar'
+    from('java-sdk/examples/BlockDetector.java') { into 'minecontrol' }
     from(project(':java-sdk').layout.buildDirectory.file('libs/entity-click-program.jar')) {
         into 'minecontrol'
     }

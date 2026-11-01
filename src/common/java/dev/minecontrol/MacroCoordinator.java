@@ -9,7 +9,7 @@ import java.util.function.BooleanSupplier;
 public final class MacroCoordinator {
     public static final String SYSTEM = "$system";
     private static final Set<String> READ = Set.of("ping", "status", "position", "observe", "inventory",
-            "players.nearby", "region.query", "ui.list", "wait.screen", "macro.status");
+            "players.nearby", "region.query", "detection.scan", "detection.mark", "ui.list", "wait.screen", "macro.status");
     private static final int MAX_SESSIONS = 128, MAX_MESSAGES = 128;
     private final Map<String, Session> sessions = new LinkedHashMap<>();
     private final Queue<Runnable> lifecycle = new ConcurrentLinkedQueue<>();

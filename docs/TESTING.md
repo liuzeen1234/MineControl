@@ -182,3 +182,11 @@ Minecraft 26.2 独立测试客户端使用 `run-input-test`、本机端口 25583
 `./gradlew build :java-sdk:check inputCaptureTestJar --offline` 通过，包括注册权限、消息队列溢出、退出去重、进程完成前保留执行名额、停止恢复、文件并行进程等回归。1.20.1 和 1.20.4 的 `compileJava` 通过；这两个旧版本本轮只做编译兼容检查，没有进行游戏内实测。F8 进程管理界面仍限 26.2。
 
 原有键鼠客户端回归另通过 [31 项检查](macro-scheduling-test/input-capture.json)，包括真实键盘回调的 F8/F9 路径、手动输入屏蔽、模拟输入可用、停止键重映射和未绑定时 F9 回退。旧测试中“F8 应被屏蔽”的断言已更新为管理控制台允许操作。
+
+## 目标方块检测与 Xaero 路标（2026-11-01）
+
+使用独立 `run-block-test` 客户端（端口 25585），复制既有测试世界；安装与棱镜 26.2 相同的 Xaero Minimap 26.6.0、World Map 1.47.0。测试探针只在专用触发文件出现时准备方块和读取实际 Xaero 路标集合，不包含在正式 Mod 中。
+
+`docs/block-detection-test/live_check.py` 验证七种方块、铁门仅下半部分、特殊铁轨和试炼刷怪笼排除、水平及垂直方向恰好 70 格跳过／71 格新增、实际检测宏不接管手动输入、记录写入后 Xaero 路标集合与保存文件一致，以及停止后重启宏继续去重、保留原记录且无重复路标。结果见 `docs/block-detection-test/results.json`。世界存在自然刷怪笼和矿道，重启后允许发现此前尚未扫描的新点，因此验收检查保留原记录及任意同类点距离大于 70 格，而非要求总数量不变。
+
+`./gradlew build :java-sdk:check inputCaptureTestJar --offline` 通过；独立算法回归另覆盖负坐标、三维斜距、维度／类型隔离、远距离平方不溢出及原子文件替换。客户端实测通过测试探针检查实际扫描和 Xaero 数据，不以截图作为证据。扫描仅适配 26.2；旧版本本轮未进行游戏内验收。

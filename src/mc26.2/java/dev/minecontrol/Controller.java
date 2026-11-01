@@ -37,6 +37,7 @@ public final class Controller {
         return future;
     }
     public boolean isHeld(long window, int key) { return client.getWindow().handle() == window && keys.containsKey(key); }
+    private final BlockDetection blockDetection = new BlockDetection();
     private final MacroCoordinator coordinator = new MacroCoordinator(this::stopMacros, macro::running);
     public MacroCoordinator coordinator() { return coordinator; }
     public boolean macroRunning() { return macro.running(); }
@@ -84,7 +85,7 @@ public final class Controller {
     private boolean loadingScreen() { return client.gui.screen() instanceof net.minecraft.client.gui.screens.LevelLoadingScreen; }
     public void worldExited() { coordinator.enqueueWorldExit("连接断开或退出世界"); }
     private static boolean needsWorld(String command) {
-        return Set.of("position", "observe", "inventory", "players.nearby", "region.query", "chat.command").contains(command)
+        return Set.of("position", "observe", "inventory", "players.nearby", "region.query", "detection.scan", "detection.mark", "chat.command").contains(command)
                 || command.startsWith("key.") || command.startsWith("mouse.");
     }
     private CompletableFuture<JsonObject> macroCommand(JsonObject request) {
@@ -139,6 +140,8 @@ public final class Controller {
                     result = Observation.inventory(client, tick);
                 }
                 case "region.query" -> result = region(request);
+                case "detection.scan" -> result = blockDetection.scan(client);
+                case "detection.mark" -> result = BlockDetection.mark(client, request);
                 case "observe" -> {
                     try { result = Observation.capture(client, tick); }
                     catch (IllegalStateException e) { throw fail("OBSERVATION_FAILED", e.getMessage()); }

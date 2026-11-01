@@ -125,3 +125,9 @@ field 支持点路径或字符串数组；数组形式可精确访问含点号�
 `inventory`（CLI `./minectl inventory`）只读返回玩家背包/快捷栏及装备槽中的非空物品，`slots:[{slot,stack}]` 中 stack 使用 observe 的完整物品结构；`counts` 按完整物品 ID 汇总数量，另含 tick/source。槽编号沿用当前版本原生 Inventory，跨版本应优先使用 counts。无玩家世界返回 NO_WORLD。此接口不包含箱子、合成界面临时物品或地面掉落，测试时应关闭界面，并用前后 counts 的差值统计背包净增量。
 
 observe.player 新增 health、food、alive、game_mode；宏可用这些字段保护生存测试。
+
+### 目标方块检测（仅 26.2）
+
+`detection.scan`：在客户端线程分批扫描已加载区块，返回 `{world, dimension, hits:[{type,x,y,z}]}`。每次最多检查 512 个区段，约 3ms 的区段间时间预算，最多返回一个非空目标区段（4096 个候选）；不会强制加载区块。循环扫描以发现后续变化。
+
+`detection.mark`：参数 `{world,dimension,type,x,y,z}`，只接受七种检测类型，通过 Xaero 小地图当前实际世界的路标管理器添加／确认路标，并保存。世界或维度已变化时拒绝。返回 `{marked:true}`。需安装兼容的 Xaero 小地图；不发送服务器指令。检测宏允许这两个专用命令，仍不允许控制玩家输入。70 格去重及发现文件由配套 `BlockDetector.java` 管理。
