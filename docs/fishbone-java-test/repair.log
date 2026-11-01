@@ -1,0 +1,7 @@
+挖除 P[x=1000, y=161, z=1001] minecraft:stone
+挖除 P[x=1000, y=160, z=1001] minecraft:stone
+挖除 P[x=1000, y=159, z=1001] minecraft:stone
+预探测 3x3x6：P[x=1000, y=160, z=1000] 方向=[0, 0, 1]
+修复追矿地板 P[x=1000, y=159, z=1001]
+移动 P[x=1000, y=160, z=1001]
+LIVE PASS: repair position=P[x=1000, y=160, z=1001] minedOres=0

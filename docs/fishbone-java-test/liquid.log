@@ -1,0 +1,58 @@
+预探测 3x3x6：P[x=1000, y=160, z=1000] 方向=[0, 0, 1]
+液体水平勘探半径=8
+液体水平勘探半径=16
+绕液体：13步，回归原主道直线
+预探测 3x3x6：P[x=1000, y=160, z=1000] 方向=[1, 0, 0]
+挖除 P[x=1001, y=161, z=1000] minecraft:stone
+挖除 P[x=1001, y=160, z=1000] minecraft:stone
+移动 P[x=1001, y=160, z=1000]
+预探测 3x3x6：P[x=1001, y=160, z=1000] 方向=[1, 0, 0]
+挖除 P[x=1002, y=161, z=1000] minecraft:stone
+挖除 P[x=1002, y=160, z=1000] minecraft:stone
+移动 P[x=1002, y=160, z=1000]
+预探测 3x3x6：P[x=1002, y=160, z=1000] 方向=[1, 0, 0]
+挖除 P[x=1003, y=161, z=1000] minecraft:stone
+挖除 P[x=1003, y=160, z=1000] minecraft:stone
+移动 P[x=1003, y=160, z=1000]
+预探测 3x3x6：P[x=1003, y=160, z=1000] 方向=[0, 0, 1]
+挖除 P[x=1003, y=161, z=1001] minecraft:stone
+挖除 P[x=1003, y=160, z=1001] minecraft:stone
+移动 P[x=1003, y=160, z=1001]
+预探测 3x3x6：P[x=1003, y=160, z=1001] 方向=[0, 0, 1]
+挖除 P[x=1003, y=161, z=1002] minecraft:stone
+挖除 P[x=1003, y=160, z=1002] minecraft:stone
+移动 P[x=1003, y=160, z=1002]
+预探测 3x3x6：P[x=1003, y=160, z=1002] 方向=[0, 0, 1]
+挖除 P[x=1003, y=161, z=1003] minecraft:stone
+挖除 P[x=1003, y=160, z=1003] minecraft:stone
+移动 P[x=1003, y=160, z=1003]
+预探测 3x3x6：P[x=1003, y=160, z=1003] 方向=[0, 0, 1]
+挖除 P[x=1003, y=161, z=1004] minecraft:stone
+挖除 P[x=1003, y=160, z=1004] minecraft:stone
+移动 P[x=1003, y=160, z=1004]
+预探测 3x3x6：P[x=1003, y=160, z=1004] 方向=[0, 0, 1]
+挖除 P[x=1003, y=161, z=1005] minecraft:stone
+挖除 P[x=1003, y=160, z=1005] minecraft:stone
+移动 P[x=1003, y=160, z=1005]
+预探测 3x3x6：P[x=1003, y=160, z=1005] 方向=[0, 0, 1]
+挖除 P[x=1003, y=161, z=1006] minecraft:stone
+挖除 P[x=1003, y=160, z=1006] minecraft:stone
+移动 P[x=1003, y=160, z=1006]
+预探测 3x3x6：P[x=1003, y=160, z=1006] 方向=[0, 0, 1]
+挖除 P[x=1003, y=161, z=1007] minecraft:stone
+挖除 P[x=1003, y=160, z=1007] minecraft:stone
+移动 P[x=1003, y=160, z=1007]
+预探测 3x3x6：P[x=1003, y=160, z=1007] 方向=[-1, 0, 0]
+挖除 P[x=1002, y=161, z=1007] minecraft:stone
+挖除 P[x=1002, y=160, z=1007] minecraft:stone
+移动 P[x=1002, y=160, z=1007]
+预探测 3x3x6：P[x=1002, y=160, z=1007] 方向=[-1, 0, 0]
+挖除 P[x=1001, y=161, z=1007] minecraft:stone
+挖除 P[x=1001, y=160, z=1007] minecraft:stone
+移动 P[x=1001, y=160, z=1007]
+预探测 3x3x6：P[x=1001, y=160, z=1007] 方向=[-1, 0, 0]
+挖除 P[x=1000, y=161, z=1007] minecraft:stone
+挖除 P[x=1000, y=160, z=1007] minecraft:stone
+移动 P[x=1000, y=160, z=1007]
+当前六面相连矿脉处理完成，返回 P[x=1000, y=160, z=1007]
+LIVE PASS: liquid position=P[x=1000, y=160, z=1007] minedOres=0

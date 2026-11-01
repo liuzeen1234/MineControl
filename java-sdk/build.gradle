@@ -19,6 +19,7 @@ sourceSets {
         compileClasspath += sourceSets.main.output
         runtimeClasspath += sourceSets.main.output
     }
+    test { compileClasspath += sourceSets.examples.output }
 }
 configurations.examplesImplementation.extendsFrom configurations.implementation, configurations.api
 tasks.named('check') { dependsOn tasks.named('examplesClasses') }
@@ -68,4 +69,40 @@ publishing {
     publications {
         sdk(MavenPublication) { from components.java }
     }
+}
+
+tasks.register('fishboneMiningJar', Jar) {
+    dependsOn examplesClasses
+    archiveFileName = 'fishbone-mining.jar'
+    manifest { attributes 'Main-Class': 'FishboneMining' }
+    from(sourceSets.examples.output) { include 'FishboneMining*.class' }
+    from sourceSets.main.output
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    exclude 'META-INF/*.SF', 'META-INF/*.RSA', 'META-INF/*.DSA'
+}
+tasks.register('fishboneMiningTest', JavaExec) {
+    dependsOn testClasses, examplesClasses
+    classpath = sourceSets.test.runtimeClasspath + sourceSets.examples.output
+    mainClass = 'FishboneMiningTest'
+}
+check.dependsOn fishboneMiningTest
+tasks.register('fishboneMiningLiveCheck', JavaExec) {
+    dependsOn testClasses, examplesClasses
+    classpath = sourceSets.test.runtimeClasspath + sourceSets.examples.output
+    mainClass = 'FishboneMiningLiveCheck'
+    args((project.findProperty('controlPort') ?: '25581').toString(),
+            (project.findProperty('fishboneScenario') ?: 'cycle').toString())
+    workingDir rootProject.projectDir
+}
+tasks.register('fishboneMiningLiveJar', Jar) {
+    dependsOn testClasses, examplesClasses
+    archiveFileName = 'fishbone-mining-live-test.jar'
+    manifest { attributes 'Main-Class': 'FishboneMiningLiveCheck' }
+    from(sourceSets.test.output) { include 'FishboneMiningLiveCheck*.class' }
+    from(sourceSets.examples.output) { include 'FishboneMining*.class' }
+    from sourceSets.main.output
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    exclude 'META-INF/*.SF', 'META-INF/*.RSA', 'META-INF/*.DSA'
 }

@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-01",
+  "minecraft": "26.2",
+  "control_port": 25581,
+  "low_durability_command": "",
+  "scenarios": {
+    "cycle": {
+      "passed": true,
+      "result": "LIVE PASS: cycle position=P[x=1000, y=160, z=1003] minedOres=3",
+      "log": "docs/fishbone-java-test/cycle.log"
+    },
+    "liquid": {
+      "passed": true,
+      "result": "LIVE PASS: liquid position=P[x=1000, y=160, z=1007] minedOres=0",
+      "log": "docs/fishbone-java-test/liquid.log"
+    },
+    "large": {
+      "passed": true,
+      "result": "LIVE PASS: large position=P[x=1001, y=160, z=1000] minedOres=0",
+      "log": "docs/fishbone-java-test/large.log"
+    },
+    "repair": {
+      "passed": true,
+      "result": "LIVE PASS: repair position=P[x=1000, y=160, z=1001] minedOres=0",
+      "log": "docs/fishbone-java-test/repair.log"
+    },
+    "low": {
+      "passed": true,
+      "result": "LIVE PASS: low position=P[x=1000, y=160, z=1001] minedOres=0",
+      "log": "docs/fishbone-java-test/low.log"
+    }
+  },
+  "sha256": {
+    "java-sdk/examples/FishboneMining.java": "7d1edaab8cbf1e95393cf7ec5e59fffbb447c9a651310d7acb662a8c46044f69",
+    "java-sdk/build/libs/fishbone-mining.jar": "662b998801cad3ab0ea7cff592cf1f56e025c18f9d477e2f0b25bada6e2bcbea"
+  }
+}
