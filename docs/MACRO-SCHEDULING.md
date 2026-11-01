@@ -65,3 +65,25 @@ F8 可手动启动和停止所选文件；执行宏接管输入时也可按 F8�
 ## 可运行示例
 
 把 `java-sdk/examples/BroadcastDetector.java`、`BroadcastExecutor.java`、`MacroScheduler.java` 添加到 F8 宏目录，启动 `MacroScheduler.java`。调度宏会启动检测和执行示例；检测宏发布十格内玩家状态，发现玩家后调度宏停止执行示例。执行示例只打印广播，没有默认移动操作，可自行添加。F9 停止全部。
+
+## 世界切换与退出
+
+- 同一连接内跨维度传送不会停止任何角色的宏。JSON 宏在世界未就绪或显示地形加载界面时暂停，恢复后从原指令继续，等待 tick 不计入加载期间。
+- Java SDK 遇到 Mod 返回 `WORLD_LOADING` 时等待并重试；该响应保证操作尚未执行。等待期间仍允许心跳、关闭和其他线程查询状态。网络超时及其他错误不会自动重试，避免重复操作。
+- 断开服务器或退出单人世界时，停止检测宏、执行宏、JSON 宏和尚未声明角色的宏，释放模拟输入；调度宏保留，宏系统不会因此暂停。调度宏可通过 `status.world_loaded` 判断世界是否存在，通过系统消息接收其他宏的停止与退出通知。
+- 手动停止全部宏、调度宏主动退出以及关闭客户端仍按原规则停止相关宏。跨服务器切换若实际断开旧连接，按退出服务器处理。
+- Java 程序须使用更新后的 SDK；独立运行且自带 SDK 的程序需要同步更新。程序自行设置的超时或未处理的其他异常仍可能使其退出。
+
+### 隔离客户端回归
+
+在项目根目录执行；准备时传入未被打开的测试存档，脚本将复制存档。测试会切换旁观模式、跨维度传送并退出世界，勿用于日常游戏目录。
+
+```sh
+./gradlew inputCaptureTestJar
+python3 tests/live_world_lifecycle.py --prepare-from '测试存档路径'
+./gradlew runClient -PrunDir=run-lifecycle-check --args='--quickPlaySingleplayer Lifecycle'
+# 另一个终端，客户端启动后执行：
+python3 tests/live_world_lifecycle.py
+```
+
+报告保存为 `run-lifecycle-check/lifecycle-report.json`。探针仅包含在测试 JAR 中，不进入发布 Mod。

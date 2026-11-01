@@ -23,6 +23,24 @@ public final class MacroCoordinatorTest {
     }
     private static void check(boolean yes, String message) { if (!yes) throw new AssertionError(message); }
     public static void run() {
+        var disconnected = new MacroCoordinator(() -> {}, () -> false);
+        String kept = register(disconnected, "scheduler", "常驻调度");
+        String stoppedDetector = register(disconnected, "detection", "断线检测");
+        String stoppedExecutor = register(disconnected, "execution", "断线操作");
+        Thread network = new Thread(() -> disconnected.enqueueWorldExit("退出世界"));
+        network.start();
+        try { network.join(1000); } catch (InterruptedException e) { throw new AssertionError(e); }
+        check(!network.isAlive(), "network disconnect callback only enqueues cleanup");
+        check(!disconnected.handle(request("macro.heartbeat", stoppedDetector), false).getAsJsonObject().get("stopping").getAsBoolean(), "cleanup waits for game thread");
+        disconnected.tick();
+        check(!disconnected.handle(request("macro.heartbeat", kept), false).getAsJsonObject().get("stopping").getAsBoolean(), "scheduler survives world exit");
+        for (String stopped : List.of(stoppedDetector, stoppedExecutor)) {
+            check(disconnected.handle(request("macro.heartbeat", stopped), false).getAsJsonObject().get("stopping").getAsBoolean(), "business macro stopped on exit");
+            denied("STOPPING", () -> disconnected.handle(request("observe", stopped), false));
+        }
+        check(poll(disconnected, kept).size() >= 2, "scheduler can receive exit notifications outside world");
+        disconnected.handle(request("system.resume", kept), false);
+        register(disconnected, "detection", "新世界检测");
         int[] resets = {0}; boolean[] json = {false};
         var c = new MacroCoordinator(() -> resets[0]++, () -> json[0]);
         String detector = register(c, "detection", "玩家检测");

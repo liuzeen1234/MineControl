@@ -168,7 +168,7 @@ public final class MineControlClient implements ClientModInitializer {
             }
         });
         // A dimension transfer replaces ClientLevel without ending the server session.
-        ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> stopRunningMacros("连接断开或退出世界"));
+        ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> { if (controller != null) controller.worldExited(); });
         ClientTickEvents.START_CLIENT_TICK.register(client -> {
             pollStopShortcut();
             if (controller != null) controller.tick();

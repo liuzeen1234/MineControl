@@ -203,8 +203,23 @@ public final class MineControl implements AutoCloseable {
         for (int i = 0; i < pairs.length; i += 2) result.add((String) pairs[i], GSON.toJsonTree(pairs[i + 1]));
         return result;
     }
-    /** Escape hatch for protocol extensions. Requests are never automatically retried. */
+    /** Waits through world loading only when the Mod explicitly rejected execution.
+     * Transport failures and other errors are never retried (the action may have happened).
+     */
     public synchronized JsonElement call(String command, JsonObject arguments) throws IOException {
+        while (true) {
+            try { return callOnce(command, arguments); }
+            catch (CommandException e) {
+                if (!e.code().equals("WORLD_LOADING")) throw e;
+                try { wait(100); }
+                catch (InterruptedException interrupted) {
+                    Thread.currentThread().interrupt();
+                    throw new InterruptedIOException("Interrupted while waiting for world loading");
+                }
+            }
+        }
+    }
+    private JsonElement callOnce(String command, JsonObject arguments) throws IOException {
         if (closed) throw new IOException("MineControl client is closed");
         if (Thread.currentThread().isInterrupted()) throw new InterruptedIOException("Interrupted before request");
         if (command.startsWith("key.") || command.startsWith("mouse.") || command.startsWith("ui.")

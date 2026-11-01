@@ -69,6 +69,14 @@ public final class MacroCoordinator {
         for (Session s : List.copyOf(sessions.values())) requestStop(s, "user", reason);
         cleanup.run();
     }
+    /** Fabric disconnect callbacks may run on Netty threads; cleanup belongs on the game thread. */
+    public void enqueueWorldExit(String reason) { lifecycle.add(() -> worldExited(reason)); }
+    /** A server session ended; schedulers continue running in the menu. */
+    public synchronized void worldExited(String reason) {
+        for (Session s : List.copyOf(sessions.values()))
+            if (!"scheduler".equals(s.role)) requestStop(s, "world", reason);
+        cleanup.run();
+    }
     public synchronized void resume() { enabled = true; }
     public synchronized void stopFile(String file, String reason) {
         for (Session s : List.copyOf(sessions.values())) if (Objects.equals(file, s.file)) requestStop(s, "user", reason);
@@ -203,6 +211,8 @@ public final class MacroCoordinator {
                 }
             }
         }
+        if (s != null && (s.stopping || s.closing) && !Set.of("ping", "status", "macro.status").contains(command))
+            throw error("STOPPING", "宏正在停止");
         if (READ.contains(command)) return null;
         if (!enabled || (s != null && (s.stopping || s.closing))) throw error("STOPPING", "宏系统已暂停或此宏正在停止");
         if (s != null && !"execution".equals(s.role)) throw error("FORBIDDEN", "检测宏和调度宏不能控制游戏");

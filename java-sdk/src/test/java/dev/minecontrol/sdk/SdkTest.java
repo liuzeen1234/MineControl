@@ -18,6 +18,8 @@ public final class SdkTest {
         try (var server = new FakeServer()) {
             try (var mc = MineControl.connect(server.port())) {
                 check(mc.status().worldLoaded(), "status decoding");
+                mc.call("loading-probe", new JsonObject());
+                check(server.loadingAttempts == 3, "explicit world-loading rejections are retried until ready");
                 check(mc.observe().mainHand().remainingDurability() == 42, "typed observation");
                 check(mc.observe().target().serializationWarnings().equals("warning"), "target warnings");
                 var observation = mc.observe();
@@ -48,6 +50,19 @@ public final class SdkTest {
                 expectIo(mc, "partial");
                 expectIo(mc, "bad-json");
                 expectIo(mc, "oversize");
+            }
+            try (var waiting = MineControl.connect(server.port())) {
+                var task = new FutureTask<Boolean>(() -> {
+                    try { waiting.call("loading-wait", new JsonObject()); return false; }
+                    catch (InterruptedIOException expected) { return Thread.currentThread().isInterrupted(); }
+                });
+                Thread thread = new Thread(task); thread.start();
+                long deadline = System.nanoTime() + Duration.ofSeconds(3).toNanos();
+                while (server.loadingWaitAttempts == 0 && System.nanoTime() < deadline) Thread.sleep(10);
+                check(server.loadingWaitAttempts > 0, "loading wait started");
+                check(waiting.status().worldLoaded(), "loading wait releases lock for status and heartbeat");
+                thread.interrupt();
+                check(task.get(3, TimeUnit.SECONDS), "loading wait is interruptible and preserves flag");
             }
             check(server.resets == 1, "input cleanup on close");
             try (var mc = MineControl.connect(server.port())) { mc.status(); }
@@ -82,7 +97,7 @@ public final class SdkTest {
         volatile Throwable failure;
         volatile boolean freeze;
         volatile long tick, lastHoldTick;
-        volatile int resets;
+        volatile int resets, loadingAttempts, loadingWaitAttempts;
         FakeServer() throws IOException {
             listener = new ServerSocket(0, 8, InetAddress.getByName("127.0.0.1"));
             worker = new Thread(this::serve);
@@ -106,6 +121,17 @@ public final class SdkTest {
                         case "ui.list" -> result = JsonParser.parseString("[{\"id\":7,\"label\":\"输入\"}]");
                         case "key.hold", "mouse.hold" -> lastHoldTick = tick;
                         case "input.reset" -> resets++;
+                        case "loading-wait" -> {
+                            loadingWaitAttempts++;
+                            reply.addProperty("ok", false);
+                            reply.add("error", JsonParser.parseString("{\"code\":\"WORLD_LOADING\",\"message\":\"loading\"}"));
+                        }
+                        case "loading-probe" -> {
+                            if (++loadingAttempts < 3) {
+                                reply.addProperty("ok", false);
+                                reply.add("error", JsonParser.parseString("{\"code\":\"WORLD_LOADING\",\"message\":\"loading\"}"));
+                            }
+                        }
                         case "reject" -> {
                             reply.addProperty("ok", false);
                             reply.add("error", JsonParser.parseString("{\"code\":\"NO_WORLD\",\"message\":\"no world\"}"));

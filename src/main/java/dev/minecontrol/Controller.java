@@ -21,14 +21,15 @@ public final class Controller {
     private final Map<Integer, Long> buttons = new HashMap<>();
     private final MacroEngine macro = new MacroEngine(this::reset);
     private long tick;
-    private Object previousWorld;
+    private long macroTick, lastTickNanos = System.nanoTime();
+    private boolean wasWorldReady;
     private volatile boolean stopped;
     private record Job(JsonObject request, CompletableFuture<JsonObject> future, long expires) {}
     private static final class CommandError extends RuntimeException {
         final String code;
         CommandError(String code, String message) { super(message); this.code = code; }
     }
-    public Controller(MinecraftClient client, Config config) { this.client = client; this.config = config; previousWorld = client.world; }
+    public Controller(MinecraftClient client, Config config) { this.client = client; this.config = config; }
     public CompletableFuture<JsonObject> submit(JsonObject request) {
         var future = new CompletableFuture<JsonObject>();
         if (stopped) future.complete(LocalServer.error(request.get("id"), "STOPPED", "Service stopped"));
@@ -40,10 +41,13 @@ public final class Controller {
     public MacroCoordinator coordinator() { return coordinator; }
     public void stopMacros() { macro.stop(); reset(); }
     public void tick() {
+        long now = System.nanoTime();
+        long elapsed = Math.max(0, now - lastTickNanos);
+        lastTickNanos = now;
+        boolean ready = worldReady();
         tick++;
         coordinator.tick();
-        if (previousWorld != null && previousWorld != client.world) { macro.stop(); reset(); }
-        previousWorld = client.world;
+
         for (int key : new ArrayList<>(keys.keySet())) if (tick >= keys.get(key)) keyState(key, false, 0);
         for (int button : new ArrayList<>(buttons.keySet())) if (tick >= buttons.get(button)) buttonState(button, false, 0);
         // Focus changes and screens can reset bindings. Reassert only our held inputs.
@@ -55,16 +59,31 @@ public final class Controller {
             if (System.nanoTime() >= job.expires) { job.future.complete(LocalServer.error(job.request.get("id"), "TIMEOUT", "Request expired before execution")); continue; }
             run(job);
         }
-        for (Iterator<Job> it = waits.iterator(); it.hasNext();) {
+        for (ListIterator<Job> it = waits.listIterator(); it.hasNext();) {
             Job waiting = it.next();
             if (waiting.future.isDone()) { it.remove(); continue; }
+            if (waiting.request.has("_internal_macro") && (!ready || !wasWorldReady)) {
+                waiting = new Job(waiting.request, waiting.future, waiting.expires + elapsed);
+                it.set(waiting);
+                if (!ready) continue;
+            }
             if (screenMatches(string(waiting.request, "screen"))) {
                 waiting.future.complete(success(waiting.request, status())); it.remove();
             } else if (System.nanoTime() >= waiting.expires) {
                 waiting.future.complete(LocalServer.error(waiting.request.get("id"), "TIMEOUT", "Screen did not appear")); it.remove();
             }
         }
-        macro.tick(tick, this::macroSnapshot, this::macroCommand);
+        if (ready) macro.tick(++macroTick, this::macroSnapshot, this::macroCommand);
+        wasWorldReady = ready;
+    }
+    private boolean worldReady() {
+        return client.player != null && client.world != null && !loadingScreen();
+    }
+    private boolean loadingScreen() { return client.currentScreen instanceof net.minecraft.client.gui.screen.DownloadingTerrainScreen; }
+    public void worldExited() { coordinator.enqueueWorldExit("连接断开或退出世界"); }
+    private static boolean needsWorld(String command) {
+        return Set.of("position", "observe", "inventory", "players.nearby", "region.query", "chat.command").contains(command)
+                || command.startsWith("key.") || command.startsWith("mouse.");
     }
     private CompletableFuture<JsonObject> macroCommand(JsonObject request) {
         var future = new CompletableFuture<JsonObject>();
@@ -78,6 +97,8 @@ public final class Controller {
             String command = string(request, "command");
             JsonElement managed = coordinator.handle(request, request.has("_internal_macro"));
             if (managed != null) { job.future.complete(success(request, managed)); return; }
+            // Explicit rejection before any game side effect: safe for the SDK to retry.
+            if ((needsWorld(command) && !worldReady()) || (command.startsWith("ui.") && loadingScreen())) throw fail("WORLD_LOADING", "等待世界加载完成，操作尚未执行");
             JsonElement result;
             switch (command) {
                 case "ping" -> { var pong = new JsonObject(); pong.addProperty("pong", true); pong.addProperty("protocol", 1); result = pong; }
