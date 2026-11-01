@@ -49,12 +49,13 @@ public final class InputCaptureClientTest implements ClientModInitializer {
         if (stage == 0) {
             if (client.level == null || !Files.exists(config.resolve("input-capture-test.trigger"))) return;
             Files.delete(config.resolve("input-capture-test.trigger"));
+            MineControlClient.javaMacros().resume();
             started = System.nanoTime();
             controller = (Controller) field(MineControlClient.class, "controller").get(null);
             stopKey = (KeyMapping) field(MineControlClient.class, "stopMacro").get(null);
             originalStop = stopKey.saveString();
             Path source = config.resolve("InputCaptureProbe.java");
-            Files.writeString(source, "class InputCaptureProbe { public static void main(String[] args) throws Exception { Thread.sleep(120000); } }");
+            Files.writeString(source, "class InputCaptureProbe { public static void main(String[] args) throws Exception { try (var mc = dev.minecontrol.sdk.MineControl.connect(Integer.parseInt(args[0]), dev.minecontrol.sdk.MineControl.MacroRole.EXECUTION, \"InputCaptureProbe\")) { while (!mc.stopRequested()) Thread.sleep(50); } } }");
             pending = MineControlClient.javaMacros().addFiles(List.of(source));
             stage = 1; return;
         }
@@ -72,6 +73,8 @@ public final class InputCaptureClientTest implements ClientModInitializer {
                 stage = 2;
             }
             case 2 -> {
+                if (!MineControlClient.inputCaptured()) return;
+                MineControlClient.updateInputCapture();
                 check(MineControlClient.inputCaptured(), "Java macro captures input");
                 check(GLFW.glfwGetInputMode(client.getWindow().handle(), GLFW.GLFW_CURSOR) == GLFW.GLFW_CURSOR_NORMAL,
                         "OS cursor is visible and released while Java macro runs");
@@ -85,8 +88,11 @@ public final class InputCaptureClientTest implements ClientModInitializer {
                 rawKey(client, GLFW.GLFW_KEY_W, GLFW.GLFW_PRESS);
                 rawKey(client, GLFW.GLFW_KEY_ESCAPE, GLFW.GLFW_PRESS);
                 rawKey(client, GLFW.GLFW_KEY_T, GLFW.GLFW_PRESS);
-                rawKey(client, GLFW.GLFW_KEY_F8, GLFW.GLFW_PRESS);
                 check(!client.options.keyUp.isDown() && client.gui.screen() == null, "physical movement and game shortcuts blocked");
+                rawKey(client, GLFW.GLFW_KEY_F8, GLFW.GLFW_PRESS);
+                check(client.gui.screen() instanceof MacroScreen && !MineControlClient.capturePhysicalInput(client.getWindow().handle()),
+                        "physical F8 opens an operable macro console during execution");
+                client.gui.setScreen(null);
                 rawButton(client, GLFW.GLFW_PRESS);
                 check(!client.mouseHandler.isLeftPressed(), "physical mouse click blocked");
                 double x = client.mouseHandler.xpos(), y = client.mouseHandler.ypos();
@@ -129,6 +135,7 @@ public final class InputCaptureClientTest implements ClientModInitializer {
                 check(client.options.keyUp.isDown(), "manual input restored after stop");
                 rawKey(client, GLFW.GLFW_KEY_W, GLFW.GLFW_RELEASE);
                 stopKey.setKey(InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_F10)); KeyMapping.resetMapping();
+                MineControlClient.javaMacros().resume();
                 pending = command("macro.run", "script", JsonParser.parseString("[{\"wait\":10000}]"));
                 stage = 6;
             }
@@ -141,6 +148,7 @@ public final class InputCaptureClientTest implements ClientModInitializer {
                 check(controller.macroRunning(), "old stop key no longer triggers after remapping");
                 MineControlClient.pollStopShortcut(key -> key == GLFW.GLFW_KEY_F10, button -> false);
                 check(!controller.macroRunning(), "raw stop polling works independently of keyboard callbacks");
+                MineControlClient.javaMacros().resume();
                 pending = command("macro.run", "script", JsonParser.parseString("[{\"wait\":10000}]"));
                 stage = 7;
             }
@@ -148,6 +156,7 @@ public final class InputCaptureClientTest implements ClientModInitializer {
                 rawKey(client, GLFW.GLFW_KEY_F10, GLFW.GLFW_PRESS);
                 check(!controller.macroRunning(), "remapped physical stop key stops JSON macro");
                 stopKey.setKey(InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_UNKNOWN)); KeyMapping.resetMapping();
+                MineControlClient.javaMacros().resume();
                 pending = command("macro.run", "script", JsonParser.parseString("[{\"wait\":10000}]"));
                 stage = 8;
             }
@@ -172,6 +181,7 @@ public final class InputCaptureClientTest implements ClientModInitializer {
     }
     private CompletableFuture<JsonObject> command(String command, Object... values) {
         var request = new JsonObject(); request.addProperty("id", "input-capture-test"); request.addProperty("command", command);
+        request.addProperty("_internal_macro", true); // Trusted in-client probe emulates executor-origin input.
         var gson = new Gson();
         for (int i=0;i<values.length;i+=2) request.add((String) values[i], gson.toJsonTree(values[i+1]));
         return controller.submit(request).thenApply(response -> {

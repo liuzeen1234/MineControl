@@ -5,6 +5,7 @@ import java.nio.file.Files;
 public final class ProtocolTest {
     public static void main(String[] args) throws Exception {
         MacroTest.run();
+        MacroCoordinatorTest.run();
         RegionQueryTest.run();
         MacroFilesTest.run();
         require(!SimulatedInput.active(), "normal input origin");

@@ -32,14 +32,17 @@ public final class MineControlClient implements ClientModInitializer {
     private static boolean oldPause;
     private static JavaMacroManager javaMacros;
     private static KeyMapping stopMacro;
+    private static KeyMapping openMacros;
     private static boolean inputWasCaptured;
     private static boolean restoreCursorWhenFocused;
     public static JavaMacroManager javaMacros() { return javaMacros; }
     public static boolean inputCaptured() {
-        return (javaMacros != null && javaMacros.active()) || (controller != null && controller.macroRunning());
+        return (javaMacros != null && javaMacros.executing()) || (controller != null && controller.macroRunning());
     }
     public static boolean capturePhysicalInput(long window) {
-        return inputCaptured() && window == Minecraft.getInstance().getWindow().handle();
+        var client = Minecraft.getInstance();
+        return inputCaptured() && window == client.getWindow().handle()
+                && !(client.gui.screen() instanceof MacroScreen) && !(client.gui.screen() instanceof AddMacroScreen);
     }
     public static void updateInputCapture() {
         boolean captured = inputCaptured();
@@ -72,7 +75,7 @@ public final class MineControlClient implements ClientModInitializer {
             GLFW.glfwSetInputMode(window, GLFW.GLFW_CURSOR, GLFW.GLFW_CURSOR_NORMAL);
     }
     static void pollStopShortcut(IntPredicate rawKeyboardDown, IntPredicate rawMouseDown) {
-        if (!inputCaptured() || stopMacro == null) return;
+        if ((!inputCaptured() && (javaMacros == null || !javaMacros.active()) && (controller == null || !controller.coordinator().active())) || stopMacro == null) return;
         var key = stopMacro.isUnbound() ? InputConstants.Type.KEYSYM.getOrCreate(GLFW.GLFW_KEY_F9)
                 : KeyMappingHelper.getBoundKeyOf(stopMacro);
         boolean pressed = key.getType() == InputConstants.Type.KEYSYM ? rawKeyboardDown.test(key.getValue())
@@ -90,23 +93,32 @@ public final class MineControlClient implements ClientModInitializer {
         if (stopMacro != null && (stopMacro.matches(event)
                 || (stopMacro.isUnbound() && event.key() == GLFW.GLFW_KEY_F9))) stopRunningMacros();
     }
+    public static void handleOpenMacrosKey(KeyEvent event) {
+        if (openMacros != null && openMacros.matches(event)) {
+            var client = Minecraft.getInstance();
+            client.gui.setScreen(new MacroScreen(client.gui.screen()));
+        }
+    }
     public static void handleStopMouse(MouseButtonEvent event) {
         if (stopMacro != null && stopMacro.matchesMouse(event)) stopRunningMacros();
     }
     public static void stopRunningMacros() {
-        if (javaMacros != null) javaMacros.stop();
-        if (controller != null) controller.stopMacros();
+        stopRunningMacros("用户停止全部宏");
+    }
+    private static void stopRunningMacros(String reason) {
+        if (controller != null) controller.coordinator().emergency(reason);
+        else if (javaMacros != null) javaMacros.stop();
     }
     public static String stopKeyLabel() {
         return stopMacro == null || stopMacro.isUnbound() ? "F9" : stopMacro.getTranslatedKeyMessage().getString();
     }
     public static void drawMacroStatus(GuiGraphicsExtractor graphics) {
-        if (!inputCaptured()) return;
+        if (!inputCaptured() && (javaMacros == null || !javaMacros.active()) && (controller == null || !controller.coordinator().active())) return;
         var client = Minecraft.getInstance();
-        String name = javaMacros != null && javaMacros.active() ? javaMacros.activeFile() : "JSON 宏";
+        String name = javaMacros != null && javaMacros.active() ? javaMacros.state() : controller != null && controller.coordinator().active() ? controller.coordinator().summary() : "JSON 宏";
         int maxWidth = Math.max(80, client.getWindow().getGuiScaledWidth() - 24);
         String running = client.font.plainSubstrByWidth("运行中：" + name, maxWidth);
-        String hint = client.font.plainSubstrByWidth("停止：" + stopKeyLabel() + "  |  光标已释放，手动输入已屏蔽", maxWidth);
+        String hint = client.font.plainSubstrByWidth("停止全部：" + stopKeyLabel() + (inputCaptured() ? "  |  手动输入已屏蔽" : "  |  可手动操作"), maxWidth);
         int panelWidth = Math.max(client.font.width(running), client.font.width(hint)) + 12;
         graphics.fill(5, 5, 5 + panelWidth, 36, 0xDD142230);
         graphics.fill(5, 5, 7, 36, 0xFF73DBA1);
@@ -122,7 +134,7 @@ public final class MineControlClient implements ClientModInitializer {
                 "key.minecontrol.stop_macro", GLFW.GLFW_KEY_F9, KeyMapping.Category.MISC));
         HudElementRegistry.addLast(Identifier.fromNamespaceAndPath("minecontrol", "running_macro"),
                 (graphics, delta) -> drawMacroStatus(graphics));
-        var openMacros = KeyMappingHelper.registerKeyMapping(new KeyMapping(
+        openMacros = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                 "key.minecontrol.macros", GLFW.GLFW_KEY_F8, KeyMapping.Category.MISC));
         ScreenEvents.AFTER_INIT.register((client, screen, width, height) -> {
             if (screen instanceof TitleScreen || screen instanceof PauseScreen) {
@@ -144,6 +156,7 @@ public final class MineControlClient implements ClientModInitializer {
                     request.addProperty("command", "input.reset");
                     if (controller != null) controller.submit(request);
                 }, line -> LOG.info("[Java 宏] {}", line));
+                javaMacros.coordinator(controller.coordinator());
                 oldPause = client.options.pauseOnLostFocus;
                 background = config.backgroundControl;
                 if (background) client.options.pauseOnLostFocus = false;
@@ -155,7 +168,7 @@ public final class MineControlClient implements ClientModInitializer {
             }
         });
         // A dimension transfer replaces ClientLevel without ending the server session.
-        ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> stopRunningMacros());
+        ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> stopRunningMacros("连接断开或退出世界"));
         ClientTickEvents.START_CLIENT_TICK.register(client -> {
             pollStopShortcut();
             if (controller != null) controller.tick();
@@ -166,6 +179,7 @@ public final class MineControlClient implements ClientModInitializer {
             }
         });
         ClientLifecycleEvents.CLIENT_STOPPING.register(client -> {
+            if (controller != null) controller.coordinator().emergency("客户端退出");
             if (javaMacros != null) javaMacros.close();
             if (server != null) server.close();
             if (controller != null) controller.stop();

@@ -36,8 +36,12 @@ public final class Controller {
         return future;
     }
     public boolean isHeld(long window, int key) { return client.getWindow().getHandle() == window && keys.containsKey(key); }
+    private final MacroCoordinator coordinator = new MacroCoordinator(this::stopMacros, macro::running);
+    public MacroCoordinator coordinator() { return coordinator; }
+    public void stopMacros() { macro.stop(); reset(); }
     public void tick() {
         tick++;
+        coordinator.tick();
         if (previousWorld != null && previousWorld != client.world) { macro.stop(); reset(); }
         previousWorld = client.world;
         for (int key : new ArrayList<>(keys.keySet())) if (tick >= keys.get(key)) keyState(key, false, 0);
@@ -64,6 +68,7 @@ public final class Controller {
     }
     private CompletableFuture<JsonObject> macroCommand(JsonObject request) {
         var future = new CompletableFuture<JsonObject>();
+        request.addProperty("_internal_macro", true);
         run(new Job(request, future, System.nanoTime() + TimeUnit.MILLISECONDS.toNanos(config.requestTimeoutMs)));
         return future;
     }
@@ -71,6 +76,8 @@ public final class Controller {
         JsonObject request = job.request;
         try {
             String command = string(request, "command");
+            JsonElement managed = coordinator.handle(request, request.has("_internal_macro"));
+            if (managed != null) { job.future.complete(success(request, managed)); return; }
             JsonElement result;
             switch (command) {
                 case "ping" -> { var pong = new JsonObject(); pong.addProperty("pong", true); pong.addProperty("protocol", 1); result = pong; }
@@ -131,7 +138,8 @@ public final class Controller {
                 default -> throw fail("UNKNOWN_COMMAND", "Unknown command: " + command);
             }
             job.future.complete(success(request, result));
-        } catch (RegionQuery.Error e) { job.future.complete(LocalServer.error(request.get("id"), e.code, e.getMessage())); }
+        } catch (MacroCoordinator.Error e) { job.future.complete(LocalServer.error(request.get("id"), e.code, e.getMessage())); }
+        catch (RegionQuery.Error e) { job.future.complete(LocalServer.error(request.get("id"), e.code, e.getMessage())); }
         catch (CommandError e) { job.future.complete(LocalServer.error(request.get("id"), e.code, e.getMessage())); }
         catch (IllegalArgumentException | IllegalStateException e) { job.future.complete(LocalServer.error(request.get("id"), "INVALID_ARGUMENT", e.getMessage())); }
         catch (Exception e) { MineControlClient.LOG.error("Command failed", e); job.future.complete(LocalServer.error(request.get("id"), "INTERNAL_ERROR", "See client log")); }
@@ -163,6 +171,7 @@ public final class Controller {
         for (int button : new ArrayList<>(buttons.keySet())) buttonState(button, false, 0);
     }
     public void stop() {
+        coordinator.emergency("客户端退出");
         stopped = true; macro.stop(); reset();
         for (Job job : queue) job.future.complete(LocalServer.error(job.request.get("id"), "STOPPED", "Service stopped"));
         for (Job job : waits) job.future.complete(LocalServer.error(job.request.get("id"), "STOPPED", "Service stopped"));

@@ -44,10 +44,13 @@ public final class MacroScreen extends Screen {
                 .bounds(12 + 3 * (buttonWidth + gap), 28, buttonWidth, 20).build());
         list = addRenderableWidget(new FileList(Math.max(30, height - 184)));
         start = addRenderableWidget(Button.builder(Component.literal("启动所选"), button -> {
-            if (manager() != null && selected != null && manager().start(selected)) minecraft.gui.setScreen(null);
+            if (manager() != null && selected != null) {
+                manager().resume();
+                if (manager().start(selected)) minecraft.gui.setScreen(null);
+            }
         }).bounds(12, height - 50, (width - 28) / 2, 20).build());
-        stop = addRenderableWidget(Button.builder(Component.literal("停止运行"), button -> {
-            if (manager() != null) manager().stop();
+        stop = addRenderableWidget(Button.builder(Component.literal("停止所选"), button -> {
+            if (manager() != null && selected != null) manager().stop(selected);
         }).bounds(16 + (width - 28) / 2, height - 50, (width - 28) / 2, 20).build());
         addRenderableWidget(Button.builder(Component.literal("返回"), button -> onClose())
                 .bounds(width / 2 - 50, height - 26, 100, 20).build());
@@ -73,9 +76,9 @@ public final class MacroScreen extends Screen {
     private void updateButtons() {
         var manager = manager();
         boolean available = manager != null && !manager.loading();
-        start.active = available && selected != null && !manager.active() && minecraft.level != null;
-        stop.active = manager != null && manager.active();
-        delete.active = available && selected != null && !(manager.active() && selected.equals(manager.activeFile()));
+        start.active = available && selected != null && !manager.running(selected) && minecraft.level != null;
+        stop.active = manager != null && selected != null && manager.running(selected);
+        delete.active = available && selected != null && !manager.running(selected);
         add.active = available;
         refresh.active = available && !refreshing;
         refresh.setMessage(Component.literal(refreshing ? "刷新中…" : "刷新列表"));
@@ -129,14 +132,13 @@ public final class MacroScreen extends Screen {
         if (displayed.isEmpty()) graphics.centeredText(font,
                 manager() != null && manager().loading() ? "正在读取宏文件…" : "还没有宏文件，点击添加或拖入 .java / .jar 文件",
                 width / 2, 91, 0xFF94A3B8);
-        String running = manager() == null ? "服务不可用" : manager().state()
-                + (manager().active() ? " · " + manager().activeFile() : "");
+        String running = manager() == null ? "服务不可用" : manager().state();
         text(graphics, "运行状态：" + running, 12, height - 98, width - 24, 0xFF80D8A0);
         var logs = manager() == null ? List.<String>of() : manager().logs();
-        String latest = !message.isEmpty() ? message : logs.isEmpty() ? "可添加多个文件；同一时间运行一个宏" : logs.get(logs.size() - 1);
+        String latest = !message.isEmpty() ? message : logs.isEmpty() ? "执行宏限一个；检测宏可多个；调度宏限一个" : logs.get(logs.size() - 1);
         text(graphics, latest, 12, height - 83, width - 24, 0xFFCBD5E1);
         text(graphics, minecraft.level == null ? "请先进入世界再启动宏"
-                        : "停止键：" + MineControlClient.stopKeyLabel() + "  |  运行时释放光标并屏蔽手动输入",
+                        : "停止键：" + MineControlClient.stopKeyLabel() + " 停止全部  |  仅执行宏接管输入",
                 12, height - 67, width - 24, 0xFF94A3B8);
     }
     private final class FileList extends ObjectSelectionList<Row> {

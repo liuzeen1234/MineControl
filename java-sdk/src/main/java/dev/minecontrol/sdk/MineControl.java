@@ -8,13 +8,20 @@ import java.time.Duration;
 import java.util.*;
 import static dev.minecontrol.sdk.Snapshots.*;
 
-/** Blocking Java API for an external program. Use one controlling program at a time. */
+/** Blocking Java API for an external program. Supports execution, detection and scheduler macro sessions. */
 public final class MineControl implements AutoCloseable {
     private static final Gson GSON = new Gson();
     private static final int MAX_RESPONSE_BYTES = 1_048_576;
     private final int port, timeoutMs;
     private final Thread shutdownHook;
-    private boolean closed, inputTouched;
+    private boolean closed, inputTouched, registered, explicitExitReason;
+    private String macroToken = System.getenv("MINECONTROL_MACRO_TOKEN");
+    private String exitReason = "正常结束";
+    private java.util.concurrent.ScheduledExecutorService heartbeat;
+    public enum MacroRole { EXECUTION, DETECTION, SCHEDULER }
+    public record MacroInstance(String instance_id, String name, String file, String role, boolean stopping, boolean enabled) {}
+    public record Broadcast(long sequence, String channel, long time, String sender, String sender_id, JsonElement data) {}
+    public record Mailbox(List<Broadcast> messages, long dropped) {}
     private final Keys keys = new Keys();
     private final Mouse mouse = new Mouse();
     private final Ui ui = new Ui();
@@ -41,6 +48,40 @@ public final class MineControl implements AutoCloseable {
             throw new IOException("Unsupported MineControl protocol");
         Runtime.getRuntime().addShutdownHook(client.shutdownHook);
         return client;
+    }
+    /** Declare the role before reading game state. A busy execution slot raises MACRO_BUSY; retry explicitly. */
+    public static MineControl connect(int port, MacroRole role, String name) throws IOException {
+        MineControl mc = connect(port);
+        try { mc.register(role, name); return mc; }
+        catch (IOException | RuntimeException e) { mc.closed = true; Runtime.getRuntime().removeShutdownHook(mc.shutdownHook); throw e; }
+    }
+    public synchronized MacroInstance register(MacroRole role, String name) throws IOException {
+        if (registered) throw new IllegalStateException("Macro already registered");
+        JsonObject result = call("macro.register", params("role", role.name().toLowerCase(Locale.ROOT), "name", name)).getAsJsonObject();
+        macroToken = result.get("macro_token").getAsString(); registered = true;
+        heartbeat = java.util.concurrent.Executors.newSingleThreadScheduledExecutor(task -> {
+            Thread t = new Thread(task, "MineControl macro heartbeat"); t.setDaemon(true); return t;
+        });
+        heartbeat.scheduleWithFixedDelay(() -> {
+            try { call("macro.heartbeat", new JsonObject()); } catch (IOException ignored) { /* Next user call reports loss of session. */ }
+        }, 5, 5, java.util.concurrent.TimeUnit.SECONDS);
+        return decode(result, MacroInstance.class);
+    }
+    public void subscribe(String channel) throws IOException { call("bus.subscribe", params("channel", channel)); }
+    public void broadcast(String channel, JsonElement data) throws IOException { call("bus.publish", params("channel", channel, "data", data)); }
+    public Mailbox pollBroadcasts() throws IOException { return decode(call("bus.poll", new JsonObject()), Mailbox.class); }
+    public List<MacroInstance> macros() throws IOException { return List.of(decode(call("program.list", new JsonObject()), MacroInstance[].class)); }
+    public void startMacro(String file) throws IOException { call("program.start", params("file", file)); }
+    public void stopMacro(String instanceId, String reason) throws IOException { call("program.stop", params("instance_id", instanceId, "reason", reason)); }
+    public void pauseMacros(String reason) throws IOException { call("system.pause", params("reason", reason)); }
+    public void resumeMacros() throws IOException { call("system.resume", new JsonObject()); }
+    public synchronized void exitReason(String reason) {
+        if (reason == null || reason.isBlank() || reason.length() > 512) throw new IllegalArgumentException("Invalid exit reason");
+        exitReason = reason; explicitExitReason = true;
+    }
+    /** Stop requests are also delivered on $system; this polls without consuming broadcasts. */
+    public boolean stopRequested() throws IOException {
+        return call("macro.heartbeat", new JsonObject()).getAsJsonObject().get("stopping").getAsBoolean();
     }
     public Keys key() { return keys; }
     public Mouse mouse() { return mouse; }
@@ -172,6 +213,7 @@ public final class MineControl implements AutoCloseable {
         JsonObject request = arguments.deepCopy();
         request.addProperty("id", id);
         request.addProperty("command", command);
+        if (macroToken != null && !macroToken.isBlank()) request.addProperty("macro_token", macroToken);
         byte[] bytes = (request + "\n").getBytes(StandardCharsets.UTF_8);
         if (bytes.length - 1 > 65536) throw new IOException("Request exceeds default 65536-byte limit");
         try (var socket = new Socket()) {
@@ -207,14 +249,16 @@ public final class MineControl implements AutoCloseable {
         }
         throw new EOFException("Incomplete response");
     }
-    /** Releases global simulated inputs if this client sent operations. Read-only clients do not reset. */
+    /** Reports session exit; legacy unregistered clients reset only if they sent input operations. */
     @Override public synchronized void close() throws IOException {
         if (closed) return;
         boolean interrupted = Thread.interrupted();
         try {
-            if (inputTouched) resetInputs();
+            if (registered || (macroToken != null && !macroToken.isBlank())) call("macro.exit", params("reason", exitReason, "reason_explicit", explicitExitReason));
+            else if (inputTouched) resetInputs();
         } finally {
             closed = true;
+            if (heartbeat != null) heartbeat.shutdownNow();
             try { Runtime.getRuntime().removeShutdownHook(shutdownHook); }
             catch (IllegalStateException ignored) { /* JVM is already shutting down. */ }
             if (interrupted) Thread.currentThread().interrupt();

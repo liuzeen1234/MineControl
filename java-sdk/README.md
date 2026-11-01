@@ -57,7 +57,7 @@ Minecraft 26.2 游戏内界面：按 F8，或点击标题/暂停菜单的“Mine
 
 “删除所选”会移到同目录 `.trash/`，可在文件管理器显示隐藏文件后手动恢复；正在运行的文件须先停止再删。删除默认宏后不会自动恢复。点“打开文件夹”可在系统文件管理器中编辑或放入文件，列表每两秒自动扫描，也可手动刷新。运行库放在隐藏的 `.runtime/`，不出现在列表中。
 
-支持管理多个文件，同一时间运行一个，避免角色输入冲突。界面只管理自己启动的 Java 程序，不能停止另一个终端启动的控制器；旧 JSON 宏仍使用原 CLI 管理。每次运行使用独立 Java 进程，源文件修改后停止并重新启动即可生效。宏相当于本机 Java 程序，运行权限与游戏相同。
+支持一个执行宏、多个检测宏和一个调度宏并行，身份由程序注册声明。界面显示并管理自己启动的 Java 进程；外部注册实例可由调度宏管理。旧 JSON 宏仍使用原 CLI 管理，并占用执行名额。每次运行使用独立 Java 进程，源文件修改后停止并重新启动即可生效。宏相当于本机 Java 程序，运行权限与游戏相同。
 
 宏退出失败时，界面会显示捕获到的异常原因，完整进程输出同时记录在当前游戏实例的 `logs/latest.log` 中，带有 `[Java 宏]` 前缀。观察数据中的 `nbt`、`components`、`state` 允许为空；SDK 会将显式 JSON null 转成 Java null，读取这些字段前应判空。
 
@@ -100,7 +100,7 @@ Minecraft 26.2 游戏内界面：按 F8，或点击标题/暂停菜单的“Mine
 
 `examples/PlayerGuard.java` 每个客户端 tick 扫描一次周围 10 格内已加载的其他存活玩家（排除自己和旁观者，按三维直线距离计算，包含恰好 10 格）。无需瞄准或视线无遮挡。检测到后发送一次 `/res tp liuhome` 并结束；再次监测需重新启动。服务器必须支持此命令，并允许当前账号传送；发送成功不代表传送成功。
 
-运行 `./gradlew :java-sdk:playerGuardJar` 生成 `java-sdk/build/libs/player-guard.jar`，将源码或 JAR 添加到宏列表后启动。当前宏管理器一次运行一个宏，因此此独立检测宏不能与攻击宏同时运行。
+运行 `./gradlew :java-sdk:playerGuardJar` 生成 `java-sdk/build/libs/player-guard.jar`，将源码或 JAR 添加到宏列表后启动。这个程序会发送传送命令，因此默认按执行宏运行，与攻击执行宏互斥；如需拆成只读检测和执行，请使用下方的广播示例。
 
 SDK 新增 `nearbyPlayers(radius)`（半径大于 0 且不超过 128）和 `sendCommand(text)`，分别对应协议 `players.nearby` 和 `chat.command`。
 
@@ -113,10 +113,14 @@ SDK 新增 `nearbyPlayers(radius)`（半径大于 0 且不超过 128）和 `send
 运行 `./gradlew :java-sdk:guardedEntityClickJar` 生成 `java-sdk/build/libs/guarded-entity-click.jar`，宏列表只需启动这个 JAR，F9 可停止整个流程。跨维度传送保留宏与输入控制；世界短暂不可用时暂停操作、最多等待 30 秒。断开连接、加载超时或网络错误时结束宏。服务器需设置 `work`、`out` 家，并支持对应命令；宏确认命令发送，不确认传送成功。正常 20 TPS 下 20 tick 约为 1 秒，卡顿时更长；玩家查询与操作有调度间隔，检测仅覆盖客户端同步的数据。
 
 
-务必使用 try-with-resources。SDK 执行过输入/UI 操作后，close 会发送 input.reset；程序抛异常时同样执行。关闭幂等，只读客户端关闭不会清理其他程序的输入。另有 JVM shutdown hook，在正常 JVM 退出或 Ctrl+C 时尝试清理。请先停止旧宏，并且只运行一个控制程序：现有协议的输入状态是全局状态，没有客户端所有权，reset 会影响所有控制来源。
+务必使用 try-with-resources。注册或托管宏关闭时会报告退出理由，由管理器清理所属执行输入；检测宏关闭不会清理执行宏的输入。关闭幂等，另有 JVM shutdown hook 在 JVM 退出或 Ctrl+C 时尝试报告。托管进程的最终退出事件以实际进程结果为准。未注册的旧式客户端仍在发送过输入/UI 操作后使用 input.reset 清理；新程序建议显式注册身份。
 
 强制结束进程、网络失败或游戏线程不响应时，不能保证立即释放。Mod 现有的 maxHoldTicks（默认 1200 tick）限制 down，hold 使用指定 tick；两者都按客户端 tick 到期释放。没有新增心跳租约或墙钟看门狗。
 
 Mod 拒绝命令时抛 `CommandException`，用 `code()` 读取协议错误码；连接、帧格式和网络超时抛 `IOException`；可中断等待抛 `InterruptedException`。SDK 不自动重试动作，丢失回复不能证明动作未执行。长时间本地计算不会占住服务端连接，每个请求使用独立短连接。一个 SDK 实例的请求串行发送，但完整用户流程不具有事务性。
 
 SDK 保留 Gson 作为公开依赖，以便访问原始 NBT、组件及扩展字段。只读快照受客户端可见性限制，不能代表服务端未同步数据。现有 CLI、JSON 宏和 Python 控制器仍可使用。
+
+### 多宏调度与广播
+
+使用 `MineControl.connect(port, MacroRole.DETECTION, "宏名称")` 声明身份，身份可选 `EXECUTION`、`DETECTION`、`SCHEDULER`。检测宏可多个，执行宏和调度宏各限一个。支持 `subscribe`、`broadcast`、`pollBroadcasts`、`stopRequested`、`exitReason`，调度宏另可调用 `macros`、`startMacro`、`stopMacro`、`pauseMacros`、`resumeMacros`。完整规则和运行示例见 [宏调度说明](../docs/MACRO-SCHEDULING.md)。

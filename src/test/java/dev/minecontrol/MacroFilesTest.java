@@ -56,10 +56,16 @@ public final class MacroFilesTest {
             try (var manager = new JavaMacroManager(files.directory(), 25589, () -> releases[0]++, reported::add)) {
                 manager.refresh().get(5, TimeUnit.SECONDS);
                 require(manager.start("Probe.java"), "source launch accepted");
-                require(!manager.start("Probe.java"), "concurrent launch rejected");
-                await(() -> manager.logs().stream().anyMatch(line -> line.startsWith("READY 25589")), 15_000);
+                require(!manager.start("Probe.java"), "duplicate file launch rejected");
+                await(() -> manager.logs().stream().anyMatch(line -> line.contains("READY 25589")), 15_000);
                 try { manager.deleteFile("Probe.java").get(); throw new AssertionError("deleted active macro"); }
                 catch (ExecutionException expected) {}
+                require(manager.start("Probe (2).java") == false, "trashed file cannot launch");
+                manager.addFiles(List.of(source)).get();
+                require(manager.start("Probe (2).java"), "different files launch concurrently");
+                manager.stop("Probe (2).java");
+                await(() -> !manager.running("Probe (2).java"), 6_000);
+                require(manager.running("Probe.java"), "stopping one process preserves another");
                 manager.stop();
                 await(() -> !manager.active(), 6_000);
                 require(manager.fileState("Probe.java").equals("已停止") && releases[0] > 0, "stop and cleanup");
@@ -68,7 +74,7 @@ public final class MacroFilesTest {
                 Path jar = sdkShadowJar(temp);
                 manager.addFiles(List.of(jar)).get();
                 require(manager.start(jar.getFileName().toString()), "custom JAR main launched");
-                await(() -> manager.logs().stream().anyMatch(line -> line.startsWith("JAR_READY ") && line.endsWith("/.runtime/sdk.jar")), 15_000);
+                await(() -> manager.logs().stream().anyMatch(line -> line.contains("JAR_READY ") && line.endsWith("/.runtime/sdk.jar")), 15_000);
                 manager.stop(); await(() -> !manager.active(), 6_000);
                 require(manager.start("Example.jar"), "failed JAR launch accepted for error check");
                 await(() -> !manager.active(), 6_000);

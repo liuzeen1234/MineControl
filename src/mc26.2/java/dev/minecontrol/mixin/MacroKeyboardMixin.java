@@ -17,7 +17,10 @@ public abstract class MacroKeyboardMixin {
     @Inject(method = "keyPress", at = @At("HEAD"), cancellable = true)
     private void minecontrol$captureKey(long window, int action, KeyEvent event, CallbackInfo ci) {
         if (MineControlClient.capturePhysicalInput(window) && !SimulatedInput.active()) {
-            if (action == GLFW.GLFW_PRESS) MineControlClient.handleStopKey(event);
+            if (action == GLFW.GLFW_PRESS) {
+                MineControlClient.handleStopKey(event);
+                MineControlClient.handleOpenMacrosKey(event);
+            }
             ci.cancel();
         }
     }

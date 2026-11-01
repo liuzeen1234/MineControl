@@ -1,0 +1,28 @@
+{
+  "checks": [
+    "test client has a loaded world",
+    "two real SDK detection processes read state and are denied game input",
+    "detectors do not hold game inputs",
+    "detectors leave real client physical input uncaptured",
+    "actual crashing SDK process broadcasts failure instead of default normal shutdown",
+    "legacy JSON execution blocks Java executor admission",
+    "simultaneous connections admit exactly one executor",
+    "one execution process holds an actual simulated shift key alongside two detectors",
+    "executor captures input and releases the OS cursor in the real client",
+    "F8 management console remains operable while an execution macro runs",
+    "closing macro console restores physical game input blocking",
+    "second execution process receives MACRO_BUSY",
+    "named channel round-trip through a real SDK execution process",
+    "global exit includes name, own reason and scheduler stop reason",
+    "execution exit releases actual held input",
+    "executor exit restores manual input without stopping detectors",
+    "execution exit preserves both detectors",
+    "execution slot can be reused after cleanup",
+    "paused system rejects new registrations while scheduler remains alive",
+    "scheduler resumes system and launches a detector again",
+    "scheduler exit stops remaining business macros",
+    "F9 polling path stops a detector-only system and prevents automatic restart",
+    "emergency stop leaves all input released"
+  ],
+  "passed": 23
+}

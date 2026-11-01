@@ -9,7 +9,9 @@ public final class LocalServer implements AutoCloseable {
     private final Controller controller;
     private volatile boolean running;
     private ServerSocket listener;
-    private volatile Socket connection;
+    private final java.util.Set<Socket> connections = ConcurrentHashMap.newKeySet();
+    private final ExecutorService clients = new ThreadPoolExecutor(0, 32, 30, TimeUnit.SECONDS,
+            new SynchronousQueue<>(), task -> { var t = new Thread(task, "MineControl connection"); t.setDaemon(true); return t; });
     private Thread worker;
     public LocalServer(Config config, Controller controller) { this.config = config; this.controller = controller; }
     public void start() throws IOException {
@@ -22,8 +24,15 @@ public final class LocalServer implements AutoCloseable {
     }
     private void serve() {
         while (running) {
-            try (Socket socket = listener.accept()) {
-                connection = socket;
+            try {
+                Socket socket = listener.accept(); connections.add(socket);
+                try { clients.execute(() -> handle(socket)); }
+                catch (RejectedExecutionException e) { connections.remove(socket); socket.close(); }
+            } catch (IOException e) { if (running) MineControlClient.LOG.debug("Accept failed", e); }
+        }
+    }
+    private void handle(Socket socket) {
+            try (socket) {
                 socket.setSoTimeout(config.requestTimeoutMs);
                 socket.setTcpNoDelay(true);
                 var input = socket.getInputStream();
@@ -40,6 +49,7 @@ public final class LocalServer implements AutoCloseable {
                         if (!request.has("id") || !request.get("id").isJsonPrimitive() || request.get("id").getAsJsonPrimitive().isBoolean()) throw new IllegalArgumentException("id must be a string or number");
                         id = request.get("id");
                         if (!request.has("command") || !request.get("command").isJsonPrimitive() || !request.get("command").getAsJsonPrimitive().isString()) throw new IllegalArgumentException("command must be a string");
+                        request.remove("_internal_macro");
                         var future = controller.submit(request);
                         try { response = future.get(config.requestTimeoutMs, TimeUnit.MILLISECONDS); }
                         catch (TimeoutException e) {
@@ -57,11 +67,10 @@ public final class LocalServer implements AutoCloseable {
                     write(output, response);
                 }
             } catch (SocketTimeoutException ignored) {
-                // Idle clients cannot monopolize this sequential server forever.
+                // Idle connections expire independently.
             } catch (IOException e) {
                 if (running) MineControlClient.LOG.debug("Control connection closed", e);
-            } finally { connection = null; }
-        }
+            } finally { connections.remove(socket); }
     }
     static String readLine(InputStream input, int limit) throws IOException {
         var buffer = new ByteArrayOutputStream();
@@ -85,7 +94,8 @@ public final class LocalServer implements AutoCloseable {
     @Override public void close() {
         running = false;
         try { if (listener != null) listener.close(); } catch (IOException ignored) {}
-        try { if (connection != null) connection.close(); } catch (IOException ignored) {}
+        for (Socket socket : connections) try { socket.close(); } catch (IOException ignored) {}
+        clients.shutdownNow();
         if (worker != null) worker.interrupt();
     }
     private static final class RequestTooLarge extends IOException { RequestTooLarge(String message) { super(message); } }
