@@ -419,21 +419,47 @@ public class FishboneMining {
         }
         return false;
     }
+    // Holes are obstacles, not permission to bridge or descend into unknown space.
+    List<P> pitRoute(P origin,int[] d,P branchEnd,int radius) {
+        return path(origin,p->branchEnd!=null ? p.equals(branchEnd) : p.y==origin.y &&
+                (p.x-origin.x)*d[2]-(p.z-origin.z)*d[0]==0 &&
+                (p.x-origin.x)*d[0]+(p.z-origin.z)*d[2]>=2,
+                p->p.y==origin.y && standable(p),this::excavationCost,false,radius-2);
+    }
+    boolean bypassPit(int[] d,P branchEnd) throws Exception {
+        P origin=foot();
+        for(int radius:new int[]{8,16,32,LIQUID_RADIUS}) {
+            survey(origin,radius);
+            var route=pitRoute(origin,d,branchEnd,radius);
+            if(route!=null) {
+                log("绕坑："+route.size()+"步，保持高度并回归原路线");
+                follow(route,true);traceOres();return true;
+            }
+        }
+        return false;
+    }
     void turnMain() throws Exception {
         P p=foot();
         for(int candidate:new int[]{(heading+3)%4,(heading+1)%4}) {
             int[] turn=HORIZONTAL[candidate];scanForward(p,turn);localTerrain(p.add(turn));
             if(!forwardLiquid(p,turn) && standable(p.add(turn))) {
-                heading=candidate;log("液体边界超过50格或无绕行路线，主道转向="+heading);return;
+                heading=candidate;log("障碍无可用绕行路线，主道转向="+heading);return;
             }
         }
-        throw new Stop("液体无法绕行，左右也无安全方向");
+        throw new Stop("障碍无法绕行，左右也无安全方向");
     }
     boolean advance(boolean main,P branchEnd) throws Exception {
         P p=foot();int[] d=HORIZONTAL[heading];
         scanForward(p,d);
         if(forwardLiquid(p,d)) {
             if(bypass(d,branchEnd)) return false;
+            if(!main) { branchNeedsTurn=true;return false; }
+            turnMain();return false;
+        }
+        localTerrain(p.add(d));
+        if(!support(at(p.add(d).add(0,-1,0)))) {
+            log("前方落脚面缺失，尝试绕坑");
+            if(bypassPit(d,branchEnd)) return false;
             if(!main) { branchNeedsTurn=true;return false; }
             turnMain();return false;
         }

@@ -13,7 +13,12 @@ public class FishboneMiningLiveCheck {
             String mode=args.length>1?args[1]:Files.readString(Path.of("fishbone-live-scenario.txt")).trim();
             var m=mode.equals("low")?new FishboneMining(mc):start(mc);
             try {
-                if(mode.equals("cycle")) {
+                if(mode.equals("pit")) {
+                    var origin=m.foot();
+                    check(!m.advance(true,null),"Pit bypass must reset the main counter");
+                    check(m.foot().y()==origin.y() && m.foot().x()==origin.x() && m.foot().z()>=origin.z()+2,"Pit bypass failed to rejoin");
+                    check(m.audit.stream().anyMatch(line->line.startsWith("绕坑：")),"Pit bypass was not used");
+                } else if(mode.equals("cycle")) {
                     var origin=m.foot();m.traceOres();
                     for(int i=0;i<3;i++) check(m.advance(true,null),"Unexpected main reroute");
                     var anchor=m.foot();

@@ -1,0 +1,30 @@
+预探测 3x3x6：P[x=1200, y=96, z=0] 方向=[0, 0, 1]
+前方落脚面缺失，尝试绕坑
+液体水平勘探半径=8
+绕坑：6步，保持高度并回归原路线
+预探测 3x3x6：P[x=1200, y=96, z=0] 方向=[1, 0, 0]
+挖除 P[x=1201, y=97, z=0] minecraft:stone
+挖除 P[x=1201, y=96, z=0] minecraft:stone
+移动 P[x=1201, y=96, z=0]
+预探测 3x3x6：P[x=1201, y=96, z=0] 方向=[1, 0, 0]
+挖除 P[x=1202, y=97, z=0] minecraft:stone
+挖除 P[x=1202, y=96, z=0] minecraft:stone
+移动 P[x=1202, y=96, z=0]
+预探测 3x3x6：P[x=1202, y=96, z=0] 方向=[0, 0, 1]
+挖除 P[x=1202, y=97, z=1] minecraft:stone
+挖除 P[x=1202, y=96, z=1] minecraft:stone
+移动 P[x=1202, y=96, z=1]
+预探测 3x3x6：P[x=1202, y=96, z=1] 方向=[0, 0, 1]
+挖除 P[x=1202, y=97, z=2] minecraft:stone
+挖除 P[x=1202, y=96, z=2] minecraft:stone
+移动 P[x=1202, y=96, z=2]
+预探测 3x3x6：P[x=1202, y=96, z=2] 方向=[-1, 0, 0]
+挖除 P[x=1201, y=97, z=2] minecraft:stone
+挖除 P[x=1201, y=96, z=2] minecraft:stone
+移动 P[x=1201, y=96, z=2]
+预探测 3x3x6：P[x=1201, y=96, z=2] 方向=[-1, 0, 0]
+挖除 P[x=1200, y=97, z=2] minecraft:stone
+挖除 P[x=1200, y=96, z=2] minecraft:stone
+移动 P[x=1200, y=96, z=2]
+当前六面相连矿脉处理完成，返回 P[x=1200, y=96, z=2]
+LIVE PASS: pit position=P[x=1200, y=96, z=2] minedOres=0

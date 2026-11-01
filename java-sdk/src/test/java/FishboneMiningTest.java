@@ -40,8 +40,27 @@ public class FishboneMiningTest {
         try { m.discover(origin);throw new AssertionError("Queried-air expansion accepted"); }
         catch(FishboneMining.Stop expected) { check(expected.getMessage().contains("未挖开"),"Wrong shell guard"); }
         check(FishboneMining.LOW_DURABILITY_COMMAND.isEmpty(),"Low-durability command must remain empty");
+        pitRoutes();
         protocolPolicy();
         System.out.println("Fishbone algorithms passed: waterlogged, 3x3x6 limits, 50-block survey, shortest detour/rejoin, excavation costs, six-face adjacency, opened-space guard");
+    }
+    static void pitRoutes() {
+        var m=new FishboneMining(null);var start=p(0,10,0);
+        for(int x=-8;x<=8;x++) for(int y=8;y<=14;y++) for(int z=-8;z<=8;z++)
+            m.terrain.put(p(x,y,z),"minecraft:stone");
+        // A three-wide pit requires excavation around the edge, while staying at Y=10.
+        for(int x=-1;x<=1;x++) m.terrain.put(p(x,9,1),"minecraft:air");
+        var route=m.pitRoute(start,new int[]{0,0,1},null,8);
+        check(route!=null && route.size()>2,"Pit was not bypassed");
+        check(route.stream().allMatch(q->q.y()==10 && m.standable(q)),"Pit route crossed unsupported terrain");
+        var end=route.get(route.size()-1);
+        check(end.x()==0 && end.z()>=2,"Pit route failed to rejoin main line");
+        route=m.pitRoute(start,new int[]{0,0,1},p(0,10,5),8);
+        check(route!=null && route.get(route.size()-1).equals(p(0,10,5)),"Branch bypass missed endpoint");
+        m.terrain.put(p(0,9,5),"minecraft:air");
+        check(m.pitRoute(start,new int[]{0,0,1},p(0,10,5),8)==null,"Unsupported branch endpoint accepted");
+        m.terrain.replaceAll((q,v)->q.y()==9 ? "minecraft:air" : v);
+        check(m.pitRoute(start,new int[]{0,0,1},null,8)==null,"Unbounded pit accepted");
     }
     static void protocolPolicy() throws Exception {
         var remaining=new java.util.concurrent.atomic.AtomicInteger(50);
