@@ -48,14 +48,14 @@ public class Program {
 
 ## 准星实体点击示例
 
-Minecraft 26.2 游戏内界面：按 F8，或点击标题/暂停菜单的“MineControl 宏”按钮。文件管理式列表显示文件名、类型、大小和运行状态，默认包含实体延迟点击宏。选择文件后可启动，启动后自动返回游戏，并显示、释放系统鼠标光标；运行期间按 F9 停止。左上角显示运行文件和停止键，手动键鼠输入（包括 F8）暂时屏蔽，宏的模拟输入正常执行。停止后恢复手动操作；游戏有焦点且没有 GUI 时恢复鼠标捕获。停止键可在按键绑定中修改，未绑定时 F9 仍作为备用键。退出世界或游戏也会停止界面启动的程序。
+Minecraft 26.2 游戏内界面：按 F8，或点击标题/暂停菜单的“MineControl 宏”按钮。文件管理式列表显示文件名、类型、大小和运行状态，不预装宏程序，需手动添加独立宏 jar。选择文件后可启动，启动后自动返回游戏，并显示、释放系统鼠标光标；运行期间按 F9 停止。左上角显示运行文件和停止键，手动键鼠输入（包括 F8）暂时屏蔽，宏的模拟输入正常执行。停止后恢复手动操作；游戏有焦点且没有 GUI 时恢复鼠标捕获。停止键可在按键绑定中修改，未绑定时 F9 仍作为备用键。退出世界或游戏也会停止界面启动的程序。
 
 宏文件位于当前游戏实例的 `config/minecontrol-programs/`。点击“添加文件”粘贴完整文件路径，或把一个/多个文件拖入游戏窗口；文件复制到宏目录，同名自动改名，原文件保留。支持：
 
 - `.java`：含 `public static void main(String[] args)` 的单文件 Java 程序，游戏 Java 会即时编译运行，SDK 和 Gson 自动加入 classpath，无需额外安装。首个程序参数 `args[0]` 为当前控制端口，使用 `MineControl.connect(Integer.parseInt(args[0]))`。编译错误会记入宏日志。
 - `.jar`：带有 `Main-Class` 的可执行 JAR，同样接收端口参数。Mod 提供的 SDK/Gson 运行库优先于 JAR 内嵌版本，以便修复 SDK 后已有宏也能生效；运行库不包含任何宏主类，不会覆盖用户程序入口。其他第三方依赖需自行打包或通过 JAR manifest 的 Class-Path 提供。
 
-“删除所选”会移到同目录 `.trash/`，可在文件管理器显示隐藏文件后手动恢复；正在运行的文件须先停止再删。删除默认宏后不会自动恢复。点“打开文件夹”可在系统文件管理器中编辑或放入文件，列表每两秒自动扫描，也可手动刷新。运行库放在隐藏的 `.runtime/`，不出现在列表中。
+“删除所选”会移到同目录 `.trash/`，可在文件管理器显示隐藏文件后手动恢复；正在运行的文件须先停止再删。删除宏后可重新手动导入。点“打开文件夹”可在系统文件管理器中编辑或放入文件，列表每两秒自动扫描，也可手动刷新。运行库放在隐藏的 `.runtime/`，不出现在列表中。
 
 支持一个执行宏、多个检测宏和一个调度宏并行，身份由程序注册声明。界面显示并管理自己启动的 Java 进程；外部注册实例可由调度宏管理。旧 JSON 宏仍使用原 CLI 管理，并占用执行名额。每次运行使用独立 Java 进程，源文件修改后停止并重新启动即可生效。宏相当于本机 Java 程序，运行权限与游戏相同。
 
@@ -124,3 +124,8 @@ SDK 保留 Gson 作为公开依赖，以便访问原始 NBT、组件及扩展字
 ### 多宏调度与广播
 
 使用 `MineControl.connect(port, MacroRole.DETECTION, "宏名称")` 声明身份，身份可选 `EXECUTION`、`DETECTION`、`SCHEDULER`。检测宏可多个，执行宏和调度宏各限一个。支持 `subscribe`、`broadcast`、`pollBroadcasts`、`stopRequested`、`exitReason`，调度宏另可调用 `macros`、`startMacro`、`stopMacro`、`pauseMacros`、`resumeMacros`。完整规则和运行示例见 [宏调度说明](../docs/MACRO-SCHEDULING.md)。
+
+
+### 独立宏 jar
+
+`./gradlew build` 会在项目根目录的 `build/macros/` 生成 `entity-click-program.jar` 和 `block-detector.jar`，也可分别执行 `:java-sdk:macroProgramJar`、`:java-sdk:blockDetectorJar`。在 F8 宏管理界面选择“添加”导入。两个宏均不再嵌入主 Mod 或自动预装。主 Mod 保留隐藏公共运行库 `.runtime/sdk.jar`，不列为可运行宏。升级不会删除用户已经导入的旧宏。

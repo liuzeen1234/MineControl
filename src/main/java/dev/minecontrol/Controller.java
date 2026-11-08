@@ -23,6 +23,7 @@ public final class Controller {
     private long tick;
     private long macroTick, lastTickNanos = System.nanoTime();
     private boolean wasWorldReady;
+    private boolean hadWorld;
     private volatile boolean stopped;
     private record Job(JsonObject request, CompletableFuture<JsonObject> future, long expires) {}
     private static final class CommandError extends RuntimeException {
@@ -46,6 +47,10 @@ public final class Controller {
         lastTickNanos = now;
         boolean ready = worldReady();
         tick++;
+        // Also observe world unloading instead of relying only on disconnect callbacks.
+        boolean hasWorld = client.world != null;
+        if (hadWorld && !hasWorld) coordinator.worldExited("退出世界");
+        hadWorld = hasWorld;
         coordinator.tick();
 
         for (int key : new ArrayList<>(keys.keySet())) if (tick >= keys.get(key)) keyState(key, false, 0);
@@ -98,7 +103,10 @@ public final class Controller {
             JsonElement managed = coordinator.handle(request, request.has("_internal_macro"));
             if (managed != null) { job.future.complete(success(request, managed)); return; }
             // Explicit rejection before any game side effect: safe for the SDK to retry.
-            if ((needsWorld(command) && !worldReady()) || (command.startsWith("ui.") && loadingScreen())) throw fail("WORLD_LOADING", "等待世界加载完成，操作尚未执行");
+            // Menu input is valid before joining a world; terrain loading still blocks it.
+            boolean menuInput = (command.startsWith("key.") || command.startsWith("mouse."))
+                    && client.currentScreen != null && !loadingScreen();
+            if ((needsWorld(command) && !worldReady() && !menuInput) || (command.startsWith("ui.") && loadingScreen())) throw fail("WORLD_LOADING", "等待世界加载完成，操作尚未执行");
             JsonElement result;
             switch (command) {
                 case "ping" -> { var pong = new JsonObject(); pong.addProperty("pong", true); pong.addProperty("protocol", 1); result = pong; }

@@ -66,17 +66,13 @@ dependencies {
 def metadataVersion = "${project.mod_version}+mc${target.minecraft}"
 
 processResources {
-    dependsOn ':java-sdk:macroProgramJar', ':java-sdk:macroRuntimeJar'
-    from('java-sdk/examples/BlockDetector.java') { into 'minecontrol' }
-    from(project(':java-sdk').layout.buildDirectory.file('libs/entity-click-program.jar')) {
-        into 'minecontrol'
-    }
+    dependsOn ':java-sdk:macroRuntimeJar'
     from(project(':java-sdk').layout.buildDirectory.file('libs/macro-runtime.jar')) {
         into 'minecontrol'
     }
     // version 与 minecraft 依赖范围按目标版本参数化。
     def props = [version: metadataVersion, minecraft_dependency: target.dependency, loader_dependency: ">=${target.loader}", java_dependency: ">=${target.java}", mixin_java: "JAVA_${target.java}",
-        macro_input_mixins: modern ? ', "MacroKeyboardMixin", "MacroMouseMixin", "MacroOverlayMixin"' : '']
+        macro_input_mixins: modern ? ', "MacroKeyboardMixin", "MacroMouseMixin", "MacroOverlayMixin", "DamageEventMixin"' : '']
     inputs.properties(props)
 
     filesMatching(["fabric.mod.json", "minecontrol.mixins.json"]) {
@@ -143,4 +139,18 @@ if (modern) {
         from sourceSets.inputCaptureTest.output
         from 'src/mc26.2Test/resources'
     }
+}
+
+// Optional macros are separate deliverables, never resources inside the Mod.
+tasks.named('assemble') { dependsOn ':java-sdk:macroProgramJar', ':java-sdk:blockDetectorJar' }
+
+if (modern) {
+    tasks.register('blockDetectionTypeTest', JavaExec) {
+        dependsOn testClasses
+        classpath = sourceSets.test.runtimeClasspath
+        mainClass = 'dev.minecontrol.BlockDetectionTypeTest'
+    }
+    check.dependsOn blockDetectionTypeTest
+} else {
+    sourceSets.test.java.exclude '**/BlockDetectionTypeTest.java'
 }

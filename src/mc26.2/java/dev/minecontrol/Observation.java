@@ -53,6 +53,7 @@ public final class Observation {
         player.addProperty("health", client.player.getHealth()); player.addProperty("food", client.player.getFoodData().getFoodLevel());
         player.addProperty("alive", client.player.isAlive()); player.addProperty("game_mode", client.gameMode.getPlayerMode().getName());
         r.add("player", player);
+        r.add("last_damage", DamageObservation.snapshot(client));
         r.add("main_hand", item(client, client.player.getMainHandItem()));
         r.add("off_hand", item(client, client.player.getOffhandItem()));
         r.addProperty("dimension", client.level.dimension().identifier().toString());

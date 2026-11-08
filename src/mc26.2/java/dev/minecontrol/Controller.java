@@ -23,6 +23,7 @@ public final class Controller {
     private long tick;
     private long macroTick, lastTickNanos = System.nanoTime();
     private boolean wasWorldReady;
+    private boolean hadWorld;
     private volatile boolean stopped;
     private record Job(JsonObject request, CompletableFuture<JsonObject> future, long expires) {}
     private static final class CommandError extends RuntimeException {
@@ -48,6 +49,10 @@ public final class Controller {
         lastTickNanos = now;
         boolean ready = worldReady();
         tick++;
+        // Also observe world unloading instead of relying only on disconnect callbacks.
+        boolean hasWorld = client.level != null;
+        if (hadWorld && !hasWorld) coordinator.worldExited("退出世界");
+        hadWorld = hasWorld;
         coordinator.tick();
         MineControlClient.updateInputCapture();
 
@@ -85,8 +90,8 @@ public final class Controller {
     private boolean loadingScreen() { return client.gui.screen() instanceof net.minecraft.client.gui.screens.LevelLoadingScreen; }
     public void worldExited() { coordinator.enqueueWorldExit("连接断开或退出世界"); }
     private static boolean needsWorld(String command) {
-        return Set.of("position", "observe", "inventory", "players.nearby", "region.query", "detection.scan", "detection.mark", "chat.command").contains(command)
-                || command.startsWith("key.") || command.startsWith("mouse.");
+        return Set.of("position", "observe", "inventory", "container", "players.nearby", "region.query", "detection.scan", "detection.mark", "chat.command").contains(command)
+                || command.startsWith("key.") || command.startsWith("mouse.") || command.startsWith("container.");
     }
     private CompletableFuture<JsonObject> macroCommand(JsonObject request) {
         var future = new CompletableFuture<JsonObject>();
@@ -101,7 +106,10 @@ public final class Controller {
             JsonElement managed = coordinator.handle(request, request.has("_internal_macro"));
             if (managed != null) { job.future.complete(success(request, managed)); return; }
             // Explicit rejection before any game side effect: safe for the SDK to retry.
-            if ((needsWorld(command) && !worldReady()) || (command.startsWith("ui.") && loadingScreen())) throw fail("WORLD_LOADING", "等待世界加载完成，操作尚未执行");
+            // Menu input is valid before joining a world; terrain loading still blocks it.
+            boolean menuInput = (command.startsWith("key.") || command.startsWith("mouse."))
+                    && client.gui.screen() != null && !loadingScreen();
+            if ((needsWorld(command) && !worldReady() && !menuInput) || (command.startsWith("ui.") && loadingScreen())) throw fail("WORLD_LOADING", "等待世界加载完成，操作尚未执行");
             JsonElement result;
             switch (command) {
                 case "ping" -> { var pong = new JsonObject(); pong.addProperty("pong", true); pong.addProperty("protocol", 1); result = pong; }
@@ -139,8 +147,27 @@ public final class Controller {
                     if (client.player == null || client.level == null) throw fail("NO_WORLD", "No player world loaded");
                     result = Observation.inventory(client, tick);
                 }
+                case "container" -> result = chestSnapshot();
+                case "container.deposit" -> {
+                    var menu = chestMenu();
+                    int slot = integer(request, "slot");
+                    if (integer(request, "container_id") != menu.containerId || integer(request, "state_id") != menu.getStateId())
+                        throw fail("STALE_CONTAINER", "Container changed; read a new snapshot");
+                    if (slot < 0 || slot >= menu.slots.size()) throw fail("INVALID_ARGUMENT", "Invalid slot");
+                    var source = menu.slots.get(slot);
+                    if (source.container != client.player.getInventory() || source.getContainerSlot() < 9 || source.getContainerSlot() >= 36)
+                        throw fail("FORBIDDEN", "Only main inventory slots 9..35 may be deposited");
+                    if (!menu.getCarried().isEmpty()) throw fail("CURSOR_OCCUPIED", "Cursor must be empty");
+                    client.gameMode.handleContainerInput(menu.containerId, slot, 0, net.minecraft.world.inventory.ContainerInput.QUICK_MOVE, client.player);
+                    result = chestSnapshot();
+                }
+                case "container.close" -> {
+                    var menu = chestMenu();
+                    if (integer(request, "container_id") != menu.containerId) throw fail("STALE_CONTAINER", "Container changed");
+                    client.player.closeContainer(); result = status();
+                }
                 case "region.query" -> result = region(request);
-                case "detection.scan" -> result = blockDetection.scan(client);
+                case "detection.scan" -> result = blockDetection.scan(client, request);
                 case "detection.mark" -> result = BlockDetection.mark(client, request);
                 case "observe" -> {
                     try { result = Observation.capture(client, tick); }
@@ -203,6 +230,27 @@ public final class Controller {
         int value = integer(r, "ticks");
         if (value < 1 || value > config.maxHoldTicks) throw fail("INVALID_ARGUMENT", "ticks must be 1.." + config.maxHoldTicks);
         return value;
+    }
+    private net.minecraft.world.inventory.ChestMenu chestMenu() {
+        if (client.player == null || !(client.player.containerMenu instanceof net.minecraft.world.inventory.ChestMenu menu)
+                || menu.getRowCount() != 6 || client.gui.screen() == null)
+            throw fail("NO_LARGE_CHEST", "An open 54-slot chest is required");
+        return menu;
+    }
+    private JsonObject chestSnapshot() {
+        var menu = chestMenu(); var result = new JsonObject();
+        result.addProperty("container_id", menu.containerId); result.addProperty("state_id", menu.getStateId());
+        result.addProperty("size", 54); result.addProperty("cursor_empty", menu.getCarried().isEmpty());
+        var slots = new JsonArray();
+        for (int i=0; i<menu.slots.size(); i++) {
+            var slot = menu.slots.get(i); var entry = new JsonObject();
+            entry.addProperty("slot", i);
+            entry.addProperty("inventory_slot", slot.container == client.player.getInventory() ? slot.getContainerSlot() : -1);
+            entry.addProperty("id", net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(slot.getItem().getItem()).toString());
+            entry.addProperty("count", slot.getItem().getCount());
+            entry.addProperty("max_count", slot.getItem().getMaxStackSize()); slots.add(entry);
+        }
+        result.add("slots", slots); return result;
     }
     private int mods() {
         int mods = 0;
@@ -326,6 +374,14 @@ public final class Controller {
             var properties = new TreeMap<String,String>(); state.getValues().forEach(value -> properties.put(value.property().getName(), value.valueName()));
             var line = new StringBuilder(id);
             properties.forEach((key,value) -> line.append("   ").append(key).append('=').append(value));
+            if(request.has("mining_metadata") && request.get("mining_metadata").getAsBoolean()) {
+                var pos=new net.minecraft.core.BlockPos(x,y,z);
+                var entity=client.level.getBlockEntity(pos);
+                line.append("   _mc_hardness=").append(state.getDestroySpeed(client.level,pos));
+                line.append("   _mc_container=").append(entity instanceof net.minecraft.world.Container || entity instanceof net.minecraft.world.MenuProvider);
+                line.append("   _mc_falling=").append(state.getBlock() instanceof net.minecraft.world.level.block.FallingBlock);
+                line.append("   _mc_top_full=").append(net.minecraft.world.level.block.Block.isFaceFull(state.getCollisionShape(client.level,pos),net.minecraft.core.Direction.UP));
+            }
             return line.toString();
         }, client.level.dimension().identifier().toString(), tick);
     }
@@ -338,6 +394,7 @@ public final class Controller {
         var result = new JsonObject();
         if (client.gui.screen() == null) result.add("screen", JsonNull.INSTANCE); else result.addProperty("screen", client.gui.screen().getClass().getName());
         result.addProperty("world_loaded", client.level != null);
+        if(client.level != null) result.addProperty("world", BlockDetection.world(client));
         result.addProperty("window_focused", GLFW.glfwGetWindowAttrib(client.getWindow().handle(), GLFW.GLFW_FOCUSED) == GLFW.GLFW_TRUE);
         result.addProperty("background_control", config.backgroundControl);
         result.addProperty("cursor_locked", client.mouseHandler.isMouseGrabbed()); result.addProperty("tick", tick);

@@ -27,7 +27,7 @@ public final class BlockDetectionClientTest implements ClientModInitializer {
                         var commands=server.getCommands();
                         commands.performPrefixedCommand(source,"gamemode spectator "+player);
                         commands.performPrefixedCommand(source,"tp "+player+" 0 110 0");
-                        String[] types={"spawner","end_portal_frame","iron_door[half=lower]","iron_bars","iron_chain","rail","reinforced_deepslate"};
+                        String[] types={"spawner","end_portal_frame","iron_door[half=lower]","iron_bars","iron_chain","rail","reinforced_deepslate","vault","budding_amethyst","crying_obsidian","wet_sponge"};
                         for(int i=0;i<types.length;i++) {
                             int x=i*3;
                             commands.performPrefixedCommand(source,"setblock "+x+" 99 0 stone");
@@ -46,12 +46,15 @@ public final class BlockDetectionClientTest implements ClientModInitializer {
                             commands.performPrefixedCommand(source,"setblock "+x+" 100 0 "+type);
                         }
                     });
+                    if (BlockDetection.type(Blocks.VAULT.defaultBlockState()) != 7
+                            || BlockDetection.type(Blocks.VAULT.defaultBlockState().setValue(net.minecraft.world.level.block.VaultBlock.OMINOUS,true)) != 7)
+                        throw new AssertionError("normal and ominous vault detection");
                     if(BlockDetection.type(Blocks.IRON_DOOR.defaultBlockState().setValue(BlockStateProperties.DOUBLE_BLOCK_HALF,DoubleBlockHalf.UPPER))!=-1) throw new AssertionError("upper door");
                     for(var b: java.util.List.of(Blocks.POWERED_RAIL,Blocks.DETECTOR_RAIL,Blocks.ACTIVATOR_RAIL,Blocks.TRIAL_SPAWNER))
                         if(BlockDetection.type(b.defaultBlockState())!=-1) throw new AssertionError("excluded block");
                 } else if(action.equals("start")) {
-                    MineControlClient.javaMacros().refresh().thenRun(() -> MineControlClient.javaMacros().start("BlockDetector.java"));
-                } else if(action.equals("stop")) MineControlClient.javaMacros().stop("BlockDetector.java");
+                    MineControlClient.javaMacros().refresh().thenRun(() -> MineControlClient.javaMacros().start("block-detector.jar"));
+                } else if(action.equals("stop")) MineControlClient.javaMacros().stop("block-detector.jar");
                 else if(action.equals("inspect")) {
                     Object session=Class.forName("xaero.common.XaeroMinimapSession").getMethod("getCurrentSession").invoke(null);
                     Object minimap=invoke(invoke(session,"getMinimapProcessor"),"getSession");
@@ -62,7 +65,7 @@ public final class BlockDetectionClientTest implements ClientModInitializer {
                     }
                     report.add("waypoints",points);
                     report.addProperty("captured",MineControlClient.inputCaptured());
-                    report.addProperty("state",MineControlClient.javaMacros().fileState("BlockDetector.java"));
+                    report.addProperty("state",MineControlClient.javaMacros().fileState("block-detector.jar"));
                 }
                 report.addProperty("ok",true);
             } catch(Throwable e) { report.addProperty("ok",false); report.addProperty("error",e.toString()); }

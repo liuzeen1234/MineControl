@@ -30,18 +30,18 @@ while time.monotonic()<end:
     data=records()
     expected={('spawner',0,100,0),('spawner',0,171,0),('rail',15,100,0),('rail',86,100,0)}
     actual={(p['type'],p['x'],p['y'],p['z']) for p in data}
-    if expected<=actual and len({p['type'] for p in data})==7:break
+    if expected<=actual and len({p['type'] for p in data})==9:break
     time.sleep(.5)
 check(expected<=actual,'Saved ordinary rails at 71 blocks and spawners at vertical 71 blocks')
 check(('spawner',0,170,0) not in actual and ('rail',85,100,0) not in actual,'Exactly 70 blocks suppressed in vertical and horizontal directions')
-check(len({p['type'] for p in data})==7,'All seven target types detected')
+check(len({p['type'] for p in data})==9,'All nine target types detected')
 check(('iron_door',6,100,0) in actual and not any(p['type']=='iron_door' and p['y']==101 for p in data),'Iron door lower-half coordinates only')
 time.sleep(20)
 data=records()
 snapshot=probe('inspect')
 check(not snapshot['captured'] and snapshot['state']=='检测宏','Detection macro leaves manual input available')
 points={(p['Name'],int(p['X']),int(p['Y']),int(p['Z'])) for p in snapshot['waypoints']}
-names={'spawner':'刷怪笼','end_portal_frame':'末地框架','iron_door':'铁门','iron_bars':'铁栏杆','iron_chain':'锁链','rail':'普通铁轨','reinforced_deepslate':'强化深板岩'}
+names={'spawner':'刷怪笼','end_portal_frame':'末地框架','iron_door':'铁门','iron_bars':'铁栏杆','iron_chain':'锁链','rail':'普通铁轨','reinforced_deepslate':'强化深板岩','vault':'试炼宝库','budding_amethyst':'紫水晶母岩'}
 check(all(('检测·'+names[p['type']],p['x'],p['y'],p['z']) in points for p in data),'Xaero active waypoint set contains every saved discovery')
 probe('stop');time.sleep(4)
 original=records();probe('start');time.sleep(15)

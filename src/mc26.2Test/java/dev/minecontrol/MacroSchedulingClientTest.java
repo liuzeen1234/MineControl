@@ -20,6 +20,7 @@ public final class MacroSchedulingClientTest implements ClientModInitializer {
                 String action = request.get("action").getAsString();
                 if (action.equals("console")) MineControlClient.handleOpenMacrosKey(new net.minecraft.client.input.KeyEvent(GLFW.GLFW_KEY_F8, 0, 0));
                 if (action.equals("close_console")) client.gui.setScreen(null);
+                if (action.equals("start_program")) MineControlClient.javaMacros().refresh().thenRun(() -> MineControlClient.javaMacros().start(request.get("file").getAsString()));
                 if (action.equals("resume")) MineControlClient.javaMacros().resume();
                 if (action.equals("stop")) MineControlClient.pollStopShortcut(key -> key == GLFW.GLFW_KEY_F9, button -> false);
                 MineControlClient.updateInputCapture();

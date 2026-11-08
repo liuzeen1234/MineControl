@@ -23,6 +23,12 @@ public final class MacroCoordinatorTest {
     }
     private static void check(boolean yes, String message) { if (!yes) throw new AssertionError(message); }
     public static void run() {
+        var pausedPorts = new MacroCoordinator(() -> {}, () -> false);
+        pausedPorts.emergency("F9");
+        for(String command:List.of("ui.list","ui.click","ui.type","ui.set","key.tap","mouse.click","chat.command","container.deposit"))
+            check(pausedPorts.handle(request(command,null),false)==null,"Paused macros blocked independent port command: "+command);
+        denied("STOPPING", () -> pausedPorts.handle(request("macro.run",null),false));
+        denied("SYSTEM_DISABLED", () -> register(pausedPorts,"execution","paused macro"));
         var disconnected = new MacroCoordinator(() -> {}, () -> false);
         String kept = register(disconnected, "scheduler", "常驻调度");
         String stoppedDetector = register(disconnected, "detection", "断线检测");
@@ -48,6 +54,9 @@ public final class MacroCoordinatorTest {
         check(!c.executing(), "detectors leave physical input available");
         denied("FORBIDDEN", () -> c.handle(request("key.down", detector), false));
         denied("FORBIDDEN", () -> c.handle(request("input.reset", detector), false));
+        check(c.handle(request("container", detector), false)==null,"Detector can read chest snapshot");
+        denied("FORBIDDEN", () -> c.handle(request("container.deposit", detector), false));
+        denied("FORBIDDEN", () -> c.handle(request("container.close", detector), false));
         denied("FORBIDDEN", () -> c.handle(request("chat.command", detector), false));
         denied("FORBIDDEN", () -> c.handle(request("program.start", detector), false));
         String execution = register(c, "execution", "挖矿");

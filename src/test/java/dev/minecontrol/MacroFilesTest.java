@@ -12,10 +12,9 @@ public final class MacroFilesTest {
         try {
             var files = new MacroFiles(temp.resolve("macros"));
             files.initialize();
-            require(files.list().size() == 2, "initial bundled macros");
-            require(Files.readString(files.resolve("BlockDetector.java")).contains("MacroRole.DETECTION"), "bundled detector role");
-            files.trash("BlockDetector.java"); files.initialize();
-            require(files.list().size() == 1, "deleted detector not restored");
+            require(files.list().isEmpty(), "no preinstalled macros; hidden runtime excluded");
+            files.initialize();
+            require(files.list().isEmpty(), "reinitialization does not install macros");
             try (var runtime = new JarFile(files.runtime().toFile())) {
                 require(runtime.getEntry("EntityClick.class") == null, "runtime must not shadow user main class");
             }
@@ -33,10 +32,9 @@ public final class MacroFilesTest {
             require(files.add(source).name().equals("Probe (2).java"), "collision renamed");
             require(Files.readString(source).contains("READY"), "original source retained");
             files.trash("Probe (2).java");
-            require(files.list().size() == 2, "trash excluded");
-            files.trash("entity-click-program.jar");
+            require(files.list().size() == 1, "trash excluded");
             files.initialize();
-            require(files.list().size() == 1, "deleted bundled macro not restored");
+            require(files.list().size() == 1, "initialization preserves imported macros");
             try { files.resolve("../Probe.java"); throw new AssertionError("path escaped"); }
             catch (IOException expected) {}
             try { files.resolve("/"); throw new AssertionError("absolute directory accepted"); }

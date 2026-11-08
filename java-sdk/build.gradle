@@ -32,6 +32,7 @@ tasks.register('entityClick', JavaExec) {
 tasks.register('macroProgramJar', Jar) {
     dependsOn examplesClasses
     archiveFileName = 'entity-click-program.jar'
+    destinationDirectory = rootProject.file('build/macros')
     manifest { attributes 'Main-Class': 'EntityClick' }
     from(sourceSets.examples.output) { include 'EntityClick.class' }
     from sourceSets.main.output
@@ -133,3 +134,47 @@ tasks.register('blockDetectorTest', JavaExec) {
     mainClass = 'BlockDetectorTest'
 }
 check.dependsOn blockDetectorTest
+
+// Uses the hidden SDK runtime supplied by MineControl's macro launcher.
+tasks.register('blockDetectorJar', Jar) {
+    dependsOn examplesClasses
+    archiveFileName = 'block-detector.jar'
+    destinationDirectory = rootProject.file('build/macros')
+    manifest { attributes 'Main-Class': 'BlockDetector' }
+    from(sourceSets.examples.output) { include 'BlockDetector*.class' }
+}
+
+// Scheduler uses MineControl's shared SDK runtime, like block-detector.jar.
+tasks.register('miningSchedulerJar', Jar) {
+    dependsOn examplesClasses
+    archiveFileName = 'mining-scheduler.jar'
+    destinationDirectory = rootProject.file('build/macros')
+    manifest { attributes 'Main-Class': 'MiningScheduler' }
+    from(sourceSets.examples.output) { include 'MiningScheduler*.class' }
+}
+
+tasks.register('miningSchedulerTest', JavaExec) {
+    dependsOn testClasses, examplesClasses
+    classpath = sourceSets.test.runtimeClasspath + sourceSets.examples.output
+    mainClass = 'MiningSchedulerTest'
+}
+check.dependsOn miningSchedulerTest
+
+// Explicit 500m live-test harness; never bundled into the Mod or regular macro.
+tasks.register('fishbone500mJar', Jar) {
+    dependsOn testClasses, examplesClasses
+    archiveFileName = 'fishbone-mining.jar'
+    destinationDirectory = rootProject.file('build/live-test-500m')
+    manifest { attributes 'Main-Class': 'Fishbone500m' }
+    from(sourceSets.test.output) { include 'Fishbone500m*.class' }
+    from(sourceSets.examples.output) { include 'FishboneMining*.class' }
+}
+
+tasks.register('homeStorageTest', JavaExec) {
+    dependsOn testClasses, examplesClasses
+    classpath = sourceSets.test.runtimeClasspath + sourceSets.examples.output
+    mainClass = 'HomeStorageTest'
+    workingDir layout.buildDirectory.dir('home-storage-test')
+    doFirst { workingDir.mkdirs() }
+}
+check.dependsOn homeStorageTest

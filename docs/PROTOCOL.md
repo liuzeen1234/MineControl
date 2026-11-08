@@ -128,6 +128,23 @@ observe.player 新增 health、food、alive、game_mode；宏可用这些字段�
 
 ### 目标方块检测（仅 26.2）
 
-`detection.scan`：在客户端线程分批扫描已加载区块，返回 `{world, dimension, hits:[{type,x,y,z}]}`。每次最多检查 512 个区段，约 3ms 的区段间时间预算，最多返回一个非空目标区段（4096 个候选）；不会强制加载区块。循环扫描以发现后续变化。
+`detection.scan`：在客户端线程分批扫描已加载区块，首次请求传 `{begin:true}`，后续传返回的 `{scan_id}`，返回 `{world, dimension, scan_id, complete, hits:[{type,x,y,z}]}`。每次最多检查 512 个区段，约 3ms 的区段间时间预算，最多返回一个非空目标区段（4096 个候选）；不会强制加载区块。开始时固定玩家周围已加载区块列表，遍历结束返回 `complete:true`，不会自动开始下一轮；再次运行需要重新传 `begin:true`，世界变化或过期的扫描 ID 会被拒绝。
 
-`detection.mark`：参数 `{world,dimension,type,x,y,z}`，只接受七种检测类型，通过 Xaero 小地图当前实际世界的路标管理器添加／确认路标，并保存。世界或维度已变化时拒绝。返回 `{marked:true}`。需安装兼容的 Xaero 小地图；不发送服务器指令。检测宏允许这两个专用命令，仍不允许控制玩家输入。70 格去重及发现文件由配套 `BlockDetector.java` 管理。
+`detection.mark`：参数 `{world,dimension,type,x,y,z}`，只接受十一种检测类型（含普通／不祥试炼宝库，统一为 `vault`，紫水晶母岩 `budding_amethyst` 、哭泣的黑曜石 `crying_obsidian` 和潮湿的海绵 `wet_sponge`），通过 Xaero 小地图当前实际世界的路标管理器添加／确认路标，并保存。世界或维度已变化时拒绝。返回 `{marked:true}`。需安装兼容的 Xaero 小地图；不发送服务器指令。检测宏允许这两个专用命令，仍不允许控制玩家输入。刷怪笼仅按相同坐标去重，其他类型按同类 70 格三维距离去重；去重及发现文件由配套 `BlockDetector.java` 管理。
+
+## 暂停范围
+
+F9或调度的system.pause只暂停宏指令：拒绝新宏注册/启动、JSON宏macro.run，并停止已有宏及释放模拟输入。独立端口请求（不带macro_token）的界面、键鼠、聊天及箱子操作继续可用，可以打开宏面板并点击启动来恢复；仍执行世界加载和参数检查。带macro_token的已停宏不能继续操作，正常运行时独立端口与执行宏的互斥规则仍保留。
+# 挖矿只读属性与伤害观察（26.2）
+
+`region.query` 可选 `mining_metadata: true`，在非空气方块行附加
+`_mc_hardness`、`_mc_container`、`_mc_falling`、`_mc_top_full`。
+硬度读取客户端方块状态；容器包含 Container/MenuProvider 方块实体；完整上表面读取碰撞形状，
+并非仅按方块名称推测。不传此选项保持原有蓝图格式。
+
+`observe.last_damage` 返回最近五秒、当前客户端世界收到的本玩家服务器伤害事件：
+伤害类型、攻击实体及名称、直接实体、实体ID与事件年龄。没有事件或已过期时返回
+`source: unknown, type: unknown`；附近实体不会被推断为攻击者。
+
+`detection.mark` 成功返回 `marked: true`，并增加 `operation: created` 或
+`already_exists`，用于区分新增标注和重复标注。

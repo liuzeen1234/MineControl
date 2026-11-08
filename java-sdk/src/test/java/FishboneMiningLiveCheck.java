@@ -11,9 +11,76 @@ public class FishboneMiningLiveCheck {
     public static void main(String[] args) throws Exception {
         try(var mc=MineControl.connect(Integer.parseInt(args[0]))) {
             String mode=args.length>1?args[1]:Files.readString(Path.of("fishbone-live-scenario.txt")).trim();
+            if(mode.startsWith("bridge") || mode.equals("cave")) mc.register(MineControl.MacroRole.EXECUTION,"坑洞跨越模拟测试："+mode);
             var m=mode.equals("low")?new FishboneMining(mc):start(mc);
             try {
-                if(mode.equals("gravel")) {
+                if(mode.startsWith("bridge") || mode.equals("cave")) {
+                    var spec=com.google.gson.JsonParser.parseString(Files.readString(Path.of("mobility-case.json"))).getAsJsonObject();
+                    var origin=m.foot();int heading=spec.get("heading").getAsInt();m.heading=heading;
+                    int distance=spec.get("distance").getAsInt();int[] direction=FishboneMining.HORIZONTAL[heading];
+                    var destination=origin.along(direction,distance);
+                    if(mode.equals("bridge-return-step")) {
+                        var higher=origin.along(direction,1).add(0,1,0);
+                        m.opened.add(origin);m.opened.add(origin.add(0,1,0));
+                        m.opened.add(higher);m.opened.add(higher.add(0,1,0));m.opened.add(higher.add(0,-1,0));
+                        m.routeWorld=mc.call("status",new com.google.gson.JsonObject()).getAsJsonObject().get("world").getAsString();
+                        m.resumePoint=higher;m.level=higher.y();m.heading=2;m.mainCount=2;m.routeReady=true;
+                        m.writeRoute();
+                        m.aim(origin.x()+5,origin.y()+1.62,origin.z());
+                        var restored=start(mc);
+                        restored.restoreRoute(FishboneMining.ROUTE_JSON.fromJson(Files.readString(FishboneMining.ROUTE_STATE),FishboneMining.RouteState.class),m.routeWorld,m.dimension);
+                        restored.localTerrain(restored.foot());restored.returnTo(restored.resumePoint);
+                        check(restored.foot().equals(higher),"Failed to rebuild and climb return riser");
+                        check(restored.heading==2 && restored.level==higher.y() && restored.mainCount==2,"Restart used current camera instead of saved route");
+                        check(restored.audit.stream().anyMatch(line->line.startsWith("修复返回台阶")),"Riser not actually placed");
+                        m.audit.addAll(restored.audit);m.log("补台阶返回及转动视角后的路线恢复通过");
+                    } else if(mode.equals("bridge-safe-stop")) {
+                        try { m.step(origin.along(direction,1),true);throw new AssertionError("Unsafe bridge did not stop"); }
+                        catch(FishboneMining.Stop expected) {
+                            check(expected.getMessage().contains(spec.get("reason").getAsString()),"Wrong bridge protection: "+expected.getMessage());
+                            m.log("保护停机确认："+expected.getMessage());
+                        }
+                        check(m.foot().equals(origin),"Protection moved player into pit");
+                        check(m.audit.stream().noneMatch(line->line.startsWith("铺路填补地板")),"Protection placed a block");
+                    } else if(mode.equals("bridge") || mode.equals("bridge-integrated")) {
+                        var originalMaterials=mc.inventory().counts();
+                        var materialTypes=originalMaterials.keySet().stream().filter(FishboneMining::bridgeMaterial).toList();
+                        int materialBefore=materialTypes.stream().mapToInt(k->originalMaterials.getOrDefault(k,0)).sum();
+                        for(int i=1;i<distance;i++) {
+                            if(mode.equals("bridge-integrated")) check(m.advance(true,null),"Normal mining did not bridge the pit");
+                            else m.step(origin.along(direction,i),true);
+                        }
+                        int placed=(int)m.audit.stream().filter(line->line.startsWith("铺路填补地板")).count();
+                        check(placed==spec.get("placements").getAsInt(),"Wrong number of bridge blocks: "+placed);
+                        var remainingMaterials=mc.inventory().counts();
+                        int materialAfter=materialTypes.stream().mapToInt(k->remainingMaterials.getOrDefault(k,0)).sum();
+                        check(materialBefore-materialAfter==placed,"Bridge block consumption mismatch: "+materialBefore+" -> "+materialAfter+", placed="+placed);
+                        if(mode.equals("bridge-integrated")) check(m.advance(true,null),"Normal mining did not reach landing");
+                        else m.step(destination,true);
+                        check(m.foot().equals(destination),"Bridge did not reach opposite bank");
+                        m.returnTo(origin);check(m.foot().equals(origin),"Cannot return over bridge");
+                    } else {
+                        check(!m.advance(true,null),"Natural cave was not bypassed");
+                        check(m.foot().y()==origin.y() && (m.foot().x()-origin.x())*direction[2]-(m.foot().z()-origin.z())*direction[0]==0,"Cave route did not rejoin original line");
+                        check(m.audit.stream().anyMatch(line->line.startsWith("绕天然矿洞：")),"No actual cave detour");
+                        check(m.audit.stream().noneMatch(line->line.startsWith("铺路填补地板")),"Cave detour unexpectedly bridged");
+                        m.returnTo(origin);check(m.foot().equals(origin),"Cannot return over cave detour");
+                    }
+                } else if(mode.equals("storage")) {
+                    var origin=mc.position();var before=mc.inventory();
+                    check(FishboneMining.emptyInventory(before)<=2,"Storage test bag is not full");
+                    m.unloadIfNeeded();
+                    check(FishboneMining.cargoCount(mc.inventory())==0,"Main inventory not emptied");
+                    var after=mc.position();
+                    check(Math.abs(after.x()-origin.x())<.2 && Math.abs(after.y()-origin.y())<.2 && Math.abs(after.z()-origin.z())<.2,"Did not return to mining position");
+                    for(var slot:before.slots()) if(slot.slot()<9 || slot.slot()>=36) {
+                        var retained=mc.inventory().slots().stream().filter(s->s.slot()==slot.slot()).findFirst().orElseThrow();
+                        check(retained.stack().id().equals(slot.stack().id()) && retained.stack().count()==slot.stack().count(),"Retained slot changed: "+slot.slot());
+                    }
+                    check(!Files.exists(FishboneMining.STORAGE_PENDING),"Unload marker remains");
+                    m.clear(m.foot().add(0,0,1));
+                    check(m.audit.stream().anyMatch(s->s.startsWith("挖除")),"Mining did not resume after unloading");
+                } else if(mode.equals("gravel")) {
                     var origin=m.foot();
                     check(m.advance(true,null),"Gravel blocked advance");
                     check(m.foot().equals(origin.add(0,0,1)),"Did not advance after gravel settled");
@@ -22,9 +89,9 @@ public class FishboneMiningLiveCheck {
                     check(m.audit.stream().anyMatch(line->line.startsWith("落沙清理完成")),"No settling confirmation");
                 } else if(mode.equals("pit")) {
                     var origin=m.foot();
-                    check(!m.advance(true,null),"Pit bypass must reset the main counter");
+                    for(int i=0;i<3;i++) check(m.advance(true,null),"Pit bridge failed");
                     check(m.foot().y()==origin.y() && m.foot().x()==origin.x() && m.foot().z()>=origin.z()+2,"Pit bypass failed to rejoin");
-                    check(m.audit.stream().anyMatch(line->line.startsWith("绕坑：")),"Pit bypass was not used");
+                    check(m.audit.stream().anyMatch(line->line.startsWith("铺路填补地板")),"Pit bridge was not used");
                 } else if(mode.equals("cycle")) {
                     var origin=m.foot();m.traceOres();
                     for(int i=0;i<3;i++) check(m.advance(true,null),"Unexpected main reroute");

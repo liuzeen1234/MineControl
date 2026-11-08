@@ -8,7 +8,7 @@ import java.util.function.BooleanSupplier;
 /** Admission, permissions and bounded mailboxes. Protocol calls execute on the game thread. */
 public final class MacroCoordinator {
     public static final String SYSTEM = "$system";
-    private static final Set<String> READ = Set.of("ping", "status", "position", "observe", "inventory",
+    private static final Set<String> READ = Set.of("ping", "status", "position", "observe", "inventory", "container",
             "players.nearby", "region.query", "detection.scan", "detection.mark", "ui.list", "wait.screen", "macro.status");
     private static final int MAX_SESSIONS = 128, MAX_MESSAGES = 128;
     private final Map<String, Session> sessions = new LinkedHashMap<>();
@@ -214,7 +214,10 @@ public final class MacroCoordinator {
         if (s != null && (s.stopping || s.closing) && !Set.of("ping", "status", "macro.status").contains(command))
             throw error("STOPPING", "宏正在停止");
         if (READ.contains(command)) return null;
-        if (!enabled || (s != null && (s.stopping || s.closing))) throw error("STOPPING", "宏系统已暂停或此宏正在停止");
+        // Pausing stops macro programs, not independent commands from the local port.
+        // A JSON script is still a macro even when submitted without a session token.
+        if (!enabled && (s != null || command.equals("macro.run")))
+            throw error("STOPPING", "宏系统已暂停或此宏正在停止");
         if (s != null && !"execution".equals(s.role)) throw error("FORBIDDEN", "检测宏和调度宏不能控制游戏");
         if (s != null && command.equals("macro.run")) throw error("FORBIDDEN", "执行宏不能另行启动 JSON 宏");
         if (s == null && executing()) throw error("MACRO_BUSY", "已有执行宏在运行，请稍后重试");
