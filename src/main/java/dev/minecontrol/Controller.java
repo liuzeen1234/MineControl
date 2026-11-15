@@ -40,6 +40,7 @@ public final class Controller {
     public boolean isHeld(long window, int key) { return client.getWindow().getHandle() == window && keys.containsKey(key); }
     private final MacroCoordinator coordinator = new MacroCoordinator(this::stopMacros, macro::running);
     public MacroCoordinator coordinator() { return coordinator; }
+    public boolean macroRunning() { return macro.running(); }
     public void stopMacros() { macro.stop(); reset(); }
     public void tick() {
         long now = System.nanoTime();
@@ -123,7 +124,7 @@ public final class Controller {
                 }
                 case "macro.run" -> {
                     if (!request.has("script") || !request.get("script").isJsonArray()) throw fail("INVALID_ARGUMENT", "script must be an array");
-                    macro.start(request.getAsJsonArray("script")); result = macro.status();
+                    macro.start(request.getAsJsonArray("script")); MineControlClient.updateInputCapture(); result = macro.status();
                 }
                 case "macro.status" -> result = macro.status();
                 case "macro.stop" -> { macro.stop(); result = macro.status(); }
@@ -189,11 +190,11 @@ public final class Controller {
     private boolean held(int a, int b) { return InputUtil.isKeyPressed(client.getWindow().getHandle(), a) || InputUtil.isKeyPressed(client.getWindow().getHandle(), b); }
     private void keyState(int key, boolean down, int ticks) {
         if (down) keys.put(key, tick + ticks); else if (keys.remove(key) == null) return;
-        ((KeyboardInvoker) client.keyboard).minecontrol$key(client.getWindow().getHandle(), key, 0, down ? GLFW.GLFW_PRESS : GLFW.GLFW_RELEASE, mods());
+        SimulatedInput.run(() -> ((KeyboardInvoker) client.keyboard).minecontrol$key(client.getWindow().getHandle(), key, 0, down ? GLFW.GLFW_PRESS : GLFW.GLFW_RELEASE, mods()));
     }
     private void buttonState(int button, boolean down, int ticks) {
         if (down) buttons.put(button, tick + ticks); else if (buttons.remove(button) == null) return;
-        ((MouseInvoker) client.mouse).minecontrol$button(client.getWindow().getHandle(), button, down ? GLFW.GLFW_PRESS : GLFW.GLFW_RELEASE, mods());
+        SimulatedInput.run(() -> ((MouseInvoker) client.mouse).minecontrol$button(client.getWindow().getHandle(), button, down ? GLFW.GLFW_PRESS : GLFW.GLFW_RELEASE, mods()));
     }
     private void reset() {
         for (int key : new ArrayList<>(keys.keySet())) keyState(key, false, 0);
@@ -212,7 +213,7 @@ public final class Controller {
         if (client.currentScreen == null) throw fail("NO_SCREEN", "GUI coordinates require an open screen");
         var window = client.getWindow();
         if (x < 0 || y < 0 || x >= window.getScaledWidth() || y >= window.getScaledHeight()) throw fail("INVALID_ARGUMENT", "Coordinates outside GUI");
-        ((MouseInvoker) client.mouse).minecontrol$cursor(window.getHandle(), x * window.getWidth() / window.getScaledWidth(), y * window.getHeight() / window.getScaledHeight());
+        SimulatedInput.run(() -> ((MouseInvoker) client.mouse).minecontrol$cursor(window.getHandle(), x * window.getWidth() / window.getScaledWidth(), y * window.getHeight() / window.getScaledHeight()));
     }
     private List<ClickableWidget> widgets() {
         if (client.currentScreen == null) throw fail("NO_SCREEN", "No screen open");

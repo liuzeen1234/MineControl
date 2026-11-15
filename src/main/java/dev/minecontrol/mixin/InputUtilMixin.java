@@ -10,5 +10,6 @@ public class InputUtilMixin {
     @Inject(method = "isKeyPressed", at = @At("HEAD"), cancellable = true)
     private static void minecontrol$held(long window, int key, CallbackInfoReturnable<Boolean> cir) {
         if (MineControlClient.isHeld(window, key)) cir.setReturnValue(true);
+        else if (MineControlClient.capturePhysicalInput(window) && !dev.minecontrol.SimulatedInput.active()) cir.setReturnValue(false);
     }
 }

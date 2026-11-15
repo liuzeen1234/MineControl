@@ -18,15 +18,15 @@ Inspect game state and UI controls, enter text, simulate keyboard and mouse inpu
 | JSON macros with loops, conditions, and waits | Supported | Supported |
 | Position, inventory, loaded terrain, and NBT inspection | Supported | Supported, including effective item data components |
 | Basic external Java SDK control | Supported | Supported |
-| Macro role registration, permissions, channel broadcasts | Shared protocol available | Available with in-game process management |
-| F8 manager, file import/deletion, Java source/jar execution | Not yet integrated | Supported |
-| Macro HUD and configurable F9 stop-all shortcut | Not yet integrated | Supported |
-| Physical input blocking, cursor release/restore, settings screen | Not yet integrated | Supported |
+| Macro role registration, permissions, channel broadcasts and process management | Supported | Supported |
+| F8 manager, file import/deletion, Java source/jar execution | Supported | Supported |
+| Macro HUD and configurable F9 stop-all shortcut | Supported | Supported |
+| Physical input blocking, cursor release/restore, settings screen | Supported | Supported |
 | Nearby players, recent damage, dedicated chat-command API | Not yet integrated | Supported |
 | Container inspection, item deposits, closing containers | Not yet integrated | Supported |
 | Target-block scanning and Xaero waypoint API | Not yet integrated | Supported |
 
-A shared SDK does not make every method or standalone macro compatible with every version. Macros using 26.2-only APIs require 26.2. The shared scheduling protocol does not provide in-game file launching on legacy versions. Legacy macro integration is tracked in [Issue #1](https://github.com/liuzeen1234/MineControl/issues/1).
+A shared SDK does not make every method or standalone macro compatible with every version. Macros using 26.2-only APIs require 26.2. In-game macro integration for 1.20.1 and 1.20.4 is covered by [Issue #1 test records](docs/issue-1/README.md).
 
 **Macro programs are separate executable jars and must be added manually.** The main mod does not bundle or automatically install macro programs. Its hidden shared runtime is not a runnable macro.
 
@@ -99,13 +99,13 @@ In a GUI, mouse coordinates use scaled GUI units with the origin at the top left
 
 The API accepts **local loopback connections only**, at `127.0.0.1:25580` by default. Local programs that connect can operate the game. Only run tools and macros you trust, and follow multiplayer server rules. Connections are processed serially; idle connections time out. The CLI also accepts `MINECONTROL_PORT`.
 
-On 26.2, open the macro manager's settings to toggle physical input blocking. Changes apply and save immediately. Detection/scheduler macros alone retain manual controls. Other configuration changes require a client restart.
+On all three supported versions, open the macro manager's settings to toggle physical input blocking. Changes apply and save immediately. Detection/scheduler macros alone retain manual controls. Other configuration changes require a client restart.
 
 Background control permits unfocused input and disables pause-on-lost-focus for the session, restoring its original value on normal shutdown. `status.window_focused` reports actual focus. Set `backgroundControl` to `false` for vanilla focus behavior. Menus still follow vanilla pause rules; close the pause menu before moving. `maxHoldTicks` limits both `down` and `hold` durations.
 
 After a request timeout, inspect `status` before retrying: actions already started cannot be rolled back. A `wait screen` timeout must be shorter than `requestTimeoutMs` (the CLI defaults to 10 seconds). `input reset` releases simulated inputs and stops the JSON macro.
 
-## Java macros on 26.2
+## Java macros
 
 Press **F8**, or use the MineControl button on the title/pause menu, to open the macro manager. Add `.java` source files or standalone executable `.jar` macros by path or drag and drop. Name collisions are renamed automatically; deleted files move to `.trash`. Files live in the game instance's `config/minecontrol-programs/`. The shared runtime ships with the mod, so source macros can run without a separate terminal.
 
@@ -203,7 +203,7 @@ python3 -m unittest discover -s tests -v
 
 Installable jars collect in `build/libs/`. Development instances are isolated in `run-26.2`, `run-1.20.4`, and `run-1.20.1`; use `-PrunDir=path` to override. Select legacy client runs explicitly with `-Pmc=1.20.4` or `-Pmc=1.20.1`.
 
-26.2 uses official unobfuscated names and `src/mc26.2/java`; legacy adapters use `src/main/java`. Shared protocol/configuration code is in `src/common/java`. UI/screen class names differ by version (26.2 uses `EditBox`, `Checkbox`, and `CycleButton`), while CLI commands and the protocol remain consistent. Control changes need corresponding adapters and validation for all three targets.
+26.2 uses official unobfuscated names and `src/mc26.2/java`; legacy adapters use `src/main/java` with small version-specific bridges in `src/mc1.20.1/java` and `src/mc1.20.4/java`. Shared protocol/configuration code is in `src/common/java`. UI/screen class names differ by version (26.2 uses `EditBox`, `Checkbox`, and `CycleButton`), while CLI commands and the protocol remain consistent. Control changes need corresponding adapters and validation for all three targets.
 
 For an isolated development client at the title screen with no existing worlds, run `python3 tests/live_smoke.py`. After creating and entering a separate test world, run `python3 tests/live_world.py`.
 
@@ -214,3 +214,5 @@ Recorded runs include build/protocol checks and CLI unit tests, plus 26.2 in-gam
 ## License
 
 [MIT](LICENSE).
+
+Legacy native-input regression: `./gradlew legacyTestJar -Pmc=1.20.1` (or `1.20.4`) generates a version-specific probe in `build/test-mods/`. Install only in an isolated matching development client, create `config/input-capture-test.trigger`, and enter a test world. Results: `config/input-capture-test-report.json`. Do not run different Minecraft target builds concurrently while a development client is loading; Gradle can clean the previous task output.

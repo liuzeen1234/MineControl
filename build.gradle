@@ -35,7 +35,7 @@ def modern = mcTarget == '26.2'
 apply plugin: modern ? 'net.fabricmc.fabric-loom' : 'net.fabricmc.fabric-loom-remap'
 layout.buildDirectory = file("build/targets/${mcTarget}")
 // Share protocol/config code; isolate Minecraft APIs and mixins by version family.
-sourceSets.main.java.setSrcDirs(modern ? ['src/mc26.2/java', 'src/common/java'] : ['src/main/java', 'src/common/java'])
+sourceSets.main.java.setSrcDirs(modern ? ['src/mc26.2/java', 'src/common/java'] : ['src/main/java', 'src/common/java', "src/mc${mcTarget}/java"])
 
 version = project.mod_version
 group = project.maven_group
@@ -66,13 +66,15 @@ dependencies {
 def metadataVersion = "${project.mod_version}+mc${target.minecraft}"
 
 processResources {
+    // Discard obsolete generated resources, including macros from older builds.
+    doFirst { delete destinationDir }
     dependsOn ':java-sdk:macroRuntimeJar'
     from(project(':java-sdk').layout.buildDirectory.file('libs/macro-runtime.jar')) {
         into 'minecontrol'
     }
     // version 与 minecraft 依赖范围按目标版本参数化。
     def props = [version: metadataVersion, minecraft_dependency: target.dependency, loader_dependency: ">=${target.loader}", java_dependency: ">=${target.java}", mixin_java: "JAVA_${target.java}",
-        macro_input_mixins: modern ? ', "MacroKeyboardMixin", "MacroMouseMixin", "MacroOverlayMixin", "DamageEventMixin"' : '']
+        macro_input_mixins: modern ? ', "MacroKeyboardMixin", "MacroMouseMixin", "MacroOverlayMixin", "DamageEventMixin"' : ', "MacroKeyboardMixin", "MacroMouseMixin"']
     inputs.properties(props)
 
     filesMatching(["fabric.mod.json", "minecontrol.mixins.json"]) {
@@ -153,4 +155,20 @@ if (modern) {
     check.dependsOn blockDetectionTypeTest
 } else {
     sourceSets.test.java.exclude '**/BlockDetectionTypeTest.java'
+}
+
+// Explicit opt-in probe; excluded from the main Mod and normal client runs.
+if (!modern) {
+    sourceSets {
+        legacyTest {
+            java.srcDir 'src/legacyTest/java'
+            compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath
+        }
+    }
+    tasks.register('legacyTestJar', Jar) {
+        dependsOn legacyTestClasses
+        archiveFileName = "minecontrol-legacy-test-mc${mcTarget}.jar"
+        destinationDirectory = file('build/test-mods')
+        from sourceSets.legacyTest.output
+    }
 }

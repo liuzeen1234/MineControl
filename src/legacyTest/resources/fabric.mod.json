@@ -1,0 +1,1 @@
+{"schemaVersion":1,"id":"minecontrol_input_capture_test","version":"1.0.0","name":"MineControl legacy regression probe","environment":"client","entrypoints":{"client":["dev.minecontrol.InputCaptureClientTest"]},"depends":{"minecontrol":"*","fabric-api":"*","minecraft":">=1.20.1 <=1.20.4"}}

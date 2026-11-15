@@ -1,0 +1,16 @@
+{
+  "1.20.1": {
+    "embedded_jars": [
+      "minecontrol/macro-runtime.jar"
+    ],
+    "test_probe_packaged": false,
+    "macro_program_packaged": false
+  },
+  "1.20.4": {
+    "embedded_jars": [
+      "minecontrol/macro-runtime.jar"
+    ],
+    "test_probe_packaged": false,
+    "macro_program_packaged": false
+  }
+}
