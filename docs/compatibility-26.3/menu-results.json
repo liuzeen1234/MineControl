@@ -1,0 +1,17 @@
+{
+  "minecraft": "26.3",
+  "state": "passed",
+  "checks": [
+    "ping",
+    "widget click opens OptionsScreen",
+    "SDL Escape closes options",
+    "SDL scaled mouse move and left click",
+    "SDL held Shift+W",
+    "input reset",
+    "SDL right button down",
+    "SDL right button up",
+    "legacy named key aliases accepted",
+    "SDL timed keyboard release",
+    "macro screen opens"
+  ]
+}

@@ -11,6 +11,7 @@ plugins {
 //   ./gradlew build -Pmc=1.20.1     构建 Minecraft 1.20.1
 //   ./gradlew build -Pmc=1.20.4     构建 Minecraft 1.20.4
 //   ./gradlew build -Pmc=26.2       构建 Minecraft 26.2
+//   ./gradlew build -Pmc=26.3       构建 Minecraft 26.3
 //   ./gradlew runClient             启动测试客户端（同样支持 -Pmc=<版本>）
 //   ./gradlew runServer             启动测试服务端
 //
@@ -23,6 +24,7 @@ ext.supportedVersions = [
     '1.20.4': [ minecraft: '1.20.4', yarn: '1.20.4+build.3',  loader: '0.15.11',
                 fabricApi: '0.97.1+1.20.4', dependency: '~1.20.4', java: 17 ],
     '26.2': [minecraft: '26.2', loader: '0.19.3', fabricApi: '0.161.0+26.2', dependency: '~26.2', java: 25],
+    '26.3': [minecraft: '26.3', loader: '0.19.5', fabricApi: '0.161.0+26.3', dependency: '~26.3', java: 25],
 ]
 
 def mcTarget = (project.findProperty('mc') ?: project.property('default_mc')).toString()
@@ -31,11 +33,18 @@ if (target == null) {
     throw new GradleException("不支持的 Minecraft 版本: ${mcTarget}。可选: ${supportedVersions.keySet()}")
 }
 
-def modern = mcTarget == '26.2'
+def modern = mcTarget in ['26.2', '26.3']
 apply plugin: modern ? 'net.fabricmc.fabric-loom' : 'net.fabricmc.fabric-loom-remap'
 layout.buildDirectory = file("build/targets/${mcTarget}")
 // Share protocol/config code; isolate Minecraft APIs and mixins by version family.
-sourceSets.main.java.setSrcDirs(modern ? ['src/mc26.2/java', 'src/common/java'] : ['src/main/java', 'src/common/java', "src/mc${mcTarget}/java"])
+sourceSets.main.java.setSrcDirs(modern ? ["src/mc${mcTarget}/java", 'src/common/java'] : ['src/main/java', 'src/common/java', "src/mc${mcTarget}/java"])
+if (mcTarget == '26.3') {
+    // Reuse unchanged modern APIs; SDL-specific classes override the 26.2 adapters.
+    def sharedModern = objects.sourceDirectorySet('sharedModern', 'Shared modern Minecraft adapters')
+    sharedModern.srcDir 'src/mc26.2/java'
+    sharedModern.exclude { entry -> file("src/mc26.3/java/${entry.path}").isFile() }
+    sourceSets.main.java.source(sharedModern)
+}
 
 version = project.mod_version
 group = project.maven_group
@@ -130,7 +139,7 @@ tasks.named("test") { failOnNoDiscoveredTests = false }
 if (modern) {
     sourceSets {
         inputCaptureTest {
-            java.srcDir 'src/mc26.2Test/java'
+            java.srcDir "src/mc${mcTarget}Test/java"
             compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath
         }
     }
@@ -139,7 +148,7 @@ if (modern) {
         archiveFileName = 'minecontrol-input-capture-test.jar'
         destinationDirectory = file('build/test-mods')
         from sourceSets.inputCaptureTest.output
-        from 'src/mc26.2Test/resources'
+        from "src/mc${mcTarget}Test/resources"
     }
 }
 

@@ -2,13 +2,13 @@
 
 [English](README.md) | 简体中文
 
-Minecraft Fabric 客户端控制 Mod，配套标准库 Python CLI `minectl`。支持 Minecraft **26.2 / 1.20.4 / 1.20.1**。26.2 使用 Java 25，1.20.x 使用 Java 17。
+Minecraft Fabric 客户端控制 Mod，配套标准库 Python CLI `minectl`。支持 Minecraft **26.3 / 26.2 / 1.20.4 / 1.20.1**。26.2 和 26.3 使用 Java 25，1.20.x 使用 Java 17。
 
 ## 各版本功能区别
 
-三个 Minecraft 目标通过 `-Pmc` 构建参数选择，使用同一仓库维护。1.20.1 和 1.20.4 共用旧版适配代码，功能范围一致；26.2 是默认开发目标，具有更多专用查询和操作接口。
+四个 Minecraft 目标通过 `-Pmc` 构建参数选择，使用同一仓库维护。1.20.1 和 1.20.4 共用旧版适配代码，功能范围一致；26.2 是默认开发目标，具有更多专用查询和操作接口。
 
-| 功能 | 1.20.1 / 1.20.4 | 26.2 |
+| 功能 | 1.20.1 / 1.20.4 | 26.2 / 26.3 |
 | --- | --- | --- |
 | CLI、本机 TCP、键鼠模拟、后台控制、GUI 操作 | 支持 | 支持 |
 | JSON 宏：循环、条件、等待 | 支持 | 支持 |
@@ -22,7 +22,7 @@ Minecraft Fabric 客户端控制 Mod，配套标准库 Python CLI `minectl`。�
 | 容器读取、存入物品、关闭容器 | 尚未接入 | 支持 |
 | 目标方块扫描、Xaero 路标接口 | 尚未接入 | 支持 |
 
-Java SDK 共用不代表所有方法或独立宏都可跨版本运行；依赖上述专用接口的宏目前需要 26.2。三个版本均已接入游戏内宏进程管理。宏程序必须单独生成可执行 jar，由用户手动添加；主 Mod 只提供控制能力和隐藏公共运行库，不预装宏程序。
+Java SDK 共用不代表所有方法或独立宏都可跨版本运行；依赖上述专用接口的宏需要 26.2 或 26.3。四个版本均已接入游戏内宏进程管理。宏程序必须单独生成可执行 jar，由用户手动添加；主 Mod 只提供控制能力和隐藏公共运行库，不预装宏程序。
 
 26.2 的宏管理、输入隔离、调度和方块检测有游戏内实测记录；旧版近期部分公共功能仅完成编译兼容检查，不代表所有能力均已实测。具体范围见 [测试记录](docs/TESTING.md)。
 
@@ -105,7 +105,7 @@ python3 tests/live_smoke.py
 python3 tests/live_world.py
 ```
 
-构建产物带 Minecraft 版本，三个版本可同时保存在 build/libs。开发客户端数据默认按版本隔离：26.2 使用 `run-26.2`，旧版使用 `run-1.20.4` 或 `run-1.20.1`；原 `run` 目录保留。可以用 `-PrunDir=目录` 指定其他测试目录。实际验证及限制见 [测试记录](docs/TESTING.md)，协议见 [协议文档](docs/PROTOCOL.md)。
+构建产物带 Minecraft 版本，四个版本可同时保存在 build/libs。开发客户端数据默认按版本隔离：26.2 使用 `run-26.2`，旧版使用 `run-1.20.4` 或 `run-1.20.1`；原 `run` 目录保留。可以用 `-PrunDir=目录` 指定其他测试目录。实际验证及限制见 [测试记录](docs/TESTING.md)，协议见 [协议文档](docs/PROTOCOL.md)。
 
 26.2 原生输入隔离回归：`./gradlew inputCaptureTestJar` 生成 `build/test-mods/minecontrol-input-capture-test.jar`。仅将此测试探针放入隔离客户端的 mods，进入测试世界前创建该实例的 `config/input-capture-test.trigger` 文件。进入世界后自动验证原生键鼠/文字拦截、模拟输入通行、F9 停止、改键及恢复输入，结果写入 `config/input-capture-test-report.json`。探针不包含在正式 Mod 中。
 
@@ -116,6 +116,7 @@ Gradle 9.5.1 / Loom 1.17.21 需用 Java 25 启动；编译 1.20.x 时还需安�
 默认构建和开发测试目标为 **26.2**，`./gradlew build` 和 `./gradlew runClient` 均无需指定版本；旧版测试需显式指定 `-Pmc=1.20.4` 或 `-Pmc=1.20.1`。
 
 ```sh
+./gradlew build -Pmc=26.3
 ./gradlew build -Pmc=26.2
 ./gradlew build -Pmc=1.20.4
 ./gradlew build -Pmc=1.20.1
@@ -292,3 +293,9 @@ python3 cli/vein_miner.py --seconds 600 --out vein-results
 安装 Xaero 小地图后自动添加“检测·刷怪笼”等路标到当前实际世界的默认／当前路标集合，十一类使用固定颜色。已验证 Xaero Minimap 26.6.0（Minecraft 26.2），其他版本接口可能不同。路标失败不丢失记录，本次退出时不无限重试；下次手动调用时补建缺失路标，不重复添加。删除检测宏后可重新手动添加独立 jar。公共运行库仍隐藏在 `.runtime/sdk.jar`，不出现在宏列表。
 
 旧版输入隔离回归：`./gradlew legacyTestJar -Pmc=1.20.1`（或 `1.20.4`），将 `build/test-mods/` 中对应版本探针放入隔离开发客户端，创建 `config/input-capture-test.trigger` 后进入测试世界。结果写入 `config/input-capture-test-report.json`。探针不进入正式 Mod。开发客户端加载期间不要并发构建不同 MC 目标，Gradle 可能清理上一目标的任务输出。
+
+## MC 26.3 适配
+
+使用 `./gradlew build -Pmc=26.3` 构建，`./gradlew runClient -Pmc=26.3` 启动独立的 `run-26.3` 测试实例。需要 Java 25、Fabric Loader 0.19.5+、Fabric API 0.161.0+26.3。产物为 `build/libs/minecontrol-mc26.3-1.0.0.jar`。26.3 的独立 SDL 输入适配位于 `src/mc26.3/java`，保留 CLI 按键名称和左右鼠标按钮语义；宏仍单独打包，由用户手动添加。`./gradlew inputCaptureTestJar -Pmc=26.3` 可构建该版本专用的输入隔离探针，触发文件和报告路径同前文。26.2 仍为默认目标。
+
+26.3 的构建、菜单键鼠及 31 项世界内输入隔离回归已通过，具体范围见 [26.3 测试记录](docs/compatibility-26.3/README.md)。

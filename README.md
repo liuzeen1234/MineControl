@@ -2,7 +2,7 @@
 
 English | [简体中文](README.zh-CN.md)
 
-A client-side Fabric mod for controlling and inspecting Minecraft through a local API, a dependency-free Python CLI, and a Java SDK. Supports **Minecraft 26.2, 1.20.4, and 1.20.1** through separate builds.
+A client-side Fabric mod for controlling and inspecting Minecraft through a local API, a dependency-free Python CLI, and a Java SDK. Supports **Minecraft 26.3, 26.2, 1.20.4, and 1.20.1** through separate builds.
 
 [Modrinth](https://modrinth.com/mod/minecontrol) · [Issues](https://github.com/liuzeen1234/MineControl/issues) · [Protocol](docs/PROTOCOL.md) · [Java SDK](java-sdk/README.md)
 
@@ -12,7 +12,7 @@ Inspect game state and UI controls, enter text, simulate keyboard and mouse inpu
 
 26.2 is the default development target. 1.20.1 and 1.20.4 share the legacy implementation and feature scope.
 
-| Feature | 1.20.1 / 1.20.4 | 26.2 |
+| Feature | 1.20.1 / 1.20.4 | 26.2 / 26.3 |
 | --- | --- | --- |
 | Local CLI/TCP API, keyboard/mouse input, background control, UI automation | Supported | Supported |
 | JSON macros with loops, conditions, and waits | Supported | Supported |
@@ -26,7 +26,7 @@ Inspect game state and UI controls, enter text, simulate keyboard and mouse inpu
 | Container inspection, item deposits, closing containers | Not yet integrated | Supported |
 | Target-block scanning and Xaero waypoint API | Not yet integrated | Supported |
 
-A shared SDK does not make every method or standalone macro compatible with every version. Macros using 26.2-only APIs require 26.2. In-game macro integration for 1.20.1 and 1.20.4 is covered by [Issue #1 test records](docs/issue-1/README.md).
+A shared SDK does not make every method or standalone macro compatible with every version. Macros using modern APIs require 26.2 or 26.3. In-game macro integration for 1.20.1 and 1.20.4 is covered by [Issue #1 test records](docs/issue-1/README.md).
 
 **Macro programs are separate executable jars and must be added manually.** The main mod does not bundle or automatically install macro programs. Its hidden shared runtime is not a runnable macro.
 
@@ -41,6 +41,7 @@ See the [test records](docs/TESTING.md) for actual validation scope. Compile com
 
 | Minecraft | Game runtime | Minimum Fabric Loader | Build artifact |
 | --- | --- | --- | --- |
+| 26.3 | Java 25 | 0.19.5 | `minecontrol-mc26.3-1.0.0.jar` |
 | 26.2 | Java 25 | 0.19.3 | `minecontrol-mc26.2-1.0.0.jar` |
 | 1.20.4 | Java 17 | 0.15.11 | `minecontrol-mc1.20.4-1.0.0.jar` |
 | 1.20.1 | Java 17 | 0.15.11 | `minecontrol-mc1.20.1-1.0.0.jar` |
@@ -194,6 +195,7 @@ Start Gradle with **Java 25**. Gradle 9.5.1 / Loom 1.17.21 require it; legacy co
 
 ```sh
 ./gradlew build                   # Default: Minecraft 26.2
+./gradlew build -Pmc=26.3
 ./gradlew build -Pmc=26.2
 ./gradlew build -Pmc=1.20.4
 ./gradlew build -Pmc=1.20.1
@@ -201,9 +203,9 @@ Start Gradle with **Java 25**. Gradle 9.5.1 / Loom 1.17.21 require it; legacy co
 python3 -m unittest discover -s tests -v
 ```
 
-Installable jars collect in `build/libs/`. Development instances are isolated in `run-26.2`, `run-1.20.4`, and `run-1.20.1`; use `-PrunDir=path` to override. Select legacy client runs explicitly with `-Pmc=1.20.4` or `-Pmc=1.20.1`.
+Installable jars collect in `build/libs/`. Development instances are isolated in `run-26.3`, `run-26.2`, `run-1.20.4`, and `run-1.20.1`; use `-PrunDir=path` to override. Select legacy client runs explicitly with `-Pmc=1.20.4` or `-Pmc=1.20.1`.
 
-26.2 uses official unobfuscated names and `src/mc26.2/java`; legacy adapters use `src/main/java` with small version-specific bridges in `src/mc1.20.1/java` and `src/mc1.20.4/java`. Shared protocol/configuration code is in `src/common/java`. UI/screen class names differ by version (26.2 uses `EditBox`, `Checkbox`, and `CycleButton`), while CLI commands and the protocol remain consistent. Control changes need corresponding adapters and validation for all three targets.
+26.2 and 26.3 use official unobfuscated names and `src/mc26.2/java` / `src/mc26.3/java`; legacy adapters use `src/main/java` with small version-specific bridges in `src/mc1.20.1/java` and `src/mc1.20.4/java`. Shared protocol/configuration code is in `src/common/java`. UI/screen class names differ by version (26.2 uses `EditBox`, `Checkbox`, and `CycleButton`), while CLI commands and the protocol remain consistent. Control changes need corresponding adapters and validation for all four targets.
 
 For an isolated development client at the title screen with no existing worlds, run `python3 tests/live_smoke.py`. After creating and entering a separate test world, run `python3 tests/live_world.py`.
 
@@ -216,3 +218,9 @@ Recorded runs include build/protocol checks and CLI unit tests, plus 26.2 in-gam
 [MIT](LICENSE).
 
 Legacy native-input regression: `./gradlew legacyTestJar -Pmc=1.20.1` (or `1.20.4`) generates a version-specific probe in `build/test-mods/`. Install only in an isolated matching development client, create `config/input-capture-test.trigger`, and enter a test world. Results: `config/input-capture-test-report.json`. Do not run different Minecraft target builds concurrently while a development client is loading; Gradle can clean the previous task output.
+
+### Minecraft 26.3
+
+Build with `./gradlew build -Pmc=26.3` and launch with `./gradlew runClient -Pmc=26.3`. This target uses Java 25, Fabric Loader 0.19.5+, and Fabric API 0.161.0+26.3. The separate SDL input adapter preserves named CLI keys and left/right mouse buttons. Optional macros remain separate jars that users add manually. The input-capture probe can be built with `./gradlew inputCaptureTestJar -Pmc=26.3`; use its trigger and report paths described above.
+
+26.3 build, menu input, and 31 in-world input-capture checks passed. See [26.3 test records](docs/compatibility-26.3/README.md) for scope and limitations.
