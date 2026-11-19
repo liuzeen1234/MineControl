@@ -4,6 +4,8 @@ English | [简体中文](README.zh-CN.md)
 
 A client-side Fabric mod for controlling and inspecting Minecraft through a local API, a dependency-free Python CLI, and a Java SDK. Supports **Minecraft 26.3, 26.2, 1.20.4, and 1.20.1** through separate builds.
 
+In-game menus, settings, and macro status hints follow the Minecraft language setting. Simplified Chinese and English are included; other languages fall back to English. Macro filenames and program output are preserved. See [localization test records](docs/localization/README.md).
+
 [Modrinth](https://modrinth.com/mod/minecontrol) · [Issues](https://github.com/liuzeen1234/MineControl/issues) · [Protocol](docs/PROTOCOL.md) · [Java SDK](java-sdk/README.md)
 
 ## Features and version differences

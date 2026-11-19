@@ -120,7 +120,7 @@ public final class MineControlClient implements ClientModInitializer {
         if (stopMacro != null && stopMacro.matchesMouse(event)) stopRunningMacros();
     }
     public static void stopRunningMacros() {
-        stopRunningMacros("用户停止全部宏");
+        stopRunningMacros(UiText.get("minecontrol.stop.reason"));
     }
     private static void stopRunningMacros(String reason) {
         if (controller != null) controller.coordinator().emergency(reason);
@@ -132,10 +132,10 @@ public final class MineControlClient implements ClientModInitializer {
     public static void drawMacroStatus(GuiGraphicsExtractor graphics) {
         if (!inputCaptured() && (javaMacros == null || !javaMacros.active()) && (controller == null || !controller.coordinator().active())) return;
         var client = Minecraft.getInstance();
-        String name = javaMacros != null && javaMacros.active() ? javaMacros.state() : controller != null && controller.coordinator().active() ? controller.coordinator().summary() : "JSON 宏";
+        String name = javaMacros != null && javaMacros.active() ? UiText.status(javaMacros.state()) : controller != null && controller.coordinator().active() ? UiText.status(controller.coordinator().summary()) : UiText.get("minecontrol.hud.json");
         int maxWidth = Math.max(80, client.getWindow().getGuiScaledWidth() - 24);
-        String running = client.font.plainSubstrByWidth("运行中：" + name, maxWidth);
-        String hint = client.font.plainSubstrByWidth("停止全部：" + stopKeyLabel() + (inputCaptured() ? "  |  手动输入已屏蔽" : "  |  可手动操作"), maxWidth);
+        String running = client.font.plainSubstrByWidth(UiText.get("minecontrol.hud.running") + name, maxWidth);
+        String hint = client.font.plainSubstrByWidth(UiText.get("minecontrol.hud.stop") + stopKeyLabel() + (inputCaptured() ? UiText.get("minecontrol.hud.blocked") : UiText.get("minecontrol.hud.allowed")), maxWidth);
         int panelWidth = Math.max(client.font.width(running), client.font.width(hint)) + 12;
         graphics.fill(5, 5, 5 + panelWidth, 36, 0xDD142230);
         graphics.fill(5, 5, 7, 36, 0xFF73DBA1);
@@ -147,6 +147,7 @@ public final class MineControlClient implements ClientModInitializer {
         return controller != null && controller.isHeld(window, key);
     }
     @Override public void onInitializeClient() {
+        UiText.setResolver(key -> net.minecraft.client.resources.language.I18n.get(key));
         stopMacro = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                 "key.minecontrol.stop_macro", GLFW.GLFW_KEY_F9, KeyMapping.Category.MISC));
         HudElementRegistry.addLast(Identifier.fromNamespaceAndPath("minecontrol", "running_macro"),
@@ -155,7 +156,7 @@ public final class MineControlClient implements ClientModInitializer {
                 "key.minecontrol.macros", GLFW.GLFW_KEY_F8, KeyMapping.Category.MISC));
         ScreenEvents.AFTER_INIT.register((client, screen, width, height) -> {
             if (screen instanceof TitleScreen || screen instanceof PauseScreen) {
-                Screens.getWidgets(screen).add(Button.builder(Component.literal("MineControl 宏"),
+                Screens.getWidgets(screen).add(Button.builder(Component.translatable("minecontrol.macros.open"),
                         button -> client.gui.setScreen(new MacroScreen(screen))).bounds(5, 5, 110, 20).build());
             }
         });

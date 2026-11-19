@@ -6,7 +6,8 @@
   "environment": "client",
   "entrypoints": {
     "client": [
-      "dev.minecontrol.InputCaptureClientTest"
+      "dev.minecontrol.InputCaptureClientTest",
+      "dev.minecontrol.LocalizationClientTest"
     ]
   },
   "depends": {

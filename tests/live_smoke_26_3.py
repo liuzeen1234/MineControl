@@ -9,8 +9,8 @@ def req(command,**kw):
  r=cli.exchange(dict(id=uuid.uuid4().hex,command=command,**kw),25583,20)
  assert r['ok'],r
  return r['result']
-def click(label):
- w=next(w for w in req('ui.list') if w['label']==label);req('ui.click',widget=w['id']);time.sleep(.3)
+def click(*labels):
+ w=next(w for w in req('ui.list') if w['label'] in labels);req('ui.click',widget=w['id']);time.sleep(.3)
 def check(label,value):
  assert value,label
  checks.append(label);print('PASS',label,flush=True)
@@ -26,5 +26,5 @@ for key in ['ENTER','PAGE_UP','PAGE_DOWN','LEFT_BRACKET','RIGHT_BRACKET','KP_0',
  req('key.down',key=key);req('input.reset')
 check('legacy named key aliases accepted',True)
 req('key.hold',key='W',ticks=3);time.sleep(.3);check('SDL timed keyboard release',not req('status')['held_keys'])
-click('MineControl 宏');check('macro screen opens',req('status')['screen'].endswith('MacroScreen'));req('key.tap',key='ESCAPE');time.sleep(.3)
+click('MineControl Macros', 'MineControl 宏');check('macro screen opens',req('status')['screen'].endswith('MacroScreen'));req('key.tap',key='ESCAPE');time.sleep(.3)
 (root/'docs/compatibility-26.3/menu-results.json').write_text(json.dumps({'minecraft':'26.3','state':'passed','checks':checks},ensure_ascii=False,indent=2)+'\n')

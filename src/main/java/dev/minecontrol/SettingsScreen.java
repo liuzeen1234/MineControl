@@ -13,14 +13,14 @@ public final class SettingsScreen extends Screen {
     private int contentX;
 
     public SettingsScreen(Screen parent) {
-        super(Text.literal("MineControl · 设置"));
+        super(Text.translatable("minecontrol.settings.title"));
         this.parent = parent;
     }
 
     @Override protected void init() {
         int sidebarWidth = Math.min(110, width / 4);
         contentX = sidebarWidth + 24;
-        ButtonWidget category = addDrawableChild(ButtonWidget.builder(Text.literal("宏与输入"), button -> {})
+        ButtonWidget category = addDrawableChild(ButtonWidget.builder(Text.translatable("minecontrol.settings.category"), button -> {})
                 .dimensions(12, 40, sidebarWidth, 20).build());
         category.active = false;
         ButtonWidget toggle = addDrawableChild(ButtonWidget.builder(toggleLabel(), button -> {
@@ -28,21 +28,21 @@ public final class SettingsScreen extends Screen {
                 MineControlClient.setBlockPhysicalInputDuringMacros(!MineControlClient.blockPhysicalInputDuringMacros());
                 error = "";
             } catch (java.io.IOException e) {
-                error = "保存失败，请重试；设置未更改";
+                error = UiText.get("minecontrol.settings.save_failed");
                 MineControlClient.LOG.error("Cannot save MineControl settings", e);
             }
             button.setMessage(toggleLabel());
         }).dimensions(contentX, 64, Math.max(100, width - contentX - 12), 20)
-                .tooltip(Tooltip.of(Text.literal("阻止手动操作干扰宏，停止快捷键仍可使用。修改立即生效并保存。")))
+                .tooltip(Tooltip.of(Text.translatable("minecontrol.settings.tooltip")))
                 .build());
         toggle.active = MineControlClient.settingsAvailable();
-        if (!toggle.active) error = "配置未成功加载，请检查客户端日志";
-        addDrawableChild(ButtonWidget.builder(Text.literal("返回"), button -> close())
+        if (!toggle.active) error = UiText.get("minecontrol.settings.unavailable");
+        addDrawableChild(ButtonWidget.builder(Text.translatable("minecontrol.back"), button -> close())
                 .dimensions(width / 2 - 50, height - 28, 100, 20).build());
     }
 
     private Text toggleLabel() {
-        return Text.literal("宏运行时屏蔽键鼠输入：" + (MineControlClient.blockPhysicalInputDuringMacros() ? "开启" : "关闭"));
+        return Text.literal(UiText.get("minecontrol.settings.toggle") + (MineControlClient.blockPhysicalInputDuringMacros() ? UiText.get("minecontrol.on") : UiText.get("minecontrol.off")));
     }
 
     private void line(DrawContext graphics, String value, int y, int color) {
@@ -54,11 +54,11 @@ public final class SettingsScreen extends Screen {
         super.render(graphics, mouseX, mouseY, delta);
         graphics.drawCenteredTextWithShadow(textRenderer, title, width / 2, 12, 0xFFFFFFFF);
         graphics.fill(contentX - 8, 36, contentX - 7, height - 40, 0xFF465468);
-        line(graphics, "宏与输入", 43, 0xFFFFFFFF);
-        line(graphics, "阻止手动操作干扰宏，停止快捷键仍可使用。", 94, 0xFFCBD5E1);
-        line(graphics, "适用于执行宏和 JSON 宏。", 110, 0xFF94A3B8);
-        line(graphics, "仅运行检测宏、调度宏时不屏蔽。", 126, 0xFF94A3B8);
-        line(graphics, "修改立即生效并自动保存。", 148, 0xFF94A3B8);
+        line(graphics, UiText.get("minecontrol.settings.category"), 43, 0xFFFFFFFF);
+        line(graphics, UiText.get("minecontrol.settings.description"), 94, 0xFFCBD5E1);
+        line(graphics, UiText.get("minecontrol.settings.scope"), 110, 0xFF94A3B8);
+        line(graphics, UiText.get("minecontrol.settings.detectors"), 126, 0xFF94A3B8);
+        line(graphics, UiText.get("minecontrol.settings.saved"), 148, 0xFF94A3B8);
         if (!error.isEmpty()) line(graphics, error, height - 44, 0xFFFF8888);
     }
 

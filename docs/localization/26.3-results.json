@@ -1,0 +1,27 @@
+{
+  "state": "passed",
+  "checks": [
+    "en_us macro title",
+    "en_us macro actions",
+    "en_us input setting",
+    "en_us add-file title",
+    "en_us empty-path validation",
+    "en_us manager status",
+    "en_us error translation preserves filename",
+    "en_us filename unchanged",
+    "en_us program output unchanged",
+    "en_us HUD text",
+    "existing translatable component follows language reload",
+    "zh_cn macro title",
+    "zh_cn macro actions",
+    "zh_cn input setting",
+    "zh_cn add-file title",
+    "zh_cn empty-path validation",
+    "zh_cn manager status",
+    "zh_cn error translation preserves filename",
+    "zh_cn filename unchanged",
+    "zh_cn program output unchanged",
+    "zh_cn HUD text"
+  ],
+  "error": ""
+}
