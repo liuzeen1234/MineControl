@@ -1,0 +1,30 @@
+{
+  "minecraft": "26.3",
+  "state": "passed",
+  "scenarios": [
+    {
+      "scenario": "normal",
+      "checks": 14,
+      "all_processes_stopped": true,
+      "inputs_released": true,
+      "capture_released": true,
+      "workers_no_uncaught_errors": true
+    },
+    {
+      "scenario": "pause",
+      "checks": 14,
+      "all_processes_stopped": true,
+      "inputs_released": true,
+      "capture_released": true,
+      "workers_no_uncaught_errors": true
+    },
+    {
+      "scenario": "cascade",
+      "checks": 6,
+      "all_processes_stopped": true,
+      "inputs_released": true,
+      "capture_released": true,
+      "workers_no_uncaught_errors": true
+    }
+  ]
+}

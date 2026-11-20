@@ -1,0 +1,45 @@
+{
+  "error": "",
+  "state": "passed",
+  "scenario": "cascade",
+  "checks": [
+    "scheduler input is forbidden",
+    "all three roles registered",
+    "detector input is forbidden",
+    "detector observes executor held input",
+    "executor changed actual game view",
+    "detector observes changed view"
+  ],
+  "lifecycle": [
+    {
+      "event": "started",
+      "name": "Cooperation scheduler",
+      "instance_id": "7214d5f5-d2ba-4bd1-8b5a-c0fb1a2b2835",
+      "role": "scheduler",
+      "reason": "",
+      "exit_type": "",
+      "requested_by": "",
+      "requested_reason": ""
+    },
+    {
+      "event": "started",
+      "name": "Cooperation detector",
+      "instance_id": "3809360c-e7ed-4788-95af-f8ef06ed300f",
+      "role": "detection",
+      "reason": "",
+      "exit_type": "",
+      "requested_by": "",
+      "requested_reason": ""
+    },
+    {
+      "event": "started",
+      "name": "Cooperation executor",
+      "instance_id": "89db4d18-1281-44b6-877b-99ac09b0116c",
+      "role": "execution",
+      "reason": "",
+      "exit_type": "",
+      "requested_by": "",
+      "requested_reason": ""
+    }
+  ]
+}

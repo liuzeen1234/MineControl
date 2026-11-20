@@ -1,0 +1,153 @@
+{
+  "checks": [
+    "scheduler input is forbidden",
+    "all three roles registered",
+    "detector input is forbidden",
+    "detector observes executor held input",
+    "executor changed actual game view",
+    "detector observes changed view",
+    "pause clears workers and input",
+    "paused system rejects new worker",
+    "all three roles registered",
+    "detector input is forbidden",
+    "detector observes executor held input",
+    "executor changed actual game view",
+    "detector observes changed view",
+    "resume restores cooperation"
+  ],
+  "lifecycle": [
+    {
+      "event": "started",
+      "name": "Cooperation scheduler",
+      "instance_id": "acf7a5a2-8984-428c-9f6b-8a9d20e4298a",
+      "role": "scheduler",
+      "reason": "",
+      "exit_type": "",
+      "requested_by": "",
+      "requested_reason": ""
+    },
+    {
+      "event": "started",
+      "name": "Cooperation detector",
+      "instance_id": "8123fa08-6883-4268-9a93-60b4c49b3ee5",
+      "role": "detection",
+      "reason": "",
+      "exit_type": "",
+      "requested_by": "",
+      "requested_reason": ""
+    },
+    {
+      "event": "started",
+      "name": "Cooperation executor",
+      "instance_id": "ce8154f2-4661-403c-a654-191c5a69092b",
+      "role": "execution",
+      "reason": "",
+      "exit_type": "",
+      "requested_by": "",
+      "requested_reason": ""
+    },
+    {
+      "event": "stop_requested",
+      "name": "Cooperation detector",
+      "instance_id": "8123fa08-6883-4268-9a93-60b4c49b3ee5",
+      "role": "detection",
+      "reason": "Cooperation pause checkpoint",
+      "exit_type": "requested",
+      "requested_by": "acf7a5a2-8984-428c-9f6b-8a9d20e4298a",
+      "requested_reason": "Cooperation pause checkpoint"
+    },
+    {
+      "event": "stop_requested",
+      "name": "Cooperation executor",
+      "instance_id": "ce8154f2-4661-403c-a654-191c5a69092b",
+      "role": "execution",
+      "reason": "Cooperation pause checkpoint",
+      "exit_type": "requested",
+      "requested_by": "acf7a5a2-8984-428c-9f6b-8a9d20e4298a",
+      "requested_reason": "Cooperation pause checkpoint"
+    },
+    {
+      "event": "exited",
+      "name": "Cooperation executor",
+      "instance_id": "ce8154f2-4661-403c-a654-191c5a69092b",
+      "role": "execution",
+      "reason": "Cooperation executor stopped cleanly",
+      "exit_type": "stopped",
+      "requested_by": "acf7a5a2-8984-428c-9f6b-8a9d20e4298a",
+      "requested_reason": "Cooperation pause checkpoint"
+    },
+    {
+      "event": "exited",
+      "name": "Cooperation detector",
+      "instance_id": "8123fa08-6883-4268-9a93-60b4c49b3ee5",
+      "role": "detection",
+      "reason": "Cooperation detector stopped cleanly",
+      "exit_type": "stopped",
+      "requested_by": "acf7a5a2-8984-428c-9f6b-8a9d20e4298a",
+      "requested_reason": "Cooperation pause checkpoint"
+    },
+    {
+      "event": "started",
+      "name": "Cooperation detector",
+      "instance_id": "f50e3d58-c4ee-46eb-9932-137fad2df41a",
+      "role": "detection",
+      "reason": "",
+      "exit_type": "",
+      "requested_by": "",
+      "requested_reason": ""
+    },
+    {
+      "event": "started",
+      "name": "Cooperation executor",
+      "instance_id": "847f3b0e-54e4-4653-87c6-68a587a0b1ed",
+      "role": "execution",
+      "reason": "",
+      "exit_type": "",
+      "requested_by": "",
+      "requested_reason": ""
+    },
+    {
+      "event": "stop_requested",
+      "name": "Cooperation executor",
+      "instance_id": "847f3b0e-54e4-4653-87c6-68a587a0b1ed",
+      "role": "execution",
+      "reason": "Cooperation stop execution",
+      "exit_type": "requested",
+      "requested_by": "acf7a5a2-8984-428c-9f6b-8a9d20e4298a",
+      "requested_reason": "Cooperation stop execution"
+    },
+    {
+      "event": "stop_requested",
+      "name": "Cooperation detector",
+      "instance_id": "f50e3d58-c4ee-46eb-9932-137fad2df41a",
+      "role": "detection",
+      "reason": "Cooperation stop detection",
+      "exit_type": "requested",
+      "requested_by": "acf7a5a2-8984-428c-9f6b-8a9d20e4298a",
+      "requested_reason": "Cooperation stop detection"
+    },
+    {
+      "event": "exited",
+      "name": "Cooperation executor",
+      "instance_id": "847f3b0e-54e4-4653-87c6-68a587a0b1ed",
+      "role": "execution",
+      "reason": "Cooperation executor stopped cleanly",
+      "exit_type": "stopped",
+      "requested_by": "acf7a5a2-8984-428c-9f6b-8a9d20e4298a",
+      "requested_reason": "Cooperation stop execution"
+    },
+    {
+      "event": "exited",
+      "name": "Cooperation detector",
+      "instance_id": "f50e3d58-c4ee-46eb-9932-137fad2df41a",
+      "role": "detection",
+      "reason": "Cooperation detector stopped cleanly",
+      "exit_type": "stopped",
+      "requested_by": "acf7a5a2-8984-428c-9f6b-8a9d20e4298a",
+      "requested_reason": "Cooperation stop detection"
+    }
+  ],
+  "error": "",
+  "state": "passed",
+  "scenario": "pause"
+}

@@ -1,0 +1,16 @@
+gradle.projectsEvaluated {
+    def p = gradle.rootProject
+    p.sourceSets {
+        cooperationTest {
+            java.srcDir 'src/cooperationTest/java'
+            compileClasspath += p.sourceSets.main.output + p.sourceSets.main.compileClasspath
+        }
+    }
+    p.tasks.register('cooperationTestJar', Jar) {
+        dependsOn p.tasks.named('cooperationTestClasses')
+        archiveFileName = "cooperation-probe-mc${p.findProperty('mc') ?: p.property('default_mc')}.jar"
+        destinationDirectory = p.file('build/test-mods')
+        from p.sourceSets.cooperationTest.output
+        from(p.file('tools/cooperation-test/fabric.mod.json'))
+    }
+}

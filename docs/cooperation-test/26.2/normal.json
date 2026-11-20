@@ -1,0 +1,83 @@
+{
+  "state": "passed",
+  "error": "",
+  "lifecycle": [
+    {
+      "event": "started",
+      "name": "Cooperation scheduler",
+      "instance_id": "0976ba5b-1414-42c1-8118-cc517737bd40",
+      "role": "scheduler",
+      "reason": "",
+      "exit_type": "",
+      "requested_by": "",
+      "requested_reason": ""
+    },
+    {
+      "event": "started",
+      "name": "Cooperation detector",
+      "instance_id": "7b041ddd-4d2e-453b-9985-fc811d16240b",
+      "role": "detection",
+      "reason": "",
+      "exit_type": "",
+      "requested_by": "",
+      "requested_reason": ""
+    },
+    {
+      "event": "started",
+      "name": "Cooperation executor",
+      "instance_id": "b8046571-3815-473e-b7fe-c1931dd877cc",
+      "role": "execution",
+      "reason": "",
+      "exit_type": "",
+      "requested_by": "",
+      "requested_reason": ""
+    },
+    {
+      "event": "stop_requested",
+      "name": "Cooperation executor",
+      "instance_id": "b8046571-3815-473e-b7fe-c1931dd877cc",
+      "role": "execution",
+      "reason": "Cooperation stop execution",
+      "exit_type": "requested",
+      "requested_by": "0976ba5b-1414-42c1-8118-cc517737bd40",
+      "requested_reason": "Cooperation stop execution"
+    },
+    {
+      "event": "exited",
+      "name": "Cooperation executor",
+      "instance_id": "b8046571-3815-473e-b7fe-c1931dd877cc",
+      "role": "execution",
+      "reason": "Cooperation executor stopped cleanly",
+      "exit_type": "stopped",
+      "requested_by": "0976ba5b-1414-42c1-8118-cc517737bd40",
+      "requested_reason": "Cooperation stop execution"
+    },
+    {
+      "event": "started",
+      "name": "Cooperation executor",
+      "instance_id": "65598686-ad53-4f55-b9de-f9f0e37e0b4a",
+      "role": "execution",
+      "reason": "",
+      "exit_type": "",
+      "requested_by": "",
+      "requested_reason": ""
+    }
+  ],
+  "checks": [
+    "scheduler input is forbidden",
+    "all three roles registered",
+    "detector input is forbidden",
+    "detector observes executor held input",
+    "executor changed actual game view",
+    "detector observes changed view",
+    "stopping executor releases held input",
+    "detector continues after executor stop",
+    "executor exit lifecycle delivered",
+    "restart uses new instance",
+    "detector observes executor held input",
+    "executor changed actual game view",
+    "detector observes changed view",
+    "normal stop removes both workers"
+  ],
+  "scenario": "normal"
+}

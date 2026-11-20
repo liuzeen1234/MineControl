@@ -1,5 +1,7 @@
 # 测试记录
 
+三角色协作宏（2026-11-20）：四个支持版本的真实客户端测试见 [协作测试记录](cooperation-test/README.md)。
+
 Minecraft 26.3（2026-11-19）：构建、菜单键鼠及 31 项世界内输入隔离回归已通过，见 [26.3 适配验证](compatibility-26.3/README.md)。
 
 日期：2026-10-04。宿主 macOS，Java 17.0.20.1；独立 Fabric 开发客户端。构建配置：Loom 1.7.4、Gradle 8.8、Fabric Loader 0.15.11，1.20.4 使用 Yarn build.3 / Fabric API 0.97.1，1.20.1 使用 Yarn build.10 / Fabric API 0.92.2。

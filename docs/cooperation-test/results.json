@@ -1,0 +1,133 @@
+{
+  "date": "2026-11-20",
+  "state": "passed",
+  "versions": [
+    {
+      "minecraft": "1.20.1",
+      "state": "passed",
+      "scenarios": [
+        {
+          "scenario": "normal",
+          "checks": 14,
+          "all_processes_stopped": true,
+          "inputs_released": true,
+          "capture_released": true,
+          "workers_no_uncaught_errors": true
+        },
+        {
+          "scenario": "pause",
+          "checks": 14,
+          "all_processes_stopped": true,
+          "inputs_released": true,
+          "capture_released": true,
+          "workers_no_uncaught_errors": true
+        },
+        {
+          "scenario": "cascade",
+          "checks": 6,
+          "all_processes_stopped": true,
+          "inputs_released": true,
+          "capture_released": true,
+          "workers_no_uncaught_errors": true
+        }
+      ]
+    },
+    {
+      "minecraft": "1.20.4",
+      "state": "passed",
+      "scenarios": [
+        {
+          "scenario": "normal",
+          "checks": 14,
+          "all_processes_stopped": true,
+          "inputs_released": true,
+          "capture_released": true,
+          "workers_no_uncaught_errors": true
+        },
+        {
+          "scenario": "pause",
+          "checks": 14,
+          "all_processes_stopped": true,
+          "inputs_released": true,
+          "capture_released": true,
+          "workers_no_uncaught_errors": true
+        },
+        {
+          "scenario": "cascade",
+          "checks": 6,
+          "all_processes_stopped": true,
+          "inputs_released": true,
+          "capture_released": true,
+          "workers_no_uncaught_errors": true
+        }
+      ]
+    },
+    {
+      "minecraft": "26.2",
+      "state": "passed",
+      "scenarios": [
+        {
+          "scenario": "normal",
+          "checks": 14,
+          "all_processes_stopped": true,
+          "inputs_released": true,
+          "capture_released": true,
+          "workers_no_uncaught_errors": true
+        },
+        {
+          "scenario": "pause",
+          "checks": 14,
+          "all_processes_stopped": true,
+          "inputs_released": true,
+          "capture_released": true,
+          "workers_no_uncaught_errors": true
+        },
+        {
+          "scenario": "cascade",
+          "checks": 6,
+          "all_processes_stopped": true,
+          "inputs_released": true,
+          "capture_released": true,
+          "workers_no_uncaught_errors": true
+        }
+      ]
+    },
+    {
+      "minecraft": "26.3",
+      "state": "passed",
+      "scenarios": [
+        {
+          "scenario": "normal",
+          "checks": 14,
+          "all_processes_stopped": true,
+          "inputs_released": true,
+          "capture_released": true,
+          "workers_no_uncaught_errors": true
+        },
+        {
+          "scenario": "pause",
+          "checks": 14,
+          "all_processes_stopped": true,
+          "inputs_released": true,
+          "capture_released": true,
+          "workers_no_uncaught_errors": true
+        },
+        {
+          "scenario": "cascade",
+          "checks": 6,
+          "all_processes_stopped": true,
+          "inputs_released": true,
+          "capture_released": true,
+          "workers_no_uncaught_errors": true
+        }
+      ]
+    }
+  ],
+  "total_scenarios": 12,
+  "total_macro_checks": 136,
+  "sha256": {
+    "cooperation-detector.jar": "293ab96ec7ab3ec074b1d2fefdf630c915891f624129fd0bf00bdcb2a880e1a6",
+    "cooperation-scheduler.jar": "aa3647965d029359af3ff453a11ab441437a9c7246997d3e3223393de97a8957",
+    "cooperation-executor.jar": "67dec278cb93daaf40172bdc1aa03cf6fb251687fdd3cb3b0ebf3c91d7532a1a"
+  }
+}
